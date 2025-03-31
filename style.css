@@ -97,6 +97,10 @@ header {
     font-weight: 700;
     color: #fff;
 }
+.logo:hover { 
+    text-shadow: 0 0 20px var(--neon-cyan);
+    transition: 0.3s;
+}  
 
 .logo span {
     color: var(--neon-cyan);
