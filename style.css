@@ -1,3 +1,10 @@
+:root {
+    --neon-cyan: #08f7fe;
+    --neon-cyan-transparent: rgba(8, 247, 254, 0.1);
+    --neon-gradient: linear-gradient(90deg, #08f7fe, #09fbd3);
+    --section-bg: rgba(17, 17, 17, 0.9);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -26,6 +33,13 @@ body::before {
     filter: grayscale(30%) contrast(110%);
 }
 
+/* ===== Shine-Animation ===== */
+@keyframes shine {
+    0% { transform: translateX(-50%) rotate(45deg); }
+    100% { transform: translateX(150%) rotate(45deg); }
+}
+
+/* ===== Skill-Boxen ===== */
 .skill-box {
     position: relative;
     overflow: hidden;
@@ -40,18 +54,14 @@ body::before {
     height: 200%;
     background: linear-gradient(45deg, 
         transparent 20%, 
-        rgba(8, 247, 254, 0.2) 50%,
+        var(--neon-cyan-transparent) 50%,
         transparent 80%);
     animation: shine 3s infinite;
-    pointer-events: none; /* HIER KORRIGIERT */
+    pointer-events: none;
+    will-change: transform;
 }
 
-@keyframes shine {
-    0% { transform: translateX(-50%) rotate(45deg); }
-    100% { transform: translateX(150%) rotate(45deg); }
-}
-
-/* --- Ab hier dein Original-CSS --- */
+/* ===== Header & Navigation ===== */
 header {
     display: flex;
     justify-content: space-between;
@@ -68,7 +78,7 @@ header {
 }
 
 .logo span {
-    color: #08f7fe;
+    color: var(--neon-cyan);
     font-family: 'Orbitron', sans-serif;
 }
 
@@ -83,22 +93,24 @@ nav a:hover {
     color: #fff;
 }
 
+/* ===== Hero Section ===== */
 .hero {
     text-align: center;
     padding: 100px 5%;
 }
 
 .gradient-text {
-    background: linear-gradient(90deg, #08f7fe, #09fbd3);
+    background: var(--neon-gradient);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     font-weight: 700;
 }
 
+/* ===== Buttons ===== */
 .cta-btn {
     display: inline-block;
-    background: #08f7fe;
+    background: var(--neon-cyan);
     color: #000;
     padding: 12px 30px;
     border-radius: 4px;
@@ -112,6 +124,47 @@ nav a:hover {
     transform: translateY(-3px);
 }
 
+.contact-button {
+    display: inline-block;
+    background: var(--neon-cyan-transparent);
+    color: var(--neon-cyan);
+    padding: 12px 30px;
+    border-radius: 4px;
+    border: 2px solid var(--neon-cyan);
+    text-decoration: none;
+    font-weight: bold;
+    margin: 30px 0;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.contact-button:hover {
+    background: var(--neon-cyan);
+    color: #000;
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px var(--neon-cyan-transparent);
+}
+
+.contact-button::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, 
+        transparent 20%, 
+        var(--neon-cyan-transparent) 50%,
+        transparent 80%);
+    animation: shine 3s infinite 0.5s;
+    pointer-events: none;
+    z-index: -1;
+    will-change: transform;
+}
+
+/* ===== Sections ===== */
 .skills, .projects {
     padding: 40px 5%;
 }
@@ -119,7 +172,7 @@ nav a:hover {
 h3 {
     font-size: 1.8rem;
     margin-bottom: 30px;
-    color: #08f7fe;
+    color: var(--neon-cyan);
 }
 
 .skills-container, .projects-container {
@@ -129,7 +182,7 @@ h3 {
 }
 
 .skill-box, .project-card {
-    background: rgba(17, 17, 17, 0.9);
+    background: var(--section-bg);
     padding: 20px;
     border-radius: 8px;
     flex: 1 1 300px;
@@ -140,6 +193,7 @@ h3 {
     transform: translateY(-5px);
 }
 
+/* ===== Footer ===== */
 footer {
     text-align: center;
     padding: 40px 5%;
@@ -155,7 +209,7 @@ footer {
 }
 
 .contact-links a {
-    color: #08f7fe;
+    color: var(--neon-cyan);
     text-decoration: none;
 }
 
@@ -164,7 +218,7 @@ footer {
     font-size: 0.9rem;
 }
 
-/* --- Nur EINE Media Query am Ende --- */
+/* ===== Mobile Optimierungen ===== */
 @media (max-width: 768px) {
     header {
         flex-direction: column;
@@ -188,4 +242,11 @@ footer {
     .skills-container, .projects-container {
         flex-direction: column;
     }
-}
+
+    /* Button-Anpassung Mobile */
+    .contact-button {
+        width: 90%;
+        margin: 20px auto;
+        padding: 15px 0;
+    }
+                                }
