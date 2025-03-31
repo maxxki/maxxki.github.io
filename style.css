@@ -7,8 +7,10 @@
 }
 
 body {
-    background: url('https://maxxki.github.io/superman.jpg') var(--cyber-bg) no-repeat center center fixed;
-    background-size: cover; /* Sorgt dafür, dass das Bild den gesamten Hintergrund abdeckt */
+    background: 
+        linear-gradient(rgba(10, 10, 18, 0.7), rgba(10, 10, 18, 0.7)), /* Transparenter Overlay */
+        url('https://maxxki.github.io/superman.jpg') no-repeat center center fixed;
+    background-size: cover;
     color: #fff;
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
@@ -19,8 +21,6 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
-
-/* ... (der restliche CSS-Code bleibt unverändert) ... */
 
 header, main, footer {
     width: 90%;
@@ -155,5 +155,4 @@ footer a:hover {
 .copyright {
     font-size: 0.9em;
     margin-top: 10px;
-    }
-        
+}
