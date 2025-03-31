@@ -96,7 +96,10 @@ header {
     font-family: 'Orbitron', sans-serif;
     font-weight: 700;
     color: #fff;
-@keyframes logo-glow {
+    transition: 0.3s; /* 👈 Transition hierhin */
+}
+
+@keyframes logo-glow {  /* 👈 Keyframe-Definition ans richtige Ende */
     from { text-shadow: 0 0 10px var(--neon-cyan); }
     to { text-shadow: 0 0 30px var(--neon-cyan), 
                      0 0 15px var(--neon-cyan-transparent); }
@@ -104,13 +107,13 @@ header {
 
 .logo:hover {
     animation: logo-glow 1.2s ease-in-out infinite alternate;
+    cursor: pointer; /* 👈 Interaktivitäts-Hinweis */
 }
 
 .logo span {
     color: var(--neon-cyan);
     font-family: 'Orbitron', sans-serif;
 }
-
 nav a {
     color: #aaa;
     text-decoration: none;
