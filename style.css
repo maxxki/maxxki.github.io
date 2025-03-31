@@ -1,191 +1,159 @@
 :root {
     --neon-cyan: #08f7fe;
-    --neon-cyan-transparent: rgba(8, 247, 254, 0.1);
-    --neon-gradient: linear-gradient(90deg, #08f7fe, #09fbd3);
-    --section-bg: rgba(17, 17, 17, 0.9);
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    --neon-pink: #fe00f6;
+    --cyber-bg: #0a0a12;
+    --text-shadow-color: rgba(8, 247, 254, 0.7);
+    --accent-color: #ffcc00;
 }
 
 body {
+    background: url('https://maxxki.github.io/superman.jpg') var(--cyber-bg) no-repeat center center fixed;
+    background-size: cover; /* Sorgt dafür, dass das Bild den gesamten Hintergrund abdeckt */
+    color: #fff;
     font-family: 'Roboto', sans-serif;
-    color: #e0e0e0;
+    font-size: 16px;
     line-height: 1.6;
-    min-height: 100vh;
-    position: relative;
-}
-
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                url("superman.jpg") center/cover;
-    background-attachment: scroll;
-    z-index: -1;
-    filter: grayscale(30%) contrast(110%);
-}
-
-/* ===== Animationen ===== */
-@keyframes shine {
-    0% { transform: translateX(-50%) rotate(45deg); }
-    100% { transform: translateX(150%) rotate(45deg); }
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
-
-/* ===== Cyber-Divider ===== */
-.cyber-divider {
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
-    margin: 30px 0;
-}
-
-/* ===== Neon-Listen ===== */
-.neon-list {
-    list-style: none;
-    padding-left: 20px;
-}
-
-.neon-list li {
-    position: relative;
-    margin: 15px 0;
-    padding-left: 30px;
-}
-
-.neon-list li::before {
-    content: '▹';
-    position: absolute;
-    left: 0;
-    color: var(--neon-cyan);
-}
-
-/* ===== Hervorhebungen ===== */
-.highlight {
-    color: #09fbd3;
-    font-weight: 700;
-}
-
-/* ===== Puls-Effekt ===== */
-.pulse {
-    animation: pulse 2s infinite;
-}
-
-/* ===== Header & Navigation ===== */
-header {
+    margin: 0;
+    padding: 0;
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    padding: 20px 5%;
-    border-bottom: 1px solid #333;
-    margin-bottom: 40px;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ... (der restliche CSS-Code bleibt unverändert) ... */
+
+header, main, footer {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header {
+    padding: 20px 0;
+    text-align: center;
 }
 
 .logo {
     font-family: 'Orbitron', sans-serif;
-    font-weight: 700;
-    color: #fff;
-    transition: 0.3s; /* 👈 Transition hierhin */
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 2em;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px var(--neon-cyan);
 }
 
-@keyframes logo-glow {  /* 👈 Keyframe-Definition ans richtige Ende */
-    from { text-shadow: 0 0 10px var(--neon-cyan); }
-    to { text-shadow: 0 0 30px var(--neon-cyan), 
-                     0 0 15px var(--neon-cyan-transparent); }
-}
-
-.logo:hover {
-    animation: logo-glow 1.2s ease-in-out infinite alternate;
-    cursor: pointer; /* 👈 Interaktivitäts-Hinweis */
-}
-
-.logo span {
-    color: var(--neon-cyan);
-    font-family: 'Orbitron', sans-serif;
-}
 nav a {
-    color: #aaa;
+    color: var(--neon-cyan);
     text-decoration: none;
-    margin-left: 25px;
-    transition: color 0.3s;
+    padding: 10px 20px;
+    border: 2px solid var(--neon-cyan);
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 nav a:hover {
-    color: #fff;
+    background-color: var(--neon-cyan);
+    color: var(--cyber-bg);
 }
 
-/* ===== Buttons ===== */
+main {
+    flex: 1;
+    padding: 20px 0;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+h2 {
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-bottom: 30px;
+    background: linear-gradient(to right, var(--neon-cyan), var(--neon-pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.value-proposition, .usp-container, .cta-banner, .final-cta {
+    background: rgba(17, 17, 34, 0.9);
+    padding: 30px;
+    border: 2px solid var(--neon-cyan);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.cyber-divider {
+    border-bottom: 2px dashed var(--neon-cyan);
+    margin: 20px 0;
+}
+
+.neon-list {
+    list-style: none;
+    padding: 0;
+}
+
+.neon-list li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.neon-list li::before {
+    content: '•';
+    color: var(--neon-cyan);
+    position: absolute;
+    left: 0;
+}
+
+.highlight {
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+.cyber-card {
+    margin: 15px;
+}
+
+.cta-banner p, .final-cta p {
+    text-align: center;
+}
+
 .contact-button {
     display: inline-block;
-    background: var(--neon-cyan-transparent);
-    color: var(--neon-cyan);
-    padding: 12px 30px;
-    border-radius: 4px;
-    border: 2px solid var(--neon-cyan);
+    background: linear-gradient(to right, var(--neon-cyan), var(--neon-pink));
+    color: var(--cyber-bg);
+    padding: 15px 30px;
+    border-radius: 8px;
     text-decoration: none;
     font-weight: bold;
-    margin: 30px 0;
-    transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
+    transition: transform 0.3s;
 }
 
 .contact-button:hover {
-    background: var(--neon-cyan);
-    color: #000;
-    transform: translateY(-3px);
-    box-shadow: 0 0 15px var(--neon-cyan-transparent);
+    transform: scale(1.05);
 }
 
-.contact-button::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, 
-        transparent 20%, 
-        var(--neon-cyan-transparent) 50%,
-        transparent 80%);
-    animation: shine 3s infinite 0.5s;
-    pointer-events: none;
-    z-index: -1;
-    will-change: transform;
+footer {
+    text-align: center;
+    padding: 20px 0;
+    border-top: 2px solid var(--neon-cyan);
+    margin-top: 40px;
 }
 
-/* ===== Mobile Styles ===== */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        align-items: center;
+footer a {
+    color: var(--neon-cyan);
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.copyright {
+    font-size: 0.9em;
+    margin-top: 10px;
     }
-    
-    nav {
-        margin-top: 15px;
-        text-align: center;
-    }
-    
-    .contact-links {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .contact-button {
-        width: 90%;
-        margin: 20px auto;
-        padding: 15px 0;
-    }
-    }
+        
