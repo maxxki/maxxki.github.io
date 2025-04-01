@@ -7,10 +7,7 @@
 }
 
 body {
-    background: 
-        linear-gradient(rgba(10, 10, 18, 0.7), rgba(10, 10, 18, 0.7)), /* Transparenter Overlay */
-        url('https://maxxki.github.io/superman.jpg') no-repeat center center fixed;
-    background-size: cover;
+    background: var(--cyber-bg);
     color: #fff;
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
@@ -26,10 +23,10 @@ header, main, footer {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 20px 0;
 }
 
 header {
-    padding: 20px 0;
     text-align: center;
 }
 
@@ -58,7 +55,6 @@ nav a:hover {
 
 main {
     flex: 1;
-    padding: 20px 0;
 }
 
 section {
@@ -82,6 +78,7 @@ h2 {
     border: 2px solid var(--neon-cyan);
     border-radius: 10px;
     margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .cyber-divider {
@@ -129,6 +126,7 @@ h2 {
     text-decoration: none;
     font-weight: bold;
     transition: transform 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .contact-button:hover {
@@ -137,7 +135,6 @@ h2 {
 
 footer {
     text-align: center;
-    padding: 20px 0;
     border-top: 2px solid var(--neon-cyan);
     margin-top: 40px;
 }
@@ -146,13 +143,31 @@ footer a {
     color: var(--neon-cyan);
     text-decoration: none;
     margin: 0 10px;
+    transition: color 0.3s;
 }
 
 footer a:hover {
     text-decoration: underline;
+    color: var(--neon-pink);
 }
 
 .copyright {
     font-size: 0.9em;
     margin-top: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header, main, footer {
+        width: 95%;
+    }
+    .logo {
+        font-size: 1.5em;
+    }
+    h2 {
+        font-size: 1.8em;
+    }
+    .contact-button {
+        padding: 12px 25px;
+    }
 }
