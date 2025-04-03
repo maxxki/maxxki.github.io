@@ -6,7 +6,7 @@
 }
 
 /* SUPERMAN-AVATAR (MIT BASE64) */
-.superman-avatar {
+..superman-avatar {
     background: url('superman.jpg') center/cover;
     height: 200px;
     margin: 20px auto;
@@ -14,13 +14,9 @@
     border: 3px solid var(--accent-color);
     box-shadow: 0 0 20px var(--neon-cyan);
     animation: float 3s ease-in-out infinite;
+    opacity: 1; /* oder ein anderer Wert zwischen 0 und 1 */
 }
 
-@keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-    100% { transform: translateY(0); }
-}
 
 /* RESTLICHES DESIGN */
 body {
