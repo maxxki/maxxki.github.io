@@ -3,169 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXUS-AI | DASHBOARD v4.2</title>
+    <title>NEXUS-AI | Profit-Monsoon v9.0</title>
     <style>
         :root {
-            --matrix-green: #00ff41;
-            --neon-blue: #00f7ff;
-            --cyber-dark: #0d0d15;
-            --hacker-font: 'Courier New', monospace;
+            --neon-rain: #00f7ff;
+            --cash-gold: #ffd700;
+            --cyber-storm: #0d0d15;
+            --font-matrix: 'Courier New', monospace;
         }
         
         body {
-            background-color: var(--cyber-dark);
-            color: var(--matrix-green);
-            font-family: var(--hacker-font);
-            margin: 0;
+            background: var(--cyber-storm);
+            color: var(--neon-rain);
+            font-family: var(--font-matrix);
             overflow: hidden;
+            margin: 0;
         }
         
-        .grid-container {
-            display: grid;
-            grid-template-columns: 1fr 2fr 1fr;
-            grid-template-rows: 80px 1fr 1fr;
-            height: 100vh;
-            gap: 1px;
-            background: rgba(0, 247, 255, 0.1);
+        /* RAIN ANIMATION */
+        .rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><line x1="5" y1="0" x2="3" y2="10" stroke="%2300f7ff" stroke-width="0.2"/></svg>');
+            animation: rain 0.5s linear infinite;
+            opacity: 0.3;
         }
         
-        .header {
-            grid-column: 1 / 4;
-            background: rgba(0, 0, 0, 0.7);
-            border-bottom: 1px solid var(--matrix-green);
-            display: flex;
-            align-items: center;
-            padding: 0 20px;
+        @keyframes rain {
+            0% { background-position: 0 0; }
+            100% { background-position: -10% 100%; }
         }
         
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo-blink {
-            width: 10px;
-            height: 10px;
-            background: var(--matrix-green);
-            margin-right: 10px;
-            animation: blink 1s infinite;
-        }
-        
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
-        
-        .panel {
-            background: rgba(13, 13, 21, 0.8);
-            border: 1px solid rgba(0, 247, 255, 0.3);
-            padding: 15px;
-            overflow: auto;
-        }
-        
-        .panel-title {
-            color: var(--neon-blue);
-            border-bottom: 1px dashed var(--matrix-green);
-            padding-bottom: 5px;
-            margin-top: 0;
-        }
-        
-        .data-stream {
-            font-size: 0.9rem;
-            line-height: 1.4;
-        }
-        
-        .data-stream p {
-            margin: 5px 0;
-        }
-        
-        .roi-gauge {
-            height: 20px;
-            background: linear-gradient(90deg, 
-                #ff0000 0%, 
-                #ff5e00 20%, 
-                #ffbb00 40%, 
-                #d4ff00 60%, 
-                #00ff41 80%);
-            margin: 10px 0;
-            position: relative;
-        }
-        
-        .roi-gauge::after {
-            content: '▲';
+        /* MONEY FALL ANIMATION */
+        .money {
             position: absolute;
-            top: -15px;
-            left: 75%;
-            color: var(--matrix-green);
+            font-size: 1.5rem;
+            animation: fall linear forwards;
+            color: var(--cash-gold);
         }
         
-        .alert {
-            color: #ff5e00;
-            animation: pulse 2s infinite;
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(360deg); }
         }
         
-        @keyframes pulse {
-            0% { opacity: 0.5; }
-            50% { opacity: 1; }
-            100% { opacity: 0.5; }
+        /* TERMINAL STYLES */
+        .terminal {
+            background: rgba(13, 13, 21, 0.8);
+            border: 1px solid var(--neon-rain);
+            width: 80%;
+            max-width: 800px;
+            margin: 5rem auto;
+            padding: 2rem;
+            box-shadow: 0 0 30px rgba(0, 247, 255, 0.5);
+        }
+        
+        .prompt {
+            color: var(--cash-gold);
+        }
+        
+        .command {
+            color: var(--neon-rain);
+            text-decoration: underline;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <div class="grid-container">
-        <!-- Header -->
-        <div class="header">
-            <div class="logo">
-                <div class="logo-blink"></div>
-                <h1>NEXUS-AI DASHBOARD v4.2</h1>
-            </div>
+    <!-- RAIN EFFECT -->
+    <div class="rain"></div>
+    
+    <!-- MONEY FALL JS WILL INJECT HERE -->
+    
+    <!-- MAIN TERMINAL -->
+    <div class="terminal">
+        <h1>> NEXUS-AI <span style="color: var(--cash-gold)">PROFIT MONSOON v9.0</span></h1>
+        <p>> System initialisiert: <span style="color: var(--cash-gold)">READY</span></p>
+        <p>> Letzter ROI: <span style="color: var(--cash-gold)">+15.000€</span></p>
+        
+        <div style="margin: 2rem 0;">
+            <p class="prompt">USER@NEXUS:~$</p>
+            <p class="command" onclick="makeItRain()">./start_profit_engine.sh</p>
         </div>
         
-        <!-- Left Panel -->
-        <div class="panel">
-            <h2 class="panel-title">CLIENT_PROFILE</h2>
-            <div class="data-stream">
-                <p>> NAME: BÄCKEREI_SCHMIDT</p>
-                <p>> INDUSTRIE: GASTRONOMIE</p>
-                <p>> MITARBEITER: 12</p>
-                <p>> UMSATZ: 540K€/YR</p>
-                <p>> OPTIMIERUNGSSTATUS: <span class="alert">AKTIV</span></p>
-            </div>
-            
-            <h2 class="panel-title">ROI_TRACKER</h2>
-            <div class="roi-gauge"></div>
-            <p>> PROJEZIERT: +1.400€ (75%)</p>
-            <p>> REALISIERT: +980€ (53%)</p>
-        </div>
-        
-        <!-- Main Panel -->
-        <div class="panel">
-            <h2 class="panel-title">LIVE_OPTIMIERUNGEN</h2>
-            <div class="data-stream">
-                <p>> 08:32:45 - EINKAUFSOPTIMIERUNG GEFUNDEN (+23% Marge)</p>
-                <p>> 08:33:12 - ENERGIEFRESSER IDENTIFIZIERT (-15% Kosten)</p>
-                <p>> 08:35:47 - MITARBEITER-EFFIZIENZ ++ (Schichtplan v4.2)</p>
-                <p>> 08:36:22 - <span class="alert">! KRITISCHE LAGERKOSTEN !</span></p>
-                <p>> 08:37:01 - MARKETING-KAMPAGNE v3 LIVE (CTR +40%)</p>
-            </div>
-        </div>
-        
-        <!-- Right Panel -->
-        <div class="panel">
-            <h2 class="panel-title">NEXUS_AGENTEN</h2>
-            <div class="data-stream">
-                <p>> FINANZEN_AGENT: ONLINE</p>
-                <p>> MARKETING_AGENT: ONLINE</p>
-                <p>> PRODUKTION_AGENT: <span class="alert">ANALYSE</span></p>
-                <p>> NEXT_ACTION:</p>
-                <p>> KUNDEN-TERMIN: HEUTE 14:30</p>
-            </div>
-            
-            <h2 class="panel-title">SYSTEM_STATUS</h2>
-            <p>> CPU: 14%</p>
-            <p>> MEM: 23%</p>
-            <p>> NET: 8Mbps</p>
-            <p>> LAST_UPDATE: 08:38:02</p>
+        <div id="output" style="min-height: 100px; border-top: 1px dashed var(--neon-rain); padding-top: 1rem;">
+            <p>> Warte auf Befehl...</p>
         </div>
     </div>
+
+    <script>
+        // MONEY RAIN FUNCTION
+        function makeItRain() {
+            const output = document.getElementById('output');
+            output.innerHTML = '<p>> Initialisiere Profit-Engine...</p>';
+            
+            // Clear previous money
+            document.querySelectorAll('.money').forEach(el => el.remove());
+            
+            // Create money rain
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const money = document.createElement('div');
+                    money.className = 'money';
+                    money.textContent = '€';
+                    money.style.left = Math.random() * 100 + 'vw';
+                    money.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                    document.body.appendChild(money);
+                }, i * 100);
+            }
+            
+            // Simulate profit calculation
+            setTimeout(() => {
+                output.innerHTML += '<p>> Analysiere Marktdaten...</p>';
+            }, 500);
+            
+            setTimeout(() => {
+                output.innerHTML += '<p>> Finde Optimierungen...</p>';
+            }, 1000);
+            
+            setTimeout(() => {
+                output.innerHTML += '<p>> Generiere ROI-Prognose...</p>';
+            }, 1500);
+            
+            setTimeout(() => {
+                const profit = (Math.random() * 20000 + 5000).toFixed(2);
+                output.innerHTML += `<p style="color: var(--cash-gold); font-weight: bold;">>> PROJEZIERTER ROI: +${profit}€ IN 3 MONATEN!</p>`;
+                
+                // Add more money for big profit
+                if (parseFloat(profit) > 15000) {
+                    for (let i = 0; i < 30; i++) {
+                        const money = document.createElement('div');
+                        money.className = 'money';
+                        money.textContent = '💰';
+                        money.style.left = Math.random() * 100 + 'vw';
+                        money.style.animationDuration = (Math.random() * 3 + 1) + 's';
+                        money.style.fontSize = '2rem';
+                        document.body.appendChild(money);
+                    }
+                }
+            }, 2000);
+        }
+        
+        // TYPING EFFECT FOR FUN
+        document.querySelectorAll('.command').forEach(el => {
+            el.addEventListener('mouseover', function() {
+                this.style.textShadow = '0 0 10px var(--neon-rain)';
+            });
+            el.addEventListener('mouseout', function() {
+                this.style.textShadow = 'none';
+            });
+        });
+    </script>
 </body>
-</html>
+</html>q
