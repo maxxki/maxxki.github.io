@@ -3,89 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Maximilian Kiefer - AI Superman für Next-Gen AI Lösungen. Spezialist für Multi-LLM Architekturen und Prompt Engineering.">
-    <meta property="og:image" content="https://maxxki.github.io/superman.jpg">
-    <title>Maximilian Kiefer | AI/KI Superman</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>NEXUS-AI | DASHBOARD v4.2</title>
+    <style>
+        :root {
+            --matrix-green: #00ff41;
+            --neon-blue: #00f7ff;
+            --cyber-dark: #0d0d15;
+            --hacker-font: 'Courier New', monospace;
+        }
+        
+        body {
+            background-color: var(--cyber-dark);
+            color: var(--matrix-green);
+            font-family: var(--hacker-font);
+            margin: 0;
+            overflow: hidden;
+        }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            grid-template-rows: 80px 1fr 1fr;
+            height: 100vh;
+            gap: 1px;
+            background: rgba(0, 247, 255, 0.1);
+        }
+        
+        .header {
+            grid-column: 1 / 4;
+            background: rgba(0, 0, 0, 0.7);
+            border-bottom: 1px solid var(--matrix-green);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-blink {
+            width: 10px;
+            height: 10px;
+            background: var(--matrix-green);
+            margin-right: 10px;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        
+        .panel {
+            background: rgba(13, 13, 21, 0.8);
+            border: 1px solid rgba(0, 247, 255, 0.3);
+            padding: 15px;
+            overflow: auto;
+        }
+        
+        .panel-title {
+            color: var(--neon-blue);
+            border-bottom: 1px dashed var(--matrix-green);
+            padding-bottom: 5px;
+            margin-top: 0;
+        }
+        
+        .data-stream {
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .data-stream p {
+            margin: 5px 0;
+        }
+        
+        .roi-gauge {
+            height: 20px;
+            background: linear-gradient(90deg, 
+                #ff0000 0%, 
+                #ff5e00 20%, 
+                #ffbb00 40%, 
+                #d4ff00 60%, 
+                #00ff41 80%);
+            margin: 10px 0;
+            position: relative;
+        }
+        
+        .roi-gauge::after {
+            content: '▲';
+            position: absolute;
+            top: -15px;
+            left: 75%;
+            color: var(--matrix-green);
+        }
+        
+        .alert {
+            color: #ff5e00;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+    </style>
 </head>
-
 <body>
-    <header role="banner">
-        <div class="superman-avatar"></div>
-        <h1 class="logo">Maximilian Kiefer <span aria-hidden="true">| AI Superman</span></h1>
-        <nav aria-label="Hauptnavigation">
-            </nav>
-    </header>
-
-    <main>
-        <section id="ki-expertise" aria-labelledby="expertise-heading">
-            <h2 id="expertise-heading" class="gradient-text">Lassen Sie uns Ihren Daily Planet retten, ich bin Ihr Clark Kent für AI-Solutions!</h2>
-
-            <article class="value-proposition">
-                <p>
-                    In einer Ära, in der künstliche Intelligenz (KI) das Potenzial hat, ganze Branchen zu revolutionieren, stehen Unternehmen vor der Herausforderung, dieses Potenzial voll auszuschöpfen. Viele erkennen, dass herkömmliche KI-Implementierungen oft weit hinter den Erwartungen zurückbleiben. Hier komme ich ins Spiel: Als Ihr spezialisierter Lead-KI-Manager/Ingenieur biete ich Ihnen die Expertise, um KI-Lösungen zu entwickeln, die nicht nur funktionieren, sondern außergewöhnliche Ergebnisse liefern. Gemeinsam können wir die Effizienz steigern, innovative Lösungen schaffen und Ihr Unternehmen auf ein neues Niveau heben.
-                </p>
-
-                <div class="cyber-divider"></div>
-
-                <h3>Meine Expertise für Ihren Erfolg:</h3>
-                <ul class="neon-list">
-                    <li>
-                        <strong>Minimierung von KI-Halluzinationen und Fehlerquellen:</strong>
-                        <p>Durch den Einsatz fortgeschrittener Techniken wie Chain-of-Thought und RAG-Prompts reduziere ich Fehlerquoten signifikant. Das bedeutet für Sie: verlässliche und präzise KI-gestützte Entscheidungen, die auf soliden Daten basieren – in jeder Branche.</p>
-                    </li>
-                    <li>
-                        <strong>Optimierung von Geschäftsprozessen durch KI-Agenten:</strong>
-                        <p>Ich entwickle KI-Lösungen, die messbare Verbesserungen erzielen. Ob es um die Automatisierung von Kundenanfragen, die Analyse von Markttrends oder die Optimierung von Produktionsabläufen geht – stellen Sie sich vor, KI-Agenten, die nicht nur Daten liefern, sondern aktiv zur Optimierung Ihrer Geschäftsprozesse beitragen.</p>
-                    </li>
-                    <li>
-                        <strong>Entwicklung von Multi-Modell-Pipelines für Predictive Analytics:</strong>
-                        <p>Die Fähigkeit, zukünftige Entwicklungen vorherzusagen, ist in der heutigen Geschäftswelt von unschätzbarem Wert. Ob es um die Vorhersage von Verkaufszahlen, die Optimierung von Lieferketten oder die Risikobewertung geht – meine KI-Lösungen geben Ihnen den entscheidenden Vorsprung durch präzise Prognosen.</p>
-                    </li>
-                    <li>
-                        <strong>Ethische und sichere KI-Implementierung:</strong>
-                        <p>Ich stelle sicher, dass Ihre KI-Systeme nicht nur leistungsstark, sondern auch ethisch einwandfrei sind. Dies schafft Vertrauen bei Ihren Kunden und Partnern, insbesondere in einer Zeit, in der Datenschutz und ethische Fragen immer wichtiger werden.</p>
-                    </li>
-                    <li>
-                        <strong>Steigerung der Effizienz und Reduzierung von Kosten:</strong>
-                        <p>Durch die Automatisierung von Routineaufgaben und die Optimierung von Prozessen helfe ich Ihnen dabei, das volle Potenzial der KI auszuschöpfen, um Ihre Ressourcen optimal zu nutzen.</p>
-                    </li>
-                    <li>
-                        <strong>Innovation und Wettbewerbsvorteil:</strong>
-                        <p>KI ist ein entscheidender Faktor für Innovation. Ich unterstütze Sie dabei, innovative KI-Lösungen zu entwickeln, die Ihr Unternehmen von der Konkurrenz abheben und neue Geschäftsmöglichkeiten eröffnen.</p>
-                    </li>
-                </ul>
-            </article>
-
-            <aside class="cta-banner">
-                <p class="glow-text">⚠️ WARNUNG: Dieser Pitch ist kein KI-Generic!<br>
-                <small>(Weil ich LLMs wie ein Experte einsetze – nicht mit Tools, sondern durch <span class="highlight">tiefgreifendes Architekturverständnis und Superman Laserblick</span>)</small></p>
-            </aside>
-        </section>
-
-        <section class="final-cta" aria-labelledby="cta-heading">
-            <h2 id="cta-heading" class="gradient-text">Sind Sie bereit für den nächsten Schritt in Ihrer KI-Strategie?</h2>
-            <div class="button-container">
-                <a href="mailto:maxxki.agentur@gmail.com" class="contact-button pulse">
-                     Jetzt KI-Potenzial entfesseln
-                </a>
+    <div class="grid-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <div class="logo-blink"></div>
+                <h1>NEXUS-AI DASHBOARD v4.2</h1>
             </div>
-            <p class="disclaimer"><small>⏳ Buchen Sie mich, bevor ein anderes Unternehmen zuschlägt </small></p>
-        </section>
-    </main>
-
-    <footer id="contact" role="contentinfo">
-        <h3>Verbinden Sie sich mit der Zukunft:</h3>
-        <div class="contact-links">
-            <a href="https://github.com/maxxki" target="_blank" rel="noopener noreferrer" class="neon-link">
-                <span aria-hidden="true"></span> GitHub/maxxki
-            </a>
-            <a href="mailto:maxxki.agentur@gmail.com" class="neon-link">
-                <span aria-hidden="true"></span> maxxki.agentur@gmail.com
-            </a>
         </div>
-        <p class="copyright">© 2025 Maximilian Kiefer – <span class="highlight">Kein Template, pure KI-Superkraft, ohne Kryptonit </span></p>
-    </footer>
+        
+        <!-- Left Panel -->
+        <div class="panel">
+            <h2 class="panel-title">CLIENT_PROFILE</h2>
+            <div class="data-stream">
+                <p>> NAME: BÄCKEREI_SCHMIDT</p>
+                <p>> INDUSTRIE: GASTRONOMIE</p>
+                <p>> MITARBEITER: 12</p>
+                <p>> UMSATZ: 540K€/YR</p>
+                <p>> OPTIMIERUNGSSTATUS: <span class="alert">AKTIV</span></p>
+            </div>
+            
+            <h2 class="panel-title">ROI_TRACKER</h2>
+            <div class="roi-gauge"></div>
+            <p>> PROJEZIERT: +1.400€ (75%)</p>
+            <p>> REALISIERT: +980€ (53%)</p>
+        </div>
+        
+        <!-- Main Panel -->
+        <div class="panel">
+            <h2 class="panel-title">LIVE_OPTIMIERUNGEN</h2>
+            <div class="data-stream">
+                <p>> 08:32:45 - EINKAUFSOPTIMIERUNG GEFUNDEN (+23% Marge)</p>
+                <p>> 08:33:12 - ENERGIEFRESSER IDENTIFIZIERT (-15% Kosten)</p>
+                <p>> 08:35:47 - MITARBEITER-EFFIZIENZ ++ (Schichtplan v4.2)</p>
+                <p>> 08:36:22 - <span class="alert">! KRITISCHE LAGERKOSTEN !</span></p>
+                <p>> 08:37:01 - MARKETING-KAMPAGNE v3 LIVE (CTR +40%)</p>
+            </div>
+        </div>
+        
+        <!-- Right Panel -->
+        <div class="panel">
+            <h2 class="panel-title">NEXUS_AGENTEN</h2>
+            <div class="data-stream">
+                <p>> FINANZEN_AGENT: ONLINE</p>
+                <p>> MARKETING_AGENT: ONLINE</p>
+                <p>> PRODUKTION_AGENT: <span class="alert">ANALYSE</span></p>
+                <p>> NEXT_ACTION:</p>
+                <p>> KUNDEN-TERMIN: HEUTE 14:30</p>
+            </div>
+            
+            <h2 class="panel-title">SYSTEM_STATUS</h2>
+            <p>> CPU: 14%</p>
+            <p>> MEM: 23%</p>
+            <p>> NET: 8Mbps</p>
+            <p>> LAST_UPDATE: 08:38:02</p>
+        </div>
+    </div>
 </body>
 </html>
