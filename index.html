@@ -7,7 +7,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
     <style>
         :root {
             --neon-cyan: #08f7fe;
@@ -18,14 +17,14 @@
         }
 
         body {
-            font-family: 'Orbitron', sans-serif; /* Orbitron für den gesamten Body */
+            font-family: 'Orbitron', sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            background: linear-gradient(rgba(10, 10, 18, 0.85), rgba(10, 10, 18, 0.9)), 
+            background: linear-gradient(rgba(10, 10, 18, 0.85), rgba(10, 10, 18, 0.9)),
                         url('superman.jpg') no-repeat center center fixed;
             background-size: cover;
-            color: var(--white); /* Weiß für den Text */
+            color: var(--white);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -38,9 +37,9 @@
             margin: 0 auto 30px;
             border-radius: 50%;
             border: 3px solid var(--neon-cyan);
-            box-shadow: 0 0 20px var(--neon-cyan), 
+            box-shadow: 0 0 20px var(--neon-cyan),
                         0 0 40px var(--neon-pink);
-            animation: float 3s ease-in-out infinite, 
+            animation: float 3s ease-in-out infinite,
                        pulse-glow 2s alternate infinite;
             position: relative;
             z-index: 10;
@@ -72,7 +71,7 @@
         }
 
         .subtitle {
-            color: var(--neon-pink); /* Pink für den Untertitel */
+            color: var(--neon-pink);
             font-size: 1.2em;
             margin-bottom: 30px;
         }
@@ -108,7 +107,7 @@
         }
 
         .repo-card p {
-            color: var(--white); /* Weiß für den Text */
+            color: var(--white);
         }
 
         .repo-link {
@@ -140,8 +139,8 @@
             margin: 5px;
             border: none;
             border-radius: 5px;
-            background-color: var(--neon-pink); /* Pink für die Buttons */
-            color: var(--white); /* Weiß für den Text der Buttons */
+            background-color: var(--neon-pink);
+            color: var(--white);
             cursor: pointer;
             transition: background-color 0.3s ease;
             font-family: 'Orbitron', sans-serif;
@@ -159,6 +158,13 @@
             h1 {
                 font-size: 1.8em;
             }
+        }
+
+        /* Kryptonite-Mode */
+        body.kryptonite-mode {
+            background: linear-gradient(rgba(10, 10, 18, 0.85), rgba(10, 10, 18, 0.9)),
+                        url('https://i.imgur.com/JYqQZQT.jpg') no-repeat center center fixed;
+            background-size: cover;
         }
     </style>
 </head>
@@ -189,5 +195,36 @@
         <button class="action-btn">Superman buchen</button>
         <button class="action-btn">Daily Planet im Stich lassen</button>
     </div>
+
+    <script>
+        // Punch-Sound für "Superman buchen"
+        document.querySelector('.action-btn:first-child').addEventListener('click', () => {
+            const punch = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-boxing-punch-2051.mp3');
+            punch.volume = 0.7;
+            punch.play();
+        });
+
+        // Kryptonite-Mode mit Drums
+        document.querySelector('.action-btn:last-child').addEventListener('click', function() {
+            document.body.classList.toggle('kryptonite-mode');
+            const drums = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-ominous-drums-561.mp3');
+            drums.volume = 0.4;
+            drums.play();
+        });
+
+        // Lex Luthor Easter Egg (5x Avatar klicken)
+        let clickCount = 0;
+        const avatar = document.querySelector('.superman-avatar');
+        avatar.addEventListener('click', () => {
+            if (++clickCount === 5) {
+                document.body.style.backgroundImage = "url('https://i.imgur.com/JYqQZQT.jpg')";
+                const laugh = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-evil-villain-laugh-2668.mp3');
+                laugh.volume = 0.6;
+                laugh.play();
+                alert("ACHTUNG: LEX LUTHOR HAT DEINE SITE GEHACKT!");
+                clickCount = 0; // Reset für wiederholte Nutzung
+            }
+        });
+    </script>
 </body>
 </html>
