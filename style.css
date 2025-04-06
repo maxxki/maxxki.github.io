@@ -29,6 +29,34 @@ body {
 
 /* ===== SUPERMAN AVATAR WITH GOD MODE EFFECTS ===== */
 .superman-avatar {
+  /* Optimierte Version */
+  will-change: transform, filter;
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              filter 0.3s ease;
+}
+
+#villain-btn {
+  cursor: pointer;
+  outline: none;
+}
+
+#villain-btn:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* Fallback für fehlendes Bild */
+body::before {
+  content: "";
+  background: var(--cyber-bg);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+.superman-avatar {
   background: url('superman.jpg') center/cover no-repeat;
   width: 220px;
   height: 220px;
@@ -275,4 +303,73 @@ h1 {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent-color);
+}
+/* === VILLAIN BUTTON STYLES === */
+#villain-btn {
+  /* Basestyle mit bösen Vibes */
+  background: linear-gradient(45deg, #6a0dad, #ff0000);
+  color: white;
+  border: 2px solid #ff0000;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+#villain-btn:hover {
+  /* Kryptonite-Glitch-Effekt */
+  animation: kryptonite-glitch 0.5s infinite;
+  text-shadow: 0 0 10px #00ff00;
+}
+
+#villain-btn::before {
+  /* Radioaktives Pulsen */
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: radial-gradient(circle, rgba(0,255,0,0.3), transparent 70%);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+#villain-btn:hover::before {
+  opacity: 0.7;
+}
+
+/* === KRYPTO MODE AKTIV (wenn geklickt) === */
+body.kryptonite-mode {
+  /* Superman stirbt (optisch) */
+  animation: kryptonite-pulse 2s infinite;
+}
+
+body.kryptonite-mode .superman-avatar {
+  /* Avatar wird "schwach" */
+  filter: hue-rotate(90deg) brightness(0.8);
+  animation: avatar-shake 0.5s infinite !important;
+}
+
+@keyframes kryptonite-glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(2px, -2px); }
+  60% { transform: translate(-2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes kryptonite-pulse {
+  0% { background-color: rgba(10, 10, 18, 0.9); }
+  50% { background-color: rgba(50, 0, 0, 0.7); }
+  100% { background-color: rgba(10, 10, 18, 0.9); }
+}
+
+@keyframes avatar-shake {
+  0% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-5px) rotate(2deg); }
+  50% { transform: translateY(0) rotate(0deg); }
+  75% { transform: translateY(5px) rotate(-2deg); }
+  100% { transform: translateY(0) rotate(0deg); }
 }
