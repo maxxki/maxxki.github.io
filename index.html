@@ -216,69 +216,77 @@
     </div>
 
     <script>
-        // ===== PARTIKEL-ANIMATION ===== //
+        // ========== KRASSER PARTIKEL-CODE MIT VERBINDUNGSEFFEKTEN ========== //
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
-        let particles = [];
-        const particleColors = ['#08f7fe', '#fe00f6', '#00ffaa', '#ffcc00'];
-        
-        // Canvas an Fenstergröße anpassen
-        function resizeCanvas() {
+        const particles = [];
+        const maxDistance = 150; // Maximale Verbindungslänge
+
+        function init() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            initParticles();
-        }
-        
-        // Partikel initialisieren
-        function initParticles() {
-            particles = [];
-            const particleCount = Math.floor(window.innerWidth * window.innerHeight / 5000);
             
-            for (let i = 0; i < particleCount; i++) {
+            // Partikel erstellen
+            for (let i = 0; i < 50; i++) {
                 particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    size: Math.random() * 3 + 1,
-                    speedX: (Math.random() - 0.5) * 1.5,
-                    speedY: (Math.random() - 0.5) * 1.5,
-                    color: particleColors[Math.floor(Math.random() * particleColors.length)],
-                    opacity: Math.random() * 0.5 + 0.1
+                    x: Math.random() * canvas  .width,
+                    y: Math.random() * canvas  .height,
+                    size: Math.random() * 3 + 2,
+                    speedX: Math.random() * 2 - 1,
+                    speedY: Math.random() * 2 - 1,
+                    color: `hsl(${Math  .random() * 60 + 180}, 100%, 50%)`
                 });
             }
         }
-        
-        // Animation
+
         function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.clearRect(0, 0, canvas  .width, canvas  .height);
             
-            particles.forEach(p => {
-                ctx.fillStyle = p.color;
-                ctx.globalAlpha = p.opacity;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fill();
+            // Verbindungslinien zeichnen
+            particles  .forEach(p1 => {
+                particles  .forEach(p2 => {
+                    const distance = Math  .sqrt(
+                        Math  .pow(p1  .x - p2  .x, 2) + 
+                        Math  .pow(p1  .y - p2  .y, 2)
+                    );
+                    
+                    if (distance < maxDistance) {
+                        ctx  .strokeStyle = `rgba(8, 247, 254, ${1 - distance/maxDistance})`;
+                        ctx  .lineWidth = 0.5;
+                        ctx  .beginPath();
+                        ctx  .moveTo(p1  .x, p1  .y);
+                        ctx  .lineTo(p2  .x, p2  .y);
+                        ctx  .stroke();
+                    }
+                });
+            });
+            
+            // Partikel bewegen
+            particles  .forEach(p => {
+                p  .x += p  .speedX;
+                p  .y += p  .speedY;
                 
-                // Bewegung
-                p.x += p.speedX;
-                p.y += p.speedY;
+                // Randkollision
+                if (p  .x < 0 || p  .x > canvas  .width) p  .speedX *= -1;
+                if (p  .y < 0 || p  .y > canvas  .height) p  .speedY *= -1;
                 
-                // Bildschirmrand-Check
-                if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
-                if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+                // Partikel zeichnen
+                ctx  .fillStyle = p  .color;
+                ctx  .beginPath();
+                ctx  .arc(p  .x, p  .y, p  .size, 0, Math  .PI * 2);
+                ctx  .fill();
             });
             
             requestAnimationFrame(animate);
         }
-        
+
         // Starter
-        window.addEventListener('load', () => {
-            resizeCanvas();
+        window  .addEventListener('load', () => {
+            init();
             animate();
         });
-        
-        window.addEventListener('resize', () => {
-            resizeCanvas();
-        });
+
+        window  .addEventListener('resize', init);
     </script>
 </body>
 </html>
