@@ -17,6 +17,10 @@
   color: var(--enterprise-dark);
   line-height: 1.6;
 }
+@supports (background-blend-mode: overlay) {
+        background-blend-mode: overlay; /* Cooler Mix-Effekt */
+    }
+}
 
 /* Main Container - Executive Layout */
 .enterprise-container {
