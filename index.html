@@ -1,32 +1,203 @@
-
 <!DOCTYPE html>
 <html lang="de">
-<head
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>maxxki | NextGenAI | Enterprise Solutions</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/main.css">
-    <!-- Im head nach den Fonts -->
-<style>
-    .superman-emblem {
-        background-image: url('assets/images/emblems/superman.jpg');
-    }
-    
-    .enterprise-emblem {
-        background-image: url('assets/images/emblems/data-grid.png');
-    }
-    
-    .main-background {
-        background: linear-gradient(135deg, #000428, #004e92), 
-                   url('assets/images/backgrounds/main-background.jpg') center/cover no-repeat;
-    }
-</style>
+    <style>
+        /* ===== GLOBALE VARIABLEN ===== */
+        :root {
+            --neon-cyan: #08f7fe;
+            --neon-pink: #fe00f6;
+            --dark-bg: #0a0a12;
+            --light-bg: #f5f5f7;
+            --shadow-dark: rgba(0, 0, 0, 0.3);
+        }
+
+        /* ===== BASIS-STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* ===== HAUPTHINTERGRUND MIT PARTIKELN ===== */
+        .main-background {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: 
+                linear-gradient(135deg, rgba(0,4,40,0.8), rgba(0,78,146,0.8)),
+                url('assets/images/backgrounds/main-background.jpg') center/cover no-repeat;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        #particleCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.6;
+        }
+
+        /* ===== MODE-KARTEN ===== */
+        .mode-selector {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1200px;
+        }
+
+        .mode-card {
+            width: 350px;
+            height: 450px;
+            background: rgba(10, 10, 18, 0.8);
+            border-radius: 20px;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px var(--shadow-dark);
+        }
+
+        .mode-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            border-color: var(--neon-cyan);
+        }
+
+        /* ===== EMBLEME ===== */
+        .mode-emblem {
+            width: 150px;
+            height: 150px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin-bottom: 1.5rem;
+            transition: all 0.4s ease;
+        }
+
+        .superman-emblem {
+            background-image: url('assets/images/emblems/superman-emblem.png');
+            filter: drop-shadow(0 0 15px var(--neon-cyan));
+        }
+
+        .enterprise-emblem {
+            background-image: url('assets/images/emblems/data-grid-emblem.png');
+            filter: drop-shadow(0 0 15px rgba(0, 102, 204, 0.7));
+        }
+
+        .mode-card:hover .mode-emblem {
+            transform: scale(1.1) rotate(5deg);
+            filter: 
+                drop-shadow(0 0 20px var(--neon-cyan))
+                drop-shadow(0 0 10px var(--neon-pink));
+        }
+
+        /* ===== TEXTE & BUTTONS ===== */
+        .mode-card h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .mode-card p {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .mode-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-pink));
+            color: var(--dark-bg);
+            border: none;
+            border-radius: 50px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(8, 247, 254, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mode-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(254, 0, 246, 0.5);
+        }
+
+        .mode-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .mode-button:hover::before {
+            left: 100%;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            .mode-selector {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .mode-card {
+                width: 300px;
+                height: 400px;
+                padding: 2rem;
+            }
+            
+            .mode-emblem {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="main-background">
+        <canvas id="particleCanvas"></canvas>
+        
         <div class="mode-selector">
             <div class="mode-card superman-mode-card">
                 <div class="mode-emblem superman-emblem"></div>
@@ -44,6 +215,70 @@
         </div>
     </div>
 
-    <script src="assets/js/main.js"></script>
+    <script>
+        // ===== PARTIKEL-ANIMATION ===== //
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        const particleColors = ['#08f7fe', '#fe00f6', '#00ffaa', '#ffcc00'];
+        
+        // Canvas an Fenstergröße anpassen
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initParticles();
+        }
+        
+        // Partikel initialisieren
+        function initParticles() {
+            particles = [];
+            const particleCount = Math.floor(window.innerWidth * window.innerHeight / 5000);
+            
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 3 + 1,
+                    speedX: (Math.random() - 0.5) * 1.5,
+                    speedY: (Math.random() - 0.5) * 1.5,
+                    color: particleColors[Math.floor(Math.random() * particleColors.length)],
+                    opacity: Math.random() * 0.5 + 0.1
+                });
+            }
+        }
+        
+        // Animation
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach(p => {
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = p.opacity;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Bewegung
+                p.x += p.speedX;
+                p.y += p.speedY;
+                
+                // Bildschirmrand-Check
+                if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+            });
+            
+            requestAnimationFrame(animate);
+        }
+        
+        // Starter
+        window.addEventListener('load', () => {
+            resizeCanvas();
+            animate();
+        });
+        
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+        });
+    </script>
 </body>
 </html>
