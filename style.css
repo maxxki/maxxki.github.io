@@ -361,10 +361,27 @@ body.kryptonite-mode .superman-avatar {
 }
 
 @keyframes kryptonite-pulse {
-  0% { background-color: rgba(10, 10, 18, 0.9); }
-  50% { background-color: rgba(50, 0, 0, 0.7); }
-  100% { background-color: rgba(10, 10, 18, 0.9); }
+  0% {
+    background-color: rgba(10, 10, 18, 0.9);
+  }
+  25% {
+    background-color: rgba(80, 0, 0, 0.7);
+  }
+  50% {
+    background-color: rgba(10, 10, 18, 0.9);
+  }
+  75% {
+    background-color: rgba(50, 0, 0, 0.7);
+  }
+  100% {
+    background-color: rgba(10, 10, 18, 0.9);
+  }
 }
+
+body.kryptonite-mode {
+  animation: kryptonite-pulse 1.8s infinite ease-in-out;
+}
+
 
 @keyframes avatar-shake {
   0% { transform: translateY(0) rotate(0deg); }
