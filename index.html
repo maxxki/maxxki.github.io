@@ -21,6 +21,25 @@
                 linear-gradient(to right, #000000, #0d0d1a);
             background-size: cover;
             height: 100vh;
+            transition: all 0.5s ease;
+        }
+
+        /* Superman Mode Stile */
+        body.superman-mode {
+            font-family: 'Orbitron', sans-serif;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(0, 102, 204, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(0, 170, 255, 0.2) 0%, transparent 50%),
+                linear-gradient(to right, #000000, #0a0a1a);
+        }
+
+        /* Enterprise Mode Stile */
+        body.enterprise-mode {
+            font-family: 'Montserrat', sans-serif;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(43, 88, 118, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(78, 67, 118, 0.2) 0%, transparent 50%),
+                linear-gradient(to right, #000000, #0d0d1a);
         }
 
         .container {
@@ -45,6 +64,17 @@
             color: transparent;
             text-shadow: 0 0 10px rgba(75, 108, 183, 0.3);
             font-family: 'Orbitron', sans-serif;
+            transition: all 0.5s ease;
+        }
+
+        .superman-mode h1 {
+            background: linear-gradient(90deg, #00aaff, #0066cc);
+            text-shadow: 0 0 15px rgba(0, 170, 255, 0.5);
+        }
+
+        .enterprise-mode h1 {
+            background: linear-gradient(90deg, #2b5876, #4e4376);
+            text-shadow: 0 0 15px rgba(78, 67, 118, 0.5);
         }
 
         .button-container {
@@ -70,12 +100,12 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
-        .superman-mode {
+        .superman-mode-btn {
             background: linear-gradient(45deg, #0066cc, #00aaff);
             color: white;
         }
 
-        .enterprise-mode {
+        .enterprise-mode-btn {
             background: linear-gradient(45deg, #2b5876, #4e4376);
             color: white;
         }
@@ -153,8 +183,8 @@
     <div class="container">
         <h1>MAXXKI</h1>
         <div class="button-container">
-            <button class="mode-button superman-mode" onclick="location.href='superman.html'">Superman Mode</button>
-            <button class="mode-button enterprise-mode" onclick="location.href='enterprise.html'">Enterprise Expert Mode</button>
+            <button class="mode-button superman-mode-btn" id="supermanBtn">Superman Mode</button>
+            <button class="mode-button enterprise-mode-btn" id="enterpriseBtn">Enterprise Expert Mode</button>
         </div>
     </div>
 
@@ -231,8 +261,24 @@
             // Aktualisiere Verbindungen regelmäßig
             setInterval(createConnections, 1000);
             createConnections();
+
+            // Moduswechsel
+            const supermanBtn = document.getElementById('supermanBtn');
+            const enterpriseBtn = document.getElementById('enterpriseBtn');
+            const body = document.body;
+
+            supermanBtn.addEventListener('click', function() {
+                body.className = 'superman-mode';
+                // Hier kannst du weitere Aktionen für den Superman-Modus hinzufügen
+                // window.location.href = 'superman.html'; // Falls du zu einer separaten Seite wechseln willst
+            });
+
+            enterpriseBtn.addEventListener('click', function() {
+                body.className = 'enterprise-mode';
+                // Hier kannst du weitere Aktionen für den Enterprise-Modus hinzufügen
+                // window.location.href = 'enterprise.html'; // Falls du zu einer separaten Seite wechseln willst
+            });
         });
     </script>
 </body>
 </html>
-
