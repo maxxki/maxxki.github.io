@@ -1,4 +1,8 @@
 /*by maxxki und seinem KI Bruder ===== CYBER-SUPERMAN EXKLUSIV ===== */
+.superman-mode .superman-logo {
+  background: url('../assets/superman.jpg') center/contain no-repeat; /* oder assets/superman.jpg je nach datei position */
+}
+
 .superman-mode {
   background: 
     radial-gradient(circle at 25% 25%, rgba(0, 102, 204, 0.2), transparent 50%),
