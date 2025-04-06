@@ -8,6 +8,120 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/superman.css">
+    <style>
+        .superman-mode {
+            font-family: 'Orbitron', sans-serif;
+            min-height: 100vh;
+            background: 
+                linear-gradient(rgba(10, 10, 18, 0.85), rgba(10, 10, 18, 0.9)),
+                url('assets/images/backgrounds/superman.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .superman-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .superman-content {
+            text-align: center;
+            max-width: 800px;
+            padding: 3rem;
+            background: rgba(20, 20, 30, 0.7);
+            border-radius: 20px;
+            border: 2px solid #08f7fe;
+            box-shadow: 0 0 30px #08f7fe,
+                        0 0 60px #fe00f6;
+            backdrop-filter: blur(10px);
+            animation: pulse 3s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 30px #08f7fe, 0 0 60px #fe00f6; }
+            100% { box-shadow: 0 0 50px #08f7fe, 0 0 90px #fe00f6; }
+        }
+
+        .superman-emblem {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 2rem;
+            background: url('assets/images/emblems/superman-emblem.png') center/contain no-repeat;
+            filter: drop-shadow(0 0 15px #08f7fe);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0); }
+        }
+
+        .superman-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #08f7fe;
+            text-shadow: 0 0 10px #08f7fe;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .superman-content .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #fe00f6;
+            text-shadow: 0 0 5px #fe00f6;
+        }
+
+        .return-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: transparent;
+            color: #08f7fe;
+            border: 2px solid #08f7fe;
+            border-radius: 50px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(8, 247, 254, 0.5);
+        }
+
+        .return-btn:hover {
+            background: #08f7fe;
+            color: #0a0a12;
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(8, 247, 254, 0.8);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .superman-content {
+                padding: 2rem;
+            }
+            
+            .superman-emblem {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .superman-content h1 {
+                font-size: 2rem;
+            }
+            
+            .superman-content .subtitle {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
 </head>
 <body class="superman-mode">
     <div class="superman-container">
@@ -18,7 +132,5 @@
             <a href="index.html" class="return-btn">Zurück zum Hauptmenü</a>
         </div>
     </div>
-
-    <script src="assets/js/superman.js"></script>
 </body>
 </html>
