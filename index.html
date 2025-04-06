@@ -3,116 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>maxxki | GitHub</title>
+    <title>maxxki | Cyber-Superman Dev</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2d2d2d;
-            --accent: #58a6ff;
-            --background: #f8f8f8;
-            --card: #ffffff;
+            --neon-cyan: #08f7fe;
+            --neon-pink: #fe00f6;
+            --cyber-bg: #0a0a12;
+            --accent-color: #ffcc00;
         }
+
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            background-color: var(--background);
-            color: var(--primary);
+            background: linear-gradient(rgba(10, 10, 18, 0.85), rgba(10, 10, 18, 0.9)), 
+                        url('superman.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            min-height: 100vh;
         }
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
+
+        /* SUPERMAN-AVATAR MIT EPISCHEN EFFEKTEN */
+        .superman-avatar {
+            background: url('superman.jpg') center/cover no-repeat;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            border: 3px solid var(--accent-color);
+            box-shadow: 0 0 20px var(--neon-cyan), 
+                        0 0 40px var(--neon-pink);
+            animation: float 3s ease-in-out infinite, 
+                       pulse-glow 2s alternate infinite;
+            position: relative;
+            z-index: 10;
         }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes pulse-glow {
+            from { box-shadow: 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-pink); }
+            to { box-shadow: 0 0 30px var(--neon-cyan), 0 0 60px var(--neon-pink); }
+        }
+
         header {
             text-align: center;
-            margin-bottom: 40px;
+            padding: 40px 20px;
         }
+
         h1 {
-            color: var(--primary);
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px var(--neon-cyan);
             font-size: 2.5em;
             margin-bottom: 10px;
         }
+
         .subtitle {
-            color: #666;
-            font-size: 1.1em;
+            color: var(--accent-color);
+            font-size: 1.2em;
+            margin-bottom: 30px;
         }
+
+        /* REPO-CARDS MIT CYBERPUNK-STIL */
         .repo-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+            gap: 25px;
+            padding: 0 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
+
         .repo-card {
-            background: var(--card);
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s;
+            background: rgba(20, 20, 30, 0.7);
+            border: 1px solid var(--neon-cyan);
+            border-radius: 8px;
+            padding: 25px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
         }
+
         .repo-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(8, 247, 254, 0.2);
+            border-color: var(--neon-pink);
         }
+
         .repo-card h2 {
+            color: var(--neon-cyan);
             margin-top: 0;
-            color: var(--accent);
         }
+
         .repo-link {
             display: inline-block;
             margin-top: 15px;
-            padding: 8px 15px;
-            background: var(--accent);
-            color: white;
+            padding: 8px 20px;
+            background: transparent;
+            color: var(--neon-cyan);
+            border: 1px solid var(--neon-cyan);
+            border-radius: 4px;
             text-decoration: none;
-            border-radius: 5px;
             font-weight: bold;
+            transition: all 0.3s;
         }
+
         .repo-link:hover {
-            background: #4a8ee6;
+            background: var(--neon-cyan);
+            color: var(--cyber-bg);
         }
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            color: #777;
-            font-size: 0.9em;
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .superman-avatar {
+                width: 150px;
+                height: 150px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>maxxki</h1>
-            <p class="subtitle">AI Enthusiast | Prompt Engineer | Solutions Architect</p>
-        </header>
+    <header>
+        <div class="superman-avatar"></div>
+        <h1>maxxki</h1>
+        <p class="subtitle">AI & Cyber-Superman Developer</p>
+    </header>
 
-        <div class="repo-grid">
-            <!-- Repo 1: AI-Power -->
-            <div class="repo-card">
-                <h2>AI-Power</h2>
-                <p>Mein Projekt rund um KI-Modelle und deren Anwendungsmöglichkeiten.</p>
-                <a href="https://github.com/maxxki/AI-Power" class="repo-link">Zum Repository</a>
-                <a href="https://maxxki.github.io/AI-Power/" class="repo-link" style="margin-left: 10px; background: #2ea44f;">Live Demo</a>
-            </div>
-
-            <!-- Repo 2: AI-Solutions -->
-            <div class="repo-card">
-                <h2>AI-Solutions</h2>
-                <p>Praktische Lösungen und Skripte für KI-basierte Problemstellungen.</p>
-                <a href="https://github.com/maxxki/AI-Solutions" class="repo-link">Zum Repository</a>
-                <a href="https://maxxki.github.io/AI-Solutions/" class="repo-link" style="margin-left: 10px; background: #2ea44f;">Live Demo</a>
-            </div>
-
-            <!-- Repo 3: Prompt-Engineer -->
-            <div class="repo-card">
-                <h2>Prompt-Engineer</h2>
-                <p>Sammlung hochoptimierter Prompts für LLMs wie ChatGPT & Co.</p>
-                <a href="https://github.com/maxxki/Prompt-Engineer" class="repo-link">Zum Repository</a>
-                <a href="https://maxxki.github.io/Prompt-Engineer/" class="repo-link" style="margin-left: 10px; background: #2ea44f;">Live Demo</a>
-            </div>
+    <div class="repo-grid">
+        <!-- AI-Power -->
+        <div class="repo-card">
+            <h2>AI-Power</h2>
+            <p>Next-Level KI-Modelle für die Zukunft.</p>
+            <a href="https://github.com/maxxki/AI-Power" class="repo-link">Repository</a>
+            <a href="https://maxxki.github.io/AI-Power/" class="repo-link" style="margin-left: 10px; border-color: var(--accent-color); color: var(--accent-color);">Live Demo</a>
         </div>
 
-        <footer>
-            <p>© 2024 maxxki | Powered by GitHub Pages</p>
-        </footer>
+        <!-- AI-Solutions -->
+        <div class="repo-card">
+            <h2>AI-Solutions</h2>
+            <p>KI-Lösungen für echte Probleme.</p>
+            <a href="https://github.com/maxxki/AI-Solutions" class="repo-link">Repository</a>
+            <a href="https://maxxki.github.io/AI-Solutions/" class="repo-link" style="margin-left: 10px; border-color: var(--accent-color); color: var(--accent-color);">Live Demo</a>
+        </div>
+
+        <!-- Prompt-Engineer -->
+        <div class="repo-card">
+            <h2>Prompt-Engineer</h2>
+            <p>Top-Tier Prompts für LLMs.</p>
+            <a href="https://github.com/maxxki/Prompt-Engineer" class="repo-link">Repository</a>
+            <a href="https://maxxki.github.io/Prompt-Engineer/" class="repo-link" style="margin-left: 10px; border-color: var(--accent-color); color: var(--accent-color);">Live Demo</a>
+        </div>
     </div>
 </body>
 </html>
