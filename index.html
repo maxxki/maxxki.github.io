@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>maxxki | Cyber-Superman Dev</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
@@ -26,7 +28,6 @@
             min-height: 100vh;
         }
 
-        /* SUPERMAN-AVATAR MIT EPISCHEN EFFEKTEN */
         .superman-avatar {
             background: url('superman.jpg') center/cover no-repeat;
             width: 200px;
@@ -73,7 +74,6 @@
             margin-bottom: 30px;
         }
 
-        /* REPO-CARDS MIT CYBERPUNK-STIL */
         .repo-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -121,7 +121,26 @@
             color: var(--cyber-bg);
         }
 
-        /* RESPONSIVE */
+        .superman-actions {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .action-btn {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: var(--accent-color);
+            color: var(--cyber-bg);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background-color: #e6b800;
+        }
+
         @media (max-width: 768px) {
             .superman-avatar {
                 width: 150px;
@@ -139,28 +158,27 @@
         <h1>maxxki</h1>
         <p class="subtitle">AI & Cyber-Superman Developer</p>
     </header>
-  <div class="superman-actions">
-  <button id="hero-btn" class="action-btn">🦸 Superman buchen</button>
-  <button id="villain-btn" class="action-btn">💥 Daily Planet im Stich lassen</button>
+    <div class="superman-actions">
+        <button class="action-btn">🦸 Superman buchen</button>
+        <button class="action-btn">💥 Daily Planet im Stich lassen</button>
     </div>
     <div class="repo-grid">
-        <!-- AI-Power -->
         <div class="repo-card">
             <h2>AI-Power</h2>
             <p>Next-Level KI-Modelle für die Zukunft.</p>
             <a href="https://github.com/maxxki/AI-Power" class="repo-link">Repository</a>
             <a href="https://maxxki.github.io/AI-Power/" class="repo-link" style="margin-left: 10px; border-color: var(--accent-color); color: var(--accent-color);">Live Demo</a>
+            <div class="superman-actions">
+                <button class="action-btn">🦸 Superman buchen</button>
+                <button class="action-btn">💥 Daily Planet im Stich lassen</button>
+            </div>
         </div>
-
-        <!-- AI-Solutions -->
         <div class="repo-card">
             <h2>AI-Solutions</h2>
             <p>KI-Lösungen für echte Probleme.</p>
             <a href="https://github.com/maxxki/AI-Solutions" class="repo-link">Repository</a>
             <a href="https://maxxki.github.io/AI-Solutions/" class="repo-link" style="margin-left: 10px; border-color: var(--accent-color); color: var(--accent-color);">Live Demo</a>
         </div>
-
-        <!-- Prompt-Engineer -->
         <div class="repo-card">
             <h2>Prompt-Engineer</h2>
             <p>Top-Tier Prompts für LLMs.</p>
