@@ -1,54 +1,278 @@
+/* ===== GOAT CYBER-SUPERMAN THEME ===== */
+/* by maxxki & seinem KI-Bruder (github.com/maxxki) */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400&display=swap');
+
 :root {
-    --neon-cyan: #08f7fe;
-    --neon-pink: #fe00f6;
-    --cyber-bg: #0a0a12;
-    --accent-color: #ffcc00;
+  /* ---- NEON COLOR SCHEME ---- */
+  --neon-cyan: #08f7fe;
+  --neon-pink: #fe00f6;
+  --cyber-bg: #0a0a12;
+  --accent-color: #ffcc00;
+  --matrix-green: #00ff41;
+  --text-glow: 0 0 10px currentColor;
 }
 
-/* SUPERMAN-AVATAR (MIT BASE64) */
-.superman-avatar {
-    background: url('superman.jpg') center/cover no-repeat; /* no-repeat hinzugefügt */
-    height: 200px;
-    margin: 20px auto;
-    border-radius: 50%;
-    border: 3px solid var(--accent-color);
-    box-shadow: 0 0 20px var(--neon-cyan);
-    animation: float 3s ease-in-out infinite;
-    opacity: 1; /* Explizite Opazität auf 1 gesetzt */
-    z-index: 10; /* z-index hinzugefügt, um sicherzustellen, dass es über anderen Elementen liegt */
-}
-
-@keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-    100% { transform: translateY(0); }
-}
-
-/* RESTLICHES DESIGN */
+/* ===== BASE STYLES ===== */
 body {
-    background: var(--cyber-bg);
-    color: white;
-    font-family: 'Roboto', sans-serif;
-    margin: 0; /* Standardmargin entfernt */
-    padding: 0; /* Standardpadding entfernt */
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(rgba(10, 10, 18, 0.85), rgba(10, 10, 18, 0.9)), 
+              url('superman.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
+/* ===== SUPERMAN AVATAR WITH GOD MODE EFFECTS ===== */
+.superman-avatar {
+  background: url('superman.jpg') center/cover no-repeat;
+  width: 220px;
+  height: 220px;
+  margin: 0 auto 30px;
+  border-radius: 50%;
+  border: 3px solid var(--accent-color);
+  box-shadow: 0 0 20px var(--neon-cyan), 
+              0 0 40px var(--neon-pink),
+              0 0 80px rgba(254, 0, 246, 0.3);
+  animation: float 3s ease-in-out infinite, 
+             pulse-glow 2s alternate infinite,
+             rotate-halo 15s linear infinite;
+  position: relative;
+  z-index: 10;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.superman-avatar::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border-radius: 50%;
+  border: 2px dashed var(--neon-cyan);
+  animation: spin 20s linear infinite;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(2deg); }
+}
+
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-pink); }
+  100% { box-shadow: 0 0 30px var(--neon-cyan), 0 0 60px var(--neon-pink); }
+}
+
+@keyframes rotate-halo {
+  from { filter: hue-rotate(0deg); }
+  to { filter: hue-rotate(360deg); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ===== HEADER STYLES ===== */
 header {
-    text-align: center;
-    padding: 40px 0;
+  text-align: center;
+  padding: 40px 20px;
+  position: relative;
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 25%;
+  width: 50%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+              transparent, 
+              var(--neon-cyan), 
+              var(--neon-pink), 
+              transparent);
 }
 
 h1 {
-    font-family: 'Orbitron', sans-serif;
-    text-transform: uppercase;
-    color: var(--neon-cyan);
-    text-shadow: 0 0 10px var(--neon-cyan);
+  font-family: 'Orbitron', sans-serif;
+  text-transform: uppercase;
+  color: var(--neon-cyan);
+  text-shadow: var(--text-glow);
+  font-size: 2.8em;
+  margin-bottom: 10px;
+  letter-spacing: 3px;
+  background: linear-gradient(45deg, var(--neon-cyan), var(--neon-pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
 }
 
-/* Responsive */
+.subtitle {
+  color: var(--accent-color);
+  font-size: 1.3em;
+  margin-bottom: 30px;
+  text-shadow: 0 0 8px var(--accent-color);
+  font-weight: 300;
+}
+
+/* ===== REPO GRID ===== */
+.repo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;
+  padding: 0 20px;
+  max-width: 1300px;
+  margin: 40px auto;
+}
+
+.repo-card {
+  background: rgba(20, 20, 30, 0.7);
+  border: 1px solid var(--neon-cyan);
+  border-radius: 12px;
+  padding: 25px;
+  backdrop-filter: blur(8px);
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.repo-card::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, 
+              var(--neon-cyan), 
+              var(--neon-pink), 
+              var(--accent-color));
+  z-index: -1;
+  border-radius: 14px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.repo-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(8, 247, 254, 0.3);
+  border-color: transparent;
+}
+
+.repo-card:hover::before {
+  opacity: 0.7;
+}
+
+.repo-card h2 {
+  color: var(--neon-cyan);
+  margin-top: 0;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+}
+
+.repo-card h2::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--neon-pink);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.repo-card:hover h2::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.repo-link {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 25px;
+  background: transparent;
+  color: var(--neon-cyan);
+  border: 1px solid var(--neon-cyan);
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.repo-link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+              transparent, 
+              rgba(8, 247, 254, 0.3), 
+              transparent);
+  transition: left 0.6s;
+  z-index: -1;
+}
+
+.repo-link:hover {
+  background: var(--neon-cyan);
+  color: var(--cyber-bg);
+  border-color: var(--neon-cyan);
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.repo-link:hover::before {
+  left: 100%;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
-    .superman-avatar {
-        width: 150px;
-        height: 150px;
-    }
+  .superman-avatar {
+    width: 180px;
+    height: 180px;
+  }
+  
+  h1 {
+    font-size: 2em;
+  }
+  
+  .repo-grid {
+    grid-template-columns: 1fr;
+    padding: 0 15px;
+  }
+}
+
+/* ===== SCROLLBAR STYLING ===== */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cyber-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--neon-cyan), var(--neon-pink));
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color);
 }
