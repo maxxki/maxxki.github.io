@@ -78,6 +78,47 @@
             font-weight: 300;
         }
 
+        /* NEU: Repo-Grid für Enterprise-Projekte */
+        .repo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .repo-card {
+            background: white;
+            border: 1px solid #e1e4e8;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #333;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .repo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 102, 204, 0.15);
+            border-color: var(--enterprise-accent);
+        }
+
+        .repo-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .repo-card h3 {
+            color: var(--enterprise-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .repo-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
         .return-btn {
             display: inline-block;
             padding: 12px 30px;
@@ -91,6 +132,7 @@
             letter-spacing: 1px;
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(0, 102, 204, 0.3);
+            margin-top: 2rem;
         }
 
         .return-btn:hover {
@@ -117,6 +159,10 @@
             .enterprise-content .subtitle {
                 font-size: 1.2rem;
             }
+
+            .repo-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -126,6 +172,22 @@
             <div class="enterprise-emblem"></div>
             <h1>ENTERPRISE MODE</h1>
             <p class="subtitle">Nexus Quantum Computing & Enterprise Solutions</p>
+            
+            <!-- NEU: Repo-Grid mit deinen Enterprise-Projekten -->
+            <div class="repo-grid">
+                <a href="https://github.com/DeinUsername/AI-Solutions" class="repo-card" target="_blank">
+                    <div class="repo-icon">🏢</div>
+                    <h3>AI-Solutions</h3>
+                    <p>Enterprise-grade KI-Lösungen für Business-Probleme.</p>
+                </a>
+
+                <a href="https://github.com/DeinUsername/Prompt-Engineer" class="repo-card" target="_blank">
+                    <div class="repo-icon">🔧</div>
+                    <h3>Prompt-Engineer</h3>
+                    <p>Next-Level Prompting-Techniken für LLMs.</p>
+                </a>
+            </div>
+
             <a href="index.html" class="return-btn">Zurück zum Hauptmenü</a>
         </div>
     </div>
