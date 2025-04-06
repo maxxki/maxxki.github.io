@@ -9,8 +9,10 @@
   background: linear-gradient(135deg, 
               var(--enterprise-primary), 
               var(--enterprise-secondary)),
-              url('data:assets/data-grid.png;svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="%2300d4ff" stroke-width="0.5" stroke-dasharray="5,5"/></svg>');
+              url('../assets/data-grid.png'); /* Angepasst auf data-grid.png */
   font-family: 'Montserrat', sans-serif;
+  background-size: cover; /* Hinzugefügt um das Hintergrundbild korrekt zu skalieren */
+  background-repeat: no-repeat; /* Hinzugefügt um das Hintergrundbild nicht zu wiederholen */
 }
 
 /* === AVATAR TRANSFORMATION === */
@@ -155,4 +157,4 @@
   .enterprise-mode .repo-grid {
     grid-template-columns: 1fr;
   }
-  }
+}
