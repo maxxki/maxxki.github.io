@@ -1,6 +1,11 @@
 /*by maxxki und seinem KI Bruder*//
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Montserrat:wght@300;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
+
+body {
+  font-family: 'Fjalla One', sans-serif;
+  
+}
 
 :root {
   /* ---- CORE VARIABLES ---- */
