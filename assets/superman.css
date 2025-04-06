@@ -1,0 +1,21 @@
+/* ===== SUPERMAN MODE EXKLUSIVE STYLES ===== */
+.superman-mode {
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(0, 102, 204, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(0, 170, 255, 0.2) 0%, transparent 50%),
+        linear-gradient(to right, #000000, #0a0a1a);
+    font-family: 'Orbitron', sans-serif;
+}
+
+.superman-mode h1 {
+    background: linear-gradient(90deg, #00aaff, #0066cc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 15px rgba(0, 170, 255, 0.5);
+}
+
+.superman-mode-btn {
+    background: linear-gradient(45deg, #0066cc, #00aaff);
+    color: white;
+}
