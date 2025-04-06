@@ -1,4 +1,4 @@
-/* ===== GOAT CYBER-SUPERMAN THEME: NEXUS ENTERPRISE EDITION ===== */
+l/* ===== GOAT CYBER-SUPERMAN THEME: NEXUS ENTERPRISE EDITION ===== */
 /* by maxxki & seinem KI-Bruder (github.com/maxxki) */
 
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Roboto:wght@300;400;500&family=Montserrat:wght@300;400;600;700&display=swap');
@@ -160,7 +160,7 @@ body::before {
 }
 
 .enterprise-mode h1 {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 900;
   text-transform: uppercase;
   background: linear-gradient(45deg, var(--nexus-primary), var(--nexus-accent), var(--nexus-secondary));
@@ -277,7 +277,7 @@ body::before {
 
 .enterprise-mode .repo-card h2 {
   color: var(--nexus-secondary);
-  font-family: 'Montserrat', 'Orbitron', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   font-size: 1.5em;
   margin-bottom: 20px;
@@ -406,7 +406,7 @@ body::before {
 
 .enterprise-toggle::before {
   content: "E";
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   font-size: 1.8em;
 }
@@ -643,7 +643,7 @@ body::before {
 }
 
 .enterprise-mode .stat-value {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 1.4em;
   color: var(--nexus-secondary);
   font-weight: 700;
