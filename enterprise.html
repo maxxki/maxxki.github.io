@@ -3,26 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAXXKI - Enterprise Mode</title>
+    <title>MAXXKI - Enterprise Solutions</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
+            --enterprise-dark: #001a33;
             --enterprise-primary: #003366;
             --enterprise-secondary: #0066cc;
             --enterprise-accent: #4d94ff;
-            --enterprise-bg: #f5f5f7;
+            --enterprise-light: #e6f2ff;
+            --enterprise-bg: #f8fafc;
         }
 
         .enterprise-mode {
             font-family: 'Montserrat', sans-serif;
             min-height: 100vh;
             background: 
+                linear-gradient(135deg, var(--enterprise-bg) 0%, #ffffff 100%),
                 url('assets/images/backgrounds/data-grid.png') no-repeat center center fixed;
             background-size: cover;
-            color: #333;
-            overflow: hidden;
+            color: var(--enterprise-dark);
+            line-height: 1.6;
         }
 
         .enterprise-container {
@@ -31,173 +34,194 @@
             align-items: center;
             min-height: 100vh;
             padding: 2rem;
-            position: relative;
         }
 
         .enterprise-content {
-            text-align: center;
-            max-width: 800px;
-            padding: 3rem;
+            width: 100%;
+            max-width: 1000px;
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
-            position: relative;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 51, 102, 0.1);
             overflow: hidden;
+            border: 1px solid rgba(0, 102, 204, 0.1);
         }
 
-        .enterprise-content::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 10px;
-            background: linear-gradient(90deg, #003366, #0066cc, #4d94ff);
+        /* Corporate Header */
+        .enterprise-header {
+            background: linear-gradient(90deg, var(--enterprise-dark), var(--enterprise-primary));
+            padding: 3rem 2rem;
+            text-align: center;
+            color: white;
         }
 
         .enterprise-emblem {
-            width: 150px;
-            height: 150px;
-            margin: 0 auto 2rem;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
             background: url('assets/images/emblems/data-grid.svg') center/contain no-repeat;
-            filter: drop-shadow(0 5px 15px rgba(0, 102, 204, 0.3));
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
         }
 
-        .enterprise-content h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #003366;
+        .enterprise-title {
+            font-size: 2.5rem;
             font-weight: 700;
+            margin: 1.5rem 0 0.5rem;
             letter-spacing: 1px;
         }
 
-        .enterprise-content .subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            color: #0066cc;
+        .enterprise-subtitle {
+            font-size: 1.2rem;
             font-weight: 300;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        /* NEU: Repo-Grid für Enterprise-Projekte */
+        /* Professional Services Grid */
         .repo-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 3rem;
         }
 
         .repo-card {
             background: white;
-            border: 1px solid #e1e4e8;
-            border-radius: 10px;
-            padding: 1.5rem;
-            text-align: center;
+            border: 1px solid rgba(0, 66, 128, 0.1);
+            border-radius: 8px;
+            padding: 2rem;
             transition: all 0.3s ease;
-            text-decoration: none;
-            color: #333;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px 15px rgba(0, 51, 102, 0.05);
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .repo-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--enterprise-accent);
+            transition: width 0.3s ease;
         }
 
         .repo-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 102, 204, 0.15);
-            border-color: var(--enterprise-accent);
+            box-shadow: 0 15px 30px rgba(0, 102, 204, 0.1);
+        }
+
+        .repo-card:hover::before {
+            width: 8px;
         }
 
         .repo-icon {
             font-size: 2.5rem;
-            margin-bottom: 1rem;
+            color: var(--enterprise-primary);
+            margin-bottom: 1.5rem;
+            display: inline-block;
         }
 
         .repo-card h3 {
-            color: var(--enterprise-primary);
-            margin-bottom: 0.5rem;
+            color: var(--enterprise-dark);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
         }
 
         .repo-card p {
-            color: #666;
-            font-size: 0.9rem;
+            color: #4d4d4d;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* Executive CTA */
+        .enterprise-cta {
+            text-align: center;
+            padding: 0 3rem 3rem;
         }
 
         .return-btn {
             display: inline-block;
-            padding: 12px 30px;
-            background: linear-gradient(90deg, #0066cc, #4d94ff);
+            padding: 14px 32px;
+            background: var(--enterprise-primary);
             color: white;
             border: none;
-            border-radius: 50px;
-            font-family: 'Montserrat', sans-serif;
+            border-radius: 4px;
             font-weight: 600;
-            text-decoration: none;
+            text-transform: uppercase;
             letter-spacing: 1px;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 102, 204, 0.3);
-            margin-top: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 51, 102, 0.2);
         }
 
         .return-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 102, 204, 0.4);
-            background: linear-gradient(90deg, #003366, #0066cc);
+            background: var(--enterprise-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 51, 102, 0.3);
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .enterprise-content {
-                padding: 2rem;
+            .enterprise-header {
+                padding: 2rem 1.5rem;
             }
             
-            .enterprise-emblem {
-                width: 120px;
-                height: 120px;
-            }
-            
-            .enterprise-content h1 {
+            .enterprise-title {
                 font-size: 2rem;
             }
             
-            .enterprise-content .subtitle {
-                font-size: 1.2rem;
-            }
-
             .repo-grid {
                 grid-template-columns: 1fr;
+                padding: 2rem;
+            }
+            
+            .repo-card {
+                padding: 1.5rem;
             }
         }
     </style>
 </head>
 <body class="enterprise-mode">
-    <div class="enterprise-content">
-  <div class="enterprise-header">
-    <div class="enterprise-emblem"></div>
-    <h1 class="enterprise-title">ENTERPRISE SOLUTIONS</h1>
-    <p class="enterprise-subtitle">Strategic AI Consulting for Global Impact</p>
-  </div>
+    <div class="enterprise-container">
+        <div class="enterprise-content">
+            <div class="enterprise-header">
+                <div class="enterprise-emblem"></div>
+                <h1 class="enterprise-title">ENTERPRISE SOLUTIONS</h1>
+                <p class="enterprise-subtitle">Strategic AI Consulting for Global Impact</p>
+            </div>
 
-  <div class="repo-grid">
-    <!-- AI-Solutions -->
-    <a href="https://github.com/DeinUsername/AI-Solutions" class="repo-card" target="_blank">
-      <div class="repo-icon">🏢</div>
-      <h3>Enterprise AI Framework</h3>
-      <p>End-to-end AI integration for Fortune 500 companies. Scalable, secure, and compliant with industry standards.</p>
-    </a>
+            <div class="repo-grid">
+                <!-- AI-Solutions -->
+                <a href="https://github.com/DeinUsername/AI-Solutions" class="repo-card" target="_blank">
+                    <div class="repo-icon">🏢</div>
+                    <h3>Enterprise AI Framework</h3>
+                    <p>End-to-end AI integration with focus on scalability, security and regulatory compliance for Fortune 500 enterprises.</p>
+                </a>
 
-    <!-- Prompt-Engineer -->
-    <a href="https://github.com/DeinUsername/Prompt-Engineer" class="repo-card" target="_blank">
-      <div class="repo-icon">🔧</div>
-      <h3>Prompt Engineering Suite</h3>
-      <p>Advanced NLP toolset for optimizing LLM performance in mission-critical business applications.</p>
-    </a>
+                <!-- Prompt-Engineer -->
+                <a href="https://github.com/DeinUsername/Prompt-Engineer" class="repo-card" target="_blank">
+                    <div class="repo-icon">🔧</div>
+                    <h3>Prompt Engineering Suite</h3>
+                    <p>Advanced NLP optimization toolkit for mission-critical business applications and large language model deployments.</p>
+                </a>
 
-    <!-- Quantum (Beispiel) -->
-    <a href="#" class="repo-card" target="_blank">
-      <div class="repo-icon">⚛️</div>
-      <h3>Quantum Readiness</h3>
-      <p>Preparing your infrastructure for post-quantum cryptography and AI-driven optimization.</p>
-    </a>
-  </div>
+                <!-- Quantum -->
+                <a href="#" class="repo-card" target="_blank">
+                    <div class="repo-icon">⚛️</div>
+                    <h3>Quantum Readiness</h3>
+                    <p>Future-proof infrastructure assessment for post-quantum cryptography and hybrid AI-quantum computing.</p>
+                </a>
+            </div>
 
-  <div class="enterprise-cta">
-    <a href="index.html" class="return-btn">Return to Dashboard</a>
-  </div>
+            <div class="enterprise-cta">
+                <a href="index.html" class="return-btn">Return to Dashboard</a>
+            </div>
+        </div>
     </div>
+</body>
+</html>
