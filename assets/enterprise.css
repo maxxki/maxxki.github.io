@@ -1,20 +1,30 @@
-/* ===== ENTERPRISE MODE EXKLUSIVE STYLES ===== */
+/* by maxxki und seinem KI Bruder ===== NEXUS ENTERPRISE EXKLUSIV ===== */
 .enterprise-mode {
-    background-image: 
-        radial-gradient(circle at 25% 25%, rgba(43, 88, 118, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 75% 75%, rgba(78, 67, 118, 0.2) 0%, transparent 50%),
-        linear-gradient(to right, #000000, #0d0d1a);
+  background: 
+    linear-gradient(rgba(16, 16, 48, 0.9), rgba(10, 10, 30, 0.95)),
+    url('assets/data-grid.png') center/cover fixed;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .enterprise-mode h1 {
-    background: linear-gradient(90deg, #2b5876, #4e4376);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-shadow: 0 0 15px rgba(78, 67, 118, 0.5);
+  background: linear-gradient(45deg, #3a7bfd, #6e45e2);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 15px rgba(58, 123, 253, 0.5);
 }
 
-.enterprise-mode-btn {
-    background: linear-gradient(45deg, #2b5876, #4e4376);
-    color: white;
+/* Nexus Avatar Halo */
+.superman-avatar {
+  border: 4px solid #3a7bfd;
+  box-shadow: 
+    0 0 25px #00c2ff,
+    0 0 50px #6e45e2;
+  animation: enterprise-float 4s ease-in-out infinite;
+}
+
+/* Keyframes */
+@keyframes enterprise-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-25px) rotate(3deg); }
 }
