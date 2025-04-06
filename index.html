@@ -3,159 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXUS-AI | Profit-Monsoon v9.0</title>
+    <title>maxxki | GitHub</title>
     <style>
         :root {
-            --neon-rain: #00f7ff;
-            --cash-gold: #ffd700;
-            --cyber-storm: #0d0d15;
-            --font-matrix: 'Courier New', monospace;
+            --primary: #2d2d2d;
+            --accent: #58a6ff;
+            --background: #f8f8f8;
+            --card: #ffffff;
         }
-        
         body {
-            background: var(--cyber-storm);
-            color: var(--neon-rain);
-            font-family: var(--font-matrix);
-            overflow: hidden;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
             margin: 0;
+            padding: 0;
+            background-color: var(--background);
+            color: var(--primary);
         }
-        
-        /* RAIN ANIMATION */
-        .rain {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><line x1="5" y1="0" x2="3" y2="10" stroke="%2300f7ff" stroke-width="0.2"/></svg>');
-            animation: rain 0.5s linear infinite;
-            opacity: 0.3;
-        }
-        
-        @keyframes rain {
-            0% { background-position: 0 0; }
-            100% { background-position: -10% 100%; }
-        }
-        
-        /* MONEY FALL ANIMATION */
-        .money {
-            position: absolute;
-            font-size: 1.5rem;
-            animation: fall linear forwards;
-            color: var(--cash-gold);
-        }
-        
-        @keyframes fall {
-            to { transform: translateY(100vh) rotate(360deg); }
-        }
-        
-        /* TERMINAL STYLES */
-        .terminal {
-            background: rgba(13, 13, 21, 0.8);
-            border: 1px solid var(--neon-rain);
-            width: 80%;
+        .container {
             max-width: 800px;
-            margin: 5rem auto;
-            padding: 2rem;
-            box-shadow: 0 0 30px rgba(0, 247, 255, 0.5);
+            margin: 50px auto;
+            padding: 20px;
         }
-        
-        .prompt {
-            color: var(--cash-gold);
+        header {
+            text-align: center;
+            margin-bottom: 40px;
         }
-        
-        .command {
-            color: var(--neon-rain);
-            text-decoration: underline;
-            cursor: pointer;
+        h1 {
+            color: var(--primary);
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+        }
+        .repo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .repo-card {
+            background: var(--card);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .repo-card:hover {
+            transform: translateY(-5px);
+        }
+        .repo-card h2 {
+            margin-top: 0;
+            color: var(--accent);
+        }
+        .repo-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 15px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .repo-link:hover {
+            background: #4a8ee6;
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #777;
+            font-size: 0.9em;
         }
     </style>
 </head>
 <body>
-    <!-- RAIN EFFECT -->
-    <div class="rain"></div>
-    
-    <!-- MONEY FALL JS WILL INJECT HERE -->
-    
-    <!-- MAIN TERMINAL -->
-    <div class="terminal">
-        <h1>> NEXUS-AI <span style="color: var(--cash-gold)">PROFIT MONSOON v9.0</span></h1>
-        <p>> System initialisiert: <span style="color: var(--cash-gold)">READY</span></p>
-        <p>> Letzter ROI: <span style="color: var(--cash-gold)">+15.000€</span></p>
-        
-        <div style="margin: 2rem 0;">
-            <p class="prompt">USER@NEXUS:~$</p>
-            <p class="command" onclick="makeItRain()">./start_profit_engine.sh</p>
-        </div>
-        
-        <div id="output" style="min-height: 100px; border-top: 1px dashed var(--neon-rain); padding-top: 1rem;">
-            <p>> Warte auf Befehl...</p>
-        </div>
-    </div>
+    <div class="container">
+        <header>
+            <h1>maxxki</h1>
+            <p class="subtitle">AI Enthusiast | Prompt Engineer | Solutions Architect</p>
+        </header>
 
-    <script>
-        // MONEY RAIN FUNCTION
-        function makeItRain() {
-            const output = document.getElementById('output');
-            output.innerHTML = '<p>> Initialisiere Profit-Engine...</p>';
-            
-            // Clear previous money
-            document.querySelectorAll('.money').forEach(el => el.remove());
-            
-            // Create money rain
-            for (let i = 0; i < 50; i++) {
-                setTimeout(() => {
-                    const money = document.createElement('div');
-                    money.className = 'money';
-                    money.textContent = '€';
-                    money.style.left = Math.random() * 100 + 'vw';
-                    money.style.animationDuration = (Math.random() * 2 + 1) + 's';
-                    document.body.appendChild(money);
-                }, i * 100);
-            }
-            
-            // Simulate profit calculation
-            setTimeout(() => {
-                output.innerHTML += '<p>> Analysiere Marktdaten...</p>';
-            }, 500);
-            
-            setTimeout(() => {
-                output.innerHTML += '<p>> Finde Optimierungen...</p>';
-            }, 1000);
-            
-            setTimeout(() => {
-                output.innerHTML += '<p>> Generiere ROI-Prognose...</p>';
-            }, 1500);
-            
-            setTimeout(() => {
-                const profit = (Math.random() * 20000 + 5000).toFixed(2);
-                output.innerHTML += `<p style="color: var(--cash-gold); font-weight: bold;">>> PROJEZIERTER ROI: +${profit}€ IN 3 MONATEN!</p>`;
-                
-                // Add more money for big profit
-                if (parseFloat(profit) > 15000) {
-                    for (let i = 0; i < 30; i++) {
-                        const money = document.createElement('div');
-                        money.className = 'money';
-                        money.textContent = '💰';
-                        money.style.left = Math.random() * 100 + 'vw';
-                        money.style.animationDuration = (Math.random() * 3 + 1) + 's';
-                        money.style.fontSize = '2rem';
-                        document.body.appendChild(money);
-                    }
-                }
-            }, 2000);
-        }
-        
-        // TYPING EFFECT FOR FUN
-        document.querySelectorAll('.command').forEach(el => {
-            el.addEventListener('mouseover', function() {
-                this.style.textShadow = '0 0 10px var(--neon-rain)';
-            });
-            el.addEventListener('mouseout', function() {
-                this.style.textShadow = 'none';
-            });
-        });
-    </script>
+        <div class="repo-grid">
+            <!-- Repo 1: AI-Power -->
+            <div class="repo-card">
+                <h2>AI-Power</h2>
+                <p>Mein Projekt rund um KI-Modelle und deren Anwendungsmöglichkeiten.</p>
+                <a href="https://github.com/maxxki/AI-Power" class="repo-link">Zum Repository</a>
+                <a href="https://maxxki.github.io/AI-Power/" class="repo-link" style="margin-left: 10px; background: #2ea44f;">Live Demo</a>
+            </div>
+
+            <!-- Repo 2: AI-Solutions -->
+            <div class="repo-card">
+                <h2>AI-Solutions</h2>
+                <p>Praktische Lösungen und Skripte für KI-basierte Problemstellungen.</p>
+                <a href="https://github.com/maxxki/AI-Solutions" class="repo-link">Zum Repository</a>
+                <a href="https://maxxki.github.io/AI-Solutions/" class="repo-link" style="margin-left: 10px; background: #2ea44f;">Live Demo</a>
+            </div>
+
+            <!-- Repo 3: Prompt-Engineer -->
+            <div class="repo-card">
+                <h2>Prompt-Engineer</h2>
+                <p>Sammlung hochoptimierter Prompts für LLMs wie ChatGPT & Co.</p>
+                <a href="https://github.com/maxxki/Prompt-Engineer" class="repo-link">Zum Repository</a>
+                <a href="https://maxxki.github.io/Prompt-Engineer/" class="repo-link" style="margin-left: 10px; background: #2ea44f;">Live Demo</a>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2024 maxxki | Powered by GitHub Pages</p>
+        </footer>
+    </div>
 </body>
-</html>q
+</html>
