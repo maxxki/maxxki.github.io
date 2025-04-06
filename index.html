@@ -3,497 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>maxxki | NextGenAI | Enterprise Solutions</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>MAXXKI - Modusauswahl</title>
     <style>
-        :root {
-            /* Cyberpunk Mode */
-            --neon-cyan: #08f7fe;
-            --neon-pink: #fe00f6;
-            --cyber-bg: #0a0a12;
-            --accent-color: #ffcc00;
-            --white: #ffffff;
-            
-            /* Enterprise Mode */
-            --enterprise-primary: #003366;
-            --enterprise-secondary: #0066cc;
-            --enterprise-accent: #4d94ff;
-            --enterprise-bg: #f5f5f7;
-            --enterprise-text: #333333;
-        }
-
         body {
-            line-height: 1.6;
             margin: 0;
             padding: 0;
-            min-height: 100vh;
+            font-family: 'Arial', sans-serif;
+            background-color: #0f0f1a;
+            color: white;
+            overflow: hidden;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(65, 105, 225, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
+                linear-gradient(to right, #000000, #0d0d1a);
+            background-size: cover;
+            height: 100vh;
+        }
+
+        .container {
             display: flex;
             flex-direction: column;
-            transition: all 0.5s ease;
-        }
-
-        /* Mode Switch Styles */
-        .mode-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            padding: 10px 15px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-
-        /* Cyberpunk Mode Styles */
-        body.cyberpunk-mode {
-            font-family: 'Orbitron', sans-serif;
-            background: linear-gradient(rgba(10, 10, 18, 0.85), rgba(10, 10, 18, 0.9)),
-                        url('superman.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: var(--white);
-        }
-
-        .cyberpunk-mode .mode-toggle {
-            color: var(--neon-cyan);
-            border: 1px solid var(--neon-cyan);
-        }
-
-        .cyberpunk-mode .mode-toggle:hover {
-            background: var(--neon-cyan);
-            color: var(--cyber-bg);
-        }
-
-        .cyberpunk-mode .superman-avatar {
-            background: url('superman.jpg') center/cover no-repeat;
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 30px;
-            border-radius: 50%;
-            border: 3px solid var(--neon-cyan);
-            box-shadow: 0 0 20px var(--neon-cyan),
-                        0 0 40px var(--neon-pink);
-            animation: float 3s ease-in-out infinite,
-                       pulse-glow 2s alternate infinite;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
             position: relative;
-            z-index: 10;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5rem;
+            background: linear-gradient(90deg, #4b6cb7, #182848);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(75, 108, 183, 0.3);
+        }
+
+        .button-container {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .mode-button {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            min-width: 250px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .superman-mode {
+            background: linear-gradient(45deg, #0066cc, #00aaff);
+            color: white;
+        }
+
+        .enterprise-mode {
+            background: linear-gradient(45deg, #2b5876, #4e4376);
+            color: white;
+        }
+
+        .mode-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .mode-button:active {
+            transform: translateY(0);
+        }
+
+        .mode-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+            z-index: -1;
+        }
+
+        .mode-button:hover::before {
+            transform: translateX(100%);
+        }
+
+        /* Neurale Netz/Quanten Effekte */
+        .quantum-dots {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .quantum-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(100, 200, 255, 0.8);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+
+        .connection {
+            position: absolute;
+            height: 1px;
+            background: rgba(100, 200, 255, 0.2);
+            transform-origin: left center;
+            animation: pulse 4s infinite ease-in-out;
         }
 
         @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0); }
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
         }
 
-        @keyframes pulse-glow {
-            from { box-shadow: 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-pink); }
-            to { box-shadow: 0 0 30px var(--neon-cyan), 0 0 60px var(--neon-pink); }
-        }
-
-        .cyberpunk-mode header {
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        .cyberpunk-mode h1 {
-            font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase;
-            color: var(--neon-cyan);
-            text-shadow: 0 0 10px var(--neon-cyan);
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-
-        .cyberpunk-mode .subtitle {
-            color: var(--neon-pink);
-            font-size: 1.2em;
-            margin-bottom: 30px;
-        }
-
-        .cyberpunk-mode .card-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 25px;
-            padding: 0 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            flex-grow: 1;
-        }
-
-        .cyberpunk-mode .card {
-            background: rgba(20, 20, 30, 0.7);
-            border: 1px solid var(--neon-cyan);
-            border-radius: 8px;
-            padding: 25px;
-            backdrop-filter: blur(5px);
-            transition: all 0.3s ease;
-        }
-
-        .cyberpunk-mode .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(8, 247, 254, 0.2);
-            border-color: var(--neon-pink);
-        }
-
-        .cyberpunk-mode .card h2 {
-            color: var(--neon-cyan);
-            margin-top: 0;
-        }
-
-        .cyberpunk-mode .card p {
-            color: var(--white);
-        }
-
-        .cyberpunk-mode .card-link {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 8px 20px;
-            background: transparent;
-            color: var(--neon-cyan);
-            border: 1px solid var(--neon-cyan);
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s;
-        }
-
-        .cyberpunk-mode .card-link:hover {
-            background: var(--neon-cyan);
-            color: var(--cyber-bg);
-        }
-
-        .cyberpunk-mode .action-buttons {
-            margin-top: 20px;
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        .cyberpunk-mode .action-btn {
-            padding: 10px 20px;
-            margin: 5px;
-            border: none;
-            border-radius: 5px;
-            background-color: var(--neon-pink);
-            color: var(--white);
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        .cyberpunk-mode .action-btn:hover {
-            background-color: #e6b800;
-        }
-
-        /* Enterprise Mode Styles */
-        body.enterprise-mode {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--enterprise-bg);
-            color: var(--enterprise-text);
-        }
-
-        .enterprise-mode .mode-toggle {
-            color: var(--enterprise-primary);
-            border: 1px solid var(--enterprise-primary);
-            background: rgba(255, 255, 255, 0.9);
-        }
-
-        .enterprise-mode .mode-toggle:hover {
-            background: var(--enterprise-primary);
-            color: var(--white);
-        }
-
-        .enterprise-mode .business-logo {
-            width: 200px;
-            height: 80px;
-            margin: 0 auto 20px;
-            background: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80"><rect width="200" height="80" fill="%23003366"/><text x="100" y="50" font-family="Arial" font-size="20" fill="%23ffffff" text-anchor="middle">MAXXKI</text></svg>') center/contain no-repeat;
-        }
-
-        .enterprise-mode header {
-            text-align: center;
-            padding: 40px 20px;
-            background-color: var(--white);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .enterprise-mode h1 {
-            color: var(--enterprise-primary);
-            font-size: 2.2em;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .enterprise-mode .subtitle {
-            color: var(--enterprise-secondary);
-            font-size: 1.1em;
-            font-weight: 300;
-            margin-bottom: 30px;
-        }
-
-        .enterprise-mode .card-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 25px;
-            padding: 40px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            flex-grow: 1;
-        }
-
-        .enterprise-mode .card {
-            background: var(--white);
-            border-radius: 8px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-        }
-
-        .enterprise-mode .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-
-        .enterprise-mode .card h2 {
-            color: var(--enterprise-primary);
-            margin-top: 0;
-            font-weight: 600;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--enterprise-accent);
-        }
-
-        .enterprise-mode .card p {
-            color: var(--enterprise-text);
-            line-height: 1.8;
-        }
-
-        .enterprise-mode .card-link {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 10px 25px;
-            background: var(--enterprise-primary);
-            color: var(--white);
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-
-        .enterprise-mode .card-link:hover {
-            background: var(--enterprise-secondary);
-            transform: translateY(-2px);
-        }
-
-        .enterprise-mode .action-buttons {
-            text-align: center;
-            padding: 20px 0 40px;
-        }
-
-        .enterprise-mode .action-btn {
-            padding: 12px 30px;
-            margin: 10px;
-            border: none;
-            border-radius: 4px;
-            background-color: var(--enterprise-secondary);
-            color: var(--white);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-        }
-
-        .enterprise-mode .action-btn:hover {
-            background-color: var(--enterprise-primary);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        /* Responsive Styles */
-        @media (min-width: 768px) {
-            .card-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 992px) {
-            .card-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (max-width: 767px) {
-            .cyberpunk-mode .superman-avatar,
-            .enterprise-mode .business-logo {
-                transform: scale(0.8);
-            }
-            
-            .cyberpunk-mode h1,
-            .enterprise-mode h1 {
-                font-size: 1.8em;
-            }
-            
-            .mode-toggle {
-                top: 10px;
-                right: 10px;
-                font-size: 14px;
-                padding: 8px 12px;
-            }
-        }
-
-        /* Hide content of the non-active mode */
-        .cyberpunk-content {
-            display: none;
-        }
-        
-        .enterprise-content {
-            display: none;
-        }
-        
-        .cyberpunk-mode .cyberpunk-content {
-            display: block;
-        }
-        
-        .enterprise-mode .enterprise-content {
-            display: block;
+        @keyframes pulse {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.4; }
         }
     </style>
 </head>
-<body class="cyberpunk-mode">
-    <!-- Mode Toggle Button -->
-    <button class="mode-toggle" onclick="toggleMode()">Enterprise Mode</button>
-
-    <!-- Cyberpunk Mode Content -->
-    <div class="cyberpunk-content">
-        <header>
-            <div class="superman-avatar"></div>
-            <h1>maxxki</h1>
-            <p class="subtitle">NextGen AI + Enterprise Solutions</p>
-        </header>
-        
-        <div class="card-grid">
-            <div class="card">
-                <h2>AI-Power</h2>
-                <p>Next-Level AI - Skills für maximale Performance und innovative Lösungsansätze.</p>
-                <a href="https://github.com/maxxki/AI-Power" class="card-link">Repository</a>
-            </div>
-            
-            <div class="card">
-                <h2>AI-Solutions</h2>
-                <p>Enterprise Profit maximiser für Unternehmen, die einen Wettbewerbsvorteil suchen.</p>
-                <a href="https://github.com/maxxki/AI-Solutions" class="card-link">Repository</a>
-            </div>
-            
-            <div class="card">
-                <h2>Prompt-Engineer</h2>
-                <p>Top-Tier Prompts für LLMs und Multimodel Orchestrating zur optimalen Ausschöpfung von KI-Potentialen.</p>
-                <a href="https://github.com/maxxki/Prompt-Engineer" class="card-link">Repository</a>
-            </div>
-        </div>
-        
-        <div class="action-buttons">
-            <button class="action-btn">Superman buchen</button>
-            <button class="action-btn">Daily Planet im Stich lassen</button>
-        </div>
-    </div>
-
-    <!-- Enterprise Mode Content -->
-    <div class="enterprise-content">
-        <header>
-            <div class="business-logo"></div>
-            <h1>MAXXKI Business Consulting</h1>
-            <p class="subtitle">Innovative KI-Lösungen für Ihr Unternehmen</p>
-        </header>
-        
-        <div class="card-grid">
-            <div class="card">
-                <h2>AI-Strategieberatung</h2>
-                <p>Wir entwickeln maßgeschneiderte KI-Strategien, die Ihre Geschäftsziele unterstützen und messbare Ergebnisse liefern.</p>
-                <a href="#kontakt" class="card-link">Mehr erfahren</a>
-            </div>
-            
-            <div class="card">
-                <h2>Enterprise KI-Lösungen</h2>
-                <p>Unsere skalierbaren KI-Implementierungen optimieren Ihre Betriebsabläufe und steigern die Produktivität.</p>
-                <a href="#kontakt" class="card-link">Details anfordern</a>
-            </div>
-            
-            <div class="card">
-                <h2>KI-Effizienzanalyse</h2>
-                <p>Durch datengestützte Analysen identifizieren wir Potenziale für Prozessoptimierungen und Kosteneinsparungen.</p>
-                <a href="#kontakt" class="card-link">Analyse starten</a>
-            </div>
-            
-            <div class="card">
-                <h2>LLM & Multimodal Training</h2>
-                <p>Professionelle Schulungen für Ihr Team zur effektiven Nutzung moderner KI-Technologien.</p>
-                <a href="#kontakt" class="card-link">Schulungsprogramm</a>
-            </div>
-        </div>
-        
-        <div class="action-buttons">
-            <button class="action-btn">Beratungstermin vereinbaren</button>
-            <button class="action-btn">Fallstudien anfordern</button>
+<body>
+    <div class="quantum-dots" id="quantumDots"></div>
+    
+    <div class="container">
+        <h1>MAXXKI</h1>
+        <div class="button-container">
+            <button class="mode-button superman-mode" onclick="location.href='superman.html'">Superman Mode</button>
+            <button class="mode-button enterprise-mode" onclick="location.href='enterprise.html'">Enterprise Expert Mode</button>
         </div>
     </div>
 
     <script>
-        // Mode Toggle Function
-        function toggleMode() {
-            const body = document.body;
-            const toggleBtn = document.querySelector('.mode-toggle');
-            
-            if (body.classList.contains('cyberpunk-mode')) {
-                body.classList.remove('cyberpunk-mode');
-                body.classList.add('enterprise-mode');
-                toggleBtn.textContent = 'Superman Mode';
-            } else {
-                body.classList.remove('enterprise-mode');
-                body.classList.add('cyberpunk-mode');
-                toggleBtn.textContent = 'Enterprise Mode';
-            }
-        }
-        
-        // Cyberpunk Mode Event Listeners
+        // Erstelle Quantenpunkte und Verbindungen
         document.addEventListener('DOMContentLoaded', function() {
-            // Punch Sound für "Superman buchen"
-            const supermanBtn = document.querySelector('.cyberpunk-content .action-btn:first-child');
-            if (supermanBtn) {
-                supermanBtn.addEventListener('click', () => {
-                    const punch = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-boxing-punch-2051.mp3');
-                    punch.volume = 0.7;
-                    punch.play();
-                });
+            const quantumDots = document.getElementById('quantumDots');
+            const dots = [];
+            const connections = [];
+            const dotCount = 30;
+            
+            // Erstelle Punkte
+            for (let i = 0; i < dotCount; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'quantum-dot';
+                dot.style.left = `${Math.random() * 100}vw`;
+                dot.style.top = `${Math.random() * 100}vh`;
+                dot.style.animationDelay = `${Math.random() * 15}s`;
+                dot.style.opacity = '0';
+                quantumDots.appendChild(dot);
+                dots.push(dot);
+                
+                // Starte Animation nach Verzögerung
+                setTimeout(() => {
+                    dot.style.opacity = '1';
+                }, Math.random() * 1000);
             }
-
-            // Kryptonite-Mode mit Drums
-            const dailyPlanetBtn = document.querySelector('.cyberpunk-content .action-btn:last-child');
-            if (dailyPlanetBtn) {
-                dailyPlanetBtn.addEventListener('click', function() {
-                    document.body.style.backgroundImage = "url('https://i.imgur.com/JYqQZQT.jpg')";
-                    const drums = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-ominous-drums-561.mp3');
-                    drums.volume = 0.4;
-                    drums.play();
-                });
-            }
-
-            // Lex Luthor Easter Egg (5x Avatar klicken)
-            let clickCount = 0;
-            const avatar = document.querySelector('.superman-avatar');
-            if (avatar) {
-                avatar.addEventListener('click', () => {
-                    if (++clickCount === 5) {
-                        document.body.style.backgroundImage = "url('https://i.imgur.com/JYqQZQT.jpg')";
-                        const laugh = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-evil-villain-laugh-2668.mp3');
-                        laugh.volume = 0.6;
-                        laugh.play();
-                        alert("ACHTUNG: LEX LUTHOR HAT DEINE SITE GEHACKT!");
-                        clickCount = 0; // Reset für wiederholte Nutzung
+            
+            // Erstelle Verbindungen zwischen nahen Punkten
+            function createConnections() {
+                // Entferne bestehende Verbindungen
+                connections.forEach(conn => {
+                    if (conn.parentNode) {
+                        quantumDots.removeChild(conn);
                     }
                 });
+                connections.length = 0;
+                
+                // Erstelle neue Verbindungen
+                for (let i = 0; i < dots.length; i++) {
+                    for (let j = i + 1; j < dots.length; j++) {
+                        const dot1 = dots[i];
+                        const dot2 = dots[j];
+                        
+                        const rect1 = dot1.getBoundingClientRect();
+                        const rect2 = dot2.getBoundingClientRect();
+                        
+                        const x1 = rect1.left + rect1.width / 2;
+                        const y1 = rect1.top + rect1.height / 2;
+                        const x2 = rect2.left + rect2.width / 2;
+                        const y2 = rect2.top + rect2.height / 2;
+                        
+                        const distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+                        
+                        if (distance < 200) {
+                            const angle = Math.atan2(y2 - y1, x2 - x1);
+                            const length = distance;
+                            
+                            const connection = document.createElement('div');
+                            connection.className = 'connection';
+                            connection.style.width = `${length}px`;
+                            connection.style.left = `${x1}px`;
+                            connection.style.top = `${y1}px`;
+                            connection.style.transform = `rotate(${angle}rad)`;
+                            connection.style.animationDelay = `${Math.random() * 4}s`;
+                            
+                            quantumDots.appendChild(connection);
+                            connections.push(connection);
+                        }
+                    }
+                }
             }
+            
+            // Aktualisiere Verbindungen regelmäßig
+            setInterval(createConnections, 1000);
+            createConnections();
         });
     </script>
 </body>
