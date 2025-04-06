@@ -26,6 +26,8 @@
             background-size: cover;
             color: white;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         .superman-avatar {
@@ -81,6 +83,7 @@
             padding: 0 20px;
             max-width: 1200px;
             margin: 0 auto;
+            flex-grow: 1; /* Nimmt den verfügbaren Platz ein */
         }
 
         .repo-card {
@@ -122,8 +125,9 @@
         }
 
         .superman-actions {
-            margin-top: 10px;
+            margin-top: 20px;
             text-align: center;
+            padding: 20px 0;
         }
 
         .action-btn {
@@ -158,19 +162,11 @@
         <h1>maxxki</h1>
         <p class="subtitle">AI & Cyber-Superman Developer</p>
     </header>
-    <div class="superman-actions">
-        <button class="action-btn"> Superman buchen</button>
-        <button class="action-btn"> Daily Planet im Stich lassen</button>
-    </div>
     <div class="repo-grid">
         <div class="repo-card">
             <h2>AI-Power</h2>
             <p>Next-Level KI-Modelle für die Zukunft.</p>
             <a href="https://github.com/maxxki/AI-Power" class="repo-link">Repository</a>
-            <div class="superman-actions">
-                <button class="action-btn"> Superman buchen</button>
-                <button class="action-btn"> Daily Planet im Stich lassen</button>
-            </div>
         </div>
         <div class="repo-card">
             <h2>AI-Solutions</h2>
@@ -182,6 +178,10 @@
             <p>Top-Tier Prompts für LLMs.</p>
             <a href="https://github.com/maxxki/Prompt-Engineer" class="repo-link">Repository</a>
         </div>
+    </div>
+    <div class="superman-actions">
+        <button class="action-btn">Superman buchen</button>
+        <button class="action-btn">Daily Planet im Stich lassen</button>
     </div>
 </body>
 </html>
