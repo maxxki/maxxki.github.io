@@ -1,3 +1,4 @@
+
 /* ===== ENTERPRISE MODE - PROFESSIONAL STYLE ===== */
 :root {
   --enterprise-dark: #001a33;
@@ -12,7 +13,7 @@
   min-height: 100vh;
   background: 
     linear-gradient(135deg, var(--enterprise-bg) 0%, #ffffff 100%),
-    url('assets/images/backgrounds/enterprise-grid.png') no-repeat center center;
+    url('assets/images/backgrounds/data-grid.png') no-repeat center center;
   background-size: cover;
   color: var(--enterprise-dark);
   line-height: 1.6;
