@@ -338,6 +338,24 @@ h1 {
 #villain-btn:hover::before {
   opacity: 0.7;
 }
+/* Enterprise Avatar */
+.enterprise-mode .consultant-avatar {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 30px;
+    border-radius: 50%;
+    border: 3px solid var(--enterprise-primary);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    display: none; /* Wird per JS getoggelt */
+}
+
+.enterprise-mode .superman-avatar {
+    display: none;
+}
+
+.enterprise-mode .consultant-avatar {
+    display: block;
+}
 
 /* === KRYPTO MODE AKTIV (wenn geklickt) === */
 body.kryptonite-mode {
