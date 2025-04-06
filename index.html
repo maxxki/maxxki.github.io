@@ -78,12 +78,13 @@
 
         .repo-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            /* Entfernen oder ändern von grid-template-columns */
+            grid-template-columns: 1fr; /* oder einfach die Zeile entfernen */
             gap: 25px;
             padding: 0 20px;
             max-width: 1200px;
             margin: 0 auto;
-            flex-grow: 1; /* Nimmt den verfügbaren Platz ein */
+            flex-grow: 1;
         }
 
         .repo-card {
