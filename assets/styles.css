@@ -1,0 +1,55 @@
+/* ===== BASIS-STYLES (für alle Seiten) ===== */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #0f0f1a;
+    color: white;
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+h1 {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5rem;
+    text-shadow: 0 0 10px rgba(75, 108, 183, 0.3);
+}
+
+.button-container {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.mode-button {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    min-width: 250px;
+    text-decoration: none;
+    text-align: center;
+}
+
+/* Quantum Dots Animation (für alle Seiten) */
+.quantum-dots { /* ... */ }
+.quantum-dot { /* ... */ }
+.connection { /* ... */ }
