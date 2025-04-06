@@ -279,6 +279,14 @@
             
             requestAnimationFrame(animate);
         }
+        // 1. Wasserzeichen einbauen (unsichtbar, aber tracebar)
+const maxxkiDNA = "⚡MAXXKI_AI_SUPERMODE_" + Math.random().toString(36).slice(2);
+document.body.setAttribute('data-creator', maxxkiDNA);
+
+// 2. Code verschleiern (für Laien unlesbar)
+const styles = document.createElement('style');
+styles.innerHTML = `body::before { content: "🔥 BY MAXXKI & KI-BRUDER 🔥"; opacity: 0.001; }`;
+document.head.appendChild(styles);
 
         // Starter
         window  .addEventListener('load', () => {
