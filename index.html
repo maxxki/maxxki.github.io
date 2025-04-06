@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>maxxki | NextGen AI </title>
+    <title>maxxki | Cyber-Superman Dev</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
         :root {
@@ -14,17 +14,18 @@
             --neon-pink: #fe00f6;
             --cyber-bg: #0a0a12;
             --accent-color: #ffcc00;
+            --white: #ffffff;
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Orbitron', sans-serif; /* Orbitron für den gesamten Body */
             line-height: 1.6;
             margin: 0;
             padding: 0;
             background: linear-gradient(rgba(10, 10, 18, 0.85), rgba(10, 10, 18, 0.9)), 
                         url('superman.jpg') no-repeat center center fixed;
             background-size: cover;
-            color: white;
+            color: var(--white); /* Weiß für den Text */
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -36,7 +37,7 @@
             height: 200px;
             margin: 0 auto 30px;
             border-radius: 50%;
-            border: 3px solid var(--accent-color);
+            border: 3px solid var(--neon-cyan);
             box-shadow: 0 0 20px var(--neon-cyan), 
                         0 0 40px var(--neon-pink);
             animation: float 3s ease-in-out infinite, 
@@ -71,15 +72,14 @@
         }
 
         .subtitle {
-            color: var(--accent-color);
+            color: var(--neon-pink); /* Pink für den Untertitel */
             font-size: 1.2em;
             margin-bottom: 30px;
         }
 
         .repo-grid {
             display: grid;
-            /* Entfernen oder ändern von grid-template-columns */
-            grid-template-columns: 1fr; /* oder einfach die Zeile entfernen */
+            grid-template-columns: 1fr;
             gap: 25px;
             padding: 0 20px;
             max-width: 1200px;
@@ -105,6 +105,10 @@
         .repo-card h2 {
             color: var(--neon-cyan);
             margin-top: 0;
+        }
+
+        .repo-card p {
+            color: var(--white); /* Weiß für den Text */
         }
 
         .repo-link {
@@ -136,10 +140,11 @@
             margin: 5px;
             border: none;
             border-radius: 5px;
-            background-color: var(--accent-color);
-            color: var(--cyber-bg);
+            background-color: var(--neon-pink); /* Pink für die Buttons */
+            color: var(--white); /* Weiß für den Text der Buttons */
             cursor: pointer;
             transition: background-color 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
         }
 
         .action-btn:hover {
@@ -161,22 +166,22 @@
     <header>
         <div class="superman-avatar"></div>
         <h1>maxxki</h1>
-        <p class="subtitle">NextGen AI - Quantum Prompt Superman - Enterprise- Clark Kent</p>
+        <p class="subtitle">AI & Cyber-Superman Developer</p>
     </header>
     <div class="repo-grid">
         <div class="repo-card">
             <h2>AI-Power</h2>
-            <p>Next-Level KI-Skiils.</p>
+            <p>Next-Level KI-Modelle für die Zukunft.</p>
             <a href="https://github.com/maxxki/AI-Power" class="repo-link">Repository</a>
         </div>
         <div class="repo-card">
             <h2>AI-Solutions</h2>
-            <p>KI-Lösungen für Enterprise Solutions Für ihren maximalen Profit.</p>
+            <p>KI-Lösungen für echte Probleme.</p>
             <a href="https://github.com/maxxki/AI-Solutions" class="repo-link">Repository</a>
         </div>
         <div class="repo-card">
             <h2>Prompt-Engineer</h2>
-            <p>Top-Tier Prompts für LLMs und LLM-ORCHESTRATING.</p>
+            <p>Top-Tier Prompts für LLMs.</p>
             <a href="https://github.com/maxxki/Prompt-Engineer" class="repo-link">Repository</a>
         </div>
     </div>
