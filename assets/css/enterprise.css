@@ -12,9 +12,8 @@
   font-family: 'Montserrat', sans-serif;
   min-height: 100vh;
   background: 
-    linear-gradient(135deg, var(--enterprise-bg) 0%, #ffffff 100%),
-    url('assets/images/backgrounds/data-grid.png') no-repeat center center fixed;
-  background-size: cover;
+    linear-gradient(135deg, rgba(248, 250, 252, 0.9) 0%, rgba(255, 255, 255, 0.9) 100%),
+    url('assets/images/backgrounds/data-grid.png') center/cover fixed;
   color: var(--enterprise-dark);
   line-height: 1.6;
 }
