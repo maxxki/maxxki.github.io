@@ -132,6 +132,7 @@
             transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
             margin-bottom: 2rem;
             position: relative;
+            cursor: pointer; /* Add cursor pointer for better UX */
         }
 
         .expertise-card:hover {
@@ -270,6 +271,7 @@
             letter-spacing: 0.5px;
             font-size: 0.9rem;
             gap: 0.5rem;
+            transition: all 0.3s ease; /* Add transition for smooth hover effect */
         }
 
         .interface-link:hover {
@@ -352,9 +354,22 @@
         }
 
         /* Focus states for accessibility */
-        a:focus, button:focus {
+        a:focus, button:focus, div[role="button"]:focus {
             outline: 2px solid var(--primary-accent);
             outline-offset: 2px;
+        }
+
+        /* Fix text overlapping issue in responsive views */
+        @media (max-width: 576px) {
+            .expertise-heading {
+                font-size: 1.1rem;
+                line-height: 1.4;
+            }
+            
+            .competencies-list li {
+                font-size: 0.85rem;
+                padding-right: 0.5rem;
+            }
         }
 
         /* Dark mode optimization already built-in by default */
@@ -364,31 +379,35 @@
     <div class="interface-frame">
         <div class="interface-container">
             <div class="expertise-section">
-                <div class="section-header">
-                    <h1 class="section-title">Enterprise KI-Transformation</h1>
-                    <p class="section-subtitle">
-                        Strategische Beratung für zukunftssichere digitale Geschäftsmodelle und KI-Integration.
-                    </p>
-                </div>
-                
-                <div class="expertise-card" data-link="https://github.com/maxxki/AI-Solutions/tree/main" tabindex="0" role="button" aria-label="Mehr erfahren über Senior Lead Consultant Dienstleistungen">
-                    <div class="expertise-icon" aria-hidden="true"></div>
-                    <div>
-                        <div class="expertise-title">Senior Lead Consultant</div>
-                        <h2 class="expertise-heading">KI-Transformationsarchitekt</h2>
-                        <div class="expertise-description">
-                            Orchestrierung unternehmensweiter digitaler Strategien mit Fokus auf KI-basierte Lösungsarchitekturen für messbare Geschäftsergebnisse und Wettbewerbsvorteile.
-                        </div>
-                        <ul class="competencies-list">
-                            <li>Entwicklung zukunftsorientierter Digitalstrategien</li>
-                            <li>Ausrichtung von Spitzentechnologien an Unternehmenszielen</li>
-                            <li>Leitung kritischer KI-Integrationsprojekte</li>
-                            <li>Kommunikation zwischen Technik und Führung</li>
-                            <li>Implementierung ethischer KI-Einführungsstrategien</li>
-                            <li>ROI-Quantifizierung für digitale Transformationen</li>
-                        </ul>
+                <a href="https://github.com/maxxki/AI-Solutions/tree/main" style="text-decoration: none; color: inherit;">
+                    <div class="section-header">
+                        <h1 class="section-title">Enterprise KI-Transformation</h1>
+                        <p class="section-subtitle">
+                            Strategische Beratung für zukunftssichere digitale Geschäftsmodelle und KI-Integration.
+                        </p>
                     </div>
-                </div>
+                </a>
+                
+                <a href="https://github.com/maxxki/AI-Solutions/tree/main" style="text-decoration: none; color: inherit;">
+                    <div class="expertise-card" tabindex="0" role="button" aria-label="Mehr erfahren über Senior Lead Consultant Dienstleistungen">
+                        <div class="expertise-icon" aria-hidden="true"></div>
+                        <div>
+                            <div class="expertise-title">Senior Lead Consultant</div>
+                            <h2 class="expertise-heading">KI-Transformationsarchitekt</h2>
+                            <div class="expertise-description">
+                                Orchestrierung unternehmensweiter digitaler Strategien mit Fokus auf KI-basierte Lösungsarchitekturen für messbare Geschäftsergebnisse und Wettbewerbsvorteile.
+                            </div>
+                            <ul class="competencies-list">
+                                <li>Entwicklung zukunftsorientierter Digitalstrategien</li>
+                                <li>Ausrichtung von Spitzentechnologien an Unternehmenszielen</li>
+                                <li>Leitung kritischer KI-Integrationsprojekte</li>
+                                <li>Kommunikation zwischen Technik und Führung</li>
+                                <li>Implementierung ethischer KI-Einführungsstrategien</li>
+                                <li>ROI-Quantifizierung für digitale Transformationen</li>
+                            </ul>
+                        </div>
+                    </div>
+                </a>
 
                 <div class="services-grid">
                     <div class="service-card">
@@ -416,7 +435,7 @@
                     </div>
                     
                     <div class="service-card">
-                        <div class="service-icon">️</div>
+                        <div class="service-icon"></div>
                         <h3 class="service-title">IT-Sicherheit &amp; Compliance</h3>
                         <p class="service-description">
                             Entwicklung sicherer und konformer IT-Systeme zur Minimierung von Risiken und Einhaltung von Vorschriften.
@@ -428,21 +447,17 @@
             
             <nav class="interface-nav">
                 <a href="https://github.com/maxxki/AI-Solutions/tree/main" class="interface-link">
-                    <span aria-hidden="true"></span> Lösungen
+                    <span aria-hidden="true"></span> Mehr entdecken
                     <span class="sr-only">Unsere KI-Lösungen</span>
                 </a>
-                <a href="#" class="interface-link">
+                <a href="mailto:maxxki.agentur@gmail.com" class="interface-link">
                     <span aria-hidden="true"></span> Kontakt
                     <span class="sr-only">Kontaktieren Sie uns</span>
-                </a>
-                <a href="#" class="interface-link">
-                    <span aria-hidden="true">ℹ️</span> Über uns
-                    <span class="sr-only">Mehr über MAXXKI</span>
                 </a>
             </nav>
         </div>
         <div class="ambient-particles">
-            </div>
+        </div>
     </div>
 </body>
 </html>
