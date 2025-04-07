@@ -1,3 +1,4 @@
+html
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -7,201 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        .superman-mode {
-            font-family: 'Orbitron', sans-serif;
-            min-height: 100vh;
-            background: 
-                linear-gradient(rgba(10, 10, 18, 0.85), rgba(10, 10, 18, 0.9)),
-                url('assets/images/backgrounds/superman.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: #fff;
-            overflow: hidden;
-        }
-
-        .superman-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .superman-content {
-            text-align: center;
-            max-width: 800px;
-            padding: 3rem;
-            background: rgba(20, 20, 30, 0.7);
-            border-radius: 20px;
-            border: 2px solid #08f7fe;
-            box-shadow: 0 0 30px #08f7fe,
-                        0 0 60px #fe00f6;
-            backdrop-filter: blur(10px);
-            animation: pulse 3s infinite alternate;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 30px #08f7fe, 0 0 60px #fe00f6; }
-            100% { box-shadow: 0 0 50px #08f7fe, 0 0 90px #fe00f6; }
-        }
-
-        .superman-emblem {
-            width: 150px;
-            height: 150px;
-            margin: 0 auto 2rem;
-            background: url('assets/images/emblems/superman.svg') center/contain no-repeat;
-            filter: drop-shadow(0 0 15px #08f7fe);
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0); }
-        }
-
-        .superman-content h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #08f7fe;
-            text-shadow: 0 0 10px #08f7fe;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
-
-        .superman-content .subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            color: #fe00f6;
-            text-shadow: 0 0 5px #fe00f6;
-        }
-
-        /* NEU: Cyber-Repo-Grid */
-        .repo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin: 2.5rem 0;
-        }
-
-        .repo-card {
-            background: rgba(10, 10, 25, 0.6);
-            border: 1px solid #08f7fe;
-            border-radius: 12px;
-            padding: 1.8rem;
-            text-align: center;
-            transition: all 0.4s ease;
-            text-decoration: none;
-            color: white;
-            box-shadow: 0 0 15px rgba(8, 247, 254, 0.3);
-            backdrop-filter: blur(5px);
-            overflow: hidden;
-            position: relative;
-        }
-
-        .repo-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to bottom right,
-                transparent, transparent,
-                rgba(8, 247, 254, 0.1), transparent
-            );
-            transform: rotate(30deg);
-            transition: all 0.6s ease;
-        }
-
-        .repo-card:hover {
-            transform: translateY(-8px) scale(1.03);
-            box-shadow: 0 0 30px rgba(8, 247, 254, 0.6),
-                        0 0 60px rgba(254, 0, 246, 0.3);
-            border-color: #fe00f6;
-        }
-
-        .repo-card:hover::before {
-            left: 100%;
-        }
-
-        .repo-icon {
-            font-size: 2.8rem;
-            margin-bottom: 1.2rem;
-            text-shadow: 0 0 10px currentColor;
-            display: inline-block;
-            transition: transform 0.3s ease;
-        }
-
-        .repo-card:hover .repo-icon {
-            transform: scale(1.2);
-        }
-
-        .repo-card h3 {
-            color: #08f7fe;
-            margin-bottom: 0.8rem;
-            font-size: 1.4rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .repo-card p {
-            color: #ccc;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        .return-btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: transparent;
-            color: #08f7fe;
-            border: 2px solid #08f7fe;
-            border-radius: 50px;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: bold;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(8, 247, 254, 0.5);
-            margin-top: 2rem;
-        }
-
-        .return-btn:hover {
-            background: #08f7fe;
-            color: #0a0a12;
-            transform: translateY(-3px);
-            box-shadow: 0 0 25px rgba(8, 247, 254, 0.8);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .superman-content {
-                padding: 2rem;
-            }
-            
-            .superman-emblem {
-                width: 120px;
-                height: 120px;
-            }
-            
-            .superman-content h1 {
-                font-size: 2rem;
-            }
-            
-            .superman-content .subtitle {
-                font-size: 1.2rem;
-            }
-
-            .repo-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/superman.css">
 </head>
 <body class="superman-mode">
     <div class="superman-container">
@@ -213,14 +20,14 @@
             <!-- NEU: Cyber-Repo-Grid -->
             <div class="repo-grid">
                 <a href="https://github.com/maxxki/AI-Power" class="repo-card" target="_blank">
-                    <div class="repo-icon" style="color: #08f7fe;">⚡</div>
+                    <div class="repo-icon" style="color: var(--neon-cyan);">⚡</div>
                     <h3>AI-Power</h3>
                     <p>Next-Gen KI-Systeme mit Overclocking-Funktionen und kreative Projekte</p>
                 </a>
 
                 <!-- Platzhalter für weitere Repos -->
                 <a href="#" class="repo-card" target="_blank">
-                    <div class="repo-icon" style="color: #fe00f6;">🧠</div>
+                    <div class="repo-icon" style="color: var(--neon-pink);">🧠</div>
                     <h3>Neuro-Link</h3>
                     <p>Brain-Computer-Interface Prototyping</p>
                 </a>
