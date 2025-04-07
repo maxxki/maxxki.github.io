@@ -3,40 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quantum Leadership Interface | MAXXKI</title>
+    <meta name="description" content="MAXXKI - Innovative KI-gestützte Enterprise-Lösungen für digitale Transformation">
+    <title>Advanced Leadership Interface | MAXXKI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Orbitron:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* === QUANTUM DESIGN SYSTEM === */
+        /* === ADVANCED DESIGN SYSTEM === */
         :root {
-            --quantum-core: #00f0ff;
-            --entanglement-blue: #0077ff;
-            --quantum-void: #000a1a;
-            --hologram-edge: rgba(0, 242, 255, 0.15);
-            --superposition-layer: rgba(255, 255, 255, 0.05);
-            --tunneling-effect: rgba(0, 80, 255, 0.3);
-            --coherence-glow: 0 0 15px rgba(0, 240, 255, 0.7);
+            --primary-accent: #00f0ff;
+            --secondary-accent: #0077ff;
+            --deep-background: #000a1a;
+            --interface-border: rgba(0, 242, 255, 0.15);
+            --interface-overlay: rgba(255, 255, 255, 0.05);
+            --accent-gradient: rgba(0, 80, 255, 0.3);
+            --interactive-glow: 0 0 15px rgba(0, 240, 255, 0.7);
+            --text-primary: rgba(255, 255, 255, 0.9);
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --text-tertiary: rgba(255, 255, 255, 0.5);
+            --container-padding: clamp(1.5rem, 5vw, 3rem);
+        }
+
+        /* Modern CSS Reset */
+        *, *::before, *::after {
+            box-sizing: border-box;
         }
 
         body {
             font-family: 'Inter', sans-serif;
             background: 
-                url('assets/images/backgrounds/data-grid.png'), /* Hintergrundbild hinzugefügt */
-                radial-gradient(circle at 20% 30%, var(--tunneling-effect) 0%, transparent 30%),
-                linear-gradient(180deg, var(--quantum-void) 0%, #000000 150%);
-            background-size: cover, auto, auto; /* Bild an Bildschirmgröße anpassen */
-            background-repeat: no-repeat, no-repeat, no-repeat; /* Wiederholung verhindern */
-            background-blend-mode: overlay, normal, normal; /* Transparenz-Effekt */
-            color: white;
+                url('assets/images/backgrounds/data-grid.png'),
+                radial-gradient(circle at 20% 30%, var(--accent-gradient) 0%, transparent 30%),
+                linear-gradient(180deg, var(--deep-background) 0%, #000000 150%);
+            background-size: cover, auto, auto;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-blend-mode: overlay, normal, normal;
+            color: var(--text-primary);
             overflow-x: hidden;
             margin: 0;
             padding: 0;
             min-height: 100vh;
+            line-height: 1.6;
         }
 
-        /* === QUANTUM INTERFACE CONTAINER === */
-        .quantum-frame {
+        /* === MAIN INTERFACE CONTAINER === */
+        .interface-frame {
             display: grid;
             place-items: center;
             min-height: 100vh;
@@ -44,30 +56,39 @@
             position: relative;
         }
 
-        .quantum-container {
+        .interface-container {
             width: 100%;
             max-width: 1400px;
-            background: var(--superposition-layer);
+            background: var(--interface-overlay);
             backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px); /* Safari support */
             border-radius: 28px;
-            border: 1px solid var(--hologram-edge);
+            border: 1px solid var(--interface-border);
             box-shadow: 
                 0 25px 60px rgba(0, 0, 0, 0.5),
                 inset 0 0 40px rgba(0, 240, 255, 0.08);
             overflow: hidden;
             position: relative;
             z-index: 10;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
-        /* === QUANTUM ENTANGLEMENT BOX === */
-        .entanglement-box {
-            padding: 3rem;
-            border-bottom: 1px solid var(--hologram-edge);
+        .interface-container:hover {
+            box-shadow: 
+                0 25px 60px rgba(0, 0, 0, 0.5),
+                inset 0 0 40px rgba(0, 240, 255, 0.12),
+                0 0 20px rgba(0, 240, 255, 0.1);
+        }
+
+        /* === EXPERTISE SHOWCASE === */
+        .expertise-section {
+            padding: var(--container-padding);
+            border-bottom: 1px solid var(--interface-border);
             position: relative;
             overflow: hidden;
         }
 
-        .entanglement-box::before {
+        .expertise-section::before {
             content: '';
             position: absolute;
             top: 0;
@@ -78,12 +99,33 @@
             pointer-events: none;
         }
 
-        /* === QUANTUM ROLE VISUALIZATION === */
-        .quantum-role {
+        /* Header with subtitle */
+        .section-header {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            color: var(--primary-accent);
+            margin: 0 0 0.5rem 0;
+            letter-spacing: 0.5px;
+        }
+
+        .section-subtitle {
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            color: var(--text-secondary);
+            font-weight: 400;
+            max-width: 800px;
+        }
+
+        /* === ROLE VISUALIZATION === */
+        .expertise-card {
             display: grid;
-            grid-template-columns: 80px 1fr;
-            gap: 2rem;
-            padding: 2.5rem;
+            grid-template-columns: minmax(80px, 100px) 1fr;
+            gap: clamp(1.5rem, 3vw, 2rem);
+            padding: clamp(1.5rem, 5vw, 2.5rem);
             background: rgba(0, 30, 60, 0.3);
             border-radius: 20px;
             border: 1px solid rgba(0, 167, 255, 0.1);
@@ -92,94 +134,153 @@
             position: relative;
         }
 
-        .quantum-role:hover {
+        .expertise-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--coherence-glow);
+            box-shadow: var(--interactive-glow);
             background: rgba(0, 60, 120, 0.3);
         }
 
-        .role-qubit {
-            width: 80px;
-            height: 80px;
+        .expertise-icon {
+            width: 100%;
+            aspect-ratio: 1/1;
             background: linear-gradient(135deg, rgba(0, 240, 255, 0.1) 0%, rgba(0, 80, 255, 0.2) 100%);
             border-radius: 18px;
             display: grid;
             place-items: center;
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 3vw, 2rem);
             box-shadow: 
                 inset 0 0 20px rgba(0, 240, 255, 0.1),
                 0 0 30px rgba(0, 80, 255, 0.2);
         }
 
-        .role-title {
+        .expertise-title {
             font-family: 'Orbitron', sans-serif;
             font-weight: 600;
-            color: var(--quantum-core);
+            color: var(--primary-accent);
             letter-spacing: 0.5px;
             margin-bottom: 0.5rem;
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            text-transform: uppercase;
         }
 
-        .role-description {
-            font-size: 0.95rem;
+        .expertise-heading {
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            margin: 0.25rem 0 1rem 0;
+            font-weight: 500;
+        }
+
+        .expertise-description {
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
             line-height: 1.7;
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--text-secondary);
             margin-bottom: 1.5rem;
         }
 
-        .quantum-list {
+        .competencies-list {
             list-style: none;
             padding: 0;
             margin: 0;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1rem;
         }
 
-        .quantum-list li {
+        .competencies-list li {
             position: relative;
             padding-left: 1.8rem;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
+            font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+            color: var(--text-secondary);
             line-height: 1.6;
         }
 
-        .quantum-list li::before {
+        .competencies-list li::before {
             content: '→';
             position: absolute;
             left: 0;
-            color: var(--quantum-core);
+            color: var(--primary-accent);
             font-weight: bold;
         }
 
-        /* === QUANTUM NAVIGATION === */
-        .quantum-nav {
-            padding: 2rem 3rem;
-            text-align: center;
+        /* === SERVICE AREAS === */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
         }
 
-        .quantum-link {
-            display: inline-block;
+        .service-card {
+            background: rgba(0, 20, 40, 0.4);
+            border-radius: 16px;
+            border: 1px solid rgba(0, 167, 255, 0.1);
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            background: rgba(0, 40, 80, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(0, 120, 255, 0.15);
+        }
+
+        .service-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: rgba(0, 80, 255, 0.15);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .service-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .service-description {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        /* === NAVIGATION === */
+        .interface-nav {
+            padding: clamp(1.5rem, 5vw, 2rem) var(--container-padding);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .interface-link {
+            display: inline-flex;
+            align-items: center;
             padding: 0.8rem 2rem;
             background: linear-gradient(90deg, rgba(0, 240, 255, 0.1) 0%, rgba(0, 80, 255, 0.2) 100%);
-            border: 1px solid var(--hologram-edge);
+            border: 1px solid var(--interface-border);
             border-radius: 50px;
-            color: var(--quantum-core);
+            color: var(--primary-accent);
             text-decoration: none;
             font-weight: 500;
             letter-spacing: 0.5px;
             transition: all 0.3s ease;
             font-size: 0.9rem;
+            gap: 0.5rem;
         }
 
-        .quantum-link:hover {
+        .interface-link:hover {
             background: linear-gradient(90deg, rgba(0, 240, 255, 0.2) 0%, rgba(0, 80, 255, 0.3) 100%);
             box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
             transform: translateY(-2px);
         }
 
-        /* === QUANTUM DECOR === */
-        .quantum-decor {
+        /* === DECORATIVE ELEMENTS === */
+        .ambient-particles {
             position: absolute;
             width: 100%;
             height: 100%;
@@ -190,82 +291,243 @@
             overflow: hidden;
         }
 
-        .quantum-particle {
+        .particle {
             position: absolute;
             border-radius: 50%;
             background: rgba(0, 240, 255, 0.05);
             filter: blur(1px);
         }
+
+        /* Particle animation */
+        @keyframes float {
+            0% {
+                transform: translate3d(0, 0, 0);
+            }
+            100% {
+                transform: translate3d(20px, -20px, 0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: var(--base-opacity);
+                transform: scale(1);
+            }
+            50% {
+                opacity: calc(var(--base-opacity) * 1.5);
+                transform: scale(1.1);
+            }
+            100% {
+                opacity: var(--base-opacity);
+                transform: scale(1);
+            }
+        }
+
+        /* Enhanced accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        /* Media queries for responsiveness */
+        @media (max-width: 768px) {
+            .expertise-card {
+                grid-template-columns: 1fr;
+            }
+            
+            .expertise-icon {
+                width: 70px;
+                margin-bottom: 1rem;
+            }
+            
+            .competencies-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Focus states for accessibility */
+        a:focus, button:focus {
+            outline: 2px solid var(--primary-accent);
+            outline-offset: 2px;
+        }
+
+        /* Dark mode optimization already built-in by default */
     </style>
 </head>
 <body>
-    <div class="quantum-frame">
-        <div class="quantum-container">
-            <div class="entanglement-box">
-                <div class="quantum-role" data-link="https://github.com/maxxki/AI-Solutions/tree/main">
-                    <div class="role-qubit">👔</div>
+    <div class="interface-frame">
+        <div class="interface-container">
+            <!-- Main content section -->
+            <div class="expertise-section">
+                <div class="section-header">
+                    <h1 class="section-title">Enterprise KI-Transformation</h1>
+                    <p class="section-subtitle">
+                        Strategische Beratung für zukunftssichere digitale Geschäftsmodelle und KI-Integration
+                    </p>
+                </div>
+                
+                <!-- Primary expertise card -->
+                <div class="expertise-card" data-link="https://github.com/maxxki/AI-Solutions/tree/main" tabindex="0" role="button" aria-label="Mehr erfahren über Senior Lead Consultant Dienstleistungen">
+                    <div class="expertise-icon" aria-hidden="true">👔</div>
                     <div>
-                        <div class="role-title">SENIOR LEAD CONSULTANT</div>
-                        <h3>Digital Transformation Architect</h3>
-                        <div class="role-description">
-                            Orchestrating enterprise-wide digital revolutions that deliver measurable business outcomes and sustainable competitive advantages through quantum-inspired strategic frameworks.
+                        <div class="expertise-title">Senior Lead Consultant</div>
+                        <h2 class="expertise-heading">Enterprise KI-Transformationsarchitekt</h2>
+                        <div class="expertise-description">
+                            Orchestrierung unternehmensweiter digitaler Strategien, die messbare Geschäftsergebnisse und nachhaltige Wettbewerbsvorteile durch datengestützte, KI-basierte Lösungsarchitekturen liefern.
                         </div>
-                        <ul class="quantum-list">
-                            <li>Design future-proof digital transformation roadmaps</li>
-                            <li>Align cutting-edge tech with C-level business objectives</li>
-                            <li>Lead digital transformation initiatives</li>
-                            <li>Bridge gap between technical teams and executive stakeholders</li>
-                            <li>Develop AI adoption strategies with ethical frameworks</li>
+                        <ul class="competencies-list">
+                            <li>Entwicklung zukunftssicherer digitaler Transformationsstrategien</li>
+                            <li>Alignment von Spitzentechnologien mit C-Level-Geschäftszielen</li>
+                            <li>Leitung unternehmenskritischer KI-Integrationsinitiativen</li>
+                            <li>Überbrückung der Kluft zwischen technischen Teams und Führungskräften</li>
+                            <li>Implementierung von KI-Einführungsstrategien mit ethischen Rahmenwerken</li>
+                            <li>Quantifizierung von ROI-Metriken für digitale Transformationen</li>
                         </ul>
+                    </div>
+                </div>
+
+                <!-- Service areas section -->
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🔄</div>
+                        <h3 class="service-title">Digitale Strategieberatung</h3>
+                        <p class="service-description">
+                            Entwicklung ganzheitlicher, datengestützter Strategien für digitale Transformation mit messbarem ROI und klaren Implementierungspfaden.
+                        </p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">🧠</div>
+                        <h3 class="service-title">Enterprise KI-Integration</h3>
+                        <p class="service-description">
+                            Implementierung maßgeschneiderter KI-Lösungen zur Optimierung von Geschäftsprozessen, Entscheidungsfindung und Kundenerfahrungen.
+                        </p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">📊</div>
+                        <h3 class="service-title">Datenarchitektur &amp; Analytics</h3>
+                        <p class="service-description">
+                            Aufbau skalierbarer Dateninfrastrukturen und Advanced-Analytics-Frameworks für datengestützte Entscheidungsprozesse.
+                        </p>
                     </div>
                 </div>
             </div>
             
-            <div class="quantum-nav">
-                <a href="https://github.com/maxxki/AI-Solutions/tree/main" class="quantum-link">Explore Quantum Solutions</a>
+            <!-- Navigation section -->
+            <div class="interface-nav">
+                <a href="https://github.com/maxxki/AI-Solutions/tree/main" class="interface-link">
+                    <span>Enterprise KI-Lösungen entdecken</span>
+                    <span aria-hidden="true">→</span>
+                </a>
+                <a href="#kontakt" class="interface-link">
+                    <span>Beratungsgespräch vereinbaren</span>
+                    <span aria-hidden="true">→</span>
+                </a>
             </div>
         </div>
     </div>
 
     <script>
-        // Quantum particle animation
+        // Enhanced ambient particle animation with performance optimization
         document.addEventListener('DOMContentLoaded', function() {
             const decor = document.createElement('div');
-            decor.className = 'quantum-decor';
+            decor.className = 'ambient-particles';
             document.body.appendChild(decor);
 
-            for (let i = 0; i < 20; i++) {
+            // Use requestAnimationFrame for smoother animations
+            const particleCount = window.innerWidth < 768 ? 10 : 20;
+            
+            for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
-                particle.className = 'quantum-particle';
+                particle.className = 'particle';
                 
+                // Randomize particle properties for more organic feel
                 const size = Math.random() * 6 + 2;
                 const posX = Math.random() * 100;
                 const posY = Math.random() * 100;
                 const opacity = Math.random() * 0.1 + 0.05;
                 const animationDuration = Math.random() * 30 + 20;
+                const animationDelay = Math.random() * 15;
+                const pulseInterval = Math.random() * 8 + 3;
                 
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
                 particle.style.left = `${posX}%`;
                 particle.style.top = `${posY}%`;
                 particle.style.opacity = opacity;
-                particle.style.animation = `float ${animationDuration}s infinite alternate`;
+                particle.style.setProperty('--base-opacity', opacity);
+                
+                // Combined animations
+                particle.style.animation = `
+                    float ${animationDuration}s infinite alternate ease-in-out ${animationDelay}s,
+                    pulse ${pulseInterval}s infinite ease-in-out ${animationDelay * 0.5}s
+                `;
                 
                 decor.appendChild(particle);
             }
 
-            // Clickable quantum roles
-            const quantumRoles = document.querySelectorAll('.quantum-role');
-            quantumRoles.forEach(role => {
-                role.addEventListener('click', function() {
-                    const link = this.getAttribute('data-link');
-                    if (link) {
-                        window.location.href = link;
-                    }
-                });
-                
-                role.style.cursor = 'pointer';
+            // Interactive elements handling
+            const interactiveCards = document.querySelectorAll('.expertise-card, .service-card');
+            
+            interactiveCards.forEach(card => {
+                // For clickable elements
+                if (card.hasAttribute('data-link')) {
+                    card.addEventListener('click', function() {
+                        const link = this.getAttribute('data-link');
+                        if (link) {
+                            window.location.href = link;
+                        }
+                    });
+                    
+                    // Keyboard accessibility
+                    card.addEventListener('keydown', function(e) {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            const link = this.getAttribute('data-link');
+                            if (link) {
+                                window.location.href = link;
+                            }
+                        }
+                    });
+                    
+                    card.style.cursor = 'pointer';
+                }
             });
+
+            // Intersection Observer for subtle entrance animations
+            if ('IntersectionObserver' in window) {
+                const fadeElements = document.querySelectorAll('.expertise-card, .service-card');
+                
+                const appearOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+                
+                const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, appearOptions);
+                
+                fadeElements.forEach(element => {
+                    element.style.opacity = '0';
+                    element.style.transform = 'translateY(20px)';
+                    element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    appearOnScroll.observe(element);
+                });
+            }
         });
     </script>
 </body>
