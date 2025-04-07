@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Orbitron:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* (CSS-Stile bleiben unverändert) */
+        /* === ADVANCED DESIGN SYSTEM === */
         :root {
             --primary-accent: #00f0ff;
             --secondary-accent: #0077ff;
@@ -24,8 +24,340 @@
             --container-padding: clamp(1.5rem, 5vw, 3rem);
         }
 
-        /* (Restliche CSS-Stile bleiben unverändert) */
-        /* ... */
+        /* Modern CSS Reset */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: 
+                url('assets/images/backgrounds/data-grid.png'),
+                radial-gradient(circle at 20% 30%, var(--accent-gradient) 0%, transparent 30%),
+                linear-gradient(180deg, var(--deep-background) 0%, #000000 150%);
+            background-size: cover, auto, auto;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-blend-mode: overlay, normal, normal;
+            color: var(--text-primary);
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* === MAIN INTERFACE CONTAINER === */
+        .interface-frame {
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .interface-container {
+            width: 100%;
+            max-width: 1400px;
+            background: var(--interface-overlay);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px); /* Safari support */
+            border-radius: 28px;
+            border: 1px solid var(--interface-border);
+            box-shadow: 
+                0 25px 60px rgba(0, 0, 0, 0.5),
+                inset 0 0 40px rgba(0, 240, 255, 0.08);
+            overflow: hidden;
+            position: relative;
+            z-index: 10;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .interface-container:hover {
+            box-shadow: 
+                0 25px 60px rgba(0, 0, 0, 0.5),
+                inset 0 0 40px rgba(0, 240, 255, 0.12),
+                0 0 20px rgba(0, 240, 255, 0.1);
+        }
+
+        /* === EXPERTISE SHOWCASE === */
+        .expertise-section {
+            padding: var(--container-padding);
+            border-bottom: 1px solid var(--interface-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .expertise-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        /* Header with subtitle */
+        .section-header {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            color: var(--primary-accent);
+            margin: 0 0 0.5rem 0;
+            letter-spacing: 0.5px;
+        }
+
+        .section-subtitle {
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            color: var(--text-secondary);
+            font-weight: 400;
+            max-width: 800px;
+        }
+
+        /* === ROLE VISUALIZATION === */
+        .expertise-card {
+            display: grid;
+            grid-template-columns: minmax(80px, 100px) 1fr;
+            gap: clamp(1.5rem, 3vw, 2rem);
+            padding: clamp(1.5rem, 5vw, 2.5rem);
+            background: rgba(0, 30, 60, 0.3);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 167, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .expertise-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--interactive-glow);
+            background: rgba(0, 60, 120, 0.3);
+        }
+
+        .expertise-icon {
+            width: 100%;
+            aspect-ratio: 1/1;
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.1) 0%, rgba(0, 80, 255, 0.2) 100%);
+            border-radius: 18px;
+            display: grid;
+            place-items: center;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            box-shadow: 
+                inset 0 0 20px rgba(0, 240, 255, 0.1),
+                0 0 30px rgba(0, 80, 255, 0.2);
+        }
+
+        .expertise-title {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            color: var(--primary-accent);
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            text-transform: uppercase;
+        }
+
+        .expertise-heading {
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            margin: 0.25rem 0 1rem 0;
+            font-weight: 500;
+        }
+
+        .expertise-description {
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .competencies-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .competencies-list li {
+            position: relative;
+            padding-left: 1.8rem;
+            font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+            color: var(--text-secondary);
+            line-height: 1.7; /* Leicht erhöhte line-height */
+        }
+
+        .competencies-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary-accent);
+            font-weight: bold;
+        }
+
+        /* === SERVICE AREAS === */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: rgba(0, 20, 40, 0.4);
+            border-radius: 16px;
+            border: 1px solid rgba(0, 167, 255, 0.1);
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            background: rgba(0, 40, 80, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(0, 120, 255, 0.15);
+        }
+
+        .service-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: rgba(0, 80, 255, 0.15);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .service-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .service-description {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        /* === NAVIGATION === */
+        .interface-nav {
+            padding: clamp(1.5rem, 5vw, 2rem) var(--container-padding);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .interface-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(90deg, rgba(0, 240, 255, 0.1) 0%, rgba(0, 80, 255, 0.2) 100%);
+            border: 1px solid var(--interface-border);
+            border-radius: 50px;
+            color: var(--primary-accent);
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+            gap: 0.5rem;
+        }
+
+        .interface-link:hover {
+            background: linear-gradient(90deg, rgba(0, 240, 255, 0.2) 0%, rgba(0, 80, 255, 0.3) 100%);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* === DECORATIVE ELEMENTS === */
+        .ambient-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(0, 240, 255, 0.05);
+            filter: blur(1px);
+        }
+
+        /* Particle animation */
+        @keyframes float {
+            0% {
+                transform: translate3d(0, 0, 0);
+            }
+            100% {
+                transform: translate3d(20px, -20px, 0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: var(--base-opacity);
+                transform: scale(1);
+            }
+            50% {
+                opacity: calc(var(--base-opacity) * 1.5);
+                transform: scale(1.1);
+            }
+            100% {
+                opacity: var(--base-opacity);
+                transform: scale(1);
+            }
+        }
+
+        /* Enhanced accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        /* Media queries for responsiveness */
+        @media (max-width: 768px) {
+            .expertise-card {
+                grid-template-columns: 1fr;
+            }
+            
+            .expertise-icon {
+                width: 70px;
+                margin-bottom: 1rem;
+            }
+            
+            .competencies-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Focus states for accessibility */
+        a:focus, button:focus {
+            outline: 2px solid var(--primary-accent);
+            outline-offset: 2px;
+        }
+
+        /* Dark mode optimization already built-in by default */
     </style>
 </head>
 <body>
@@ -40,7 +372,7 @@
                 </div>
                 
                 <div class="expertise-card" data-link="https://github.com/maxxki/AI-Solutions/tree/main" tabindex="0" role="button" aria-label="Mehr erfahren über Senior Lead Consultant Dienstleistungen">
-                    <div class="expertise-icon" aria-hidden="true">👔</div>
+                    <div class="expertise-icon" aria-hidden="true"></div>
                     <div>
                         <div class="expertise-title">Senior Lead Consultant</div>
                         <h2 class="expertise-heading">KI-Transformationsarchitekt</h2>
@@ -57,3 +389,60 @@
                         </ul>
                     </div>
                 </div>
+
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon"></div>
+                        <h3 class="service-title">Digitale Strategieberatung</h3>
+                        <p class="service-description">
+                            Ganzheitliche, datengestützte Strategien für digitale Transformation mit klaren Implementierungspfaden.
+                        </p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon"></div>
+                        <h3 class="service-title">Enterprise KI-Integration</h3>
+                        <p class="service-description">
+                            Maßgeschneiderte KI-Lösungen zur Optimierung von Prozessen, Entscheidungen und Kundenerlebnissen.
+                        </p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon"></div>
+                        <h3 class="service-title">Datenarchitektur &amp; Analytics</h3>
+                        <p class="service-description">
+                            Konzeption und Implementierung robuster Datenarchitekturen für datengestützte Entscheidungen.
+                        </p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">️</div>
+                        <h3 class="service-title">IT-Sicherheit &amp; Compliance</h3>
+                        <p class="service-description">
+                            Entwicklung sicherer und konformer IT-Systeme zur Minimierung von Risiken und Einhaltung von Vorschriften.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+            
+            <nav class="interface-nav">
+                <a href="https://github.com/maxxki/AI-Solutions/tree/main" class="interface-link">
+                    <span aria-hidden="true"></span> Lösungen
+                    <span class="sr-only">Unsere KI-Lösungen</span>
+                </a>
+                <a href="#" class="interface-link">
+                    <span aria-hidden="true"></span> Kontakt
+                    <span class="sr-only">Kontaktieren Sie uns</span>
+                </a>
+                <a href="#" class="interface-link">
+                    <span aria-hidden="true">ℹ️</span> Über uns
+                    <span class="sr-only">Mehr über MAXXKI</span>
+                </a>
+            </nav>
+        </div>
+        <div class="ambient-particles">
+            </div>
+    </div>
+</body>
+</html>
