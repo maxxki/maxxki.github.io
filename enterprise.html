@@ -572,7 +572,7 @@
             <div class="role-section">
                 <h2 class="section-title">EXPERTISE DOMAINS</h2>
                 <div class="role-grid">
-                    <div class="role-card" onclick="window.location.href='https://github.com/maxxki/AI-Solutions/'">
+                    <div class="role-card" data-link="https://github.com/maxxki/AI-Solutions/">
                         <div class="role-icon">💻</div>
                         <h3>SENIOR DEVELOPER</h3>
                         <div class="role-title">Future Impact Engineering</div>
@@ -587,7 +587,7 @@
                         </ul>
                     </div>
 
-                    <div class="role-card" onclick="window.location.href='https://maxxki.github.io/AI-Solutions/'">
+                    <div class="role-card" data-link="https://maxxki.github.io/AI-Solutions/">
                         <div class="role-icon">👔</div>
                         <h3>SENIOR LEAD CONSULTANT</h3>
                         <div class="role-title">Digital Transformation Architect</div>
@@ -608,5 +608,18 @@
         </div>
     </div>
     <div class="circuit-lines"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const roleCards = document.querySelectorAll('.role-card');
+            roleCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const link = this.getAttribute('data-link');
+                    if (link) {
+                        window.location.href = link;
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
