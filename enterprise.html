@@ -6,43 +6,40 @@
     <title>MAXXKI - Senior Tech Leadership</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Orbitron:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         /* ===== NEXT-GEN TECH VARIABLES ===== */
         :root {
-            --neon-cyan: #08f7fe;
-            --neon-pink: #fe00f6;
-            --quantum-blue: #0066ff;
-            --dark-matrix: #001a33;
-            --hologram-purple: #9d00ff;
-            --ai-core-red: #ff0033;
-            --glass-white: rgba(255, 255, 255, 0.12);
-            --glass-border: rgba(255, 255, 255, 0.2);
-            --cyber-yellow: #f5d300;
+            --neon-cyan: #00e5ff;
+            --neon-blue: #0072ff;
+            --quantum-blue: #003366;
+            --dark-matrix: #001122;
+            --deep-space: #000814;
+            --hologram-purple: #7b2fff;
+            --tech-azure: #00a3ff;
+            --glass-white: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --cyber-yellow: #ffcc00;
+            --tech-accent: #03dac6;
+            --highlight: rgba(0, 229, 255, 0.1);
         }
 
-        /* ===== CYBERPUNK TECH LEADERSHIP MODE ===== */
+        /* ===== PROFESSIONAL TECH LEADERSHIP DESIGN ===== */
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Inter', 'Montserrat', sans-serif;
             min-height: 100vh;
             background: 
-                radial-gradient(circle at 20% 50%, rgba(0, 102, 255, 0.15) 0%, transparent 30%),
-                linear-gradient(to bottom, #001a33 0%, #000000 100%);
-            background-blend-mode: overlay;
+                radial-gradient(circle at 10% 30%, rgba(0, 114, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 70%, rgba(123, 47, 255, 0.1) 0%, transparent 40%),
+                linear-gradient(180deg, var(--deep-space) 0%, var(--dark-matrix) 100%);
             line-height: 1.6;
             color: white;
             overflow-x: hidden;
-            animation: gridPulse 20s infinite alternate;
             margin: 0;
             padding: 0;
         }
 
-        @keyframes gridPulse {
-            0% { background-size: 100% auto; opacity: 0.8; }
-            100% { background-size: 120% auto; opacity: 1; }
-        }
-
-        /* ===== GLASS MORPHISM CONTAINER ===== */
+        /* ===== PROFESSIONAL GLASS MORPHISM ===== */
         .tech-container {
             display: flex;
             justify-content: center;
@@ -54,350 +51,580 @@
 
         .tech-content {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1300px;
             background: var(--glass-white);
-            backdrop-filter: blur(16px);
-            border-radius: 16px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
             border: 1px solid var(--glass-border);
             box-shadow: 
-                0 10px 30px rgba(0, 0, 0, 0.3),
-                inset 0 0 20px rgba(8, 247, 254, 0.1);
+                0 15px 40px rgba(0, 0, 0, 0.4),
+                inset 0 0 30px rgba(0, 163, 255, 0.05);
             overflow: hidden;
             z-index: 2;
+            position: relative;
         }
 
-        /* ===== HOLOGRAM HEADER ===== */
-        .tech-header {
+        .tech-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
             background: linear-gradient(90deg, 
-                rgba(0, 102, 204, 0.3), 
-                rgba(157, 0, 255, 0.3));
-            padding: 3rem 2rem;
+                transparent 5%,
+                rgba(0, 229, 255, 0.3) 50%,
+                transparent 95%);
+        }
+
+        /* ===== PREMIUM HEADER ===== */
+        .tech-header {
+            background: linear-gradient(180deg, 
+                rgba(0, 17, 34, 0.9) 0%, 
+                rgba(0, 17, 34, 0.7) 100%);
+            padding: 3.5rem 2rem;
             text-align: center;
             position: relative;
             overflow: hidden;
+            border-bottom: 1px solid rgba(0, 163, 255, 0.15);
         }
 
         .tech-header::before {
             content: '';
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
             background: 
-                linear-gradient(45deg, transparent 45%, rgba(8, 247, 254, 0.1) 50%, transparent 55%),
-                linear-gradient(-45deg, transparent 45%, rgba(8, 247, 254, 0.1) 50%, transparent 55%);
-            background-size: 40px 40px;
-            opacity: 0.15;
-            z-index: -1;
+                radial-gradient(circle at 50% 50%, rgba(0, 163, 255, 0.05), transparent 60%),
+                repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0, 229, 255, 0.02) 10px, rgba(0, 229, 255, 0.02) 20px);
+            transform: rotate(30deg);
+            z-index: 0;
+        }
+
+        .tech-logo-container {
+            position: relative;
+            margin-bottom: 2rem;
         }
 
         .tech-emblem {
-            width: 120px;
-            height: 120px;
+            width: 130px;
+            height: 130px;
             margin: 0 auto;
             background: 
-                linear-gradient(45deg, var(--neon-cyan), var(--hologram-purple));
-            -webkit-mask: 
-                radial-gradient(circle at center, transparent 30%, black 31%),
-                linear-gradient(45deg, transparent 45%, black 55%),
-                linear-gradient(-45deg, transparent 45%, black 55%);
-            mask: 
-                radial-gradient(circle at center, transparent 30%, black 31%),
-                linear-gradient(45deg, transparent 45%, black 55%),
-                linear-gradient(-45deg, transparent 45%, black 55%);
-            filter: drop-shadow(0 0 15px var(--neon-cyan));
+                conic-gradient(from 45deg, var(--neon-blue), var(--tech-azure), var(--hologram-purple), var(--neon-blue));
             border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 0 40px rgba(0, 163, 255, 0.3);
+        }
+
+        .tech-emblem::before {
+            content: '';
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: var(--dark-matrix);
+            z-index: 1;
+        }
+
+        .tech-emblem::after {
+            content: 'M';
+            position: relative;
+            z-index: 2;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.7);
+        }
+
+        .tech-rings {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            animation: rotateSlow 30s linear infinite;
+        }
+
+        .tech-rings::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            border: 1px dashed rgba(0, 229, 255, 0.1);
+        }
+
+        .tech-rings::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 229, 255, 0.15);
+        }
+
+        @keyframes rotateSlow {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
         .tech-title {
-            font-size: 2.8rem;
+            font-size: 3.2rem;
             font-weight: 700;
-            margin: 1.5rem 0 0.5rem;
-            letter-spacing: 2px;
-            background: linear-gradient(90deg, var(--cyber-yellow), var(--neon-cyan));
+            margin: 0.5rem 0;
+            letter-spacing: 3px;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--tech-azure), var(--neon-cyan));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             text-transform: uppercase;
             font-family: 'Orbitron', sans-serif;
+            position: relative;
+            z-index: 3;
+            text-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+        }
+
+        .maxxki-subtitle {
+            font-size: 1.2rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 1rem;
+            font-weight: 500;
         }
 
         .tech-subtitle {
-            font-size: 1.3rem;
+            font-size: 1.35rem;
             font-weight: 300;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
-            color: rgba(255, 255, 255, 0.8);
+            opacity: 0.85;
+            max-width: 700px;
+            margin: 1rem auto 0;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.7;
         }
 
-        /* ===== QUANTUM GRID CARDS ===== */
+        /* ===== PREMIUM CARDS ===== */
+        .role-section {
+            padding: 4rem 3rem;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: white;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--tech-azure), transparent);
+        }
+
         .role-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            padding: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2.5rem;
         }
 
         .role-card {
-            background: rgba(0, 26, 51, 0.5);
-            border: 1px solid rgba(8, 247, 254, 0.3);
-            border-radius: 12px;
-            padding: 2rem;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: rgba(0, 17, 34, 0.7);
+            border-radius: 18px;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
             position: relative;
             overflow: hidden;
             z-index: 1;
+            border: 1px solid rgba(0, 163, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
         }
 
         .role-card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: linear-gradient(45deg, 
-                transparent, 
-                rgba(8, 247, 254, 0.05), 
-                transparent);
+            top: 0; 
+            left: 0;
+            width: 100%; 
+            height: 100%;
+            background: 
+                linear-gradient(135deg, transparent 0%, rgba(0, 229, 255, 0.03) 50%, transparent 100%);
             z-index: -1;
         }
 
         .role-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-10px);
             box-shadow: 
-                0 15px 30px rgba(0, 102, 204, 0.3),
-                0 0 0 2px var(--neon-cyan);
-            background: rgba(0, 26, 51, 0.8);
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(0, 229, 255, 0.2);
+            background: rgba(0, 17, 34, 0.85);
+        }
+
+        .role-card:hover .role-icon {
+            transform: scale(1.1);
+        }
+
+        .role-card:hover::after {
+            opacity: 1;
+        }
+
+        .role-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--tech-azure), var(--hologram-purple));
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .role-icon {
-            font-size: 2.8rem;
-            background: linear-gradient(45deg, var(--cyber-yellow), var(--hologram-purple));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 1.5rem;
-            display: inline-block;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--tech-azure), var(--hologram-purple));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .role-icon::before {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            right: 3px;
+            bottom: 3px;
+            background: rgba(0, 17, 34, 0.9);
+            border-radius: 50%;
+            z-index: 0;
         }
 
         .role-card h3 {
             font-size: 1.5rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
+            margin: 0 0 1rem;
+            font-weight: 700;
             color: white;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
         }
 
         .role-card .role-title {
-            font-size: 1.2rem;
-            background: linear-gradient(90deg, var(--neon-cyan), var(--quantum-blue));
+            font-size: 1.1rem;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--tech-azure));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: inline-block;
         }
 
         .role-card p {
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.8);
             font-size: 1.05rem;
             line-height: 1.7;
+            margin-bottom: 2rem;
         }
 
         .impact-list {
-            margin-top: 1.5rem;
-            padding-left: 1.5rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
         }
 
         .impact-list li {
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
             position: relative;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.85);
+            padding-left: 1.8rem;
+            line-height: 1.5;
         }
 
         .impact-list li::before {
-            content: '▹';
+            content: '';
             position: absolute;
-            left: -1.5rem;
-            color: var(--neon-cyan);
+            left: 0;
+            top: 0.5rem;
+            width: 8px;
+            height: 8px;
+            background: var(--tech-azure);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--neon-cyan);
         }
 
-        /* ===== TECH CTA BUTTON ===== */
+        /* ===== MODERN CTA BUTTON ===== */
         .tech-cta {
             text-align: center;
-            padding: 0 3rem 3rem;
+            padding: 2.5rem 3rem 4rem;
         }
 
         .return-btn {
             display: inline-block;
             padding: 16px 40px;
             background: linear-gradient(45deg, 
-                var(--quantum-blue), 
+                var(--neon-blue), 
                 var(--hologram-purple));
             color: white;
             border: none;
             border-radius: 8px;
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 2px;
             font-size: 1rem;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(0, 102, 255, 0.5);
+            box-shadow: 0 10px 25px rgba(0, 114, 255, 0.4);
             position: relative;
             overflow: hidden;
             text-decoration: none;
+            z-index: 1;
         }
 
         .return-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(157, 0, 255, 0.6);
+            box-shadow: 0 15px 35px rgba(123, 47, 255, 0.5);
         }
 
-        .return-btn::after {
+        .return-btn::before {
             content: '';
             position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: linear-gradient(
-                to bottom right, 
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
                 transparent, 
-                rgba(255, 255, 255, 0.3), 
-                transparent
-            );
-            transform: rotate(30deg);
-            animation: shine 3s infinite;
+                rgba(255, 255, 255, 0.2), 
+                transparent);
+            transition: left 0.7s ease;
+            z-index: -1;
         }
 
-        @keyframes shine {
-            0% { left: -50%; }
-            100% { left: 150%; }
+        .return-btn:hover::before {
+            left: 100%;
         }
 
-        /* ===== DATA STREAM EFFECT ===== */
+        /* ===== PROFESSIONAL DATA VISUALIZATION ===== */
         .data-stream {
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
             pointer-events: none;
-            z-index: 1;
+            z-index: 0;
             overflow: hidden;
         }
 
         .data-particle {
             position: absolute;
-            width: 1px; height: 100px;
-            background: linear-gradient(to top, 
+            width: 1px; 
+            height: 80px;
+            background: linear-gradient(to bottom, 
                 transparent, 
-                var(--neon-cyan));
-            animation: dataFlow 6s infinite;
-            opacity: 0.15;
+                var(--tech-azure),
+                transparent);
+            animation: dataFlow 8s linear infinite;
+            opacity: 0.2;
         }
 
         @keyframes dataFlow {
-            0% { transform: translateY(-100px) rotate(0deg); }
-            100% { transform: translateY(100vh) rotate(360deg); }
+            0% { transform: translateY(-100px); }
+            100% { transform: translateY(100vh); }
+        }
+
+        .circuit-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 229, 255, 0.03) 0%, transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(123, 47, 255, 0.03) 0%, transparent 30%);
+            opacity: 0.5;
+            z-index: -1;
         }
 
         /* ===== RESPONSIVE UPGRADES ===== */
+        @media (max-width: 1024px) {
+            .tech-title {
+                font-size: 2.8rem;
+            }
+            
+            .role-section {
+                padding: 3rem 2rem;
+            }
+        }
+
         @media (max-width: 768px) {
             .tech-title {
-                font-size: 2.2rem;
+                font-size: 2.4rem;
+            }
+            
+            .tech-subtitle {
+                font-size: 1.2rem;
             }
             
             .role-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .role-card {
                 padding: 2rem;
+            }
+            
+            .tech-emblem {
+                width: 110px;
+                height: 110px;
+            }
+            
+            .tech-emblem::before {
+                width: 90px;
+                height: 90px;
+            }
+            
+            .tech-emblem::after {
+                font-size: 2.6rem;
+            }
+            
+            .role-section {
+                padding: 2.5rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tech-title {
+                font-size: 2rem;
+            }
+            
+            .tech-container {
+                padding: 1rem;
+            }
+            
+            .tech-header {
+                padding: 2.5rem 1.5rem;
+            }
+            
+            .tech-subtitle {
+                font-size: 1.1rem;
             }
             
             .role-card {
                 padding: 1.8rem;
             }
-        }
-
-        /* Generate data particles */
-        function createParticles() {
-            const stream = document.querySelector('.data-stream');
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('data-particle');
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.animationDelay = `${Math.random() * 6}s`;
-                particle.style.opacity = Math.random() * 0.2;
-                particle.style.height = `${50 + Math.random() * 150}px`;
-                stream.appendChild(particle);
+            
+            .section-title {
+                font-size: 1.5rem;
             }
         }
-
-        window.onload = createParticles;
     </style>
 </head>
-<body class="tech-mode">
+<body>
     <div class="data-stream"></div>
     
     <div class="tech-container">
         <div class="tech-content">
             <div class="tech-header">
-                <div class="tech-emblem"></div>
+                <div class="tech-logo-container">
+                    <div class="tech-rings"></div>
+                    <div class="tech-emblem"></div>
+                </div>
+                <div class="maxxki-subtitle">MAXXKI</div>
                 <h1 class="tech-title">TECH LEADERSHIP</h1>
-                <p class="tech-subtitle">Shaping the Future Through Strategic Technology Innovation</p>
+                <p class="tech-subtitle">Transforming Enterprise Technology Through Strategic Innovation & Visionary Leadership</p>
             </div>
 
-            <div class="role-grid">
-                <!-- Senior Developer -->
-                <div class="role-card">
-                    <div class="role-icon">👨‍💻</div>
-                    <h3>SENIOR DEVELOPER</h3>
-                    <div class="role-title">Future Impact Engineering</div>
-                    <p>Architecting next-generation systems that redefine industry standards and drive technological evolution.</p>
-                    
-                    <ul class="impact-list">
-                        <li>Lead development of scalable, high-performance systems handling 1M+ transactions</li>
-                        <li>Pioneer AI/ML integration in enterprise environments</li>
-                        <li>Mentor high-performing engineering teams</li>
-                        <li>Optimize systems for quantum computing readiness</li>
-                        <li>Drive adoption of sustainable coding practices</li>
-                    </ul>
-                </div>
+            <div class="role-section">
+                <h2 class="section-title">EXPERTISE DOMAINS</h2>
+                <div class="role-grid">
+                    <!-- Senior Developer -->
+                    <div class="role-card" onclick="window.location.href='https://maxxki.github.io/AI-Solutions'">
+                        <div class="role-icon">👨‍💻</div>
+                        <h3>SENIOR DEVELOPER</h3>
+                        <div class="role-title">Future Impact Engineering</div>
+                        <p>Architecting next-generation systems that redefine industry standards and drive technological evolution for enterprise-scale solutions.</p>
+                        
+                        <ul class="impact-list">
+                            <li>Lead development of scalable, high-performance systems handling 1M+ transactions</li>
+                            <li>Pioneer AI/ML integration in enterprise environments</li>
+                            <li>Mentor high-performing engineering teams</li>
+                            <li>Optimize systems for quantum computing readiness</li>
+                            <li>Drive adoption of sustainable coding practices</li>
+                        </ul>
+                    </div>
 
-                <!-- Senior Lead Consultant -->
-                <div class="role-card">
-                    <div class="role-icon">👔</div>
-                    <h3>SENIOR LEAD CONSULTANT</h3>
-                    <div class="role-title">Digital Transformation Architect</div>
-                    <p>Orchestrating enterprise-wide digital revolutions that deliver measurable business outcomes.</p>
-                    
-                    <ul class="impact-list">
-                        <li>Design future-proof digital transformation roadmaps</li>
-                        <li>Align cutting-edge tech with C-level business objectives</li>
-                        <li>Lead $10M+ digital transformation initiatives</li>
-                        <li>Bridge gap between technical teams and executive stakeholders</li>
-                        <li>Develop AI adoption strategies with ethical frameworks</li>
-                    </ul>
+                    <!-- Senior Lead Consultant -->
+                    <div class="role-card" onclick="window.location.href='https://maxxki.github.io/AI-Solutions'">
+                        <div class="role-icon">👔</div>
+                        <h3>SENIOR LEAD CONSULTANT</h3>
+                        <div class="role-title">Digital Transformation Architect</div>
+                        <p>Orchestrating enterprise-wide digital revolutions that deliver measurable business outcomes and sustainable competitive advantages.</p>
+                        
+                        <ul class="impact-list">
+                            <li>Design future-proof digital transformation roadmaps</li>
+                            <li>Align cutting-edge tech with C-level business objectives</li>
+                            <li>Lead $10M+ digital transformation initiatives</li>
+                            <li>Bridge gap between technical teams and executive stakeholders</li>
+                            <li>Develop AI adoption strategies with ethical frameworks</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
             <div class="tech-cta">
                 <a href="index.html" class="return-btn">Return to Dashboard</a>
             </div>
+            
+            <div class="circuit-lines"></div>
         </div>
     </div>
 
     <script>
-        // Generate data particles
-        function createParticles() {
-            const stream = document.querySelector('.data-stream');
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('data-particle');
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.animationDelay = `${Math.random() * 6}s`;
-                particle.style.opacity = Math.random() * 0.2;
-                particle.style.height = `${50 + Math.random() * 150}px`;
-                stream.appendChild(particle);
-            }
+    // Generate data particles
+    function createParticles() {
+        const stream = document.querySelector('.data-stream');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('data-particle');
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.animationDelay = `${Math.random() * 8}s`;
+            particle.style.opacity = 0.1 + Math.random() * 0.15;
+            particle.style.height = `${50 + Math.random() * 100}px`;
+            stream.appendChild(particle);
         }
-
-        window.onload = createParticles;
-    </script>
-</body>
-    </html>
+    }
