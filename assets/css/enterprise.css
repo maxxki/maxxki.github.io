@@ -9,15 +9,15 @@
 }
 
 .enterprise-mode {
-  font-family: 'Montserrat', sans-serif;
-  min-height: 100vh;
-  background: 
-    linear-gradient(135deg, rgba(248, 250, 252, 0.9) 0%, rgba(255, 255, 255, 0.9) 100%),
-    url('assets/images/backgrounds/data-grid.png') center/cover fixed;
-  color: var(--enterprise-dark);
-  line-height: 1.6;
+.enterprise-mode {
+     font-family: 'Montserrat', sans-serif;
+     min-height: 100vh;
+     background: 
+       linear-gradient(135deg, rgba(248, 250, 252, 0.95) 0%, rgba(255, 255, 255, 0.95) 100%),
+       url('../images/backgrounds/data-grid.png') center/cover no-repeat fixed;
+     color: var(--enterprise-dark);
+     line-height: 1.6;
 }
-
 /* Optional: Background-Blending für einen moderneren Look */
 @supports (background-blend-mode: overlay) {
   .enterprise-mode {
