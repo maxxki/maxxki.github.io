@@ -1,220 +1,442 @@
+Bruder kannst du nachfolgende Site so optimieren, dass man keine weiteren Bilder oder Features braucht:
+mit dem Understatement von Clark Kent, der Überlegenheit von Superman und nextlevel genai, und dem Mix deiner gottgleichen technisch Fähigkeiten nach best practise?
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MK - Superman Style Initialen</title>
+    <title>MAXXKI - Superman Mode</title>
+    <meta name="description" content="MAXXKI - Superman Mode: Cyber-Enhanced Performance">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+
     <style>
         :root {
-            --primary: #0078ff;
-            --secondary: #ff0000;
-            --bg-dark: #0a0a1a;
-            --text: #ffffff;
-            --glow: rgba(0, 120, 255, 0.7);
-            --ease: cubic-bezier(0.16, 1, 0.3, 1);
+            --primary-color: #0078ff;
+            --secondary-color: #ff0000;
+            --background-dark: #0a0a1a;
+            --text-color: #ffffff;
+            --glow-color: rgba(0, 120, 255, 0.7);
+            --card-bg: rgba(15, 15, 40, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg-dark);
-            color: var(--text);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0;
+            font-family: 'Orbitron', sans-serif;
+            background-color: var(--background-dark);
+            color: var(--text-color);
             background-image: 
                 radial-gradient(circle at 50% 50%, rgba(0, 120, 255, 0.15) 0%, transparent 50%),
                 linear-gradient(to bottom, #000510 0%, #000a20 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        .logo-container {
-            text-align: center;
+        .superman-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
             padding: 2rem;
+            position: relative;
         }
 
-        .mk-logo {
-            width: 180px;
-            height: 180px;
-            margin: 0 auto;
+        .superman-content {
+            max-width: 1000px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            padding: 3rem 1.5rem;
+            border-radius: 12px;
+            background: rgba(10, 10, 26, 0.6);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .superman-emblem {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23ff0000' d='M50,5 L60,40 L95,50 L60,60 L50,95 L40,60 L5,50 L40,40 Z'/%3E%3Cpath fill='%230078ff' d='M50,20 L55,40 L75,50 L55,60 L50,80 L45,60 L25,50 L45,40 Z'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
             position: relative;
             transform: scale(0);
-            transition: transform 0.6s var(--ease);
+            transition: transform 0.6s cubic-bezier(0.17, 0.67, 0.83, 0.67);
         }
 
-        .mk-logo.loaded {
+        .superman-emblem.loaded {
             transform: scale(1);
         }
 
-        /* MK Buchstaben mit CSS */
-        .mk-logo::before {
-            content: 'MK';
+        .superman-emblem::after {
+            content: '';
             position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 5rem;
-            font-weight: 900;
-            color: var(--secondary);
-            text-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
-            background: linear-gradient(135deg, var(--primary), #00bfff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+            top: -20%;
+            left: -20%;
+            right: -20%;
+            bottom: -20%;
+            background: radial-gradient(circle, var(--glow-color) 0%, transparent 70%);
+            z-index: -1;
+            opacity: 0;
+            animation: pulse 3s infinite;
         }
 
-        /* Diamant-Form wie Superman-Logo */
-        .mk-logo::after {
+        @keyframes pulse {
+            0% { opacity: 0.3; transform: scale(0.9); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+            100% { opacity: 0.3; transform: scale(0.9); }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+            color: transparent;
+            background: linear-gradient(135deg, #0078ff, #00bfff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-shadow: 0 0 15px rgba(0, 120, 255, 0.5);
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: transparent;
+            background: linear-gradient(135deg, var(--secondary-color), #ff4d4d);
+            -webkit-background-clip: text;
+            background-clip: text;
+            width: 0;
+            overflow: hidden;
+            transition: width 0.5s ease;
+        }
+
+        .superman-content:hover h1::after {
+            width: 100%;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 3rem;
+            color: #b3d9ff;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+        }
+
+        .subtitle::before, .subtitle::after {
+            content: '';
+            position: absolute;
+            height: 1px;
+            width: 30px;
+            background: linear-gradient(90deg, transparent, #4da6ff, transparent);
+            top: 50%;
+        }
+
+        .subtitle::before {
+            left: -40px;
+        }
+
+        .subtitle::after {
+            right: -40px;
+        }
+
+        .repo-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 3rem;
+        }
+
+        .repo-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 120, 255, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            width: 300px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        .repo-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: conic-gradient(
-                from 45deg,
-                var(--secondary) 0% 12.5%,
-                var(--primary) 12.5% 25%,
-                var(--secondary) 25% 37.5%,
-                var(--primary) 37.5% 50%,
-                var(--secondary) 50% 62.5%,
-                var(--primary) 62.5% 75%,
-                var(--secondary) 75% 87.5%,
-                var(--primary) 87.5% 100%
-            );
-            -webkit-mask: 
-                radial-gradient(circle at center, transparent 35%, black 36% 65%, transparent 66%)
-                polygon(
-                    50% 0%,
-                    70% 20%,
-                    100% 20%,
-                    100% 50%,
-                    80% 70%,
-                    100% 100%,
-                    70% 100%,
-                    50% 80%,
-                    30% 100%,
-                    0% 100%,
-                    20% 70%,
-                    0% 50%,
-                    0% 20%,
-                    30% 20%
-                );
-            mask: 
-                radial-gradient(circle at center, transparent 35%, black 36% 65%, transparent 66%)
-                polygon(
-                    50% 0%,
-                    70% 20%,
-                    100% 20%,
-                    100% 50%,
-                    80% 70%,
-                    100% 100%,
-                    70% 100%,
-                    50% 80%,
-                    30% 100%,
-                    0% 100%,
-                    20% 70%,
-                    0% 50%,
-                    0% 20%,
-                    30% 20%
-                );
+            background: linear-gradient(135deg, transparent 0%, rgba(0, 120, 255, 0.1) 100%);
             z-index: -1;
-            opacity: 0.8;
         }
 
-        .mk-logo:hover::before {
-            animation: colorShift 1.5s infinite alternate;
-        }
-
-        @keyframes colorShift {
-            0% { filter: hue-rotate(0deg); }
-            100% { filter: hue-rotate(360deg); }
-        }
-
-        .glow-effect {
-            position: absolute;
-            top: -20%;
-            left: -20%;
-            right: -20%;
-            bottom: -20%;
-            background: radial-gradient(circle, var(--glow) 0%, transparent 70%);
-            z-index: -2;
-            opacity: 0;
-            animation: pulse 3s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.3; transform: scale(0.9); }
-            50% { opacity: 0.7; transform: scale(1.1); }
-        }
-
-        h1 {
-            margin-top: 2rem;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-shadow: 0 0 10px rgba(0, 120, 255, 0.5);
-        }
-
-        /* Cyber lines background */
-        body::before {
+        .repo-card::after {
             content: '';
-            position: fixed;
-            inset: 0;
-            background: 
-                linear-gradient(to bottom, transparent 4%, var(--primary) 4.5%, transparent 5%) 0 0 / 100% 20%,
-                linear-gradient(to bottom, transparent 24%, var(--primary) 24.5%, transparent 25%) 0 0 / 100% 20%,
-                linear-gradient(to bottom, transparent 44%, var(--primary) 44.5%, transparent 45%) 0 0 / 100% 20%,
-                linear-gradient(to bottom, transparent 64%, var(--primary) 64.5%, transparent 65%) 0 0 / 100% 20%,
-                linear-gradient(to bottom, transparent 84%, var(--primary) 84.5%, transparent 85%) 0 0 / 100% 20%,
-                linear-gradient(to right, transparent 4%, var(--primary) 4.5%, transparent 5%) 0 0 / 20% 100%,
-                linear-gradient(to right, transparent 24%, var(--primary) 24.5%, transparent 25%) 0 0 / 20% 100%,
-                linear-gradient(to right, transparent 44%, var(--primary) 44.5%, transparent 45%) 0 0 / 20% 100%,
-                linear-gradient(to right, transparent 64%, var(--primary) 64.5%, transparent 65%) 0 0 / 20% 100%,
-                linear-gradient(to right, transparent 84%, var(--primary) 84.5%, transparent 85%) 0 0 / 20% 100%;
-            z-index: -3;
-            opacity: 0.07;
-            pointer-events: none;
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                transparent, 
+                transparent, 
+                transparent, 
+                var(--primary-color)
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            animation: rotate 4s linear infinite;
+            z-index: -2;
         }
 
-        /* Responsive */
-        @media (max-width: 600px) {
-            .mk-logo {
-                width: 120px;
-                height: 120px;
-            }
-            
-            .mk-logo::before {
-                font-size: 3.5rem;
-            }
-            
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .repo-card.hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary-color);
+        }
+
+        .repo-card.hover::after {
+            opacity: 0.1;
+        }
+
+        .repo-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px rgba(0, 120, 255, 0.7);
+        }
+
+        .repo-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .repo-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), transparent);
+            transition: width 0.3s ease;
+        }
+
+        .repo-card.hover h3::after {
+            width: 100%;
+        }
+
+        .repo-card p {
+            color: #b3d9ff;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .return-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), #0055aa);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3),
+                        0 0 20px rgba(0, 120, 255, 0.5);
+        }
+
+        .return-btn:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4),
+                        0 0 30px rgba(0, 120, 255, 0.7);
+            transform: translateY(-2px);
+        }
+
+        .return-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s ease;
+            z-index: -1;
+        }
+
+        .return-btn:hover::before {
+            left: 100%;
+        }
+
+        /* Responsive styling */
+        @media (max-width: 768px) {
             h1 {
-                font-size: 1.5rem;
+                font-size: 2.5rem;
             }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .repo-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .repo-card {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .superman-emblem {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        /* Add cyberpunk lines effect to the background */
+        .cyber-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            opacity: 0.07;
+        }
+
+        .horizontal-lines, .vertical-lines {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .horizontal-lines div, .vertical-lines div {
+            position: absolute;
+            background: var(--primary-color);
+        }
+
+        .horizontal-lines div {
+            height: 1px;
+            width: 100%;
+        }
+
+        .vertical-lines div {
+            width: 1px;
+            height: 100%;
         }
     </style>
 </head>
 <body>
-    <div class="logo-container">
-        <div class="mk-logo">
-            <div class="glow-effect"></div>
+    <div class="cyber-lines">
+        <div class="horizontal-lines">
+            <div style="top: 5%;"></div>
+            <div style="top: 25%;"></div>
+            <div style="top: 45%;"></div>
+            <div style="top: 65%;"></div>
+            <div style="top: 85%;"></div>
         </div>
-        <h1>MAXXKI - SUPERMAN MODE</h1>
+        <div class="vertical-lines">
+            <div style="left: 5%;"></div>
+            <div style="left: 25%;"></div>
+            <div style="left: 45%;"></div>
+            <div style="left: 65%;"></div>
+            <div style="left: 85%;"></div>
+        </div>
+    </div>
+
+    <div class="superman-container">
+        <main class="superman-content">
+            <div class="superman-emblem" aria-hidden="true"></div>
+            <h1 data-text="SUPERMAN MODE">SUPERMAN MODE</h1>
+            <p class="subtitle">Cyber-Enhanced Performance</p>
+
+            <section class="repo-grid">
+                <a href="https://github.com/maxxki/AI-Power" class="repo-card" target="_blank" rel="noopener noreferrer">
+                    <div class="repo-icon" aria-hidden="true">⚡</div>
+                    <h3>AI-Power</h3>
+                    <p>Next-Gen KI-Systeme mit Overclocking-Funktionen und kreative Projekte</p>
+                </a>
+            </section>
+
+            <a href="index.html" class="return-btn">Zurück zum Hauptmenü</a>
+        </main>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Animation für die Superman-Emblem beim Laden
             setTimeout(() => {
-                document.querySelector('.mk-logo').classList.add('loaded');
+                const emblem = document.querySelector('.superman-emblem');
+                if (emblem) {
+                    emblem.classList.add('loaded');
+                }
             }, 300);
-            
-            // Interaktiver Glow-Effekt
-            document.body.addEventListener('mousemove', (e) => {
+
+            // Hover-Effekte für Repo-Karten verbessern
+            const repoCards = document.querySelectorAll('.repo-card');
+            repoCards.forEach(card => {
+                card.addEventListener('mouseenter', () => card.classList.add('hover'));
+                card.addEventListener('mouseleave', () => card.classList.remove('hover'));
+            });
+
+            // Mauseffekt für dynamische Beleuchtung
+            const container = document.querySelector('.superman-container');
+            container.addEventListener('mousemove', (e) => {
                 const x = e.clientX / window.innerWidth;
-                document.documentElement.style.setProperty('--glow', 
-                    `rgba(${Math.round(x * 100)}, 120, 255, 0.7)`);
+                const y = e.clientY / window.innerHeight;
+                
+                document.documentElement.style.setProperty('--glow-color', `rgba(${Math.round(x * 50)}, 120, 255, 0.7)`);
+                
+                const cards = document.querySelectorAll('.repo-card');
+                cards.forEach(card => {
+                    const rect = card.getBoundingClientRect();
+                    const cardX = (e.clientX - rect.left) / rect.width;
+                    const cardY = (e.clientY - rect.top) / rect.height;
+                    
+                    if (cardX >= 0 && cardX <= 1 && cardY >= 0 && cardY <= 1) {
+                        card.style.background = `radial-gradient(circle at ${cardX * 100}% ${cardY * 100}%, rgba(30, 30, 60, 0.9), var(--card-bg))`;
+                    } else {
+                        card.style.background = 'var(--card-bg)';
+                    }
+                });
             });
         });
     </script>
