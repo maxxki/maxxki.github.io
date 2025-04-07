@@ -57,7 +57,7 @@
   width: 100px;
   height: 100px;
   margin: 0 auto;
-  background: url('assets/images/emblems/data-grid.svg') center/contain no-repeat;
+  background: url('assets/images/backgrounds/data-grid.png') center/contain no-repeat;
   filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
 }
 
