@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="MAXXKI - Superman Mode: Cyber-Enhanced Performance">
     <title>MAXXKI - Superman Mode</title>
-    <!-- Optimierte Font-Einbindung -->
+    <meta name="description" content="MAXXKI - Superman Mode: Cyber-Enhanced Performance">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/superman.css">
-    <!-- Favicon hinzugefügt -->
+
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="assets/css/superman.css">
 </head>
 <body class="superman-mode">
     <div class="superman-container">
@@ -19,10 +20,9 @@
             <div class="superman-emblem" aria-hidden="true"></div>
             <h1>SUPERMAN MODE</h1>
             <p class="subtitle">Cyber-Enhanced Performance</p>
-            
-            <!-- Cyber-Repo-Grid mit verbesserten Semantik und Zugänglichkeit -->
+
             <section class="repo-grid">
-                <a href="https://github.com/maxxki/AI-Power" class="repo-card" target="_blank" rel="noopener">
+                <a href="https://github.com/maxxki/AI-Power" class="repo-card" target="_blank" rel="noopener noreferrer">
                     <div class="repo-icon" aria-hidden="true">⚡</div>
                     <h3>AI-Power</h3>
                     <p>Next-Gen KI-Systeme mit Overclocking-Funktionen und kreative Projekte</p>
@@ -32,24 +32,20 @@
             <a href="index.html" class="return-btn">Zurück zum Hauptmenü</a>
         </main>
     </div>
-    <!-- Optionales JS für verbesserte Benutzererfahrung -->
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', () => {
             // Animation für die Superman-Emblem beim Laden
             const emblem = document.querySelector('.superman-emblem');
             if (emblem) {
                 emblem.classList.add('loaded');
             }
-            
+
             // Hover-Effekte für Repo-Karten verbessern
             const repoCards = document.querySelectorAll('.repo-card');
             repoCards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.classList.add('hover');
-                });
-                card.addEventListener('mouseleave', function() {
-                    this.classList.remove('hover');
-                });
+                card.addEventListener('mouseenter', () => card.classList.add('hover'));
+                card.addEventListener('mouseleave', () => card.classList.remove('hover'));
             });
         });
     </script>
