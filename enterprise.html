@@ -3,117 +3,264 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAXXKI - Senior Tech Leadership</title>
+    <title>Quantum Leadership Interface | MAXXKI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Orbitron:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* ===== NEXT-GEN TECH VARIABLES ===== */
+        /* === QUANTUM DESIGN SYSTEM === */
         :root {
-            --neon-cyan: #00e5ff;
-            --neon-blue: #0072ff;
-            --quantum-blue: #003366;
-            --dark-matrix: #001122;
-            --deep-space: #000814;
-            --hologram-purple: #7b2fff;
-            --tech-azure: #00a3ff;
-            --glass-white: rgba(255, 255, 255, 0.08);
-            --glass-border: rgba(255, 255, 255, 0.12);
-            --cyber-yellow: #ffcc00;
-            --tech-accent: #03dac6;
-            --highlight: rgba(0, 229, 255, 0.1);
+            --quantum-core: #00f0ff;
+            --entanglement-blue: #0077ff;
+            --quantum-void: #000a1a;
+            --hologram-edge: rgba(0, 242, 255, 0.15);
+            --superposition-layer: rgba(255, 255, 255, 0.05);
+            --tunneling-effect: rgba(0, 80, 255, 0.3);
+            --coherence-glow: 0 0 15px rgba(0, 240, 255, 0.7);
         }
 
-        /* ===== PROFESSIONAL TECH LEADERSHIP DESIGN ===== */
         body {
-            font-family: 'Inter', 'Montserrat', sans-serif;
-            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
             background: 
-                radial-gradient(circle at 10% 30%, rgba(0, 114, 255, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 90% 70%, rgba(123, 47, 255, 0.1) 0%, transparent 40%),
-                linear-gradient(180deg, var(--deep-space) 0%, var(--dark-matrix) 100%);
-            line-height: 1.6;
+                radial-gradient(circle at 20% 30%, var(--tunneling-effect) 0%, transparent 30%),
+                linear-gradient(180deg, var(--quantum-void) 0%, #000000 150%);
             color: white;
             overflow-x: hidden;
             margin: 0;
             padding: 0;
+            min-height: 100vh;
         }
 
-        /* ===== PROFESSIONAL GLASS MORPHISM ===== */
-        .tech-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        /* === QUANTUM INTERFACE CONTAINER === */
+        .quantum-frame {
+            display: grid;
+            place-items: center;
             min-height: 100vh;
             padding: 2rem;
             position: relative;
         }
 
-        .tech-content {
+        .quantum-container {
             width: 100%;
-            max-width: 1300px;
-            background: var(--glass-white);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 24px;
-            border: 1px solid var(--glass-border);
+            max-width: 1400px;
+            background: var(--superposition-layer);
+            backdrop-filter: blur(24px);
+            border-radius: 28px;
+            border: 1px solid var(--hologram-edge);
             box-shadow: 
-                0 15px 40px rgba(0, 0, 0, 0.4),
-                inset 0 0 30px rgba(0, 163, 255, 0.05);
+                0 25px 60px rgba(0, 0, 0, 0.5),
+                inset 0 0 40px rgba(0, 240, 255, 0.08);
             overflow: hidden;
-            z-index: 2;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* === QUANTUM ENTANGLEMENT BOX === */
+        .entanglement-box {
+            padding: 3rem;
+            border-bottom: 1px solid var(--hologram-edge);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .entanglement-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        /* === QUANTUM ROLE VISUALIZATION === */
+        .quantum-role {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 2rem;
+            padding: 2.5rem;
+            background: rgba(0, 30, 60, 0.3);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 167, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            margin-bottom: 2rem;
             position: relative;
         }
 
-        /* ... (Dein restliches CSS-Styling bleibt unverändert) ... */
+        .quantum-role:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--coherence-glow);
+            background: rgba(0, 60, 120, 0.3);
+        }
 
+        .role-qubit {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.1) 0%, rgba(0, 80, 255, 0.2) 100%);
+            border-radius: 18px;
+            display: grid;
+            place-items: center;
+            font-size: 2rem;
+            box-shadow: 
+                inset 0 0 20px rgba(0, 240, 255, 0.1),
+                0 0 30px rgba(0, 80, 255, 0.2);
+        }
+
+        .role-title {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            color: var(--quantum-core);
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .role-description {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+        }
+
+        .quantum-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .quantum-list li {
+            position: relative;
+            padding-left: 1.8rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        .quantum-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--quantum-core);
+            font-weight: bold;
+        }
+
+        /* === QUANTUM NAVIGATION === */
+        .quantum-nav {
+            padding: 2rem 3rem;
+            text-align: center;
+        }
+
+        .quantum-link {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(90deg, rgba(0, 240, 255, 0.1) 0%, rgba(0, 80, 255, 0.2) 100%);
+            border: 1px solid var(--hologram-edge);
+            border-radius: 50px;
+            color: var(--quantum-core);
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .quantum-link:hover {
+            background: linear-gradient(90deg, rgba(0, 240, 255, 0.2) 0%, rgba(0, 80, 255, 0.3) 100%);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* === QUANTUM DECOR === */
+        .quantum-decor {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .quantum-particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(0, 240, 255, 0.05);
+            filter: blur(1px);
+        }
     </style>
 </head>
 <body>
-    <div class="data-stream"></div>
-    
-    <div class="tech-container">
-        <div class="tech-content">
-            <div class="tech-header">
-                </div>
-
-            <div class="role-section">
-                <h2 class="section-title">EXPERTISE DOMAINS</h2>
-                <div class="role-grid">
-                    <div class="role-card" data-link="https://github.com/maxxki/AI-Solutions/">
+    <div class="quantum-frame">
+        <div class="quantum-container">
+            <div class="entanglement-box">
+                <div class="quantum-role" data-link="https://github.com/maxxki/AI-Solutions/tree/main">
+                    <div class="role-qubit">👔</div>
+                    <div>
+                        <div class="role-title">SENIOR LEAD CONSULTANT</div>
+                        <h3>Digital Transformation Architect</h3>
+                        <div class="role-description">
+                            Orchestrating enterprise-wide digital revolutions that deliver measurable business outcomes and sustainable competitive advantages through quantum-inspired strategic frameworks.
                         </div>
-
-                    <div class="role-card" data-link="https://github.com/maxxki/AI-Solutions/tree/main">
-                        <div class="role-icon">👔</div>
-                        <h3>SENIOR LEAD CONSULTANT</h3>
-                        <div class="role-title">Digital Transformation Architect</div>
-                        <p>Orchestrating enterprise-wide digital revolutions that deliver measurable business outcomes and sustainable competitive advantages.</p>
-                        <ul class="impact-list">
+                        <ul class="quantum-list">
                             <li>Design future-proof digital transformation roadmaps</li>
                             <li>Align cutting-edge tech with C-level business objectives</li>
                             <li>Lead digital transformation initiatives</li>
-                            <li>Bridge gap zwischen technical teams and executive stakeholders</li>
+                            <li>Bridge gap between technical teams and executive stakeholders</li>
                             <li>Develop AI adoption strategies with ethical frameworks</li>
                         </ul>
                     </div>
                 </div>
-
-            <div class="tech-cta">
-                <a href="https://maxxki.github.io/AI-Solutions/" class="return-btn">Explore Further</a>
+            </div>
+            
+            <div class="quantum-nav">
+                <a href="https://maxxki.github.io/AI-Solutions/" class="quantum-link">Explore Quantum Solutions</a>
             </div>
         </div>
     </div>
-    <div class="circuit-lines"></div>
+
     <script>
+        // Quantum particle animation
         document.addEventListener('DOMContentLoaded', function() {
-            const roleCards = document.querySelectorAll('.role-card');
-            roleCards.forEach(card => {
-                card.addEventListener('click', function() {
+            const decor = document.createElement('div');
+            decor.className = 'quantum-decor';
+            document.body.appendChild(decor);
+
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'quantum-particle';
+                
+                const size = Math.random() * 6 + 2;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const opacity = Math.random() * 0.1 + 0.05;
+                const animationDuration = Math.random() * 30 + 20;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.opacity = opacity;
+                particle.style.animation = `float ${animationDuration}s infinite alternate`;
+                
+                decor.appendChild(particle);
+            }
+
+            // Clickable quantum roles
+            const quantumRoles = document.querySelectorAll('.quantum-role');
+            quantumRoles.forEach(role => {
+                role.addEventListener('click', function() {
                     const link = this.getAttribute('data-link');
                     if (link) {
                         window.location.href = link;
                     }
                 });
+                
+                role.style.cursor = 'pointer';
             });
         });
     </script>
