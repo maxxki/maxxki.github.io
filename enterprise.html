@@ -22,12 +22,12 @@
         body {
             font-family: 'Inter', sans-serif;
             background: 
-                url('assets/Images/backgrounds/data-grid.png'), /* Hintergrundbild hinzugefügt */
+                url('assets/Images/backgrounds/data-grid.png'), /* Hintergrundbild */
                 radial-gradient(circle at 20% 30%, var(--tunneling-effect) 0%, transparent 30%),
-                linear-gradient(180deg, var(--quantum-void) 0%, #000000 150%);
-            background-size: cover, auto, auto; /* Bild an Bildschirmgröße anpassen */
-            background-repeat: no-repeat, no-repeat, no-repeat; /* Wiederholung verhindern */
-            background-blend-mode: overlay, normal, normal; /* Transparenz-Effekt */
+                linear-gradient(180deg, rgba(0, 10, 26, 0.6), rgba(0, 0, 0, 0.8) 150%); /* Angepasste Transparenz */
+            background-size: cover, auto, auto;
+            background-repeat: no-repeat, no-repeat, no-repeat;
+            background-blend-mode: normal, normal, normal; /* Blend Mode angepasst */
             color: white;
             overflow-x: hidden;
             margin: 0;
@@ -145,128 +145,5 @@
         }
 
         .quantum-list li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--quantum-core);
-            font-weight: bold;
-        }
-
-        /* === QUANTUM NAVIGATION === */
-        .quantum-nav {
-            padding: 2rem 3rem;
-            text-align: center;
-        }
-
-        .quantum-link {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            background: linear-gradient(90deg, rgba(0, 240, 255, 0.1) 0%, rgba(0, 80, 255, 0.2) 100%);
-            border: 1px solid var(--hologram-edge);
-            border-radius: 50px;
-            color: var(--quantum-core);
-            text-decoration: none;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .quantum-link:hover {
-            background: linear-gradient(90deg, rgba(0, 240, 255, 0.2) 0%, rgba(0, 80, 255, 0.3) 100%);
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
-            transform: translateY(-2px);
-        }
-
-        /* === QUANTUM DECOR === */
-        .quantum-decor {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 1;
-            overflow: hidden;
-        }
-
-        .quantum-particle {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(0, 240, 255, 0.05);
-            filter: blur(1px);
-        }
-    </style>
-</head>
-<body>
-    <div class="quantum-frame">
-        <div class="quantum-container">
-            <div class="entanglement-box">
-                <div class="quantum-role" data-link="https://github.com/maxxki/AI-Solutions/tree/main">
-                    <div class="role-qubit">👔</div>
-                    <div>
-                        <div class="role-title">SENIOR LEAD CONSULTANT</div>
-                        <h3>Digital Transformation Architect</h3>
-                        <div class="role-description">
-                            Orchestrating enterprise-wide digital revolutions that deliver measurable business outcomes and sustainable competitive advantages through quantum-inspired strategic frameworks.
-                        </div>
-                        <ul class="quantum-list">
-                            <li>Design future-proof digital transformation roadmaps</li>
-                            <li>Align cutting-edge tech with C-level business objectives</li>
-                            <li>Lead digital transformation initiatives</li>
-                            <li>Bridge gap between technical teams and executive stakeholders</li>
-                            <li>Develop AI adoption strategies with ethical frameworks</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            content: '→-
             
-            <div class="quantum-nav">
-                <a href="https://github.com/maxxki/AI-Solutions/tree/main" class="quantum-link">Explore Quantum Solutions</a>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Quantum particle animation
-        document.addEventListener('DOMContentLoaded', function() {
-            const decor = document.createElement('div');
-            decor.className = 'quantum-decor';
-            document.body.appendChild(decor);
-
-            for (let i = 0; i < 20; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'quantum-particle';
-                
-                const size = Math.random() * 6 + 2;
-                const posX = Math.random() * 100;
-                const posY = Math.random() * 100;
-                const opacity = Math.random() * 0.1 + 0.05;
-                const animationDuration = Math.random() * 30 + 20;
-                
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${posX}%`;
-                particle.style.top = `${posY}%`;
-                particle.style.opacity = opacity;
-                particle.style.animation = `float ${animationDuration}s infinite alternate`;
-                
-                decor.appendChild(particle);
-            }
-
-            // Clickable quantum roles
-            const quantumRoles = document.querySelectorAll('.quantum-role');
-            quantumRoles.forEach(role => {
-                role.addEventListener('click', function() {
-                    const link = this.getAttribute('data-link');
-                    if (link) {
-                        window.location.href = link;
-                    }
-                });
-                
-                role.style.cursor = 'pointer';
-            });
-        });
-    </script>
-</body>
-</html>
