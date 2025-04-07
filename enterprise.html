@@ -3,41 +3,401 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAXXKI - Enterprise Solutions</title>
+    <title>MAXXKI - Senior Tech Leadership</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/enterprise.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== NEXT-GEN TECH VARIABLES ===== */
+        :root {
+            --neon-cyan: #08f7fe;
+            --neon-pink: #fe00f6;
+            --quantum-blue: #0066ff;
+            --dark-matrix: #001a33;
+            --hologram-purple: #9d00ff;
+            --ai-core-red: #ff0033;
+            --glass-white: rgba(255, 255, 255, 0.12);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --cyber-yellow: #f5d300;
+        }
+
+        /* ===== CYBERPUNK TECH LEADERSHIP MODE ===== */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            min-height: 100vh;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 102, 255, 0.15) 0%, transparent 30%),
+                linear-gradient(to bottom, #001a33 0%, #000000 100%);
+            background-blend-mode: overlay;
+            line-height: 1.6;
+            color: white;
+            overflow-x: hidden;
+            animation: gridPulse 20s infinite alternate;
+            margin: 0;
+            padding: 0;
+        }
+
+        @keyframes gridPulse {
+            0% { background-size: 100% auto; opacity: 0.8; }
+            100% { background-size: 120% auto; opacity: 1; }
+        }
+
+        /* ===== GLASS MORPHISM CONTAINER ===== */
+        .tech-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .tech-content {
+            width: 100%;
+            max-width: 1200px;
+            background: var(--glass-white);
+            backdrop-filter: blur(16px);
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.3),
+                inset 0 0 20px rgba(8, 247, 254, 0.1);
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        /* ===== HOLOGRAM HEADER ===== */
+        .tech-header {
+            background: linear-gradient(90deg, 
+                rgba(0, 102, 204, 0.3), 
+                rgba(157, 0, 255, 0.3));
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: 
+                linear-gradient(45deg, transparent 45%, rgba(8, 247, 254, 0.1) 50%, transparent 55%),
+                linear-gradient(-45deg, transparent 45%, rgba(8, 247, 254, 0.1) 50%, transparent 55%);
+            background-size: 40px 40px;
+            opacity: 0.15;
+            z-index: -1;
+        }
+
+        .tech-emblem {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+            background: 
+                linear-gradient(45deg, var(--neon-cyan), var(--hologram-purple));
+            -webkit-mask: 
+                radial-gradient(circle at center, transparent 30%, black 31%),
+                linear-gradient(45deg, transparent 45%, black 55%),
+                linear-gradient(-45deg, transparent 45%, black 55%);
+            mask: 
+                radial-gradient(circle at center, transparent 30%, black 31%),
+                linear-gradient(45deg, transparent 45%, black 55%),
+                linear-gradient(-45deg, transparent 45%, black 55%);
+            filter: drop-shadow(0 0 15px var(--neon-cyan));
+            border-radius: 50%;
+        }
+
+        .tech-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin: 1.5rem 0 0.5rem;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, var(--cyber-yellow), var(--neon-cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .tech-subtitle {
+            font-size: 1.3rem;
+            font-weight: 300;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* ===== QUANTUM GRID CARDS ===== */
+        .role-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            padding: 3rem;
+        }
+
+        .role-card {
+            background: rgba(0, 26, 51, 0.5);
+            border: 1px solid rgba(8, 247, 254, 0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .role-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(45deg, 
+                transparent, 
+                rgba(8, 247, 254, 0.05), 
+                transparent);
+            z-index: -1;
+        }
+
+        .role-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 
+                0 15px 30px rgba(0, 102, 204, 0.3),
+                0 0 0 2px var(--neon-cyan);
+            background: rgba(0, 26, 51, 0.8);
+        }
+
+        .role-icon {
+            font-size: 2.8rem;
+            background: linear-gradient(45deg, var(--cyber-yellow), var(--hologram-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .role-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .role-card .role-title {
+            font-size: 1.2rem;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--quantum-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .role-card p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .impact-list {
+            margin-top: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .impact-list li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .impact-list li::before {
+            content: '▹';
+            position: absolute;
+            left: -1.5rem;
+            color: var(--neon-cyan);
+        }
+
+        /* ===== TECH CTA BUTTON ===== */
+        .tech-cta {
+            text-align: center;
+            padding: 0 3rem 3rem;
+        }
+
+        .return-btn {
+            display: inline-block;
+            padding: 16px 40px;
+            background: linear-gradient(45deg, 
+                var(--quantum-blue), 
+                var(--hologram-purple));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 102, 255, 0.5);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+        .return-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(157, 0, 255, 0.6);
+        }
+
+        .return-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: linear-gradient(
+                to bottom right, 
+                transparent, 
+                rgba(255, 255, 255, 0.3), 
+                transparent
+            );
+            transform: rotate(30deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -50%; }
+            100% { left: 150%; }
+        }
+
+        /* ===== DATA STREAM EFFECT ===== */
+        .data-stream {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .data-particle {
+            position: absolute;
+            width: 1px; height: 100px;
+            background: linear-gradient(to top, 
+                transparent, 
+                var(--neon-cyan));
+            animation: dataFlow 6s infinite;
+            opacity: 0.15;
+        }
+
+        @keyframes dataFlow {
+            0% { transform: translateY(-100px) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        /* ===== RESPONSIVE UPGRADES ===== */
+        @media (max-width: 768px) {
+            .tech-title {
+                font-size: 2.2rem;
+            }
+            
+            .role-grid {
+                grid-template-columns: 1fr;
+                padding: 2rem;
+            }
+            
+            .role-card {
+                padding: 1.8rem;
+            }
+        }
+
+        /* Generate data particles */
+        function createParticles() {
+            const stream = document.querySelector('.data-stream');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('data-particle');
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 6}s`;
+                particle.style.opacity = Math.random() * 0.2;
+                particle.style.height = `${50 + Math.random() * 150}px`;
+                stream.appendChild(particle);
+            }
+        }
+
+        window.onload = createParticles;
+    </style>
 </head>
-<body class="enterprise-mode">
-    <div class="enterprise-container">
-        <div class="enterprise-content">
-            <div class="enterprise-header">
-                <div class="enterprise-emblem"></div>
-                <h1 class="enterprise-title">ENTERPRISE SOLUTIONS</h1>
-                <p class="enterprise-subtitle">Strategic AI Consulting for Global Impact</p>
+<body class="tech-mode">
+    <div class="data-stream"></div>
+    
+    <div class="tech-container">
+        <div class="tech-content">
+            <div class="tech-header">
+                <div class="tech-emblem"></div>
+                <h1 class="tech-title">TECH LEADERSHIP</h1>
+                <p class="tech-subtitle">Shaping the Future Through Strategic Technology Innovation</p>
             </div>
 
-            <div class="repo-grid">
-                <!-- AI-Solutions -->
-                <a href="https://github.com/maxxki/AI-Solutions" class="repo-card" target="_blank">
-                    <div class="repo-icon">🏢</div>
-                    <h3>Enterprise AI Framework</h3>
-                    <p>End-to-end AI integration with focus on scalability, security and regulatory compliance for Fortune 500 enterprises.</p>
-                </a>
+            <div class="role-grid">
+                <!-- Senior Developer -->
+                <div class="role-card">
+                    <div class="role-icon">👨‍💻</div>
+                    <h3>SENIOR DEVELOPER</h3>
+                    <div class="role-title">Future Impact Engineering</div>
+                    <p>Architecting next-generation systems that redefine industry standards and drive technological evolution.</p>
+                    
+                    <ul class="impact-list">
+                        <li>Lead development of scalable, high-performance systems handling 1M+ transactions</li>
+                        <li>Pioneer AI/ML integration in enterprise environments</li>
+                        <li>Mentor high-performing engineering teams</li>
+                        <li>Optimize systems for quantum computing readiness</li>
+                        <li>Drive adoption of sustainable coding practices</li>
+                    </ul>
+                </div>
 
-                <!-- Prompt-Engineer -->
-                <a href="https://github.com/maxxki/Prompt-Engineer" class="repo-card" target="_blank">
-                    <div class="repo-icon">🔧</div>
-                    <h3>Prompt Engineering Suite</h3>
-                    <p>Advanced NLP optimization toolkit for mission-critical business applications and large language model deployments.</p>
-                </a>
+                <!-- Senior Lead Consultant -->
+                <div class="role-card">
+                    <div class="role-icon">👔</div>
+                    <h3>SENIOR LEAD CONSULTANT</h3>
+                    <div class="role-title">Digital Transformation Architect</div>
+                    <p>Orchestrating enterprise-wide digital revolutions that deliver measurable business outcomes.</p>
+                    
+                    <ul class="impact-list">
+                        <li>Design future-proof digital transformation roadmaps</li>
+                        <li>Align cutting-edge tech with C-level business objectives</li>
+                        <li>Lead $10M+ digital transformation initiatives</li>
+                        <li>Bridge gap between technical teams and executive stakeholders</li>
+                        <li>Develop AI adoption strategies with ethical frameworks</li>
+                    </ul>
+                </div>
             </div>
 
-            <div class="enterprise-cta">
+            <div class="tech-cta">
                 <a href="index.html" class="return-btn">Return to Dashboard</a>
             </div>
         </div>
     </div>
+
+    <script>
+        // Generate data particles
+        function createParticles() {
+            const stream = document.querySelector('.data-stream');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('data-particle');
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 6}s`;
+                particle.style.opacity = Math.random() * 0.2;
+                particle.style.height = `${50 + Math.random() * 150}px`;
+                stream.appendChild(particle);
+            }
+        }
+
+        window.onload = createParticles;
+    </script>
 </body>
-</html>
+    </html>
