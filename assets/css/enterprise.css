@@ -19,7 +19,6 @@
     linear-gradient(to bottom, #001a33 0%, #000000 100%),
     url('assets/images/backgrounds/main-background.jpg') center/cover;
   background-blend-mode: overlay, center;
-  color: white;
   line-height: 1.6;
   overflow-x: hidden;
   animation: gridPulse 20s infinite alternate;
