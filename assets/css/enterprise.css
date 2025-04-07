@@ -1,152 +1,172 @@
-/* ===== ENTERPRISE MODE - PROFESSIONAL STYLE ===== */
+/* ===== NEXT-GEN ENTERPRISE VARIABLES ===== */
 :root {
-  --enterprise-dark: #001a33;
-  --enterprise-primary: #003366;
-  --enterprise-secondary: #0066cc;
-  --enterprise-accent: #4d94ff;
-  --enterprise-light: #e6f2ff;
-  --enterprise-bg: #f8fafc;
+  --neon-cyan: #08f7fe;
+  --neon-pink: #fe00f6;
+  --quantum-blue: #0066ff;
+  --dark-matrix: #001a33;
+  --hologram-purple: #9d00ff;
+  --ai-core-red: #ff0033;
+  --glass-white: rgba(255, 255, 255, 0.12);
+  --glass-border: rgba(255, 255, 255, 0.2);
 }
 
+/* ===== CYBERPUNK ENTERPRISE MODE ===== */
 .enterprise-mode {
-     font-family: 'Montserrat', sans-serif;
-     min-height: 100vh;
-     background: 
-       linear-gradient(135deg, rgba(248, 250, 252, 0.95) 0%, rgba(255, 255, 255, 0.95) 100%),
-       url('../images/backgrounds/data-grid.png') center/cover no-repeat fixed;
-     color: var(--enterprise-dark);
-     line-height: 1.6;
+  font-family: 'Montserrat', sans-serif;
+  min-height: 100vh;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(0, 102, 255, 0.15) 0%, transparent 30%),
+    linear-gradient(to bottom, #001a33 0%, #000000 100%),
+    url('assets/images/backgrounds/cyber-grid.webp') center/cover;
+  background-blend-mode: overlay, multiply;
+  color: white;
+  line-height: 1.6;
+  overflow-x: hidden;
+  animation: gridPulse 20s infinite alternate;
 }
 
-/* ... */
-
-.enterprise-emblem {
-  width: 100px;
-  height: 100px;
-  margin: 0 auto;
-  background: url('../images/emblems/data-grid.png') center/contain no-repeat;
-  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
-}
-/* Optional: Background-Blending für einen moderneren Look */
-@supports (background-blend-mode: overlay) {
-  .enterprise-mode {
-    background-blend-mode: overlay;
-  }
+@keyframes gridPulse {
+  0% { background-size: 100% auto; opacity: 0.8; }
+  100% { background-size: 120% auto; opacity: 1; }
 }
 
-/* Main Container - Executive Layout */
+/* ===== GLASS MORPHISM CONTAINER ===== */
 .enterprise-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   padding: 2rem;
+  position: relative;
 }
 
 .enterprise-content {
   width: 100%;
-  max-width: 1000px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 51, 102, 0.1);
+  max-width: 1200px;
+  background: var(--glass-white);
+  backdrop-filter: blur(16px);
+  border-radius: 16px;
+  border: 1px solid var(--glass-border);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.3),
+    inset 0 0 20px rgba(8, 247, 254, 0.1);
   overflow: hidden;
-  border: 1px solid rgba(0, 102, 204, 0.1);
+  z-index: 2;
 }
 
-/* Header mit Corporate Identity */
+/* ===== HOLOGRAM HEADER ===== */
 .enterprise-header {
-  background: linear-gradient(90deg, var(--enterprise-dark), var(--enterprise-primary));
+  background: linear-gradient(90deg, 
+    rgba(0, 102, 204, 0.3), 
+    rgba(157, 0, 255, 0.3));
   padding: 3rem 2rem;
   text-align: center;
-  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.enterprise-header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url('assets/images/effects/quantum-circuit.webp') center/cover;
+  opacity: 0.15;
+  z-index: -1;
 }
 
 .enterprise-emblem {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   margin: 0 auto;
-  background: url('assets/images/emblems/data-grid.png') center/contain no-repeat;
-  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+  background: url('assets/images/emblems/quantum-core.png') center/contain no-repeat;
+  filter: drop-shadow(0 0 15px var(--neon-cyan));
 }
 
 .enterprise-title {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   font-weight: 700;
   margin: 1.5rem 0 0.5rem;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, var(--neon-cyan), var(--quantum-blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-transform: uppercase;
 }
 
 .enterprise-subtitle {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 300;
   opacity: 0.9;
   max-width: 600px;
   margin: 0 auto;
+  color: rgba(255, 255, 255, 0.8);
 }
 
-/* Professional Grid System */
+/* ===== QUANTUM GRID CARDS ===== */
 .repo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
   padding: 3rem;
 }
 
 .repo-card {
-  background: white;
-  border: 1px solid rgba(0, 66, 128, 0.1);
-  border-radius: 8px;
+  background: rgba(0, 26, 51, 0.5);
+  border: 1px solid rgba(8, 247, 254, 0.3);
+  border-radius: 12px;
   padding: 2rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 51, 102, 0.05);
-  text-align: left;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
   overflow: hidden;
+  z-index: 1;
 }
 
 .repo-card::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-  background: var(--enterprise-accent);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(45deg, 
+    transparent, 
+    rgba(8, 247, 254, 0.05), 
+    transparent);
+  z-index: -1;
 }
 
 .repo-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 102, 204, 0.1);
-}
-
-.repo-card:hover::before {
-  opacity: 1;
+  transform: translateY(-8px);
+  box-shadow: 
+    0 15px 30px rgba(0, 102, 204, 0.3),
+    0 0 0 2px var(--neon-cyan);
+  background: rgba(0, 26, 51, 0.8);
 }
 
 .repo-icon {
-  font-size: 2.5rem;
-  color: var(--enterprise-primary);
+  font-size: 2.8rem;
+  background: linear-gradient(45deg, var(--neon-cyan), var(--hologram-purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   margin-bottom: 1.5rem;
   display: inline-block;
 }
 
 .repo-card h3 {
-  color: var(--enterprise-dark);
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   margin-bottom: 1rem;
   font-weight: 600;
+  color: white;
 }
 
 .repo-card p {
-  color: #4d4d4d;
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.05rem;
+  line-height: 1.7;
 }
 
-/* Executive Call-to-Action */
+/* ===== AI CTA BUTTON ===== */
 .enterprise-cta {
   text-align: center;
   padding: 0 3rem 3rem;
@@ -154,33 +174,53 @@
 
 .return-btn {
   display: inline-block;
-  padding: 14px 32px;
-  background: var(--enterprise-primary);
+  padding: 16px 40px;
+  background: linear-gradient(45deg, 
+    var(--quantum-blue), 
+    var(--hologram-purple));
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
+  font-family: 'Orbitron', sans-serif;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 0.9rem;
+  letter-spacing: 2px;
+  font-size: 1rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 51, 102, 0.2);
+  box-shadow: 0 5px 20px rgba(0, 102, 255, 0.5);
+  position: relative;
+  overflow: hidden;
 }
 
 .return-btn:hover {
-  background: var(--enterprise-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 51, 102, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(157, 0, 255, 0.6);
 }
 
-/* Responsive Design */
+.return-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: linear-gradient(
+    to bottom right, 
+    transparent, 
+    rgba(255, 255, 255, 0.3), 
+    transparent
+  );
+  transform: rotate(30deg);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% { left: -50%; }
+  100% { left: 150%; }
+}
+
+/* ===== RESPONSIVE UPGRADES ===== */
 @media (max-width: 768px) {
-  .enterprise-header {
-    padding: 2rem 1.5rem;
-  }
-  
   .enterprise-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
   
   .repo-grid {
@@ -189,6 +229,32 @@
   }
   
   .repo-card {
-    padding: 1.5rem;
+    padding: 1.8rem;
   }
 }
+
+/* ===== QUANTUM DATA STREAM (OPTIONAL) ===== */
+/* Füge diesen Code hinzu, wenn du live Datenpartikel willst! */
+.data-stream {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.data-particle {
+  position: absolute;
+  width: 1px; height: 100px;
+  background: linear-gradient(to top, 
+    transparent, 
+    var(--neon-cyan));
+  animation: dataFlow 6s infinite;
+  opacity: 0.15;
+}
+
+@keyframes dataFlow {
+  0% { transform: translateY(-100px) rotate(0deg); }
+  100% { transform: translateY(100vh) rotate(360deg); }
+                     }
