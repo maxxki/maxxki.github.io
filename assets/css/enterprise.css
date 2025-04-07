@@ -14,10 +14,14 @@
 .enterprise-mode {
   font-family: 'Montserrat', sans-serif;
   min-height: 100vh;
+  enterprise-mode {
   background: 
     radial-gradient(circle at 20% 50%, rgba(0, 102, 255, 0.15) 0%, transparent 30%),
     linear-gradient(to bottom, #001a33 0%, #000000 100%),
-    url('assets/images/backgrounds/main-background.jpg') center/cover;
+    url('../images/backgrounds/main-background.jpg') center/cover;
+  /* Pfad korrigiert: ../images/... statt assets/images/... */
+  }
+  
   background-blend-mode: overlay, center;
   line-height: 1.6;
   overflow-x: hidden;
