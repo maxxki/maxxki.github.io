@@ -171,7 +171,7 @@
 
         .expertise-description {
             font-size: clamp(0.9rem, 1.5vw, 1rem);
-            line-height: 1.7;
+            line-height: 1.6;
             color: var(--text-secondary);
             margin-bottom: 1.5rem;
         }
@@ -190,7 +190,7 @@
             padding-left: 1.8rem;
             font-size: clamp(0.85rem, 1.2vw, 0.95rem);
             color: var(--text-secondary);
-            line-height: 1.6;
+            line-height: 1.7; /* Leicht erhöhte line-height */
         }
 
         .competencies-list li::before {
@@ -364,7 +364,6 @@
 <body>
     <div class="interface-frame">
         <div class="interface-container">
-            <!-- Main content section -->
             <div class="expertise-section">
                 <div class="section-header">
                     <h1 class="section-title">Enterprise KI-Transformation</h1>
@@ -373,7 +372,6 @@
                     </p>
                 </div>
                 
-                <!-- Primary expertise card -->
                 <div class="expertise-card" data-link="https://github.com/maxxki/AI-Solutions/tree/main" tabindex="0" role="button" aria-label="Mehr erfahren über Senior Lead Consultant Dienstleistungen">
                     <div class="expertise-icon" aria-hidden="true">👔</div>
                     <div>
@@ -393,7 +391,6 @@
                     </div>
                 </div>
 
-                <!-- Service areas section -->
                 <div class="services-grid">
                     <div class="service-card">
                         <div class="service-icon">🔄</div>
@@ -415,120 +412,4 @@
                         <div class="service-icon">📊</div>
                         <h3 class="service-title">Datenarchitektur &amp; Analytics</h3>
                         <p class="service-description">
-                            Aufbau skalierbarer Dateninfrastrukturen und Advanced-Analytics-Frameworks für datengestützte Entscheidungsprozesse.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Navigation section -->
-            <div class="interface-nav">
-                <a href="https://github.com/maxxki/AI-Solutions/tree/main" class="interface-link">
-                    <span>Enterprise KI-Lösungen entdecken</span>
-                    <span aria-hidden="true">→</span>
-                </a>
-                <a href="#kontakt" class="interface-link">
-                    <span>Beratungsgespräch vereinbaren</span>
-                    <span aria-hidden="true">→</span>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Enhanced ambient particle animation with performance optimization
-        document.addEventListener('DOMContentLoaded', function() {
-            const decor = document.createElement('div');
-            decor.className = 'ambient-particles';
-            document.body.appendChild(decor);
-
-            // Use requestAnimationFrame for smoother animations
-            const particleCount = window.innerWidth < 768 ? 10 : 20;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                
-                // Randomize particle properties for more organic feel
-                const size = Math.random() * 6 + 2;
-                const posX = Math.random() * 100;
-                const posY = Math.random() * 100;
-                const opacity = Math.random() * 0.1 + 0.05;
-                const animationDuration = Math.random() * 30 + 20;
-                const animationDelay = Math.random() * 15;
-                const pulseInterval = Math.random() * 8 + 3;
-                
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${posX}%`;
-                particle.style.top = `${posY}%`;
-                particle.style.opacity = opacity;
-                particle.style.setProperty('--base-opacity', opacity);
-                
-                // Combined animations
-                particle.style.animation = `
-                    float ${animationDuration}s infinite alternate ease-in-out ${animationDelay}s,
-                    pulse ${pulseInterval}s infinite ease-in-out ${animationDelay * 0.5}s
-                `;
-                
-                decor.appendChild(particle);
-            }
-
-            // Interactive elements handling
-            const interactiveCards = document.querySelectorAll('.expertise-card, .service-card');
-            
-            interactiveCards.forEach(card => {
-                // For clickable elements
-                if (card.hasAttribute('data-link')) {
-                    card.addEventListener('click', function() {
-                        const link = this.getAttribute('data-link');
-                        if (link) {
-                            window.location.href = link;
-                        }
-                    });
-                    
-                    // Keyboard accessibility
-                    card.addEventListener('keydown', function(e) {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            const link = this.getAttribute('data-link');
-                            if (link) {
-                                window.location.href = link;
-                            }
-                        }
-                    });
-                    
-                    card.style.cursor = 'pointer';
-                }
-            });
-
-            // Intersection Observer for subtle entrance animations
-            if ('IntersectionObserver' in window) {
-                const fadeElements = document.querySelectorAll('.expertise-card, .service-card');
-                
-                const appearOptions = {
-                    threshold: 0.1,
-                    rootMargin: '0px 0px -50px 0px'
-                };
-                
-                const appearOnScroll = new IntersectionObserver(function(entries, observer) {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.style.opacity = '1';
-                            entry.target.style.transform = 'translateY(0)';
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, appearOptions);
-                
-                fadeElements.forEach(element => {
-                    element.style.opacity = '0';
-                    element.style.transform = 'translateY(20px)';
-                    element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                    appearOnScroll.observe(element);
-                });
-            }
-        });
-    </script>
-</body>
-</html>
+                            
