@@ -22,8 +22,12 @@
         body {
             font-family: 'Inter', sans-serif;
             background: 
+                url('assets/Images/backgrounds/data-grid.png'), /* Hintergrundbild hinzugefügt */
                 radial-gradient(circle at 20% 30%, var(--tunneling-effect) 0%, transparent 30%),
                 linear-gradient(180deg, var(--quantum-void) 0%, #000000 150%);
+            background-size: cover, auto, auto; /* Bild an Bildschirmgröße anpassen */
+            background-repeat: no-repeat, no-repeat, no-repeat; /* Wiederholung verhindern */
+            background-blend-mode: overlay, normal, normal; /* Transparenz-Effekt */
             color: white;
             overflow-x: hidden;
             margin: 0;
