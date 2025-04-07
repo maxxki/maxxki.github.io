@@ -22,12 +22,12 @@
         body {
             font-family: 'Inter', sans-serif;
             background: 
-                url('assets/Images/backgrounds/data-grid.png'), /* Hintergrundbild */
+                url('assets/Images/backgrounds/data-grid.png'), /* Hintergrundbild hinzugefügt */
                 radial-gradient(circle at 20% 30%, var(--tunneling-effect) 0%, transparent 30%),
-                linear-gradient(180deg, rgba(0, 10, 26, 0.7), rgba(0, 0, 0, 0.9) 150%); /* Angepasste Transparenz */
-            background-size: cover, auto, auto;
-            background-repeat: no-repeat, no-repeat, no-repeat;
-            background-blend-mode: normal, normal, normal; /* Blend Mode angepasst */
+                linear-gradient(180deg, var(--quantum-void) 0%, #000000 150%);
+            background-size: cover, auto, auto; /* Bild an Bildschirmgröße anpassen */
+            background-repeat: no-repeat, no-repeat, no-repeat; /* Wiederholung verhindern */
+            background-blend-mode: overlay, normal, normal; /* Transparenz-Effekt */
             color: white;
             overflow-x: hidden;
             margin: 0;
