@@ -45,6 +45,8 @@
             padding: 0;
             min-height: 100vh;
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased; /* Für bessere Schriftglättung */
+            -moz-osx-font-smoothing: grayscale; /* Für bessere Schriftglättung in Firefox */
         }
 
         /* === MAIN INTERFACE CONTAINER === */
@@ -101,7 +103,7 @@
 
         /* Header with subtitle */
         .section-header {
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem; /* Erhöht für bessere Trennung */
             position: relative;
         }
 
@@ -109,8 +111,9 @@
             font-family: 'Orbitron', sans-serif;
             font-size: clamp(1.5rem, 3vw, 2.5rem);
             color: var(--primary-accent);
-            margin: 0 0 0.5rem 0;
+            margin: 0 0 0.8rem 0; /* Mehr Abstand zum Subtitle */
             letter-spacing: 0.5px;
+            line-height: 1.2; /* Verbesserte Zeilenhöhe */
         }
 
         .section-subtitle {
@@ -118,6 +121,7 @@
             color: var(--text-secondary);
             font-weight: 400;
             max-width: 800px;
+            line-height: 1.5; /* Verbesserte Lesbarkeit */
         }
 
         /* === ROLE VISUALIZATION === */
@@ -159,7 +163,7 @@
             font-weight: 600;
             color: var(--primary-accent);
             letter-spacing: 0.5px;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.7rem; /* Erhöht für bessere Lesbarkeit */
             font-size: clamp(0.9rem, 1.5vw, 1.1rem);
             text-transform: uppercase;
         }
@@ -168,13 +172,15 @@
             font-size: clamp(1.2rem, 2vw, 1.5rem);
             margin: 0.25rem 0 1rem 0;
             font-weight: 500;
+            line-height: 1.3; /* Verbesserte Zeilenhöhe */
         }
 
         .expertise-description {
             font-size: clamp(0.9rem, 1.5vw, 1rem);
             line-height: 1.6;
             color: var(--text-secondary);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem; /* Mehr Abstand zur Liste */
+            max-width: 95%; /* Verhindert zu breite Textzeilen */
         }
 
         .competencies-list {
@@ -183,7 +189,7 @@
             margin: 0;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
+            gap: 1rem 2rem; /* Mehr horizontaler Abstand zwischen Spalten */
         }
 
         .competencies-list li {
@@ -192,6 +198,7 @@
             font-size: clamp(0.85rem, 1.2vw, 0.95rem);
             color: var(--text-secondary);
             line-height: 1.7; /* Leicht erhöhte line-height */
+            margin-bottom: 0.5rem; /* Abstand zwischen Listenpunkten */
         }
 
         .competencies-list li::before {
@@ -206,16 +213,19 @@
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 3rem;
+            gap: 1.8rem; /* Erhöhter Abstand zwischen Karten */
+            margin-top: 3.5rem; /* Mehr Abstand zum oberen Element */
         }
 
         .service-card {
             background: rgba(0, 20, 40, 0.4);
             border-radius: 16px;
             border: 1px solid rgba(0, 167, 255, 0.1);
-            padding: 1.5rem;
+            padding: 1.8rem; /* Mehr Padding für bessere Lesbarkeit */
             transition: all 0.3s ease;
+            height: 100%; /* Einheitliche Höhe der Karten */
+            display: flex;
+            flex-direction: column;
         }
 
         .service-card:hover {
@@ -232,36 +242,38 @@
             height: 50px;
             border-radius: 12px;
             background: rgba(0, 80, 255, 0.15);
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem; /* Mehr Abstand zum Titel */
             font-size: 1.2rem;
         }
 
         .service-title {
             font-size: 1.1rem;
             font-weight: 600;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.9rem; /* Mehr Abstand zur Beschreibung */
             color: var(--text-primary);
+            line-height: 1.3; /* Verbesserte Zeilenhöhe */
         }
 
         .service-description {
             font-size: 0.9rem;
-            line-height: 1.6;
+            line-height: 1.65; /* Erhöhte Zeilenhöhe für bessere Lesbarkeit */
             color: var(--text-secondary);
+            flex-grow: 1; /* Damit der Text die Karte ausfüllt */
         }
 
         /* === NAVIGATION === */
         .interface-nav {
-            padding: clamp(1.5rem, 5vw, 2rem) var(--container-padding);
+            padding: clamp(1.5rem, 5vw, 2.2rem) var(--container-padding);
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 1rem;
+            gap: 1.5rem; /* Mehr Abstand zwischen Links */
         }
 
         .interface-link {
             display: inline-flex;
             align-items: center;
-            padding: 0.8rem 2rem;
+            padding: 0.9rem 2.2rem; /* Größere Klickfläche */
             background: linear-gradient(90deg, rgba(0, 240, 255, 0.1) 0%, rgba(0, 80, 255, 0.2) 100%);
             border: 1px solid var(--interface-border);
             border-radius: 50px;
@@ -269,9 +281,9 @@
             text-decoration: none;
             font-weight: 500;
             letter-spacing: 0.5px;
-            font-size: 0.9rem;
+            font-size: 0.95rem; /* Leicht größer für bessere Lesbarkeit */
             gap: 0.5rem;
-            transition: all 0.3s ease; /* Add transition for smooth hover effect */
+            transition: all 0.3s ease;
         }
 
         .interface-link:hover {
@@ -341,15 +353,20 @@
         @media (max-width: 768px) {
             .expertise-card {
                 grid-template-columns: 1fr;
+                padding: 1.5rem;
             }
             
             .expertise-icon {
                 width: 70px;
-                margin-bottom: 1rem;
+                margin-bottom: 1.2rem;
             }
             
             .competencies-list {
                 grid-template-columns: 1fr;
+            }
+            
+            .services-grid {
+                gap: 1.2rem;
             }
         }
 
@@ -364,11 +381,28 @@
             .expertise-heading {
                 font-size: 1.1rem;
                 line-height: 1.4;
+                margin-bottom: 1rem;
             }
             
             .competencies-list li {
                 font-size: 0.85rem;
                 padding-right: 0.5rem;
+                line-height: 1.5;
+                margin-bottom: 0.7rem;
+            }
+            
+            .service-card {
+                padding: 1.5rem;
+            }
+            
+            .service-title {
+                font-size: 1rem;
+            }
+            
+            .expertise-description,
+            .service-description {
+                font-size: 0.85rem;
+                line-height: 1.5;
             }
         }
 
