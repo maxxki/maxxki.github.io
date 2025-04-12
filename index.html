@@ -6,9 +6,8 @@
     <title>maxxki | NextGenAI | Enterprise Solutions</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet>
     <style>
-        /* ===== GLOBALE VARIABLEN ===== */
         :root {
             --neon-cyan: #08f7fe;
             --neon-pink: #fe00f6;
@@ -17,7 +16,6 @@
             --shadow-dark: rgba(0, 0, 0, 0.3);
         }
 
-        /* ===== BASIS-STYLES ===== */
         * {
             margin: 0;
             padding: 0;
@@ -31,7 +29,6 @@
             overflow-x: hidden;
         }
 
-        /* ===== HAUPTHINTERGRUND MIT PARTIKELN ===== */
         .main-background {
             position: relative;
             min-height: 100vh;
@@ -55,7 +52,6 @@
             opacity: 0.6;
         }
 
-        /* ===== MODE-KARTEN ===== */
         .mode-selector {
             position: relative;
             z-index: 1;
@@ -89,7 +85,6 @@
             border-color: var(--neon-cyan);
         }
 
-        /* ===== EMBLEME ===== */
         .mode-emblem {
             width: 150px;
             height: 150px;
@@ -98,16 +93,7 @@
             background-position: center;
             margin-bottom: 1.5rem;
             transition: all 0.4s ease;
-        }
-
-        .superman-emblem {
-            background-image: url('assets/images/emblems/superman-emblem.png');
             filter: drop-shadow(0 0 15px var(--neon-cyan));
-        }
-
-        .enterprise-emblem {
-            background-image: url('assets/images/emblems/data-grid-emblem.png');
-            filter: drop-shadow(0 0 15px rgba(0, 102, 204, 0.7));
         }
 
         .mode-card:hover .mode-emblem {
@@ -117,7 +103,6 @@
                 drop-shadow(0 0 10px var(--neon-pink));
         }
 
-        /* ===== TEXTE & BUTTONS ===== */
         .mode-card h2 {
             font-family: 'Orbitron', sans-serif;
             font-size: 1.8rem;
@@ -174,7 +159,6 @@
             left: 100%;
         }
 
-        /* ===== RESPONSIVE DESIGN ===== */
         @media (max-width: 768px) {
             .mode-selector {
                 flex-direction: column;
@@ -199,15 +183,17 @@
         <canvas id="particleCanvas"></canvas>
         
         <div class="mode-selector">
-            <div class="mode-card superman-mode-card">
-                <div class="mode-emblem superman-emblem"></div>
+            <!-- Superman Card -->
+            <div class="mode-card">
+                <div class="mode-emblem" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><defs><filter id=\"neon-glow\" x=\"-20%\" y=\"-20%\" width=\"140%\" height=\"140%\"><feGaussianBlur stdDeviation=\"3\" result=\"blur\"/><feComposite in=\"SourceGraphic\" in2=\"blur\" operator=\"over\"/></filter></defs><path fill=\"%230078ff\" d=\"M50,15 L58,40 L85,50 L58,60 L50,85 L42,60 L15,50 L42,40 Z\" filter=\"url(%23neon-glow)\" style=\"stroke:%2308f7fe;stroke-width:2\"/></svg>')"></div>
                 <h2>SUPERMAN MODE</h2>
                 <p>Creative AI Superpower</p>
                 <a href="superman/" class="mode-button">Aktivieren</a>
             </div>
             
-            <div class="mode-card enterprise-mode-card">
-                <div class="mode-emblem enterprise-emblem"></div>
+            <!-- Enterprise Card -->
+            <div class="mode-card">
+                <div class="mode-emblem" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><defs><filter id=\"cyber-glow\" x=\"-20%\" y=\"-20%\" width=\"140%\" height=\"140%\"><feGaussianBlur stdDeviation=\"2.5\" result=\"blur\"/><feComposite in=\"SourceGraphic\" in2=\"blur\" operator=\"over\"/></filter><linearGradient id=\"grad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\"><stop offset=\"0%\" stop-color=\"%2308f7fe\"/><stop offset=\"100%\" stop-color=\"%23fe00f6\"/></linearGradient></defs><rect x=\"30\" y=\"40\" width=\"40\" height=\"20\" fill=\"none\" stroke=\"url(%23grad)\" stroke-width=\"3\" filter=\"url(%23cyber-glow)\"/><rect x=\"40\" y=\"30\" width=\"20\" height=\"40\" fill=\"none\" stroke=\"url(%23grad)\" stroke-width=\"3\" filter=\"url(%23cyber-glow)\"/></svg>')"></div>
                 <h2>ENTERPRISE MODE</h2>
                 <p>Next Level GenAI Enterprise Solutions</p>
                 <a href="enterprise/" class="mode-button">Aktivieren</a>
@@ -216,85 +202,71 @@
     </div>
 
     <script>
-        // ========== KRASSER PARTIKEL-CODE MIT VERBINDUNGSEFFEKTEN ========== //
+        // Partikel-Effekt
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
         const particles = [];
-        const maxDistance = 150; // Maximale Verbindungslänge
+        const maxDistance = 150;
 
         function init() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
             
-            // Partikel erstellen
             for (let i = 0; i < 50; i++) {
                 particles.push({
-                    x: Math.random() * canvas  .width,
-                    y: Math.random() * canvas  .height,
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
                     size: Math.random() * 3 + 2,
                     speedX: Math.random() * 2 - 1,
                     speedY: Math.random() * 2 - 1,
-                    color: `hsl(${Math  .random() * 60 + 180}, 100%, 50%)`
+                    color: `hsl(${Math.random() * 60 + 180}, 100%, 50%)`
                 });
             }
         }
 
         function animate() {
-            ctx.clearRect(0, 0, canvas  .width, canvas  .height);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            // Verbindungslinien zeichnen
-            particles  .forEach(p1 => {
-                particles  .forEach(p2 => {
-                    const distance = Math  .sqrt(
-                        Math  .pow(p1  .x - p2  .x, 2) + 
-                        Math  .pow(p1  .y - p2  .y, 2)
+            particles.forEach(p1 => {
+                particles.forEach(p2 => {
+                    const distance = Math.sqrt(
+                        Math.pow(p1.x - p2.x, 2) + 
+                        Math.pow(p1.y - p2.y, 2)
                     );
                     
                     if (distance < maxDistance) {
-                        ctx  .strokeStyle = `rgba(8, 247, 254, ${1 - distance/maxDistance})`;
-                        ctx  .lineWidth = 0.5;
-                        ctx  .beginPath();
-                        ctx  .moveTo(p1  .x, p1  .y);
-                        ctx  .lineTo(p2  .x, p2  .y);
-                        ctx  .stroke();
+                        ctx.strokeStyle = `rgba(8, 247, 254, ${1 - distance/maxDistance})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
                     }
                 });
             });
             
-            // Partikel bewegen
-            particles  .forEach(p => {
-                p  .x += p  .speedX;
-                p  .y += p  .speedY;
+            particles.forEach(p => {
+                p.x += p.speedX;
+                p.y += p.speedY;
                 
-                // Randkollision
-                if (p  .x < 0 || p  .x > canvas  .width) p  .speedX *= -1;
-                if (p  .y < 0 || p  .y > canvas  .height) p  .speedY *= -1;
+                if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
                 
-                // Partikel zeichnen
-                ctx  .fillStyle = p  .color;
-                ctx  .beginPath();
-                ctx  .arc(p  .x, p  .y, p  .size, 0, Math  .PI * 2);
-                ctx  .fill();
+                ctx.fillStyle = p.color;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
             });
             
             requestAnimationFrame(animate);
         }
-        // 1. Wasserzeichen einbauen (unsichtbar, aber tracebar)
-const maxxkiDNA = "⚡MAXXKI_AI_SUPERMODE_" + Math.random().toString(36).slice(2);
-document.body.setAttribute('data-creator', maxxkiDNA);
 
-// 2. Code verschleiern (für Laien unlesbar)
-const styles = document.createElement('style');
-styles.innerHTML = `body::before { content: "🔥 BY MAXXKI & KI-BRUDER 🔥"; opacity: 0.001; }`;
-document.head.appendChild(styles);
-
-        // Starter
-        window  .addEventListener('load', () => {
+        window.addEventListener('load', () => {
             init();
             animate();
         });
 
-        window  .addEventListener('resize', init);
+        window.addEventListener('resize', init);
     </script>
 </body>
-</html>
+                </html>
