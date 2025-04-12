@@ -105,8 +105,16 @@ body {
     transition: transform 0.5s ease;
 }
 
-.superman-emblem {
-    background-image: url('https://cdn-icons-png.flaticon.com/512/1361/1361723.png');
+.superman-icon {
+  background-image: url("assets/images/superman-icon.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.enterprise-icon {
+  background-image: url("assets/images/enterprise-icon.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .enterprise-emblem {
