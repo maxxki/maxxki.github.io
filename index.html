@@ -42,6 +42,91 @@
             height: 100vh;
         }
 
+        /* ===== ULTRA-FICKER MAXXKI BRANDING ===== */
+        .cyber-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(90deg, rgba(5,1,15,0.9) 0%, rgba(13,2,33,0.7) 100%);
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid var(--neon-cyan);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            color: white;
+            text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-purple);
+            animation: logo-pulse 3s infinite alternate;
+        }
+
+        @keyframes logo-pulse {
+            0% { 
+                transform: scale(1);
+                text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-purple);
+            }
+            50% {
+                transform: scale(1.05);
+                text-shadow: 0 0 15px var(--neon-cyan), 0 0 30px var(--neon-purple), 0 0 45px var(--neon-purple);
+            }
+            100% {
+                transform: scale(1);
+                text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-purple);
+            }
+        }
+
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+        }
+
+        .logo-text::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+            box-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-purple);
+            animation: line-glow 2s infinite alternate;
+        }
+
+        @keyframes line-glow {
+            0% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        .tagline {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: bold;
+            font-size: 1rem;
+            color: white;
+            text-shadow: 0 0 5px var(--neon-cyan);
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+
         /* ===== MATRIX HINTERGRUND ===== */
         .matrix-bg {
             position: fixed;
@@ -60,6 +145,7 @@
             align-items: center;
             padding: 2rem;
             position: relative;
+            padding-top: 100px; /* Platz für Header */
         }
 
         /* ===== MODE-KARTEN ===== */
@@ -191,6 +277,20 @@
 
         /* ===== RESPONSIVE DESIGN ===== */
         @media (max-width: 768px) {
+            .cyber-header {
+                flex-direction: column;
+                padding: 1rem;
+                text-align: center;
+            }
+            
+            .logo-container {
+                margin-bottom: 0.5rem;
+            }
+            
+            .tagline {
+                font-size: 0.8rem;
+            }
+            
             .mode-selector {
                 flex-direction: column;
                 gap: 2rem;
@@ -209,6 +309,19 @@
     </style>
 </head>
 <body>
+    <!-- Ultra-Ficker MAXXKI Branding -->
+    <header class="cyber-header">
+        <div class="logo-container">
+            <div class="logo-icon">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div>
+                <div class="logo-text">MAXXKI</div>
+                <div class="tagline">AI NEXTGEN CYBERPUNK EDITION</div>
+            </div>
+        </div>
+    </header>
+    
     <!-- Matrix Hintergrund -->
     <canvas id="matrixCanvas" class="matrix-bg"></canvas>
     
