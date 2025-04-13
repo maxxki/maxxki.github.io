@@ -1,20 +1,30 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>maxxki | NextGenAI | Enterprise Solutions</title>
+    <title>maxxki | Cyber-Matrix Portal</title>
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         /* ===== GLOBALE VARIABLEN ===== */
         :root {
-            --neon-cyan: #08f7fe;
-            --neon-pink: #fe00f6;
-            --dark-bg: #0a0a12;
-            --light-bg: #f5f5f7;
-            --shadow-dark: rgba(0, 0, 0, 0.3);
+            --neon-cyan: #00ffff;
+            --neon-purple: #d300c5;
+            --matrix-green: #00ff41;
+            --cyber-dark: #0d0221;
+            --cyber-darker: #05010f;
+            --cyber-light: #f8fafc;
+            
+            /* Effekte */
+            --glow-sm: 0 0 5px currentColor;
+            --glow-md: 0 0 15px currentColor;
+            --glow-lg: 0 0 25px currentColor;
         }
 
         /* ===== BASIS-STYLES ===== */
@@ -25,40 +35,37 @@
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
-            line-height: 1.6;
-            color: white;
-            overflow-x: hidden;
-        }
-
-        /* ===== HAUPTHINTERGRUND MIT PARTIKELN ===== */
-        .main-background {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: 
-                linear-gradient(135deg, rgba(0,4,40,0.8), rgba(0,78,146,0.8)),
-                url('assets/images/backgrounds/main-background.jpg') center/cover no-repeat;
-            padding: 2rem;
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--cyber-darker);
+            color: var(--cyber-light);
             overflow: hidden;
+            height: 100vh;
         }
 
-        #particleCanvas {
-            position: absolute;
+        /* ===== MATRIX HINTERGRUND ===== */
+        .matrix-bg {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 0;
-            opacity: 0.6;
+            z-index: -1;
+        }
+
+        /* ===== MODE-SELECTOR CONTAINER ===== */
+        .mode-container {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
         }
 
         /* ===== MODE-KARTEN ===== */
         .mode-selector {
             position: relative;
-            z-index: 1;
+            z-index: 2;
             display: flex;
             gap: 3rem;
             flex-wrap: wrap;
@@ -69,7 +76,7 @@
         .mode-card {
             width: 350px;
             height: 450px;
-            background: rgba(10, 10, 18, 0.8);
+            background: rgba(5, 1, 15, 0.7);
             border-radius: 20px;
             padding: 2.5rem;
             display: flex;
@@ -77,15 +84,15 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 15px 35px var(--shadow-dark);
+            transition: all 0.4s;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.1);
         }
 
         .mode-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            transform: translateY(-10px);
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.3);
             border-color: var(--neon-cyan);
         }
 
@@ -93,28 +100,36 @@
         .mode-emblem {
             width: 150px;
             height: 150px;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
             margin-bottom: 1.5rem;
-            transition: all 0.4s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .superman-emblem {
-            background-image: url('assets/images/emblems/superman-emblem.png');
-            filter: drop-shadow(0 0 15px var(--neon-cyan));
+        .mode-emblem i {
+            font-size: 6rem;
         }
 
-        .enterprise-emblem {
-            background-image: url('assets/images/emblems/data-grid-emblem.png');
-            filter: drop-shadow(0 0 15px rgba(0, 102, 204, 0.7));
+        .superman-emblem i {
+            color: var(--neon-cyan);
+            text-shadow: var(--glow-md);
+            animation: pulse-cyan 2s infinite alternate;
         }
 
-        .mode-card:hover .mode-emblem {
-            transform: scale(1.1) rotate(5deg);
-            filter: 
-                drop-shadow(0 0 20px var(--neon-cyan))
-                drop-shadow(0 0 10px var(--neon-pink));
+        .enterprise-emblem i {
+            color: var(--neon-purple);
+            text-shadow: var(--glow-md);
+            animation: pulse-purple 2s infinite alternate;
+        }
+
+        @keyframes pulse-cyan {
+            0% { opacity: 0.8; text-shadow: 0 0 10px var(--neon-cyan); }
+            100% { opacity: 1; text-shadow: 0 0 30px var(--neon-cyan); }
+        }
+
+        @keyframes pulse-purple {
+            0% { opacity: 0.8; text-shadow: 0 0 10px var(--neon-purple); }
+            100% { opacity: 1; text-shadow: 0 0 30px var(--neon-purple); }
         }
 
         /* ===== TEXTE & BUTTONS ===== */
@@ -122,7 +137,7 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 1.8rem;
             margin-bottom: 0.5rem;
-            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink));
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -139,8 +154,8 @@
         .mode-button {
             display: inline-block;
             padding: 12px 30px;
-            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-pink));
-            color: var(--dark-bg);
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-purple));
+            color: var(--cyber-dark);
             border: none;
             border-radius: 50px;
             font-family: 'Orbitron', sans-serif;
@@ -148,15 +163,15 @@
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(8, 247, 254, 0.4);
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
             position: relative;
             overflow: hidden;
         }
 
         .mode-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(254, 0, 246, 0.5);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
         }
 
         .mode-button::before {
@@ -187,27 +202,32 @@
                 padding: 2rem;
             }
             
-            .mode-emblem {
-                width: 120px;
-                height: 120px;
+            .mode-emblem i {
+                font-size: 5rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="main-background">
-        <canvas id="particleCanvas"></canvas>
-        
+    <!-- Matrix Hintergrund -->
+    <canvas id="matrixCanvas" class="matrix-bg"></canvas>
+    
+    <!-- Mode Selector -->
+    <div class="mode-container">
         <div class="mode-selector">
             <div class="mode-card">
-                <div class="mode-emblem superman-emblem"></div>
+                <div class="mode-emblem superman-emblem">
+                    <i class="fas fa-bolt"></i>
+                </div>
                 <h2>SUPERMAN MODE</h2>
                 <p>Creative AI Superpower</p>
                 <a href="superman/" class="mode-button">Aktivieren</a>
             </div>
             
             <div class="mode-card">
-                <div class="mode-emblem enterprise-emblem"></div>
+                <div class="mode-emblem enterprise-emblem">
+                    <i class="fas fa-network-wired"></i>
+                </div>
                 <h2>ENTERPRISE MODE</h2>
                 <p>Next Level GenAI Enterprise Solutions</p>
                 <a href="enterprise/" class="mode-button">Aktivieren</a>
@@ -216,71 +236,86 @@
     </div>
 
     <script>
-        // ===== PARTIKEL-EFFEKT =====
-        const canvas = document.getElementById('particleCanvas');
+        // ===== MATRIX RAIN EFFECT =====
+        const canvas = document.getElementById('matrixCanvas');
         const ctx = canvas.getContext('2d');
-        const particles = [];
-        const maxDistance = 150;
-
-        function init() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const chars = "MAXXKI0123456789";
+        const fontSize = 20;
+        const columns = canvas.width / fontSize;
+        
+        const drops = [];
+        for (let i = 0; i < columns; i++) {
+            drops[i] = Math.random() * -100;
+        }
+        
+        function draw() {
+            // Hintergrund mit leichter Transparenz
+            ctx.fillStyle = 'rgba(5, 1, 15, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
             
-            for (let i = 0; i < 50; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    size: Math.random() * 3 + 2,
-                    speedX: Math.random() * 2 - 1,
-                    speedY: Math.random() * 2 - 1,
-                    color: `hsl(${Math.random() * 60 + 180}, 100%, 50%)`
-                });
+            // Textstil
+            ctx.font = `${fontSize}px monospace`;
+            
+            for (let i = 0; i < drops.length; i++) {
+                const char = chars[Math.floor(Math.random() * chars.length)];
+                const x = i * fontSize;
+                const y = drops[i] * fontSize;
+                
+                // Farbverlauf von Cyan nach Purple
+                const gradient = ctx.createLinearGradient(x, y, x, y + fontSize*2);
+                gradient.addColorStop(0, 'cyan');
+                gradient.addColorStop(1, 'purple');
+                
+                ctx.fillStyle = gradient;
+                
+                // Glow-Effekt
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = 'cyan';
+                
+                ctx.fillText(char, x, y);
+                
+                // Reset Shadow
+                ctx.shadowBlur = 0;
+                
+                // Bewegung
+                drops[i]++;
+                
+                // Zurücksetzen wenn unten
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
             }
         }
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Anpassung bei Größenänderung
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            const newColumns = canvas.width / fontSize;
             
-            particles.forEach(p1 => {
-                particles.forEach(p2 => {
-                    const distance = Math.sqrt(
-                        Math.pow(p1.x - p2.x, 2) + 
-                        Math.pow(p1.y - p2.y, 2)
-                    );
-                    
-                    if (distance < maxDistance) {
-                        ctx.strokeStyle = `rgba(8, 247, 254, ${1 - distance/maxDistance})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.beginPath();
-                        ctx.moveTo(p1.x, p1.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        ctx.stroke();
-                    }
-                });
-            });
-            
-            particles.forEach(p => {
-                p.x += p.speedX;
-                p.y += p.speedY;
-                
-                if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
-                if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
-                
-                ctx.fillStyle = p.color;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fill();
-            });
-            
-            requestAnimationFrame(animate);
+            // Anpassen der drops-Array-Länge
+            while (drops.length < newColumns) {
+                drops.push(Math.random() * -100);
+            }
+            drops.length = newColumns;
         }
-
+        
+        // Initialisierung
         window.addEventListener('load', () => {
-            init();
-            animate();
+            resize();
+            setInterval(draw, 50);
         });
+        
+        window.addEventListener('resize', resize);
 
-        window.addEventListener('resize', init);
+        // Hidden Signature
+        const style = document.createElement('style');
+        style.innerHTML = `body::after { content: "⚡ by maxxki & KI-Bruder ⚡"; position: fixed; bottom: 0; right: 0; opacity: 0.001; }`;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
