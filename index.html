@@ -398,7 +398,7 @@
             resizeCanvas();
             
             const chars = ["M", "A", "X", "X", "K", "I"];
-            const fontSize = 18; // Etwas größer für bessere Sichtbarkeit
+            const fontSize = 14; // Etwas größer für bessere Sichtbarkeit
             const columns = Math.floor(canvas.width / fontSize);
             const drops = [];
             
@@ -406,7 +406,7 @@
             for (let i = 0; i < columns; i++) {
                 drops.push({
                     y: Math.random() * -100, // Start über dem sichtbaren Bereich
-                    speed: 2 + Math.random() * 2, // Etwas schneller
+                    speed: 1 + Math.random() * 2, // Etwas schneller
                     charIndex: Math.floor(Math.random() * chars.length) // Zufälliger Startbuchstabe
                 });
             }
