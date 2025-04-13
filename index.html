@@ -385,61 +385,72 @@
     </div>
 
     <script>
-        // ===== MATRIX RAIN (MAXXKI VON OBEN NACH UNTEN) =====
+        // ===== MATRIX RAIN MIT KORREKTER MAXXKI-REIHENFOLGE =====
 const canvas = document.getElementById('matrixCanvas');
 const ctx = canvas.getContext('2d');
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+// Canvas-Größe anpassen
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resizeCanvas();
 
-const targetText = "M A X X K I   m a x x k i"; // Dein Branding
-const fontSize = 20;
-const columns = canvas.width / fontSize;
+const targetText = "MAXXKI"; // Dein Text (Reihenfolge wichtig!)
+const fontSize = 16; // Etwas größer für bessere Lesbarkeit
+const columns = Math.floor(canvas.width / fontSize);
+const drops = [];
 
-// Jede Spalte hat ihren eigenen Startpunkt & Buchstaben-Index
-const drops = Array(Math.floor(columns)).fill(0).map(() => ({
-    y: Math.random() * -100, // Startet über dem Screen
-    charIndex: Math.floor(Math.random() * targetText.length) // Startbuchstabe
-}));
+// Jede Spalte bekommt ihre eigene Startposition
+for (let i = 0; i < columns; i++) {
+    drops.push({
+        y: -100 - Math.random() * 100, // Start über dem sichtbaren Bereich
+        speed: 1 + Math.random() * 2, // Individuelle Geschwindigkeit
+        columnCharIndex: i % targetText.length // Startbuchstabe synchronisiert
+    });
+}
 
 function draw() {
-    // Transparenter Hintergrund für "Schwebe-Effekt"
-    ctx.fillStyle = 'rgba(5, 1, 15, 0.05)';
+    // Transparenter Hintergrund für "Nachleuchten"
+    ctx.fillStyle = 'rgba(5, 1, 15, 0.08)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.font = `bold ${fontSize}px monospace`;
     
-    drops.forEach((drop, i) => {
-        const x = i * fontSize;
-        const currentChar = targetText[drop.charIndex % targetText.length]; // MAXXKI im Loop
+    drops.forEach((drop, columnIndex) => {
+        const x = columnIndex * fontSize;
+        const charIndex = (drop.columnCharIndex + Math.floor(drop.y / fontSize)) % targetText.length;
+        const currentChar = targetText[charIndex];
         
         // Verlauf von Cyan (oben) zu Purple (unten)
         const gradient = ctx.createLinearGradient(x, drop.y, x, drop.y + fontSize * 3);
-        gradient.addColorStop(0, 'var(--neon-cyan)');
-        gradient.addColorStop(1, 'var(--neon-purple)');
+        gradient.addColorStop(0, '#00ffff');
+        gradient.addColorStop(1, '#d300c5');
         ctx.fillStyle = gradient;
         
         // Glow-Effekt
         ctx.shadowBlur = 10;
-        ctx.shadowColor = 'var(--neon-cyan)';
+        ctx.shadowColor = '#00ffff';
         ctx.fillText(currentChar, x, drop.y);
         ctx.shadowBlur = 0;
         
-        // Bewegung: Fallen lassen (y erhöhen)
-        drop.y += fontSize * 0.5; // Geschwindigkeit anpassbar
+        // Bewegung nach unten
+        drop.y += drop.speed;
         
-        // Nächster Buchstabe in der Sequenz
-        if (drop.y > canvas.height && Math.random() > 0.95) {
-            drop.y = -fontSize;
-            drop.charIndex = (drop.charIndex + 1) % targetText.length; // Nächster Buchstabe in "MAXXKI"
+        // Zurücksetzen wenn komplett unten
+        if (drop.y > canvas.height + fontSize * targetText.length) {
+            drop.y = -fontSize * targetText.length;
         }
     });
     
-    requestAnimationFrame(draw); // Butterweiche Animation
+    requestAnimationFrame(draw);
 }
 
-// Starte den Regen!
+// Starte Animation
 draw();
+
+// Bei Fenster-Resize neu skalieren
+window.addEventListener('resize', resizeCanvas);
         
         
         // ===== MORPHING-LOGO ANIMATION =====
