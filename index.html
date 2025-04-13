@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAXXKI | AI NextGen | </title>
+    <title>MAXXKI | AI NextGen | CYBER-MORPH EDITION</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,17 +38,17 @@
             font-family: 'Rajdhani', sans-serif;
             background-color: var(--cyber-darker);
             color: var(--cyber-light);
-            overflow: hidden;
-            height: 100vh;
+            overflow-x: hidden;
+            min-height: 100vh;
         }
 
-        /* ===== ULTRA-FICKER MAXXKI BRANDING ===== */
+        /* ===== ULTRA-FICKER MAXXKI BRANDING MIT MORPHING-LOGO ===== */
         .cyber-header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            padding: 1.5rem 2rem;
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -65,26 +65,49 @@
             gap: 1rem;
         }
 
+        /* Morphing-Logo Styles */
         .logo-icon {
-            font-size: 2rem;
-            color: white;
-            text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-purple);
-            animation: logo-pulse 3s infinite alternate;
+            width: 50px;
+            height: 50px;
+            position: relative;
         }
 
-        @keyframes logo-pulse {
-            0% { 
-                transform: scale(1);
-                text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-purple);
-            }
-            50% {
-                transform: scale(1.05);
-                text-shadow: 0 0 15px var(--neon-cyan), 0 0 30px var(--neon-purple), 0 0 45px var(--neon-purple);
-            }
-            100% {
-                transform: scale(1);
-                text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-purple);
-            }
+        .morph-logo {
+            width: 100%;
+            height: 100%;
+        }
+
+        .morph-logo path {
+            stroke-width: 1.5;
+            stroke: var(--neon-cyan);
+            fill: none;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: draw 6s forwards infinite, glow 3s infinite alternate;
+        }
+
+        @keyframes draw {
+            0% { stroke-dashoffset: 1000; }
+            40% { stroke-dashoffset: 0; fill: transparent; }
+            60% { fill: rgba(0, 255, 255, 0.1); }
+            100% { stroke-dashoffset: 0; fill: rgba(0, 255, 255, 0.2); }
+        }
+
+        @keyframes glow {
+            0% { filter: drop-shadow(0 0 5px var(--neon-cyan)); }
+            100% { filter: drop-shadow(0 0 15px var(--neon-purple)); }
+        }
+
+        .morph-logo .morph-shape {
+            animation: morph 8s infinite alternate ease-in-out;
+        }
+
+        @keyframes morph {
+            0% { d: path("M10,10 L40,10 L40,40 L10,40 Z"); }
+            25% { d: path("M5,25 L35,5 L45,35 L15,45 Z"); }
+            50% { d: path("M10,10 L40,10 L25,40 Z"); }
+            75% { d: path("M10,25 L25,5 L40,25 L25,45 Z"); }
+            100% { d: path("M10,10 L40,10 L40,40 L10,40 Z"); }
         }
 
         .logo-text {
@@ -287,6 +310,15 @@
                 margin-bottom: 0.5rem;
             }
             
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            
             .tagline {
                 font-size: 0.8rem;
             }
@@ -309,15 +341,17 @@
     </style>
 </head>
 <body>
-    <!-- Ultra-Ficker MAXXKI Branding -->
+    <!-- Ultra-Ficker MAXXKI Branding mit Morphing-Logo -->
     <header class="cyber-header">
         <div class="logo-container">
             <div class="logo-icon">
-                <i class="fas fa-robot"></i>
+                <svg class="morph-logo" viewBox="0 0 50 50">
+                    <path class="morph-shape" d="M10,10 L40,10 L40,40 L10,40 Z"/>
+                </svg>
             </div>
             <div>
                 <div class="logo-text">MAXXKI</div>
-                <div class="tagline">LLM | QLM | AUTOMATION |</div>
+                <div class="tagline">AI NEXTGEN CYBERPUNK EDITION</div>
             </div>
         </div>
     </header>
@@ -358,7 +392,7 @@
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         
-        const chars = "M A X X K I    M A X X K I";
+        const chars = "MAXXKI0123456789";
         const fontSize = 20;
         const columns = canvas.width / fontSize;
         
@@ -406,26 +440,37 @@
             }
         }
         
-        // Anpassung bei Größenänderung
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            const newColumns = canvas.width / fontSize;
-            
-            // Anpassen der drops-Array-Länge
-            while (drops.length < newColumns) {
-                drops.push(Math.random() * -100);
-            }
-            drops.length = newColumns;
-        }
-        
+        // ===== MORPHING-LOGO ANIMATION =====
+        const shapes = [
+            'M10,10 L40,10 L40,40 L10,40 Z', // Square
+            'M5,25 L35,5 L45,35 L15,45 Z',   // Diamond
+            'M10,10 L40,10 L25,40 Z',        // Triangle
+            'M10,25 L25,5 L40,25 L25,45 Z',  // Rhombus
+            'M10,10 Q25,5 40,10 Q35,25 40,40 Q25,45 10,40 Q15,25 10,10 Z' // Fancy Shape
+        ];
+
+        const logo = document.querySelector('.morph-shape');
+        let currentShape = 0;
+
+        setInterval(() => {
+            currentShape = (currentShape + 1) % shapes.length;
+            logo.style.d = `path("${shapes[currentShape]}")`;
+        }, 3000);
+
         // Initialisierung
         window.addEventListener('load', () => {
-            resize();
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
             setInterval(draw, 50);
         });
         
-        window.addEventListener('resize', resize);
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            const newColumns = canvas.width / fontSize;
+            while (drops.length < newColumns) drops.push(Math.random() * -100);
+            drops.length = newColumns;
+        });
 
         // Hidden Signature
         const style = document.createElement('style');
