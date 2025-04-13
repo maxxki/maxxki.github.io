@@ -385,72 +385,102 @@
             logoPath.setAttribute('d', shapes[currentShape]);
         }, 2000);
 
-        // ===== MATRIX RAIN (FILM-REIF & SLOW-MO) =====
+        // ===== ULTRA-GEILER MATRIX RAIN =====
         const canvas = document.getElementById('matrixCanvas');
         const ctx = canvas.getContext('2d');
-
+        const targetText = "MAXXKI";
+        
         // Canvas anpassen
         function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         }
         resizeCanvas();
-
-        const targetText = "MAXXKI"; 
-        const fontSize = 18; // Größer für bessere Lesbarkeit
+        
+        // Einstellungen
+        const fontSize = 24;
         const columns = Math.floor(canvas.width / fontSize);
         const drops = [];
-
-        // Spalten initialisieren
+        
+        // Drops initialisieren
         for (let i = 0; i < columns; i++) {
             drops.push({
-                y: Math.random() * -100, // Start über dem Screen
-                speed: 0.5 + Math.random() * 1, // LANGSAMER (0.5-1.5)
-                charIndex: i % targetText.length // Synchronisierte Startposition
+                y: Math.random() * -500, // Start über dem sichtbaren Bereich
+                speed: 2 + Math.random() * 3, // Geschwindigkeit
+                charIndex: i % targetText.length, // Startbuchstabe
+                opacity: 0, // Start unsichtbar
+                pulsePhase: Math.random() * Math.PI * 2 // Zufälliger Puls-Start
             });
         }
 
         function draw() {
-            // Dunkler Hintergrund mit leichter Transparenz
-            ctx.fillStyle = 'rgba(5, 1, 15, 0.08)';
+            // Halbtransparenter Hintergrund für "Schweif"-Effekt
+            ctx.fillStyle = 'rgba(5, 1, 15, 0.05)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            ctx.font = `bold ${fontSize}px monospace`;
+            
+            ctx.font = `bold ${fontSize}px 'Courier New', monospace`;
             
             drops.forEach((drop, i) => {
                 const x = i * fontSize;
                 const currentChar = targetText[drop.charIndex % targetText.length];
                 
-                // Farbverlauf (oben Cyan → unten Purple)
-                const gradient = ctx.createLinearGradient(x, drop.y, x, drop.y + fontSize * 3);
-                gradient.addColorStop(0, '#00ffff');
-                gradient.addColorStop(1, '#d300c5');
-                ctx.fillStyle = gradient;
+                // Farbverlauf berechnen (weiß -> cyan -> purple)
+                let color;
+                const progress = (drop.y / canvas.height); // 0-1
                 
-                // Glow-Effekt
-                ctx.shadowBlur = 8;
-                ctx.shadowColor = '#00ffff';
+                if (progress < 0.3) {
+                    // Weiß zu Cyan
+                    const phase = progress / 0.3;
+                    color = `rgb(${255 * (1 - phase)}, 255, ${255})`;
+                } else if (progress < 0.7) {
+                    // Cyan zu Purple
+                    const phase = (progress - 0.3) / 0.4;
+                    color = `rgb(0, ${255 * (1 - phase)}, ${255 - 55 * phase})`;
+                } else {
+                    // Purple
+                    color = `rgb(211, 0, 197)`;
+                }
+                
+                // Pulsierender Glow-Effekt
+                drop.pulsePhase += 0.05;
+                const glowIntensity = 5 + Math.sin(drop.pulsePhase) * 5;
+                
+                // Zeichne den Buchstaben mit Glow
+                ctx.shadowBlur = glowIntensity;
+                ctx.shadowColor = color;
+                ctx.fillStyle = color;
                 ctx.fillText(currentChar, x, drop.y);
+                
+                // Reset Shadow für nächsten Buchstaben
                 ctx.shadowBlur = 0;
                 
-                // Bewegung nach unten (LANGSAM)
+                // Bewegung und Transparenz
                 drop.y += drop.speed;
-                
-                // Nächster Buchstabe in der Sequenz
                 drop.charIndex = (drop.charIndex + 1) % targetText.length;
                 
                 // Zurücksetzen wenn unten
-                if (drop.y > canvas.height + fontSize * 3) {
-                    drop.y = -fontSize * 3;
+                if (drop.y > canvas.height + fontSize) {
+                    drop.y = -fontSize;
+                    drop.opacity = 0;
+                }
+                
+                // Einblenden am oberen Rand
+                if (drop.y < fontSize * 2 && drop.opacity < 1) {
+                    drop.opacity += 0.02;
                 }
             });
             
-            requestAnimationFrame(draw); // Ultra-smooth
+            requestAnimationFrame(draw);
         }
 
-        // Start!
+        // Fenstergrößenänderung behandeln
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Animation starten
         draw();
-        window.addEventListener('resize', resizeCanvas);
     </script>
 </body>
 </html>
