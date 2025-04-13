@@ -390,78 +390,37 @@
             const canvas = document.getElementById('matrixCanvas');
             const ctx = canvas.getContext('2d');
             
-            // Canvas größe anpassen
-            const resizeCanvas = () => {
-                canvas.width = canvas.offsetWidth;
-                canvas.height = canvas.offsetHeight;
-            };
-            resizeCanvas();
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
             
-            const chars = ["M", "A", "X", "X", "K", "I"];
-            const fontSize = 14; // Etwas größer für bessere Sichtbarkeit
-            const columns = Math.floor(canvas.width / fontSize);
-            const drops = [];
-            
-            // Drops initialisieren
-            for (let i = 0; i < columns; i++) {
-                drops.push({
-                    y: Math.random() * -100, // Start über dem sichtbaren Bereich
-                    speed: 1 + Math.random() * 2, // Etwas schneller
-                    charIndex: Math.floor(Math.random() * chars.length) // Zufälliger Startbuchstabe
-                });
-            }
+            const chars = "M A X X K I";
+            const fontSize = 14;
+            const columns = canvas.width / fontSize;
+            const drops = Array(Math.floor(columns)).fill(0);
             
             function draw() {
-                // Transparenter Hintergrund für Schweif-Effekt
-                ctx.fillStyle = 'rgba(5, 1, 15, 0.06)';
+                ctx.fillStyle = 'rgba(5, 1, 15, 0.05)';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 
-                ctx.font = `bold ${fontSize}px 'Courier New', monospace`;
-                
                 drops.forEach((drop, i) => {
+                    const text = chars[Math.floor(Math.random() * chars.length)];
                     const x = i * fontSize;
-                    const char = chars[drop.charIndex % chars.length];
+                    const y = drop * fontSize;
                     
-                    // Farbwechsel zwischen Cyan und Purple
-                    const isCyan = Math.random() > 0.5;
-                    ctx.fillStyle = isCyan ? '#00ffff' : '#d300c5';
+                    // Neon colors
+                    ctx.fillStyle = Math.random() > 0.5 ? '#00ffff' : '#d300c5';
+                    ctx.font = `${fontSize}px monospace`;
+                    ctx.fillText(text, x, y);
                     
-                    // Glow-Effekt
-                    ctx.shadowBlur = isCyan ? 10 : 8;
-                    ctx.shadowColor = isCyan ? '#00ffff' : '#d300c5';
-                    
-                    ctx.fillText(char, x, drop.y);
-                    
-                    // Zurücksetzen der Shadow-Effekte
-                    ctx.shadowBlur = 0;
-                    
-                    // Bewegung
-                    drop.y += drop.speed;
-                    
-                    // Nächster Buchstabe in der Sequenz
-                    drop.charIndex = (drop.charIndex + 1) % chars.length;
-                    
-                    // Zurücksetzen wenn unten
-                    if (drop.y > canvas.height + fontSize) {
-                        drop.y = -fontSize;
-                    }
+                    if (y > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                    drops[i]++;
                 });
             }
             
-            // Animation starten (smooth mit requestAnimationFrame)
-            let animationId;
-            const animate = () => {
-                draw();
-                animationId = requestAnimationFrame(animate);
-            };
-            animate();
-            
-            // Resize Event
+            setInterval(draw, 33);
             window.addEventListener('resize', () => {
-                resizeCanvas();
-                // Performance: Animation neustarten
-                cancelAnimationFrame(animationId);
-                animate();
+                canvas.width = canvas.offsetWidth;
+                canvas.height = canvas.offsetHeight;
             });
         };
 
