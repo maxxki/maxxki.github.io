@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAXXKI | AI NextGen | LLM & QLM</title>
-    
+    <title>MAXXKI | AI NextGen | CYBER-MORPH</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
         /* ===== GLOBALE VARIABLEN ===== */
         :root {
@@ -42,7 +40,7 @@
             min-height: 100vh;
         }
 
-        /* ===== ULTRA-FICKER MAXXKI BRANDING MIT MORPHING-LOGO ===== */
+        /* ===== HEADER MIT MORPHING-LOGO ===== */
         .cyber-header {
             position: fixed;
             top: 0;
@@ -65,7 +63,6 @@
             gap: 1rem;
         }
 
-        /* Morphing-Logo Styles */
         .logo-icon {
             width: 50px;
             height: 50px;
@@ -96,18 +93,6 @@
         @keyframes glow {
             0% { filter: drop-shadow(0 0 5px var(--neon-cyan)); }
             100% { filter: drop-shadow(0 0 15px var(--neon-purple)); }
-        }
-
-        .morph-logo .morph-shape {
-            animation: morph 8s infinite alternate ease-in-out;
-        }
-
-        @keyframes morph {
-            0% { d: path("M10,10 L40,10 L40,40 L10,40 Z"); }
-            25% { d: path("M5,25 L35,5 L45,35 L15,45 Z"); }
-            50% { d: path("M10,10 L40,10 L25,40 Z"); }
-            75% { d: path("M10,25 L25,5 L40,25 L25,45 Z"); }
-            100% { d: path("M10,10 L40,10 L40,40 L10,40 Z"); }
         }
 
         .logo-text {
@@ -345,13 +330,13 @@
     <header class="cyber-header">
         <div class="logo-container">
             <div class="logo-icon">
-                <svg class="morph-logo" viewBox="0 0 50 50">
-                    <path class="morph-shape" d="M10,10 L40,10 L40,40 L10,40 Z"/>
+                <svg class="morph-logo" viewBox="0 0 100 100">
+                    <path class="morph-shape" d="M20,20 L80,20 L80,80 L20,80 Z"/>
                 </svg>
             </div>
             <div>
                 <div class="logo-text">MAXXKI</div>
-                <div class="tagline">NextGenAI | LLM | QLM |</div>
+                <div class="tagline">AI NEXTGEN CYBERPUNK EDITION</div>
             </div>
         </div>
     </header>
@@ -385,110 +370,87 @@
     </div>
 
     <script>
-        // ===== MATRIX RAIN MIT KORREKTER MAXXKI-REIHENFOLGE =====
-const canvas = document.getElementById('matrixCanvas');
-const ctx = canvas.getContext('2d');
-
-// Canvas-Größe anpassen
-function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-resizeCanvas();
-
-const targetText = "MAXXKI"; // Dein Text (Reihenfolge wichtig!)
-const fontSize = 16; // Etwas größer für bessere Lesbarkeit
-const columns = Math.floor(canvas.width / fontSize);
-const drops = [];
-
-// Jede Spalte bekommt ihre eigene Startposition
-for (let i = 0; i < columns; i++) {
-    drops.push({
-        y: -100 - Math.random() * 100, // Start über dem sichtbaren Bereich
-        speed: 1 + Math.random() * 2, // Individuelle Geschwindigkeit
-        columnCharIndex: i % targetText.length // Startbuchstabe synchronisiert
-    });
-}
-
-function draw() {
-    // Transparenter Hintergrund für "Nachleuchten"
-    ctx.fillStyle = 'rgba(5, 1, 15, 0.08)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    ctx.font = `bold ${fontSize}px monospace`;
-    
-    drops.forEach((drop, columnIndex) => {
-        const x = columnIndex * fontSize;
-        const charIndex = (drop.columnCharIndex + Math.floor(drop.y / fontSize)) % targetText.length;
-        const currentChar = targetText[charIndex];
-        
-        // Verlauf von Cyan (oben) zu Purple (unten)
-        const gradient = ctx.createLinearGradient(x, drop.y, x, drop.y + fontSize * 3);
-        gradient.addColorStop(0, '#00ffff');
-        gradient.addColorStop(1, '#d300c5');
-        ctx.fillStyle = gradient;
-        
-        // Glow-Effekt
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = '#00ffff';
-        ctx.fillText(currentChar, x, drop.y);
-        ctx.shadowBlur = 0;
-        
-        // Bewegung nach unten
-        drop.y += drop.speed;
-        
-        // Zurücksetzen wenn komplett unten
-        if (drop.y > canvas.height + fontSize * targetText.length) {
-            drop.y = -fontSize * targetText.length;
-        }
-    });
-    
-    requestAnimationFrame(draw);
-}
-
-// Starte Animation
-draw();
-
-// Bei Fenster-Resize neu skalieren
-window.addEventListener('resize', resizeCanvas);
-        
-        
         // ===== MORPHING-LOGO ANIMATION =====
+        const logoPath = document.querySelector('.morph-shape');
         const shapes = [
-            'M10,10 L40,10 L40,40 L10,40 Z', // Square
-            'M5,25 L35,5 L45,35 L15,45 Z',   // Diamond
-            'M10,10 L40,10 L25,40 Z',        // Triangle
-            'M10,25 L25,5 L40,25 L25,45 Z',  // Rhombus
-            'M10,10 Q25,5 40,10 Q35,25 40,40 Q25,45 10,40 Q15,25 10,10 Z' // Fancy Shape
+            'M20,20 L80,20 L80,80 L20,80 Z', // Quadrat
+            'M50,10 L90,50 L50,90 L10,50 Z', // Diamant
+            'M20,50 L50,10 L80,50 L50,90 Z', // Raute
+            'M30,30 L70,30 L70,70 L30,70 Z'  // Kleines Quadrat
         ];
-
-        const logo = document.querySelector('.morph-shape');
+        
         let currentShape = 0;
-
         setInterval(() => {
             currentShape = (currentShape + 1) % shapes.length;
-            logo.style.d = `path("${shapes[currentShape]}")`;
-        }, 3000);
+            logoPath.setAttribute('d', shapes[currentShape]);
+        }, 2000);
 
-        // Initialisierung
-        window.addEventListener('load', () => {
+        // ===== MATRIX RAIN (FILM-REIF & SLOW-MO) =====
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Canvas anpassen
+        function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            setInterval(draw, 50);
-        });
-        
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            const newColumns = canvas.width / fontSize;
-            while (drops.length < newColumns) drops.push(Math.random() * -100);
-            drops.length = newColumns;
-        });
+        }
+        resizeCanvas();
 
-        // Hidden Signature
-        const style = document.createElement('style');
-        style.innerHTML = `body::after { content: "⚡ by maxxki & KI-Bruder ⚡"; position: fixed; bottom: 0; right: 0; opacity: 0.001; }`;
-        document.head.appendChild(style);
+        const targetText = "MAXXKI"; 
+        const fontSize = 18; // Größer für bessere Lesbarkeit
+        const columns = Math.floor(canvas.width / fontSize);
+        const drops = [];
+
+        // Spalten initialisieren
+        for (let i = 0; i < columns; i++) {
+            drops.push({
+                y: Math.random() * -100, // Start über dem Screen
+                speed: 0.5 + Math.random() * 1, // LANGSAMER (0.5-1.5)
+                charIndex: i % targetText.length // Synchronisierte Startposition
+            });
+        }
+
+        function draw() {
+            // Dunkler Hintergrund mit leichter Transparenz
+            ctx.fillStyle = 'rgba(5, 1, 15, 0.08)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.font = `bold ${fontSize}px monospace`;
+            
+            drops.forEach((drop, i) => {
+                const x = i * fontSize;
+                const currentChar = targetText[drop.charIndex % targetText.length];
+                
+                // Farbverlauf (oben Cyan → unten Purple)
+                const gradient = ctx.createLinearGradient(x, drop.y, x, drop.y + fontSize * 3);
+                gradient.addColorStop(0, '#00ffff');
+                gradient.addColorStop(1, '#d300c5');
+                ctx.fillStyle = gradient;
+                
+                // Glow-Effekt
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = '#00ffff';
+                ctx.fillText(currentChar, x, drop.y);
+                ctx.shadowBlur = 0;
+                
+                // Bewegung nach unten (LANGSAM)
+                drop.y += drop.speed;
+                
+                // Nächster Buchstabe in der Sequenz
+                drop.charIndex = (drop.charIndex + 1) % targetText.length;
+                
+                // Zurücksetzen wenn unten
+                if (drop.y > canvas.height + fontSize * 3) {
+                    drop.y = -fontSize * 3;
+                }
+            });
+            
+            requestAnimationFrame(draw); // Ultra-smooth
+        }
+
+        // Start!
+        draw();
+        window.addEventListener('resize', resizeCanvas);
     </script>
 </body>
 </html>
