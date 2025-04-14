@@ -1,168 +1,11 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAXXKI - Superman Mode Repositories</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --neon-cyan: #08f7fe;
-            --neon-pink: #fe00f6;
-            --neon-purple: #7122fa;
-            --dark-bg: #0a0a12;
-            --light-bg: #f5f5f7;
-            --shadow-dark: rgba(0, 0, 0, 0.3);
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            line-height: 1.6;
-            color: white;
-            background-color: var(--dark-bg);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 2rem;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(8, 247, 254, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 80% 70%, rgba(254, 0, 246, 0.1) 0%, transparent 20%);
-        }
-
-        h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.8rem;
-            margin-bottom: 3rem;
-            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink), var(--neon-purple));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 0 0 10px rgba(8, 247, 254, 0.3);
-            animation: titleGlow 2s infinite alternate;
-        }
-
-        @keyframes titleGlow {
-            from { text-shadow: 0 0 10px rgba(8, 247, 254, 0.3); }
-            to { text-shadow: 0 0 20px rgba(254, 0, 246, 0.5), 0 0 30px rgba(113, 34, 250, 0.3); }
-        }
-
-        .repository-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            max-width: 1400px;
-            width: 100%;
-        }
-
-        .repository-box {
-            background: rgba(15, 15, 25, 0.7);
-            border-radius: 12px;
-            padding: 25px;
-            text-align: center;
-            transition: all 0.4s ease;
-            border: 1px solid var(--neon-cyan);
-            box-shadow: 0 5px 20px rgba(8, 247, 254, 0.2);
-            backdrop-filter: blur(5px);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .repository-box::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-pink), var(--neon-purple));
-            z-index: -1;
-            border-radius: 14px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .repository-box:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(8, 247, 254, 0.4);
-            border-color: var(--neon-pink);
-        }
-
-        .repository-box:hover::before {
-            opacity: 0.3;
-        }
-
-        .repository-box h3 {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--neon-cyan);
-            margin-bottom: 1.2rem;
-            font-size: 1.4rem;
-            letter-spacing: 1px;
-        }
-
-        .repository-box p {
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 1.8rem;
-            min-height: 60px;
-        }
-
-        .repository-link {
-            display: inline-block;
-            padding: 12px 28px;
-            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-purple));
-            color: var(--dark-bg);
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(8, 247, 254, 0.4);
-            border: none;
-            font-family: 'Orbitron', sans-serif;
-            letter-spacing: 1px;
-        }
-
-        .repository-link:hover {
-            background: linear-gradient(45deg, var(--neon-pink), var(--neon-cyan));
-            color: white;
-            box-shadow: 0 6px 20px rgba(254, 0, 246, 0.6);
-            transform: translateY(-2px);
-        }
-
-        .last-updated {
-            display: inline-block;
-            font-size: 0.85rem;
-            color: var(--neon-pink);
-            margin: 1rem 0;
-            padding: 4px 10px;
-            border-radius: 12px;
-            background: rgba(254, 0, 246, 0.1);
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        .file-icon {
-            margin-right: 8px;
-            font-size: 1.1rem;
-        }
-
-        .tech-tag {
-            display: inline-block;
-            padding: 3px 10px;
-            background: rgba(8, 247, 254, 0.15);
-            color: var(--neon-cyan);
-            border-radius: 12px;
-            font-size: 0.75rem;
-            margin: 0 3px;
-            border: 1px solid rgba(8, 247, 254, 0.3);
-        }
-    </style>
-</head>
+    </head>
 <body>
     <h1>SUPERMAN CODE REPOSITORIES</h1>
     <div class="repository-grid">
-        <div class="repository-box" onclick="window.location.href='LICENSE'">
+        <div class="repository-box" onclick="window.location.href='https://github.com/MAXXKI/AI-Power/blob/main/LICENSE'">
             <h3>⚖️ LICENSE</h3>
             <p>Deine Superhelden-Lizenz für den intergalaktischen Code-Einsatz</p>
             <span class="last-updated">🕒 last week</span>
@@ -170,10 +13,10 @@
                 <span class="tech-tag">Legal</span>
                 <span class="tech-tag">MIT</span>
             </div>
-            <a href="LICENSE" class="repository-link">ZUR LIZENZ</a>
+            <a href="https://github.com/MAXXKI/AI-Power/blob/main/LICENSE" class="repository-link">ZUR LIZENZ</a>
         </div>
 
-        <div class="repository-box" onclick="window.location.href='Quantumcore.css'">
+        <div class="repository-box" onclick="window.location.href='https://github.com/MAXXKI/AI-Power/blob/main/Quantumcore.css'">
             <h3>🎨 Quantumcore.css</h3>
             <p>CSS der Zukunft - Styling mit Quantenphysik-Power</p>
             <span class="last-updated">🕒 last week</span>
@@ -181,10 +24,10 @@
                 <span class="tech-tag">CSS3</span>
                 <span class="tech-tag">Quantum</span>
             </div>
-            <a href="Quantumcore.css" class="repository-link">ZUM STYLESHEET</a>
+            <a href="https://github.com/MAXXKI/AI-Power/blob/main/Quantumcore.css" class="repository-link">ZUM STYLESHEET</a>
         </div>
 
-        <div class="repository-box" onclick="window.location.href='Quantumcore.html'">
+        <div class="repository-box" onclick="window.location.href='https://maxxki.github.io/AI-Power/Quantumcore.html'">
             <h3>🌌 Quantumcore.html</h3>
             <p>HTML-Strukturen mit Wurmloch-Technologie</p>
             <span class="last-updated">🕒 last week</span>
@@ -192,10 +35,10 @@
                 <span class="tech-tag">HTML5</span>
                 <span class="tech-tag">Quantum</span>
             </div>
-            <a href="Quantumcore.html" class="repository-link">ZUR QUANTENPAGE</a>
+            <a href="https://maxxki.github.io/AI-Power/Quantumcore.html" class="repository-link">ZUR QUANTENPAGE</a>
         </div>
 
-        <div class="repository-box" onclick="window.location.href='Quantumcore.js'">
+        <div class="repository-box" onclick="window.location.href='https://github.com/MAXXKI/AI-Power/blob/main/Quantumcore.js'">
             <h3>⚡ Quantumcore.js</h3>
             <p>JavaScript mit Überlichtgeschwindigkeit - für parallele Dimensionen</p>
             <span class="last-updated">🕒 last week</span>
@@ -204,10 +47,10 @@
                 <span class="tech-tag">ES6</span>
                 <span class="tech-tag">Quantum</span>
             </div>
-            <a href="Quantumcore.js" class="repository-link">ZUM QUANTENCODE</a>
+            <a href="https://github.com/MAXXKI/AI-Power/blob/main/Quantumcore.js" class="repository-link">ZUM QUANTENCODE</a>
         </div>
 
-        <div class="repository-box" onclick="window.location.href='README.md'">
+        <div class="repository-box" onclick="window.location.href='https://github.com/MAXXKI/AI-Power/blob/main/README.md'">
             <h3>📖 README.md</h3>
             <p>Dein Superhelden-Handbuch für die Rettung der digitalen Welt</p>
             <span class="last-updated">🕒 3 days ago</span>
@@ -215,10 +58,10 @@
                 <span class="tech-tag">Documentation</span>
                 <span class="tech-tag">Markdown</span>
             </div>
-            <a href="README.md" class="repository-link">ZUM HANDBUCH</a>
+            <a href="https://github.com/MAXXKI/AI-Power/blob/main/README.md" class="repository-link">ZUM HANDBUCH</a>
         </div>
 
-        <div class="repository-box" onclick="window.location.href='darkhack.html'">
+        <div class="repository-box" onclick="window.location.href='https://maxxki.github.io/AI-Power/darkhack.html'">
             <h3>👨‍💻 darkhack.html</h3>
             <p>Nightmode-Tools für den ultimativen Code-Durchblick</p>
             <span class="last-updated">🕒 last week</span>
@@ -226,10 +69,10 @@
                 <span class="tech-tag">HTML5</span>
                 <span class="tech-tag">Dark Mode</span>
             </div>
-            <a href="darkhack.html" class="repository-link">ZUM DARKHACK</a>
+            <a href="https://maxxki.github.io/AI-Power/darkhack.html" class="repository-link">ZUM DARKHACK</a>
         </div>
 
-        <div class="repository-box" onclick="window.location.href='hackathonsmash.html'">
+        <div class="repository-box" onclick="window.location.href='https://maxxki.github.io/AI-Power/hackathonsmash.html'">
             <h3>💥 hackathonsmash.html</h3>
             <p>Crash durch Hackathons mit Übergeschwindigkeit</p>
             <span class="last-updated">🕒 last week</span>
@@ -237,10 +80,10 @@
                 <span class="tech-tag">HTML5</span>
                 <span class="tech-tag">Hackathon</span>
             </div>
-            <a href="hackathonsmash.html" class="repository-link">ZUM SMASHER</a>
+            <a href="https://maxxki.github.io/AI-Power/hackathonsmash.html" class="repository-link">ZUM SMASHER</a>
         </div>
 
-        <div class="repository-box" onclick="window.location.href='landing.html'">
+        <div class="repository-box" onclick="window.location.href='https://maxxki.github.io/AI-Power/landing.html'">
             <h3>🚀 landing.html</h3>
             <p>Perfekte Landingspages für deine Superprojekte</p>
             <span class="last-updated">🕒 last week</span>
@@ -248,10 +91,10 @@
                 <span class="tech-tag">HTML5</span>
                 <span class="tech-tag">Landing Page</span>
             </div>
-            <a href="landing.html" class="repository-link">ZUR LANDINGPAGE</a>
+            <a href="https://maxxki.github.io/AI-Power/landing.html" class="repository-link">ZUR LANDINGPAGE</a>
         </div>
 
-        <div class="repository-box" onclick="window.location.href='neoxcodex.html'">
+        <div class="repository-box" onclick="window.location.href='https://maxxki.github.io/AI-Power/neoxcodex.html'">
             <h3>🔮 neoxcodex.html</h3>
             <p>Futuristisches Coding für die nächste Ära des Webs</p>
             <span class="last-updated">🕒 last week</span>
@@ -259,10 +102,10 @@
                 <span class="tech-tag">HTML5</span>
                 <span class="tech-tag">Next-Gen</span>
             </div>
-            <a href="neoxcodex.html" class="repository-link">ZUM CODEX</a>
+            <a href="https://maxxki.github.io/AI-Power/neoxcodex.html" class="repository-link">ZUM CODEX</a>
         </div>
 
-        <div class="repository-box" onclick="window.location.href='product2.html'">
+        <div class="repository-box" onclick="window.location.href='https://maxxki.github.io/AI-Power/product2.html'">
             <h3>🛸 product2.html</h3>
             <p>Produktpräsentationen mit Alien-Technologie</p>
             <span class="last-updated">🕒 last week</span>
@@ -270,10 +113,10 @@
                 <span class="tech-tag">HTML5</span>
                 <span class="tech-tag">Product</span>
             </div>
-            <a href="product2.html" class="repository-link">ZUM PRODUCT</a>
+            <a href="https://maxxki.github.io/AI-Power/product2.html" class="repository-link">ZUM PRODUCT</a>
         </div>
 
-        <div class="repository-box" onclick="window.location.href='script.js'">
+        <div class="repository-box" onclick="window.location.href='https://github.com/MAXXKI/AI-Power/blob/main/script.js'">
             <h3>🤖 script.js</h3>
             <p>Dein universeller Sidekick für alle JavaScript-Helden</p>
             <span class="last-updated">🕒 last week</span>
@@ -281,10 +124,10 @@
                 <span class="tech-tag">JavaScript</span>
                 <span class="tech-tag">Utility</span>
             </div>
-            <a href="script.js" class="repository-link">ZUM SCRIPT</a>
+            <a href="https://github.com/MAXXKI/AI-Power/blob/main/script.js" class="repository-link">ZUM SCRIPT</a>
         </div>
 
-        <div class="repository-box" onclick="window.location.href='spaceship.html'">
+        <div class="repository-box" onclick="window.location.href='https://maxxki.github.io/AI-Power/spaceship.html'">
             <h3>🚀 spaceship.html</h3>
             <p>Interstellare Navigation durch deine Code-Galaxie</p>
             <span class="last-updated">🕒 last week</span>
@@ -292,10 +135,10 @@
                 <span class="tech-tag">HTML5</span>
                 <span class="tech-tag">Space</span>
             </div>
-            <a href="spaceship.html" class="repository-link">ZUR RAUMSCHIFF</a>
+            <a href="https://maxxki.github.io/AI-Power/spaceship.html" class="repository-link">ZUR RAUMSCHIFF</a>
         </div>
 
-        <div class="repository-box" onclick="window.location.href='styles.css'">
+        <div class="repository-box" onclick="window.location.href='https://github.com/MAXXKI/AI-Power/blob/main/styles.css'">
             <h3>🎨 styles.css</h3>
             <p>Dein universelles Styling-Powerpack für alle Missionen</p>
             <span class="last-updated">🕒 last week</span>
@@ -303,7 +146,7 @@
                 <span class="tech-tag">CSS3</span>
                 <span class="tech-tag">Framework</span>
             </div>
-            <a href="styles.css" class="repository-link">ZUM STYLESHEET</a>
+            <a href="https://github.com/MAXXKI/AI-Power/blob/main/styles.css" class="repository-link">ZUM STYLESHEET</a>
         </div>
     </div>
 
@@ -315,7 +158,7 @@
                 const randomColor = colors[Math.floor(Math.random() * colors.length)];
                 box.style.boxShadow = `0 15px 30px rgba(${parseInt(randomColor.substring(0,2), 16}, ${parseInt(randomColor.substring(2,4), 16}, ${parseInt(randomColor.substring(4,6), 16}, 0.6)`;
             });
-            
+
             box.addEventListener('mouseleave', () => {
                 box.style.boxShadow = '0 5px 20px rgba(8, 247, 254, 0.2)';
             });
