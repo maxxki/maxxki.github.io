@@ -3,18 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MAXXKI Enterprise Repositories - GenAI-Lösungen für verschiedene Branchen">
     <title>MAXXKI - Enterprise Repositories</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* CSS-Variablen */
         :root {
             --enterprise-blue-light: #66aaff;
+            --enterprise-blue-medium: #3388dd;
             --enterprise-blue-dark: #0055aa;
             --enterprise-gray-light: #cccccc;
+            --enterprise-gray-medium: #888888;
             --dark-bg: #0a0a12;
+            --dark-bg-lighter: #12121c;
             --light-bg: #f5f5f7;
             --shadow-dark: rgba(0, 0, 0, 0.3);
+        }
+
+        /* Grundlegendes Reset und Basis-Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
@@ -22,169 +34,312 @@
             line-height: 1.6;
             color: var(--enterprise-gray-light);
             background-color: var(--dark-bg);
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 2rem;
+            padding: 2rem 1rem;
+        }
+
+        /* Header-Styling */
+        header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            width: 100%;
         }
 
         h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            margin-bottom: 0.5rem;
             background: linear-gradient(90deg, var(--enterprise-blue-light), var(--enterprise-blue-dark));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             text-transform: uppercase;
             letter-spacing: 2px;
+            padding: 0.5rem 0;
+        }
+
+        /* Haupt-Grid-Layout */
+        main {
+            width: 100%;
+            max-width: 1400px;
         }
 
         .repository-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
             width: 100%;
         }
 
+        /* Repository-Box Styling */
         .repository-box {
             background-color: rgba(0, 85, 170, 0.1);
             border-radius: 10px;
-            padding: 20px;
-            text-align: center;
+            padding: 1.5rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid var(--enterprise-blue-light);
+            border: 1px solid var(--enterprise-blue-dark);
             box-shadow: 0 5px 15px rgba(0, 85, 170, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .repository-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--enterprise-blue-light), var(--enterprise-blue-dark));
+            opacity: 0.7;
         }
 
         .repository-box:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 85, 170, 0.4);
-            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(102, 170, 255, 0.25);
+            border-color: var(--enterprise-blue-light);
+        }
+
+        .repository-box:focus-within {
+            outline: 2px solid var(--enterprise-blue-light);
         }
 
         .repository-box h3 {
             font-family: 'Orbitron', sans-serif;
             color: var(--enterprise-blue-light);
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
         }
 
         .repository-box p {
             color: var(--enterprise-gray-light);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
+            flex-grow: 1;
         }
 
-        .repository-link {
-            display: inline-block;
-            padding: 10px 25px;
-            background: linear-gradient(45deg, var(--enterprise-blue-light), var(--enterprise-blue-dark));
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            box-shadow: 0 3px 10px rgba(0, 85, 170, 0.3);
-        }
-
-        .repository-link:hover {
-            background: linear-gradient(45deg, var(--enterprise-blue-dark), var(--enterprise-blue-light));
-            color: var(--enterprise-gray-light);
+        .repository-meta {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
         }
 
         .last-updated {
             font-size: 0.8rem;
-            color: #66aaff;
-            margin-top: 0.5rem;
+            color: var(--enterprise-gray-medium);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .last-updated::before {
+            content: '•';
+            color: var(--enterprise-blue-light);
+        }
+
+        /* Link-Styling */
+        .repository-link {
+            display: inline-block;
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: linear-gradient(45deg, var(--enterprise-blue-dark), var(--enterprise-blue-medium));
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.2s ease;
+            box-shadow: 0 3px 10px rgba(0, 85, 170, 0.2);
+        }
+
+        .repository-link:hover, .repository-link:focus {
+            background: linear-gradient(45deg, var(--enterprise-blue-medium), var(--enterprise-blue-light));
+            box-shadow: 0 5px 15px rgba(102, 170, 255, 0.4);
+            outline: none;
+        }
+
+        /* Responsive Anpassungen */
+        @media (max-width: 768px) {
+            body {
+                padding: 1.5rem 1rem;
+            }
+            
+            .repository-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.2rem;
+            }
+            
+            .repository-box {
+                padding: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 1rem 0.75rem;
+            }
+            
+            .repository-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Dark Mode Optimierungen */
+        @media (prefers-color-scheme: light) {
+            body {
+                background-color: var(--light-bg);
+                color: #333;
+            }
+            
+            .repository-box {
+                background-color: white;
+                border-color: #ccc;
+            }
+            
+            .repository-box p {
+                color: #555;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Enterprise Repositories</h1>
-    <div class="repository-grid">
-        <div class="repository-box" onclick="window.location.href='https://github.com/maxxki/AquaCulture.e.V'">
-            <h3>AquaCulture.e.V</h3>
-            <p>GenAI-Lösungen für nachhaltige Aquakultur und Wasserwirtschaft.</p>
-            <span class="last-updated">Updated: last week</span>
-            <a href="https://maxxki.github.io/AI-Solutions/AquaCulture.e.V.md" class="repository-link">Zum Repository</a>
-        </div>
+    <header>
+        <h1>Enterprise Repositories</h1>
+    </header>
+    
+    <main>
+        <div class="repository-grid">
+            <!-- AquaCulture.e.V -->
+            <article class="repository-box">
+                <h3>AquaCulture.e.V</h3>
+                <p>GenAI-Lösungen für nachhaltige Aquakultur und Wasserwirtschaft.</p>
+                <div class="repository-meta">
+                    <span class="last-updated">Aktualisiert: letzte Woche</span>
+                    <a href="https://maxxki.github.io/AI-Solutions/AquaCulture.e.V.md" class="repository-link" aria-label="Zum AquaCulture.e.V Repository">Zum Repository</a>
+                </div>
+            </article>
 
-        <div class="repository-box" onclick="window.location.href='https://github.com/maxxki/DataTechAG'">
-            <h3>DataTechAG</h3>
-            <p>Fortschrittliche Datenanalyse und Technologielösungen für Unternehmen.</p>
-            <span class="last-updated">Updated: last week</span>
-            <a href="https://maxxki.github.io/AI-Solutions/DataTechAG.md" class="repository-link">Zum Repository</a>
-        </div>
+            <!-- DataTechAG -->
+            <article class="repository-box">
+                <h3>DataTechAG</h3>
+                <p>Fortschrittliche Datenanalyse und Technologielösungen für Unternehmen.</p>
+                <div class="repository-meta">
+                    <span class="last-updated">Aktualisiert: letzte Woche</span>
+                    <a href="https://maxxki.github.io/AI-Solutions/DataTechAG.md" class="repository-link" aria-label="Zum DataTechAG Repository">Zum Repository</a>
+                </div>
+            </article>
 
-        <div class="repository-box" onclick="window.location.href='https://github.com/maxxki/GreenLogisticsGmbH'">
-            <h3>GreenLogisticsGmbH</h3>
-            <p>Nachhaltige Logistiklösungen mit GenAI-Optimierung.</p>
-            <span class="last-updated">Updated: last week</span>
-            <a href="https://maxxki.github.io/AI-Solutions/GreenLogisticsGmbH.md" class="repository-link">Zum Repository</a>
-        </div>
+            <!-- GreenLogisticsGmbH -->
+            <article class="repository-box">
+                <h3>GreenLogisticsGmbH</h3>
+                <p>Nachhaltige Logistiklösungen mit GenAI-Optimierung.</p>
+                <div class="repository-meta">
+                    <span class="last-updated">Aktualisiert: letzte Woche</span>
+                    <a href="https://maxxki.github.io/AI-Solutions/GreenLogisticsGmbH.md" class="repository-link" aria-label="Zum GreenLogisticsGmbH Repository">Zum Repository</a>
+                </div>
+            </article>
 
-        <div class="repository-box" onclick="window.location.href='https://github.com/maxxki/IndustrieWerkAG.md'">
-            <h3>IndustrieWerkAG</h3>
-            <p>GenAI-Anwendungen für industrielle Produktion und Automatisierung.</p>
-            <span class="last-updated">Updated: last week</span>
-            <a href="https://maxxki.github.io/AI-Solutions/IndustrieWerkAG.md" class="repository-link">Zum Repository</a>
-        </div>
+            <!-- IndustrieWerkAG -->
+            <article class="repository-box">
+                <h3>IndustrieWerkAG</h3>
+                <p>GenAI-Anwendungen für industrielle Produktion und Automatisierung.</p>
+                <div class="repository-meta">
+                    <span class="last-updated">Aktualisiert: letzte Woche</span>
+                    <a href="https://maxxki.github.io/AI-Solutions/IndustrieWerkAG.md" class="repository-link" aria-label="Zum IndustrieWerkAG Repository">Zum Repository</a>
+                </div>
+            </article>
 
-        <div class="repository-box" onclick="window.location.href='https://github.com/maxxki/Korrespondenz.pdf'">
-            <h3>Korrespondenz</h3>
-            <p>Dokumentation und Kommunikationsprotokolle.</p>
-            <span class="last-updated">Updated: yesterday</span>
-            <a href="https://maxxki.github.io/AI-Solutions/Korrespondenz.pdf" class="repository-link">Zum Dokument</a>
-        </div>
+            <!-- Korrespondenz -->
+            <article class="repository-box">
+                <h3>Korrespondenz</h3>
+                <p>Dokumentation und Kommunikationsprotokolle.</p>
+                <div class="repository-meta">
+                    <span class="last-updated">Aktualisiert: gestern</span>
+                    <a href="https://maxxki.github.io/AI-Solutions/Korrespondenz.pdf" class="repository-link" aria-label="Zum Korrespondenz Dokument">Zum Dokument</a>
+                </div>
+            </article>
 
-        <div class="repository-box" onclick="window.location.href='https://github.com/maxxki/LICENSE'">
-            <h3>Lizenz</h3>
-            <p>Lizenzinformationen für die Enterprise-Lösungen.</p>
-            <span class="last-updated">Updated: last week</span>
-            <a href="https://maxxki.github.io/AI-Solutions/LICENSE" class="repository-link">Zum Dokument</a>
-        </div>
+            <!-- Lizenz -->
+            <article class="repository-box">
+                <h3>Lizenz</h3>
+                <p>Lizenzinformationen für die Enterprise-Lösungen.</p>
+                <div class="repository-meta">
+                    <span class="last-updated">Aktualisiert: letzte Woche</span>
+                    <a href="https://maxxki.github.io/AI-Solutions/LICENSE" class="repository-link" aria-label="Zum Lizenz Dokument">Zum Dokument</a>
+                </div>
+            </article>
 
-        <div class="repository-box" onclick="window.location.href='https://github.com/maxxki/MEDVisionGmbH'">
-            <h3>MEDVisionGmbH</h3>
-            <p>GenAI-Anwendungen für medizinische Diagnostik und Bildanalyse.</p>
-            <span class="last-updated">Updated: last week</span>
-            <a href="https://maxxki.github.io/AI-Solutions/MEDVisionGmbH.md" class="repository-link">Zum Repository</a>
-        </div>
+            <!-- MEDVisionGmbH -->
+            <article class="repository-box">
+                <h3>MEDVisionGmbH</h3>
+                <p>GenAI-Anwendungen für medizinische Diagnostik und Bildanalyse.</p>
+                <div class="repository-meta">
+                    <span class="last-updated">Aktualisiert: letzte Woche</span>
+                    <a href="https://maxxki.github.io/AI-Solutions/MEDVisionGmbH.md" class="repository-link" aria-label="Zum MEDVisionGmbH Repository">Zum Repository</a>
+                </div>
+            </article>
 
-        <div class="repository-box" onclick="window.location.href='https://github.com/maxxki/PrecisionMedAG'">
-            <h3>PrecisionMedAG</h3>
-            <p>Präzisionsmedizin und personalisierte Behandlungsansätze.</p>
-            <span class="last-updated">Updated: last week</span>
-            <a href="https://maxxki.github.io/AI-Solutions/PrecisionMedAG.md" class="repository-link">Zum Repository</a>
-        </div>
+            <!-- PrecisionMedAG -->
+            <article class="repository-box">
+                <h3>PrecisionMedAG</h3>
+                <p>Präzisionsmedizin und personalisierte Behandlungsansätze.</p>
+                <div class="repository-meta">
+                    <span class="last-updated">Aktualisiert: letzte Woche</span>
+                    <a href="https://maxxki.github.io/AI-Solutions/PrecisionMedAG.md" class="repository-link" aria-label="Zum PrecisionMedAG Repository">Zum Repository</a>
+                </div>
+            </article>
 
-        <div class="repository-box" onclick="window.location.href='https://github.com/maxxki/README.md'">
-            <h3>Projektübersicht</h3>
-            <p>Allgemeine Informationen zu den Enterprise-Lösungen.</p>
-            <span class="last-updated">Updated: yesterday</span>
-            <a href="https://maxxki.github.io/AI-Solutions/README.md" class="repository-link">Zum Dokument</a>
-        </div>
+            <!-- Projektübersicht -->
+            <article class="repository-box">
+                <h3>Projektübersicht</h3>
+                <p>Allgemeine Informationen zu den Enterprise-Lösungen.</p>
+                <div class="repository-meta">
+                    <span class="last-updated">Aktualisiert: gestern</span>
+                    <a href="https://maxxki.github.io/AI-Solutions/README.md" class="repository-link" aria-label="Zur Projektübersicht">Zum Dokument</a>
+                </div>
+            </article>
 
-        <div class="repository-box" onclick="window.location.href='https://github.com/maxxki/adaptive-learning-framework.md'">
-            <h3>Adaptive Learning</h3>
-            <p>Framework für selbstanpassende Lernalgorithmen.</p>
-            <span class="last-updated">Updated: last week</span>
-            <a href="https://maxxki.github.io/AI-Solutions/adaptive-learning-framework.md" class="repository-link">Zum Framework</a>
-        </div>
+            <!-- Adaptive Learning -->
+            <article class="repository-box">
+                <h3>Adaptive Learning</h3>
+                <p>Framework für selbstanpassende Lernalgorithmen.</p>
+                <div class="repository-meta">
+                    <span class="last-updated">Aktualisiert: letzte Woche</span>
+                    <a href="https://maxxki.github.io/AI-Solutions/adaptive-learning-framework.md" class="repository-link" aria-label="Zum Adaptive Learning Framework">Zum Framework</a>
+                </div>
+            </article>
 
-        <div class="repository-box" onclick="window.location.href='https://maxxki.github.io/AI-Solutions/divide-et-impera-framework.md'">
-            <h3>Divide et Impera</h3>
-            <p>Framework für verteilte Problemlösungsansätze.</p>
-            <span class="last-updated">Updated: last week</span>
-            <a href="https://github.com/maxxki/divide-et-impera-framework.md" class="repository-link">Zum Framework</a>
-        </div>
+            <!-- Divide et Impera -->
+            <article class="repository-box">
+                <h3>Divide et Impera</h3>
+                <p>Framework für verteilte Problemlösungsansätze.</p>
+                <div class="repository-meta">
+                    <span class="last-updated">Aktualisiert: letzte Woche</span>
+                    <a href="https://maxxki.github.io/AI-Solutions/divide-et-impera-framework.md" class="repository-link" aria-label="Zum Divide et Impera Framework">Zum Framework</a>
+                </div>
+            </article>
 
-        <div class="repository-box" onclick="window.location.href='https://maxxki.github.io/AI-Solutions/panel.html'">
-            <h3>Enterprise Panel</h3>
-            <p>Dashboard für die Verwaltung der GenAI-Lösungen.</p>
-            <span class="last-updated">Updated: last week</span>
-            <a href="https://maxxki.github.io/AI-Solutions/panel.html" class="repository-link">Zum Panel</a>
+            <!-- Enterprise Panel -->
+            <article class="repository-box">
+                <h3>Enterprise Panel</h3>
+                <p>Dashboard für die Verwaltung der GenAI-Lösungen.</p>
+                <div class="repository-meta">
+                    <span class="last-updated">Aktualisiert: letzte Woche</span>
+                    <a href="https://maxxki.github.io/AI-Solutions/panel.html" class="repository-link" aria-label="Zum Enterprise Panel">Zum Panel</a>
+                </div>
+            </article>
         </div>
-    </div>
+    </main>
 </body>
 </html>
