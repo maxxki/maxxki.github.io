@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAXXKI | AI NextGen | </title>
-    <!-- Fonts -->
+    <title>MAXXKI | AI NextGen</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ===== GLOBALE VARIABLEN ===== */
         :root {
             --neon-cyan: #00ffff;
             --neon-purple: #d300c5;
@@ -18,14 +16,11 @@
             --cyber-dark: #0d0221;
             --cyber-darker: #05010f;
             --cyber-light: #f8fafc;
-            
-            /* Effekte */
             --glow-sm: 0 0 5px currentColor;
             --glow-md: 0 0 15px currentColor;
             --glow-lg: 0 0 25px currentColor;
         }
 
-        /* ===== BASIS-STYLES ===== */
         * {
             margin: 0;
             padding: 0;
@@ -40,7 +35,7 @@
             min-height: 100vh;
         }
 
-        /* ===== HEADER MIT MORPHING-LOGO ===== */
+        /* Header */
         .cyber-header {
             position: fixed;
             top: 0;
@@ -135,17 +130,28 @@
             opacity: 0.8;
         }
 
-        /* ===== MATRIX HINTERGRUND ===== */
-        .matrix-bg {
+        /* Canvas-Layer */
+        #matrixCanvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
+            opacity: 0.8;
         }
 
-        /* ===== MODE-SELECTOR CONTAINER ===== */
+        #threejs-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        /* Content */
         .mode-container {
             min-height: 100vh;
             display: flex;
@@ -153,10 +159,10 @@
             align-items: center;
             padding: 2rem;
             position: relative;
-            padding-top: 100px; /* Platz für Header */
+            padding-top: 100px;
+            z-index: 10;
         }
 
-        /* ===== MODE-KARTEN ===== */
         .mode-selector {
             position: relative;
             z-index: 2;
@@ -186,11 +192,11 @@
 
         .mode-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 0 50px rgba(0, 255, 255, 0.3);
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.3), 
+                        0 0 80px rgba(210, 0, 197, 0.2);
             border-color: var(--neon-cyan);
         }
 
-        /* ===== EMBLEME ===== */
         .mode-emblem {
             width: 150px;
             height: 150px;
@@ -226,7 +232,6 @@
             100% { opacity: 1; text-shadow: 0 0 30px var(--neon-purple); }
         }
 
-        /* ===== TEXTE & BUTTONS ===== */
         .mode-card h2 {
             font-family: 'Orbitron', sans-serif;
             font-size: 1.8rem;
@@ -283,7 +288,6 @@
             left: 100%;
         }
 
-        /* ===== RESPONSIVE DESIGN ===== */
         @media (max-width: 768px) {
             .cyber-header {
                 flex-direction: column;
@@ -326,7 +330,7 @@
     </style>
 </head>
 <body>
-    <!-- Ultra-Ficker MAXXKI Branding mit Morphing-Logo -->
+    <!-- Header -->
     <header class="cyber-header">
         <div class="logo-container">
             <div class="logo-icon">
@@ -341,10 +345,13 @@
         </div>
     </header>
     
-    <!-- Matrix Hintergrund -->
-    <canvas id="matrixCanvas" class="matrix-bg"></canvas>
+    <!-- Matrix Rain -->
+    <canvas id="matrixCanvas"></canvas>
     
-    <!-- Mode Selector -->
+    <!-- Three.js Canvas -->
+    <canvas id="threejs-canvas"></canvas>
+    
+    <!-- Content -->
     <div class="mode-container">
         <div class="mode-selector">
             <div class="mode-card">
@@ -352,8 +359,7 @@
                     <i class="fas fa-bolt"></i>
                 </div>
                 <h2>SUPERMAN MODE</h2>
-                <p>AI Superpower
-                Kreative Ideen aus dem Daily Planet</p>
+                <p>AI Superpower<br>Kreative Ideen aus dem Daily Planet</p>
                 <a href="superman/" class="mode-button">Aktivieren</a>
             </div>
             
@@ -362,38 +368,28 @@
                     <i class="fas fa-network-wired"></i>
                 </div>
                 <h2>ENTERPRISE MODE</h2>
-                <p>NextGenAI Enterprise Solutions
-                Skalierbare und innovative Anwendungen für Ihr Unternehmen.</p>
+                <p>NextGenAI Enterprise Solutions<br>Skalierbare und innovative Anwendungen</p>
                 <a href="enterprise/" class="mode-button">Aktivieren</a>
             </div>
         </div>
     </div>
 
+    <!-- Scripts -->
+    <!-- 1. Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- 2. Matrix Effect -->
     <script>
-        // ===== MORPHING-LOGO ANIMATION =====
-        const logoPath = document.querySelector('.morph-shape');
-        const shapes = [
-            'M20,20 L80,20 L80,80 L20,80 Z', // Quadrat
-            'M50,10 L90,50 L50,90 L10,50 Z', // Diamant
-            'M20,50 L50,10 L80,50 L50,90 Z', // Raute
-            'M30,30 L70,30 L70,70 L30,70 Z'  // Kleines Quadrat
-        ];
-        
-        let currentShape = 0;
-        setInterval(() => {
-            currentShape = (currentShape + 1) % shapes.length;
-            logoPath.setAttribute('d', shapes[currentShape]);
-        }, 2000);
-
-        // ===== MATRIX RAIN (DEIN STARKER CODE) =====
+        // Matrix Rain
         const initMatrix = () => {
             const canvas = document.getElementById('matrixCanvas');
-            const ctx = canvas.getContext('2d');
+            if (!canvas) return;
             
+            const ctx = canvas.getContext('2d');
             canvas.width = canvas.offsetWidth;
             canvas.height = canvas.offsetHeight;
             
-            const chars = "M A X X K I";
+            const chars = "MAXXKI 01";
             const fontSize = 14;
             const columns = canvas.width / fontSize;
             const drops = Array(Math.floor(columns)).fill(0);
@@ -407,7 +403,6 @@
                     const x = i * fontSize;
                     const y = drop * fontSize;
                     
-                    // Neon colors
                     ctx.fillStyle = Math.random() > 0.5 ? '#00ffff' : '#d300c5';
                     ctx.font = `${fontSize}px monospace`;
                     ctx.fillText(text, x, y);
@@ -423,9 +418,130 @@
                 canvas.height = canvas.offsetHeight;
             });
         };
+    </script>
 
-        // Matrix starten
-        initMatrix();
+    <!-- 3. Three.js Effect -->
+    <script>
+        // Three.js Network
+        const initThreeJS = () => {
+            // Sicherstellen, dass THREE geladen ist
+            if (typeof THREE === 'undefined') {
+                setTimeout(initThreeJS, 100);
+                return;
+            }
+
+            const canvas = document.getElementById('threejs-canvas');
+            if (!canvas) return;
+            
+            // Scene Setup
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ 
+                canvas: canvas, 
+                antialias: true, 
+                alpha: true 
+            });
+            
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio || 1);
+            camera.position.z = 15;
+
+            // Partikel
+            const particles = 500;
+            const positions = new Float32Array(particles * 3);
+            
+            for (let i = 0; i < positions.length; i += 3) {
+                positions[i] = (Math.random() - 0.5) * 50;
+                positions[i + 1] = (Math.random() - 0.5) * 50;
+                positions[i + 2] = (Math.random() - 0.5) * 50;
+            }
+            
+            const geometry = new THREE.BufferGeometry();
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            
+            const material = new THREE.PointsMaterial({
+                size: 0.1,
+                color: 0x00ffff,
+                transparent: true,
+                opacity: 0.8,
+                blending: THREE.AdditiveBlending
+            });
+            
+            const particleSystem = new THREE.Points(geometry, material);
+            scene.add(particleSystem);
+            
+            // Linien
+            const lineMaterial = new THREE.LineBasicMaterial({ 
+                color: 0x00ffff, 
+                transparent: true, 
+                opacity: 0.3 
+            });
+            const lines = new THREE.Group();
+            
+            for (let i = 0; i < positions.length; i += 3) {
+                if (Math.random() > 0.95) {
+                    const x1 = positions[i];
+                    const y1 = positions[i + 1];
+                    const z1 = positions[i + 2];
+                    
+                    const x2 = positions[(i + 3) % positions.length];
+                    const y2 = positions[(i + 4) % positions.length];
+                    const z2 = positions[(i + 5) % positions.length];
+                    
+                    const lineGeometry = new THREE.BufferGeometry().setFromPoints([
+                        new THREE.Vector3(x1, y1, z1),
+                        new THREE.Vector3(x2, y2, z2)
+                    ]);
+                    
+                    const line = new THREE.Line(lineGeometry, lineMaterial);
+                    lines.add(line);
+                }
+            }
+            
+            scene.add(lines);
+            
+            // Animation
+            const clock = new THREE.Clock();
+            
+            const animate = () => {
+                requestAnimationFrame(animate);
+                const time = clock.getElapsedTime();
+                
+                particleSystem.rotation.x = time * 0.05;
+                particleSystem.rotation.y = time * 0.1;
+                
+                renderer.render(scene, camera);
+            };
+            
+            animate();
+            
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        };
+
+        // Starte alles
+        window.addEventListener('load', () => {
+            initMatrix();
+            initThreeJS();
+            
+            // Logo Morphing Animation
+            const logoPath = document.querySelector('.morph-shape');
+            const shapes = [
+                'M20,20 L80,20 L80,80 L20,80 Z',
+                'M50,10 L90,50 L50,90 L10,50 Z',
+                'M20,50 L50,10 L80,50 L50,90 Z',
+                'M30,30 L70,30 L70,70 L30,70 Z'
+            ];
+            
+            let currentShape = 0;
+            setInterval(() => {
+                currentShape = (currentShape + 1) % shapes.length;
+                logoPath.setAttribute('d', shapes[currentShape]);
+            }, 2000);
+        });
     </script>
 </body>
 </html>
