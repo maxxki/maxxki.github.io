@@ -8,28 +8,371 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
-    <!-- Hier das CSS einfügen -->
     <style>
-        /* Das CSS von dem vorherigen Artifact hier einfügen */
+        /* ===== SUPERMAN MODE STYLING ===== */
+        :root {
+            --neon-cyan: #00ffff;
+            --neon-purple: #d300c5;
+            --neon-blue: #08f7fe;
+            --cyber-dark: #0d0221;
+            --cyber-darker: #05010f;
+            --cyber-light: #f8fafc;
+            
+            /* Effekte */
+            --glow-sm: 0 0 5px currentColor;
+            --glow-md: 0 0 15px currentColor;
+            --glow-lg: 0 0 25px currentColor;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--cyber-darker);
+            color: var(--cyber-light);
+            padding: 100px 20px 40px 20px;
+            margin: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(13, 2, 33, 0.9) 0%, rgba(5, 1, 15, 1) 100%),
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 255, 0.03) 3px, transparent 3px);
+        }
+
+        /* Matrix Hintergrund */
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Header Styling */
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--neon-blue);
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        /* Repository Grid */
+        .repository-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Repository Boxes */
+        .repository-box {
+            background: rgba(5, 1, 15, 0.7);
+            border: 1px solid rgba(8, 247, 254, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(8, 247, 254, 0.2);
+            backdrop-filter: blur(5px);
+            height: 220px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .repository-box:hover {
+            transform: translateY(-10px);
+        }
+
+        .repository-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(8, 247, 254, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 6s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            20% { transform: translateX(100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        /* Repository Content */
+        .repository-box h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-cyan);
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .repository-box p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            flex-grow: 1;
+        }
+
+        .last-updated {
+            display: block;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+
+        /* Tech Tags */
+        .tech-tag {
+            display: inline-block;
+            background: rgba(211, 0, 197, 0.2);
+            color: var(--neon-purple);
+            padding: 5px 10px;
+            border-radius: 50px;
+            margin-right: 8px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(211, 0, 197, 0.3);
+        }
+
+        /* Repository Link */
+        .repository-link {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            color: var(--cyber-dark);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-align: center;
+            margin-top: auto;
+            transition: all 0.3s;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+        }
+
+        .repository-link:hover {
+            box-shadow: 0 0 15px var(--neon-blue);
+            transform: scale(1.05);
+        }
+
+        /* Back to Home Button */
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-purple));
+            color: var(--cyber-dark);
+            border: none;
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+            z-index: 100;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .repository-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .repository-box {
+                height: auto;
+                min-height: 200px;
+            }
+        }
+
+        /* Fix für das JavaScript-Styling */
+        .repository-box {
+            transition: all 0.3s ease, box-shadow 0.3s ease;
+        }
     </style>
 </head>
 <body>
     <!-- Back Button -->
     <a href="../" class="back-button">← Zurück</a>
     
-    <h1>SUPERMAN CODE REPOSITORIES</h1>
-    
-    <!-- Matrix Hintergrund (optional) -->
+    <!-- Matrix Hintergrund -->
     <canvas id="matrixCanvas" class="matrix-bg"></canvas>
     
+    <h1>SUPERMAN CODE REPOSITORIES</h1>
+    
     <div class="repository-grid">
-        <!-- Deine Repository Boxen... -->
+        <div class="repository-box" onclick="window.location.href='https://github.com/MAXXKI/AI-Power/blob/main/LICENSE'">
+            <h3>⚖️ LICENSE</h3>
+            <p>Deine Superhelden-Lizenz für den intergalaktischen Code-Einsatz</p>
+            <span class="last-updated">🕒 last week</span>
+            <div style="margin: 15px 0;">
+                <span class="tech-tag">Legal</span>
+                <span class="tech-tag">MIT</span>
+            </div>
+            <a href="https://github.com/MAXXKI/AI-Power/blob/main/LICENSE" class="repository-link">ZUR LIZENZ</a>
+        </div>
 
-        <!-- Alle deine bestehenden Repository-Boxen hier einfügen -->
+        <div class="repository-box" onclick="window.location.href='https://github.com/MAXXKI/AI-Power/blob/main/Quantumcore.css'">
+            <h3>🎨 Quantumcore.css</h3>
+            <p>CSS der Zukunft - Styling mit Quantenphysik-Power</p>
+            <span class="last-updated">🕒 last week</span>
+            <div style="margin: 15px 0;">
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">Quantum</span>
+            </div>
+            <a href="https://github.com/MAXXKI/AI-Power/blob/main/Quantumcore.css" class="repository-link">ZUM STYLESHEET</a>
+        </div>
+
+        <div class="repository-box" onclick="window.location.href='https://maxxki.github.io/AI-Power/Quantumcore.html'">
+            <h3>🌌 Quantumcore.html</h3>
+            <p>HTML-Strukturen mit Wurmloch-Technologie</p>
+            <span class="last-updated">🕒 last week</span>
+            <div style="margin: 15px 0;">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">Quantum</span>
+            </div>
+            <a href="https://maxxki.github.io/AI-Power/Quantumcore.html" class="repository-link">ZUR QUANTENPAGE</a>
+        </div>
+
+        <div class="repository-box" onclick="window.location.href='https://github.com/MAXXKI/AI-Power/blob/main/Quantumcore.js'">
+            <h3>⚡ Quantumcore.js</h3>
+            <p>JavaScript mit Überlichtgeschwindigkeit - für parallele Dimensionen</p>
+            <span class="last-updated">🕒 last week</span>
+            <div style="margin: 15px 0;">
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">ES6</span>
+                <span class="tech-tag">Quantum</span>
+            </div>
+            <a href="https://github.com/MAXXKI/AI-Power/blob/main/Quantumcore.js" class="repository-link">ZUM QUANTENCODE</a>
+        </div>
+
+        <div class="repository-box" onclick="window.location.href='https://github.com/MAXXKI/AI-Power/blob/main/README.md'">
+            <h3>📖 README.md</h3>
+            <p>Dein Superhelden-Handbuch für die Rettung der digitalen Welt</p>
+            <span class="last-updated">🕒 3 days ago</span>
+            <div style="margin: 15px 0;">
+                <span class="tech-tag">Documentation</span>
+                <span class="tech-tag">Markdown</span>
+            </div>
+            <a href="https://github.com/MAXXKI/AI-Power/blob/main/README.md" class="repository-link">ZUM HANDBUCH</a>
+        </div>
+
+        <div class="repository-box" onclick="window.location.href='https://maxxki.github.io/AI-Power/darkhack.html'">
+            <h3>👨‍💻 darkhack.html</h3>
+            <p>Nightmode-Tools für den ultimativen Code-Durchblick</p>
+            <span class="last-updated">🕒 last week</span>
+            <div style="margin: 15px 0;">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">Dark Mode</span>
+            </div>
+            <a href="https://maxxki.github.io/AI-Power/darkhack.html" class="repository-link">ZUM DARKHACK</a>
+        </div>
+
+        <div class="repository-box" onclick="window.location.href='https://maxxki.github.io/AI-Power/hackathonsmash.html'">
+            <h3>💥 hackathonsmash.html</h3>
+            <p>Crash durch Hackathons mit Übergeschwindigkeit</p>
+            <span class="last-updated">🕒 last week</span>
+            <div style="margin: 15px 0;">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">Hackathon</span>
+            </div>
+            <a href="https://maxxki.github.io/AI-Power/hackathonsmash.html" class="repository-link">ZUM SMASHER</a>
+        </div>
+
+        <div class="repository-box" onclick="window.location.href='https://maxxki.github.io/AI-Power/landing.html'">
+            <h3>🚀 landing.html</h3>
+            <p>Perfekte Landingspages für deine Superprojekte</p>
+            <span class="last-updated">🕒 last week</span>
+            <div style="margin: 15px 0;">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">Landing Page</span>
+            </div>
+            <a href="https://maxxki.github.io/AI-Power/landing.html" class="repository-link">ZUR LANDINGPAGE</a>
+        </div>
+
+        <div class="repository-box" onclick="window.location.href='https://maxxki.github.io/AI-Power/neoxcodex.html'">
+            <h3>🔮 neoxcodex.html</h3>
+            <p>Futuristisches Coding für die nächste Ära des Webs</p>
+            <span class="last-updated">🕒 last week</span>
+            <div style="margin: 15px 0;">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">Next-Gen</span>
+            </div>
+            <a href="https://maxxki.github.io/AI-Power/neoxcodex.html" class="repository-link">ZUM CODEX</a>
+        </div>
+
+        <div class="repository-box" onclick="window.location.href='https://maxxki.github.io/AI-Power/product2.html'">
+            <h3>🛸 product2.html</h3>
+            <p>Produktpräsentationen mit Alien-Technologie</p>
+            <span class="last-updated">🕒 last week</span>
+            <div style="margin: 15px 0;">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">Product</span>
+            </div>
+            <a href="https://maxxki.github.io/AI-Power/product2.html" class="repository-link">ZUM PRODUCT</a>
+        </div>
+
+        <div class="repository-box" onclick="window.location.href='https://github.com/MAXXKI/AI-Power/blob/main/script.js'">
+            <h3>🤖 script.js</h3>
+            <p>Dein universeller Sidekick für alle JavaScript-Helden</p>
+            <span class="last-updated">🕒 last week</span>
+            <div style="margin: 15px 0;">
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">Utility</span>
+            </div>
+            <a href="https://github.com/MAXXKI/AI-Power/blob/main/script.js" class="repository-link">ZUM SCRIPT</a>
+        </div>
+
+        <div class="repository-box" onclick="window.location.href='https://maxxki.github.io/AI-Power/spaceship.html'">
+            <h3>🚀 spaceship.html</h3>
+            <p>Interstellare Navigation durch deine Code-Galaxie</p>
+            <span class="last-updated">🕒 last week</span>
+            <div style="margin: 15px 0;">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">Space</span>
+            </div>
+            <a href="https://maxxki.github.io/AI-Power/spaceship.html" class="repository-link">ZUR RAUMSCHIFF</a>
+        </div>
+
+        <div class="repository-box" onclick="window.location.href='https://github.com/MAXXKI/AI-Power/blob/main/styles.css'">
+            <h3>🎨 styles.css</h3>
+            <p>Dein universelles Styling-Powerpack für alle Missionen</p>
+            <span class="last-updated">🕒 last week</span>
+            <div style="margin: 15px 0;">
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">Framework</span>
+            </div>
+            <a href="https://github.com/MAXXKI/AI-Power/blob/main/styles.css" class="repository-link">ZUM STYLESHEET</a>
+        </div>
     </div>
 
     <script>
-        // Verbesserter JavaScript-Code für Glow-Animation
+        // Zufällige Glow-Animation für die Boxen
         document.querySelectorAll('.repository-box').forEach(box => {
             box.addEventListener('mouseenter', () => {
                 const colors = ['08f7fe', 'fe00f6', '7122fa'];
@@ -48,11 +391,9 @@
             });
         });
 
-        // Optional: Matrix Hintergrund wie auf der Hauptseite
+        // Matrix Hintergrund
         const initMatrix = () => {
             const canvas = document.getElementById('matrixCanvas');
-            if (!canvas) return;
-            
             const ctx = canvas.getContext('2d');
             
             canvas.width = window.innerWidth;
@@ -89,10 +430,8 @@
             });
         };
 
-        // Matrix starten wenn verfügbar
-        if (document.getElementById('matrixCanvas')) {
-            initMatrix();
-        }
+        // Matrix starten
+        initMatrix();
     </script>
 </body>
 </html>
