@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MAXXKI - Quantum AI Awakening. Experience next-generation neural synchronization technologies.">
+    <title>MAXXKI || LLM & QLM | Enterprise AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        /* Custom Variables */
+        :root {
+            --neon-cyan: #00ffff;
+            --neon-purple: #d300c5;
+            --matrix-green: #00ff41;
+            --cyber-dark: #0d0221;
+            --cyber-darker: #05010f;
+            --cyber-light: #f8fafc;
+            --glow-sm: 0 0 5px currentColor;
+            --glow-md: 0 0 15px currentColor;
+            --glow-lg: 0 0 25px currentColor;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--cyber-darker);
+            color: var(--cyber-light);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        /* Background Layers */
+        .bg-gradient {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(to bottom right, #4c1d95, #111827, #0e7490);
+            opacity: 0.4;
+            z-index: -2;
+        }
+        
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            background-image: linear-gradient(rgba(0, 255, 255, 0.07) 1px, transparent 1px), 
+                               linear-gradient(90deg, rgba(0, 255, 255, 0.07) 1px, transparent 1px);
+            background-size: 20px 20px;
+            z-index: -1;
+        }
+        
+        /* Matrix Rain Canvas */
+        #matrixCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+            z-index: -1;
+        }
+        
+        /* Animations */
+        @keyframes scanline {
+            0% { transform: translateY(-100vh); }
+            100% { transform: translateY(100vh); }
+        }
+        
+        @keyframes loading-bar {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        @keyframes flow {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        @keyframes flow-reverse {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; box-shadow: 0 0 5px currentColor; }
+            50% { opacity: 1; box-shadow: 0 0 15px currentColor; }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes spin-reverse {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(-360deg); }
+        }
+
+        @keyframes ping {
+            0% { transform: scale(1); opacity: 1; }
+            75%, 100% { transform: scale(2); opacity: 0; }
+        }
+        
+        @keyframes glitch {
+            0% {
+                opacity: 0;
+                transform: none;
+                color: var(--neon-cyan);
+            }
+            7% {
+                opacity: 1;
+                transform: skew(-0.5deg, -0.9deg);
+                color: var(--neon-purple);
+            }
+            10% {
+                opacity: 1;
+                transform: none;
+                color: var(--neon-cyan);
+            }
+            27% {
+                opacity: 0;
+            }
+            30% {
+                opacity: 1;
+                transform: skew(0.8deg, -0.1deg);
+                color: var(--neon-purple);
+            }
+            35% {
+                opacity: 1;
+                transform: none;
+            }
+            52% {
+                opacity: 0;
+            }
+            55% {
+                opacity: 1;
+                transform: skew(-1deg, 0.2deg);
+                color: var(--neon-purple);
+            }
+            50% {
+                opacity: 1;
+                transform: none;
+                color: var(--neon-cyan);
+            }
+            72% {
+                opacity: 0;
+            }
+            75% {
+                opacity: 1;
+                transform: skew(0.4deg, 1deg);
+                color: var(--neon-purple);
+            }
+            80% {
+                opacity: 1;
+                transform: none;
+                color: var(--neon-cyan);
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--neon-cyan) }
+        }
+
+        @keyframes shine {
+            0% {
+                left: -50%;
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            100% {
+                left: 150%;
+                opacity: 0;
+            }
+        }
+        
+        /* Animation Classes */
+        .animate-scanline {
+            animation: scanline 4s linear infinite;
+        }
+        
+        .animate-scanline-delayed {
+            animation: scanline 6s linear 1s infinite;
+        }
+        
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        .animate-ping {
+            animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+        
+        .animate-spin-slow {
+            animation: spin 15s linear infinite;
+        }
+        
+        .animate-spin-reverse {
+            animation: spin-reverse 20s linear infinite;
+        }
+        
+        /* Container & Layout */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            position: relative;
+        }
+        
+        .flex {
+            display: flex;
+        }
+        
+        .items-center {
+            align-items: center;
+        }
+        
+        .justify-between {
+            justify-content: space-between;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+        
+        .flex-col {
+            flex-direction: column;
+        }
+
+        .space-x-2 > * + * {
+            margin-left: 0.5rem;
+        }
+
+        .space-x-6 > * + * {
+            margin-left: 1.5rem;
+        }
+
+        .grid {
+            display: grid;
+        }
+
+        .grid-cols-1 {
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+        }
+
+        @media (min-width: 768px) {
+            .grid-cols-2 {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        .gap-6 {
+            gap: 1.5rem;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(6, 182, 212, 0.3);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 30;
+        }
+        
+        .logo-header {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(to right, var(--neon-cyan), white, var(--neon-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+        }
+        
+        .logo-icon {
+            width: 2rem;
+            height: 2rem;
+            position: relative;
+        }
+        
+        .logo-icon-outer {
+            position: absolute;
+            inset: 0;
+            border-radius: 9999px;
+            background: linear-gradient(to right, var(--neon-cyan), var(--neon-purple));
+            animation: spin 6s linear infinite;
+        }
+        
+        .logo-icon-inner {
+            position: absolute;
+            inset: 4px;
+            border-radius: 9999px;
+            background-color: black;
+        }
+        
+        .logo-icon-middle {
+            position: absolute;
+            inset: 8px;
+            border-radius: 9999px;
+            background: linear-gradient(to right, var(--neon-purple), var(--neon-cyan));
+            animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+        
+        .logo-icon-center {
+            position: absolute;
+            inset: 12px;
+            border-radius: 9999px;
+            background-color: black;
+        }
+        
+        nav {
+            display: none;
+        }
+        
+        @media (min-width: 768px) {
+            nav {
+                display: flex;
+            }
+        }
+        
+        .nav-item {
+            color: #d1d5db;
+            transition: all 0.3s;
+            position: relative;
+            cursor: pointer;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+            padding: 0.5rem;
+        }
+        
+        .nav-item:hover {
+            color: var(--neon-cyan);
+        }
+        
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--neon-cyan);
+            transition: width 0.3s;
+        }
+        
+        .nav-item:hover::after {
+            width: 100%;
+        }
+        
+        .status-badge {
+            display: flex;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            border: 1px solid rgba(6, 182, 212, 0.5);
+        }
+        
+        .status-dot {
+            width: 0.5rem;
+            height: 0.5rem;
+            border-radius: 9999px;
+            margin-right: 0.5rem;
+            background-color: var(--neon-cyan);
+            animation: pulse 2s infinite;
+        }
+        
+        .status-text {
+            font-size: 0.75rem;
+            color: var(--neon-cyan);
+            letter-spacing: 0.05em;
+        }
+
+        /* Main Content */
+        main {
+            padding: 4rem 1rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 4rem;
+            min-height: 80vh;
+        }
+
+        .abstract-elements {
+            position: absolute;
+            inset: -8rem;
+            opacity: 0.2;
+            pointer-events: none;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 9999px;
+            border-width: 1px;
+        }
+
+        .circle-1 {
+            left: 25%;
+            top: 25%;
+            width: 8rem;
+            height: 8rem;
+            border-color: var(--neon-cyan);
+            animation: spin 15s linear infinite;
+        }
+
+        .circle-2 {
+            right: 25%;
+            bottom: 25%;
+            width: 12rem;
+            height: 12rem;
+            border-color: var(--neon-purple);
+            animation: spin-reverse 20s linear infinite;
+        }
+
+        .circle-3 {
+            left: 33%;
+            bottom: 33%;
+            width: 16rem;
+            height: 16rem;
+            border-color: #a855f7;
+            animation: spin 15s linear infinite;
+        }
+
+        .circle-4 {
+            right: 33%;
+            top: 33%;
+            width: 5rem;
+            height: 5rem;
+            border-color: var(--matrix-green);
+            animation: spin-reverse 10s linear infinite;
+        }
+
+        /* MAXXKI Logo with 3D effects */
+        .maxxki-logo {
+            position: relative;
+            perspective: 1000px;
+            transform: translateZ(0);
+            margin-bottom: 3rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .logo-back, .logo-mid, .logo-text, .logo-glitch {
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: 0.2em;
+            position: relative;
+        }
+
+        .logo-back {
+            color: rgba(0, 255, 255, 0.1);
+            transform: translate(-5px, 5px);
+            filter: blur(4px);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .logo-mid {
+            color: rgba(211, 0, 197, 0.2);
+            transform: translate(5px, -5px);
+            filter: blur(2px);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .logo-text {
+            background: linear-gradient(to right, var(--neon-cyan), white, var(--neon-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            z-index: 20;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+        }
+
+        .logo-glitch {
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: var(--neon-cyan);
+            opacity: 0;
+            animation: glitch 5s infinite;
+        }
+
+        .logo-circle-1 {
+            position: absolute;
+            inset: -3rem;
+            border: 1px dashed rgba(6, 182, 212, 0.4);
+            border-radius: 9999px;
+            animation: spin 15s linear infinite;
+        }
+
+        .logo-circle-2 {
+            position: absolute;
+            inset: -6rem;
+            border: 1px dashed rgba(217, 70, 239, 0.3);
+            border-radius: 9999px;
+            animation: spin-reverse 20s linear infinite;
+        }
+
+        /* Tagline */
+        .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            color: var(--cyber-light);
+            letter-spacing: 0.05em;
+            position: relative;
+            text-align: center;
+            max-width: 42rem;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 0.15em solid var(--neon-cyan);
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        .tagline-text {
+            position: relative;
+            z-index: 10;
+            opacity: 0.9;
+        }
+
+        .tagline-shadow {
+            position: absolute;
+            top: 0;
+            left: 1px;
+            color: var(--neon-cyan);
+            opacity: 0.5;
+            filter: blur(2px);
+        }
+
+        .tagline-underline {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--neon-cyan), transparent);
+            animation: pulse 2s infinite;
+        }
+
+        /* Capabilities/Services Section */
+        .capabilities {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 3rem 0;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .capability {
+            position: relative;
+            transition: all 0.5s;
+            overflow: hidden;
+            padding: 1.5rem;
+            background-color: rgba(13, 2, 33, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .capability::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transform: rotate(45deg);
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        .capability:hover::before {
+            animation: shine 1.5s infinite;
+        }
+
+        .capability:hover {
+            z-index: 10;
+            transform: scale(1.05) translateY(-0.5rem);
+        }
+
+        .capability.turquoise {
+            color: var(--neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+            --glow-from: var(--neon-cyan);
+            --glow-to: transparent;
+            --border-color: rgba(0, 255, 255, 0.3);
+            --text-color: var(--neon-cyan);
+            --hover-bg: 0, 255, 255;
+            --shadow-color: 0, 255, 255;
+        }
+
+        .capability.pink {
+            color: var(--neon-purple);
+            box-shadow: 0 0 15px rgba(211, 0, 197, 0.2);
+            --glow-from: var(--neon-purple);
+            --glow-to: transparent;
+            --border-color: rgba(211, 0, 197, 0.3);
+            --text-color: var(--neon-purple);
+            --hover-bg: 211, 0, 197;
+            --shadow-color: 211, 0, 197;
+        }
+
+        .capability.violet {
+            color: #a44eff;
+            box-shadow: 0 0 15px rgba(164, 78, 255, 0.2);
+            --glow-from: #a44eff;
+            --glow-to: transparent;
+            --border-color: rgba(164, 78, 255, 0.3);
+            --text-color: #a44eff;
+            --hover-bg: 164, 78, 255;
+            --shadow-color: 164, 78, 255;
+        }
+
+        .capability.green {
+            color: var(--matrix-green);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+            --glow-from: var(--matrix-green);
+            --glow-to: transparent;
+            --border-color: rgba(0, 255, 65, 0.3);
+            --text-color: var(--matrix-green);
+            --hover-bg: 0, 255, 65;
+            --shadow-color: 0, 255, 65;
+        }
+
+        .service-glow {
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(to right, var(--glow-from), var(--glow-to));
+            border-radius: 0.5rem;
+            filter: blur(8px);
+            opacity: 0.3;
+            transition: opacity 0.3s;
+        }
+
+        .capability:hover .service-glow {
+            opacity: 1;
+        }
+
+        .service-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-indicator {
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 9999px;
+            background-color: var(--text-color);
+            animation: pulse 2s infinite;
+        }
+
+        .service-description {
+            font-size: 0.875rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+
+        .service-underline {
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--neon-cyan), transparent);
+            animation: pulse 2s infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .capability:hover .service-underline {
+            opacity: 1;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            position: relative;
+            overflow: hidden;
+            background-color: transparent;
+            border: 2px solid var(--neon-cyan);
+            padding: 1.25rem 3rem;
+            margin-top: 1.5rem;
+            transition: all 0.3s;
+            border-radius: 0.5rem;
+                        color: var(--neon-cyan);
+            font-size: 1rem;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            z-index: 10;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 255, 255, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .cta-button:hover::before {
+            opacity: 1;
+        }
+
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px solid var(--neon-cyan);
+            border-radius: 0.7rem;
+            opacity: 0.4;
+            animation: pulse 2s infinite;
+        }
+
+        .cta-button:hover {
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            transform: scale(1.03);
+        }
+
+        /* AI Insights Section */
+        .ai-insights {
+            background-color: rgba(13, 2, 33, 0.8);
+            padding: 3rem 1rem;
+            margin: 4rem 0;
+            border-radius: 0.5rem;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+        }
+
+        .ai-insights-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--neon-purple);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            letter-spacing: 0.08em;
+            text-shadow: 0 0 10px rgba(211, 0, 197, 0.4);
+        }
+
+        .insight-item {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            border-left: 3px solid var(--neon-purple);
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 0.3rem;
+        }
+
+        .insight-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .insight-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .insight-icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            margin-right: 0.75rem;
+            border-radius: 9999px;
+            background-color: var(--neon-purple);
+            color: var(--cyber-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .insight-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--cyber-light);
+            letter-spacing: 0.03em;
+        }
+
+        .insight-content {
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        /* NextGen AI Features Section */
+        .nextgen-ai {
+            padding: 3rem 1rem;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .nextgen-ai-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--matrix-green);
+            margin-bottom: 2rem;
+            letter-spacing: 0.1em;
+            text-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .feature-item {
+            background-color: rgba(13, 2, 33, 0.7);
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            text-align: left;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-0.5rem);
+            box-shadow: 0 0 35px rgba(0, 255, 65, 0.4);
+        }
+
+        .feature-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 0.3rem;
+            background-color: var(--matrix-green);
+            color: var(--cyber-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--cyber-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-description {
+            font-size: 0.9rem;
+            color: #9ca3af;
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            border-top: 1px solid rgba(6, 182, 212, 0.3);
+            padding: 2rem 1rem;
+            color: #6b7280;
+            font-size: 0.8rem;
+            text-align: center;
+            letter-spacing: 0.04em;
+        }
+
+        .footer-links a {
+            color: var(--neon-cyan);
+            text-decoration: none;
+            margin: 0 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--neon-purple);
+        }
+
+        .social-icons {
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin: 0 0.5rem;
+            color: #cbd5e1;
+            font-size: 1.2rem;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-0.25rem);
+            color: var(--neon-cyan);
+        }
+
+        /* Responsive adjustments */
+        @media (min-width: 768px) {
+            main {
+                padding: 6rem 2rem;
+            }
+
+            .hero {
+                flex-direction: row;
+                justify-content: space-around;
+                text-align: left;
+                min-height: 90vh;
+            }
+
+            .hero > * {
+                flex: 1;
+            }
+
+            .maxxki-logo-container {
+                text-align: center;
+            }
+
+            .tagline-container {
+                text-align: left;
+                padding-left: 2rem;
+            }
+
+            .capabilities {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .ai-insights {
+                padding: 4rem 2rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            main {
+                padding: 8rem 3rem;
+            }
+
+            .hero {
+                padding: 0 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    <div class="bg-grid"></div>
+    <canvas id="matrixCanvas"></canvas>
+
+    <header>
+        <div class="container flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <div class="logo-icon">
+                    <div class="logo-icon-outer"></div>
+                    <div class="logo-icon-inner"></div>
+                    <div class="logo-icon-middle"></div>
+                    <div class="logo-icon-center"></div>
+                </div>
+                <a href="#" class="logo-header">MAXXKI</a>
+            </div>
+            <nav>
+                <a href="#" class="nav-item">Home</a>
+                <a href="#capabilities" class="nav-item">Capabilities</a>
+                <a href="#insights" class="nav-item">AI Insights</a>
+                <a href="#features" class="nav-item">NextGen AI</a>
+                <a href="#contact" class="nav-item">Contact</a>
+            </nav>
+            <div class="status-badge">
+                <div class="status-dot animate-pulse"></div>
+                <span class="status-text">Online</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero container">
+            <div class="abstract-elements">
+                <div class="circle circle-1"></div>
+                <div class="circle circle-2"></div>
+                <div class="circle circle-3"></div>
+                <div class="circle circle-4"></div>
+            </div>
+            <div class="maxxki-logo-container">
+                <h1 class="maxxki-logo">
+                    <span class="logo-back">MAXXKI</span>
+                    <span class="logo-mid">MAXXKI</span>
+                    <span class="logo-text">MAXXKI</span>
+                    <span class="logo-glitch">MAXXKI</span>
+                    <div class="logo-circle-1"></div>
+                    <div class="logo-circle-2"></div>
+                </h1>
+            </div>
+            <div class="tagline-container">
+                <h2 class="tagline">
+                    <span class="tagline-text">Quantum AI Awakening: Unleashing Next-Gen Intelligence</span>
+                    <span class="tagline-shadow">Quantum AI Awakening: Unleashing Next-Gen Intelligence</span>
+                    <div class="tagline-underline"></div>
+                </h2>
+                <a href="#contact" class="cta-button">Explore the Future</a>
+            </div>
+        </section>
+
+        <section id="capabilities" class="container">
+            <h2 class="text-2xl font-bold text-neon-cyan mb-4 text-center">Our Core Capabilities</h2>
+            <div class="capabilities grid grid-cols-2 md:grid-cols-4 gap-6 justify-center">
+                <div class="capability turquoise">
+                    <div class="service-glow"></div>
+                    <div class="service-content">
+                        <div class="service-header">
+                            <div class="service-indicator"></div>
+                            <span>LLM Solutions</span>
+                        </div>
+                        <p class="service-description">Advanced Large Language Model integration for enterprise applications.</p>
+                        <div class="service-underline"></div>
+                    </div>
+                </div>
+                <div class="capability pink">
+                    <div class="service-glow"></div>
+                    <div class="service-content">
+                        <div class="service-header">
+                            <div class="service-indicator"></div>
+                            <span>QLM Development</span>
+                        </div>
+                        <p class="service-description">Cutting-edge Quantum Language Model research and development.</p>
+                        <div class="service-underline"></div>
+                    </div>
+                </div>
+                <div class="capability violet">
+                    <div class="service-glow"></div>
+                    <div class="service-content">
+                        <div class="service-header">
+                            <div class="service-indicator"></div>
+                            <span>Neural Synchronization</span>
+                        </div>
+                        <p class="service-description">Proprietary technologies for enhanced AI neural network performance.</p>
+                        <div class="service-underline"></div>
+                    </div>
+                </div>
+                <div class="capability green">
+                    <div class="service-glow"></div>
+                    <div class="service-content">
+                        <div class="service-header">
+                            <div class="service-indicator"></div>
+                            <span>Enterprise AI Integration</span>
+                        </div>
+                        <p class="service-description">Seamless integration of AI solutions into existing enterprise infrastructures.</p>
+                        <div class="service-underline"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="insights" class="ai-insights container">
+            <h2 class="ai-insights-title">Latest AI Insights</h2>
+            <div class="insight-item">
+                <div class="insight-header">
+                    <div class="insight-icon">💡</div>
+                    <h3 class="insight-title">The Convergence of LLMs and Quantum Computing</h3>
+                </div>
+                <p class="insight-content">Exploring the potential synergies between Large Language Models and Quantum Language Models to unlock unprecedented levels of natural language understanding and generation.</p>
+            </div>
+            <div class="insight-item">
+                <div class="insight-header">
+                    <div class="insight-icon">🧠</div>
+                    <h3 class="insight-title">Advancements in Neural Network Synchronization</h3>
+                </div>
+                <p class="insight-content">A deep dive into our latest research on neural synchronization techniques, significantly improving the efficiency and accuracy of complex AI models.</p>
+            </div>
+            <div class="insight-item">
+                <div class="insight-header">
+                    <div class="insight-icon">🚀</div>
+                    <h3 class="insight-title">The Future of Enterprise AI: Scalability and Integration</h3>
+                </div>
+                <p class="insight-content">Discussing the critical aspects of scaling AI solutions for large enterprises and the best practices for seamless integration with existing systems.</p>
+            </div>
+        </section>
+
+        <section id="features" class="nextgen-ai container">
+            <h2 class="nextgen-ai-title">Next-Generation AI Features</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">⚛️</div>
+                    <h3 class="feature-title">Quantum Entanglement Processing</h3>
+                    <p class="feature-description">Leveraging quantum entanglement principles for faster and more efficient data processing in AI models.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🧬</div>
+                    <h3 class="feature-title">Bio-Inspired Neural Networks</h3>
+                    <p class="feature-description">Implementing neural network architectures inspired by the complexity and efficiency of biological brains.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Adaptive Learning Algorithms</h3>
+                    <p class="feature-description">AI algorithms that dynamically adapt and learn from new data in real-time, enhancing accuracy and reducing retraining needs.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🌐</div>
+                    <h3 class="feature-title">Decentralized AI Frameworks</h3>
+                    <p class="feature-description">Building secure and scalable AI solutions using decentralized architectures for enhanced data privacy and model robustness.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔮</div>
+                    <h3 class="feature-title">Predictive Analytics at Quantum Scale</h3>
+                    <p class="feature-description">Harnessing quantum computing power to perform complex predictive analytics with unprecedented accuracy and speed.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🤖</div>
+                    <h3 class="feature-title">Cognitive Digital Twins</h3>
+                    <p class="feature-description">Creating intelligent digital replicas of real-world systems for advanced simulation, optimization, and decision-making.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="container py-16 text-center">
+            <h2 class="text-3xl font-bold text-neon-cyan mb-8">Contact Us</h2>
+            <p class="text-lg text-gray-400 mb-8">Ready to explore the future of AI with MAXXKI? Get in touch with our experts to discuss your enterprise AI needs.</p>
+            <div class="mt-6">
+                <a href="mailto:info@maxxki.com" class="inline-block bg-transparent hover:bg-neon-cyan text-neon-cyan font-semibold py-3 px-6 border border-neon-cyan hover:border-transparent rounded-md transition duration-300 ease-in-out">
+                    Email Us
+                </a>
+                <a href="tel:+4994112345678" class="inline-block bg-transparent hover:bg-neon-purple text-neon-purple font-semibold py-3 px-6 border border-neon-purple hover:border-transparent rounded-md transition duration-300 ease-in-out ml-4">
+                    Call Us
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Sitemap</a>
+            </div>
+            <div class="social-icons">
+                <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+            <p class="mt-2">&copy; 2025 MAXXKI. All rights reserved. Crafted with <span style="color: var(--neon-purple);">NextGen AI</span> in Regensburg, Bavaria.</p>
+        </div>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let width = window.innerWidth;
+        let height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+
+        const katakana = 'アァカサタナハマヤャラワガザダバパヰイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルウグズヅブプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+        const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const nums = '0123456789';
+        const allChars = katakana + alphabet + nums;
+        const fontSize = 16;
+        const columns = Math.floor(width / fontSize);
+        const drops = Array(columns).fill(1);
+        const colors = ['#00ff41', '#0f0', '#00cc00', '#009900', '#006600'];
+
+        function getRandomColor() {
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+            ctx.fillRect(0, 0, width, height);
+            ctx.fillStyle = getRandomColor();
+            ctx.font = `${fontSize}px monospace`;
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = allChars[Math.floor(Math.random() * allChars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        function resizeCanvas() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+            columns = Math.floor(width / fontSize);
+            drops.length = columns;
+            drops.fill(1);
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        setInterval(draw, 30);
+
+        // Font Awesome for social icons (ensure you have this linked in your <head> if not using CDN)
+        const fontAwesomeLink = document.createElement('link');
+        fontAwesomeLink.rel = 'stylesheet';
+        fontAwesomeLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css';
+        document.head.appendChild(fontAwesomeLink);
+    </script>
+</body>
+</html>
+
