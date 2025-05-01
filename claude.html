@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAXXKI - Luxury Automation & LLM Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap');
+        
+        :root {
+            --primary: #101820;
+            --accent: #a8976c;
+            --accent-light: #c4b696;
+            --accent-dark: #8c7b56;
+            --light: #f7f7f7;
+            --dark: #0a0a0a;
+            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.15);
+            --shadow-strong: 0 15px 35px rgba(0, 0, 0, 0.3);
+            --glow-soft: 0 0 15px rgba(168, 151, 108, 0.2);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out 0.5s forwards;
+        }
+        
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--dark), #131c26 60%, #1a2530);
+            z-index: -2;
+        }
+        
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(var(--accent) 1px, transparent 1px),
+                             linear-gradient(90deg, var(--accent) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: center;
+            opacity: 0.05;
+            z-index: -1;
+            animation: gridPulse 15s infinite alternate;
+        }
+        
+        @keyframes gridPulse {
+            0% { opacity: 0.03; }
+            50% { opacity: 0.06; }
+            100% { opacity: 0.04; }
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            background-color: var(--accent);
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: float 15s infinite linear;
+            box-shadow: 0 0 8px rgba(168, 151, 108, 0.4);
+            filter: blur(1px);
+        }
+        
+        .logo-container {
+            text-align: center;
+            z-index: 10;
+            transform: translateY(0);
+            animation: float 6s ease-in-out infinite;
+            padding: 3rem;
+            background: rgba(10, 10, 10, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            box-shadow: var(--shadow-strong), 0 0 0 1px rgba(168, 151, 108, 0.1);
+            border: 1px solid rgba(168, 151, 108, 0.1);
+            transition: all 0.4s ease;
+        }
+        
+        .logo-container:hover {
+            box-shadow: var(--shadow-strong), 0 0 0 1px rgba(168, 151, 108, 0.2), 0 0 30px rgba(168, 151, 108, 0.15);
+            transform: translateY(-5px);
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 700;
+            letter-spacing: 10px;
+            color: var(--light);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            animation: lineGrow 1.5s ease-in-out 1s forwards;
+            box-shadow: var(--glow-soft);
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out 1.5s forwards;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 3rem;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out 2s forwards;
+        }
+        
+        .feature {
+            text-align: center;
+            width: 180px;
+            transition: all 0.3s ease;
+            padding: 1.5rem 1rem;
+            border-radius: 12px;
+            background: rgba(16, 24, 32, 0.3);
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(168, 151, 108, 0.05);
+        }
+        
+        .feature:hover {
+            transform: translateY(-8px);
+            background: rgba(16, 24, 32, 0.5);
+            box-shadow: var(--shadow-strong), 0 0 15px rgba(168, 151, 108, 0.15);
+            border: 1px solid rgba(168, 151, 108, 0.15);
+        }
+        
+        .feature:hover i {
+            transform: scale(1.15);
+            color: var(--accent-light);
+            text-shadow: var(--glow-soft);
+        }
+        
+        .feature:hover .feature-title {
+            color: var(--accent-light);
+        }
+        
+        .feature i {
+            font-size: 2.2rem;
+            color: var(--accent);
+            margin-bottom: 1.2rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-shadow: 0 0 10px rgba(168, 151, 108, 0.2);
+        }
+        
+        .feature-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-desc {
+            font-size: 0.8rem;
+            font-weight: 300;
+            opacity: 0.7;
+            line-height: 1.6;
+        }
+        
+        .loader {
+            width: 100%;
+            height: 3px;
+            background-color: rgba(255, 255, 255, 0.1);
+            position: absolute;
+            bottom: 50px;
+            left: 0;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-in-out 3s forwards;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .loader::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, var(--accent-dark), var(--accent), var(--accent-light));
+            animation: loading 5s ease-in-out forwards;
+            box-shadow: 0 0 15px var(--accent);
+        }
+        
+        .redirect-text {
+            position: absolute;
+            bottom: 30px;
+            font-size: 0.8rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: var(--light);
+            opacity: 0;
+            animation: fadeIn 0.5s ease-in-out 3s forwards, pulse 2s ease-in-out 4s infinite;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+        
+        .glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70vw;
+            height: 70vh;
+            background: radial-gradient(circle, rgba(168, 151, 108, 0.15) 0%, rgba(10, 10, 10, 0) 70%);
+            z-index: -1;
+            animation: glowPulse 6s infinite alternate ease-in-out;
+            filter: blur(30px);
+        }
+        
+        @keyframes glowPulse {
+            0% { opacity: 0.5; width: 65vw; height: 65vh; }
+            100% { opacity: 0.7; width: 75vw; height: 75vh; }
+        }
+        
+        /* Navigation indicators */
+        .nav-indicators {
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out 2.5s forwards;
+        }
+        
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(168, 151, 108, 0.1);
+            cursor: pointer;
+        }
+        
+        .nav-dot.active {
+            background-color: var(--accent);
+            transform: scale(1.4);
+            box-shadow: 0 0 12px rgba(168, 151, 108, 0.5);
+        }
+        
+        .nav-dot:hover {
+            background-color: var(--accent-light);
+            transform: scale(1.2);
+        }
+        
+        /* Logo highlight effect */
+        .logo-highlight {
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(to top, rgba(168, 151, 108, 0.03), transparent);
+            z-index: -1;
+            border-radius: 50%;
+            filter: blur(20px);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes lineGrow {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0); }
+        }
+        
+        @keyframes loading {
+            0% { width: 0; }
+            100% { width: 100%; }
+        }
+        
+        /* Social media links */
+        .social-links {
+            position: absolute;
+            bottom: 100px;
+            display: flex;
+            gap: 20px;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-in-out 2.5s forwards;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(16, 24, 32, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(168, 151, 108, 0.1);
+            box-shadow: var(--shadow-soft);
+        }
+        
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            color: var(--accent);
+            background: rgba(16, 24, 32, 0.8);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 0 15px rgba(168, 151, 108, 0.2);
+            border: 1px solid rgba(168, 151, 108, 0.2);
+        }
+        
+        /* Language selector */
+        .language-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-in-out 2.5s forwards;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .language-btn {
+            padding: 8px 15px;
+            background: rgba(16, 24, 32, 0.5);
+            border: 1px solid rgba(168, 151, 108, 0.1);
+            color: var(--light);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: var(--shadow-soft);
+        }
+        
+        .language-btn:hover {
+            background: rgba(16, 24, 32, 0.8);
+            border: 1px solid rgba(168, 151, 108, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            color: var(--accent-light);
+        }
+        
+        .language-btn i {
+            font-size: 0.8rem;
+        }
+        
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 3.5rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+            
+            .features {
+                flex-direction: column;
+                gap: 1.5rem;
+                margin-top: 2rem;
+            }
+            
+            .feature {
+                width: 100%;
+            }
+            
+            .logo-container {
+                padding: 2rem 1rem;
+            }
+            
+            .nav-indicators, .language-selector {
+                display: none;
+            }
+            
+            .social-links {
+                bottom: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="grid-overlay"></div>
+    <div class="particles" id="particles"></div>
+    <div class="glow"></div>
+    
+    <div class="language-selector">
+        <div class="language-btn">
+            EN <i class="fa-solid fa-chevron-down"></i>
+        </div>
+    </div>
+    
+    <div class="nav-indicators">
+        <div class="nav-dot active"></div>
+        <div class="nav-dot"></div>
+        <div class="nav-dot"></div>
+        <div class="nav-dot"></div>
+    </div>
+    
+    <div class="container">
+        <div class="logo-container">
+            <h1 class="logo">
+                MAXXKI
+                <div class="logo-highlight"></div>
+            </h1>
+            <p class="tagline">ADVANCED AUTOMATION & LLM SOLUTIONS</p>
+            
+            <div class="features">
+                <div class="feature">
+                    <i class="fa-solid fa-robot"></i>
+                    <h3 class="feature-title">Automation</h3>
+                    <p class="feature-desc">Seamless processes that adapt to your needs</p>
+                </div>
+                <div class="feature">
+                    <i class="fa-solid fa-brain"></i>
+                    <h3 class="feature-title">Intelligence</h3>
+                    <p class="feature-desc">State-of-the-art LLM integration</p>
+                </div>
+                <div class="feature">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <h3 class="feature-title">Innovation</h3>
+                    <p class="feature-desc">Pushing the boundaries of possibility</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="social-links">
+            <a href="#" class="social-link"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#" class="social-link"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+        
+        <div class="loader"></div>
+        <p class="redirect-text">REDIRECTING TO EXPERIENCE</p>
+    </div>
+    
+    <script>
+        // Create particles
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 40;
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // Random size between 2-6px
+            const size = Math.random() * 4 + 2;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            // Random position
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            
+            // Random animation delay and duration
+            const delay = Math.random() * 5;
+            const duration = Math.random() * 10 + 10;
+            particle.style.animationDelay = `${delay}s`;
+            particle.style.animationDuration = `${duration}s`;
+            
+            particlesContainer.appendChild(particle);
+        }
+        
+        // Redirect after 8 seconds (when loader animation completes + buffer)
+        setTimeout(() => {
+            window.location.href = 'main.html';
+        }, 8000);
+        
+        // Make nav dots interactive
+        const navDots = document.querySelectorAll('.nav-dot');
+        navDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                navDots.forEach(d => d.classList.remove('active'));
+                dot.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
