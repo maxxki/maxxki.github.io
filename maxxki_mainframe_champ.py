@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-MAXXKI V4.1 - Optimized Enterprise HLASM-to-COBOL Converter
+MAXXKI HLASM-to-Cobol - Optimized Enterprise Converter
 ==========================================================
 Hochperformante, modulare Enterprise-Lösung mit verbesserter Architektur:
 - Modulare Plugin-Architektur mit Mixins
