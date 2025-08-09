@@ -1,0 +1,261 @@
+# macros.yaml - Enterprise-grade HLASM Macro Configuration
+version: 2.0
+description: "Centralized macro definitions for HLASM to modern language conversion"
+
+# =============================================
+# 1. Core System Macros
+# =============================================
+system:
+  TESTMAC:
+    description: "Basic test macro"
+    params: []
+    body: |
+      L R15,=
+    metadata:
+      source: "legacy"
+      risk_level: "low"
+
+  SYSVAR:
+    description: "System variable reference"
+    params:
+      - name: var_name
+        type: "system"
+        required: true
+    body: "&SYS{var_name}"
+    metadata:
+      source: "runtime"
+      risk_level: "none"
+
+# =============================================
+# 2. Data Manipulation Macros
+# =============================================
+data_ops:
+  LOADSTORE:
+    description: "Load and store pattern"
+    params:
+      - name: reg
+        type: "register"
+        required: true
+      - name: value
+        type: "expression"
+        required: true
+      - name: dest
+        type: "address"
+        required: true
+    body: |
+      L {reg},={value}
+      ST {reg},{dest}
+    metadata:
+      source: "corelib"
+      risk_level: "low"
+
+  DATAMOVE:
+    description: "Data movement with optional fill"
+    params:
+      - name: source
+        type: "address"
+        required: true
+      - name: target
+        type: "address"
+        required: true
+      - name: length
+        type: "numeric"
+        required: true
+      - name: filler
+        type: "hex"
+        default: "X'40'"
+    body: |
+      MVC {target}({length}),{source}
+      MVI {target}+{length},{filler}
+    metadata:
+      source: "utilib"
+      risk_level: "medium"
+
+# =============================================
+# 3. Control Flow Macros
+# =============================================
+control_flow:
+  IF_EQUAL:
+    description: "Conditional branch on equal"
+    params:
+      - name: op1
+        type: "address"
+        required: true
+      - name: op2
+        type: "address"
+        required: true
+      - name: fail_label
+        type: "label"
+        required: true
+    body: |
+      CLC {op1},{op2}
+      BNE {fail_label}
+    metadata:
+      source: "stdlib"
+      risk_level: "low"
+
+  DO_WHILE:
+    description: "While loop construct"
+    params:
+      - name: test
+        type: "expression"
+        required: true
+      - name: loop_label
+        type: "label"
+        required: true
+    body: |
+      {loop_label} DS 0H
+      $IF {test}
+        ... loop body ...
+        B {loop_label}
+      $ENDIF
+    metadata:
+      source: "modern"
+      risk_level: "medium"
+
+# =============================================
+# 4. I/O Operations
+# =============================================
+io_operations:
+  OPEN_FILE:
+    description: "Open dataset"
+    params:
+      - name: dcb
+        type: "symbol"
+        required: true
+      - name: mode
+        type: "keyword"
+        default: "INPUT"
+        options: ["INPUT", "OUTPUT", "UPDATE"]
+    body: |
+      OPEN ({dcb},({mode}))
+    metadata:
+      source: "iolib"
+      risk_level: "high"
+
+  GET_RECORD:
+    description: "Read record from file"
+    params:
+      - name: dcb
+        type: "symbol"
+        required: true
+    body: "GET {dcb}"
+    metadata:
+      source: "iolib"
+      risk_level: "high"
+
+# =============================================
+# 5. Debugging & Logging
+# =============================================
+debug:
+  WTO:
+    description: "Write to operator"
+    params:
+      - name: message
+        type: "string"
+        required: true
+      - name: route
+        type: "numeric"
+        default: 11
+    body: |
+      WTO '{message}',ROUTCDE={route}
+    metadata:
+      source: "system"
+      risk_level: "low"
+
+  DUMP_REGS:
+    description: "Register dump for debugging"
+    params: []
+    body: |
+      STM R0,R15,REGSAVE
+      WTO 'Register dump:'
+      UNPK DUMPWORK(9),REGSAVE(5)
+      ...
+    metadata:
+      source: "debuglib"
+      risk_level: "none"
+
+# =============================================
+# 6. Documentation Macros
+# =============================================
+documentation:
+  COMMENT_BLOCK:
+    description: "Formatted comment section"
+    params:
+      - name: title
+        type: "string"
+        required: true
+      - name: width
+        type: "numeric"
+        default: 60
+    body: |
+      *{ '-' * {width} }*
+      * {title}
+      *{ '-' * {width} }*
+    metadata:
+      source: "doclib"
+      risk_level: "none"
+
+# 6. Makros für CICS-Anweisungen
+# Diese Makros simulieren die CICS-Befehle für die Konvertierung.
+EXEC_CICS_LINK:
+  param_count: 1
+  params:
+    - name: program
+      type: positional
+  body:
+    - '//  CICS LINK PROGRAM({program})'
+
+EXEC_CICS_XCTL:
+  param_count: 1
+  params:
+    - name: program
+      type: positional
+  body:
+    - '//  CICS XCTL PROGRAM({program})'
+
+EXEC_CICS_READ:
+  param_count: 2
+  params:
+    - name: file
+      type: positional
+    - name: ridfld
+      type: positional
+  body:
+    - '//  CICS READ FILE({file}) RIDFLD({ridfld})'
+
+# 7. Makros für SQL-Anweisungen
+# Diese Makros dienen der Konvertierung von SQL-Code.
+EXEC_SQL_SELECT:
+  param_count: 3
+  params:
+    - name: column
+      type: positional
+    - name: table
+      type: positional
+    - name: host_variable
+      type: positional
+  body:
+    - 'SELECT {column} FROM {table} INTO :{host_variable}'
+
+EXEC_SQL_INSERT:
+  param_count: 2
+  params:
+    - name: table
+      type: positional
+    - name: values
+      type: positional
+  body:
+    - 'INSERT INTO {table} VALUES({values})'
+
+# 8. Makros für IMS-Anweisungen
+# Diese Makros abstrahieren die IMS-Datenbankaufrufe.
+EXEC_IMS_DLI:
+  param_count: 2
+  params:
+    - name: function
+      type: positional
+    - name: pcb
+      type: positional
+  body:
+    - '//  IMS DLI FUNCTION({function}) PCB({pcb})'
