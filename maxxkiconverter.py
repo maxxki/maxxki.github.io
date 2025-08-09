@@ -203,7 +203,7 @@ class ServiceRegistry:
         with cls._lock:
             cls._services.clear()
             cls._instances.clear()
-# Fortsetzung von Teil 1
+
 # ============================================================================
 # 3. CONFIGURATION MANAGEMENT
 # ============================================================================
@@ -607,7 +607,7 @@ class HLASMConversionPlugin(ConverterPlugin):
             confidence=ConversionConfidence.MEDIUM,
             plugin_name=self.metadata.name
         )
-# Fortsetzung von Teil 2
+
 # ============================================================================
 # 6. ML-ENGINE IMPLEMENTATION (Jetzt eigenständig)
 # ============================================================================
