@@ -1,4 +1,4 @@
-# macros.yaml - Enterprise-grade HLASM Macro Configuration
+# HLASM Macro Configuration
 version: 2.0
 description: "Centralized macro definitions for HLASM to modern language conversion"
 
