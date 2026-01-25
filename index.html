@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Java Developer specialized in AI-powered code analysis tools, legacy modernization, and developer experience. Creator of MAXXKI.">
+    <meta name="keywords" content="Java Developer, AI Tools, Code Analysis, DevEx, Legacy Modernization, Static Analysis">
+    <meta name="author" content="MAXXKI Developer">
+    
+    <!-- Open Graph for LinkedIn -->
+    <meta property="og:title" content="Java Dev + AI Tools Engineer | Available for Remote Work">
+    <meta property="og:description" content="Built MAXXKI: AI-powered legacy code modernization engine with Tarjan SCC & Robert C. Martin validation">
+    <meta property="og:type" content="website">
+    
+    <title>Java Developer + AI Tools Engineer | Available for Remote Work</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --bg-dark: #0a0e27;
+            --bg-card: #1a1f3a;
+            --accent-primary: #00d4ff;
+            --accent-secondary: #7c3aed;
+            --accent-success: #10b981;
+            --text-primary: #e5e7eb;
+            --text-secondary: #9ca3af;
+            --border-color: #2d3748;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1f3a 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* Skip to main content */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--accent-primary);
+            color: var(--bg-dark);
+            padding: 8px 16px;
+            text-decoration: none;
+            z-index: 100;
+            font-weight: bold;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            padding: 40px 0 20px;
+            border-bottom: 2px solid var(--border-color);
+            background: rgba(26, 31, 58, 0.6);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--accent-success);
+            border-radius: 20px;
+            color: var(--accent-success);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .status-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent-success);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+        
+        .hero .subtitle {
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 14px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--accent-primary);
+            color: var(--accent-primary);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(0, 212, 255, 0.1);
+        }
+        
+        /* Stats Section */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            padding: 60px 0;
+        }
+        
+        .stat-card {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .stat-label {
+            color: var(--text-secondary);
+            margin-top: 8px;
+        }
+        
+        /* Project Showcase */
+        .project-showcase {
+            padding: 60px 0;
+            background: rgba(26, 31, 58, 0.4);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .project-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            margin-bottom: 40px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.3);
+        }
+        
+        .project-header {
+            padding: 30px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .project-title {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .project-tagline {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        
+        .project-body {
+            padding: 30px;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .tech-tag {
+            padding: 6px 14px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid var(--accent-primary);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--accent-primary);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .feature {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-primary);
+        }
+        
+        .feature h4 {
+            color: var(--accent-primary);
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+        
+        .feature p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Skills Section */
+        .skills {
+            padding: 60px 0;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .skill-category {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .skill-category h3 {
+            color: var(--accent-primary);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .skill-list {
+            list-style: none;
+        }
+        
+        .skill-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .skill-level {
+            font-size: 0.85rem;
+            color: var(--accent-success);
+        }
+        
+        /* Target Companies */
+        .target-companies {
+            padding: 60px 0;
+            background: rgba(26, 31, 58, 0.4);
+        }
+        
+        .companies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .company-card {
+            background: var(--bg-card);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        
+        .company-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateX(5px);
+        }
+        
+        .company-card h4 {
+            color: var(--accent-primary);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .company-card .role {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .company-card .why {
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .contact p {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .contact-methods {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .contact-link {
+            padding: 16px 36px;
+            background: var(--bg-card);
+            border: 2px solid var(--accent-primary);
+            border-radius: 8px;
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-link:hover {
+            background: var(--accent-primary);
+            color: var(--bg-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-secondary);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero {
+                padding: 40px 0;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Performance: Reduce animations on low-end devices */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        /* Dark mode support (already dark, but respecting preference) */
+        @media (prefers-color-scheme: light) {
+            /* User prefers dark anyway for dev portfolios, so we keep it dark */
+        }
+    </style>
+</head>
+<body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+    
+    <header role="banner">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo" aria-label="MAXXKI - MI plus KI">🔥 MAXXKI</div>
+                <div class="status-badge" role="status" aria-live="polite">Available for Remote Work</div>
+            </div>
+        </div>
+    </header>
+    
+    <main id="main" role="main">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Java Developer + AI Tools Engineer</h1>
+                <p class="subtitle">
+                    Building intelligent code analysis tools that modernize legacy systems.<br>
+                    Specialized in Static Analysis, DevEx, and AI-powered Developer Tools.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary">Let's Talk 💬</a>
+                    <a href="#maxxki" class="btn btn-secondary">View MAXXKI Project 🚀</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Stats -->
+        <section class="stats container" aria-label="Key Statistics">
+            <div class="stat-card">
+                <div class="stat-number">10K+</div>
+                <div class="stat-label">Lines of Code Analyzed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">SCC</div>
+                <div class="stat-label">Tarjan Algorithm Expert</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">SOLID</div>
+                <div class="stat-label">Clean Architecture Principles</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Remote Ready</div>
+            </div>
+        </section>
+        
+        <!-- Project Showcase -->
+        <section id="maxxki" class="project-showcase">
+            <div class="container">
+                <h2 class="section-title">🔥 Featured Project: MAXXKI</h2>
+                
+                <article class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">
+                            <span aria-hidden="true">🎯</span>
+                            MAXXKI - AI-Powered Legacy Code Modernization Engine
+                        </h3>
+                        <p class="project-tagline">
+                            Where MI (Machine Intelligence) meets KI (Künstliche Intelligenz) for ultimate code transformation
+                        </p>
+                    </div>
+                    
+                    <div class="project-body">
+                        <div class="tech-stack" role="list" aria-label="Technologies used">
+                            <span class="tech-tag" role="listitem">Java</span>
+                            <span class="tech-tag" role="listitem">Spoon Framework</span>
+                            <span class="tech-tag" role="listitem">AST Analysis</span>
+                            <span class="tech-tag" role="listitem">Tarjan SCC Algorithm</span>
+                            <span class="tech-tag" role="listitem">Robert C. Martin Metrics</span>
+                            <span class="tech-tag" role="listitem">Mermaid Diagrams</span>
+                            <span class="tech-tag" role="listitem">Pattern Recognition</span>
+                        </div>
+                        
+                        <div class="features-grid">
+                            <div class="feature">
+                                <h4>🔬 Deep Code Analysis</h4>
+                                <p>Full AST parsing with Spoon, detecting Vector, Hashtable, Stack and other legacy patterns</p>
+                            </div>
+                            <div class="feature">
+                                <h4>🔄 Circular Dependency Detection</h4>
+                                <p>Tarjan's SCC algorithm implementation to find ALL circular dependencies in call graphs</p>
+                            </div>
+                            <div class="feature">
+                                <h4>📊 Robert C. Martin Validation</h4>
+                                <p>Package metrics (Ca, Ce, Instability), Class metrics (WMC, LCOM), SOLID principles validation</p>
+                            </div>
+                            <div class="feature">
+                                <h4>🎨 Visual Reporting</h4>
+                                <p>Automatic Mermaid ER-Diagrams, dependency graphs, and architecture visualizations</p>
+                            </div>
+                            <div class="feature">
+                                <h4>🤖 AI-Assisted Transformation</h4>
+                                <p>Context-aware refactoring suggestions based on business logic patterns</p>
+                            </div>
+                            <div class="feature">
+                                <h4>🛡️ Safety-First Approach</h4>
+                                <p>Hardware/realtime code detection, risk assessment, and backup automation</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+        
+        <!-- Skills -->
+        <section class="skills container">
+            <h
