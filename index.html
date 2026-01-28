@@ -1,769 +1,271 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Java Developer specialized in static code analysis, graph algorithms, and legacy system modernization. Expert in Tarjan's SCC, Robert C. Martin metrics, and AST-based refactoring.">
-    <meta name="keywords" content="Java Developer, Static Analysis, Tarjan Algorithm, Robert Martin Metrics, AST Analysis, Legacy Modernization">
-    <meta name="author" content="MAXXKI Developer">
-    
-    <meta property="og:title" content="Java Developer + Static Analysis Expert | MAXXKI">
-    <meta property="og:description" content="Implemented Tarjan's SCC Algorithm, Robert C. Martin metrics suite, and forensic protocol system for legacy code modernization">
-    <meta property="og:type" content="website">
-    
-    <title>Java Developer + Static Analysis Expert | MAXXKI Portfolio</title>
-    
+    <title>MAXXKI | Java & AI Architect | Maximilian Kiefer</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300;600;900&display=swap');
+
         :root {
-            --bg-dark: #0a0e27;
-            --bg-card: #1a1f3a;
-            --accent-primary: #00d4ff;
-            --accent-secondary: #7c3aed;
-            --accent-success: #10b981;
-            --text-primary: #e5e7eb;
-            --text-secondary: #9ca3af;
-            --border-color: #2d3748;
+            --primary: #00d4ff;
+            --secondary: #7c3aed;
+            --bg: #05070a;
+            --text: #ffffff;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(0, 212, 255, 0.3);
+            --banner-white: #fdfbf7; /* Ein Hauch Creme */
         }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1f3a 100%);
-            color: var(--text-primary);
-            line-height: 1.6;
-            min-height: 100vh;
+
+        body.light-mode {
+            --bg: #f0f4f8;
+            --text: #1a202c;
+            --glass: rgba(0, 0, 0, 0.05);
+            --border: rgba(0, 212, 255, 0.5);
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
         
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
+        body { 
+            background-color: var(--bg); 
+            color: var(--text); 
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            transition: background-color 0.4s, color 0.4s;
         }
-        
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: var(--accent-primary);
-            color: var(--bg-dark);
-            padding: 8px 16px;
-            text-decoration: none;
+
+        /* --- NEU: BRAND BANNER STYLE --- */
+        .brand-banner {
+            width: 100%;
+            height: 140px; /* Perfekte Höhe für Sichtbarkeit */
+            background: var(--banner-white) url('img/banner.png') no-repeat center center;
+            background-size: cover;
+            border-bottom: 2px solid var(--primary);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            position: relative;
             z-index: 100;
-            font-weight: bold;
         }
-        
-        .skip-link:focus {
-            top: 0;
+
+        .poster-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(45deg, #05070a 0%, #0a0e27 100%);
+            z-index: -2;
         }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        body.light-mode .poster-bg {
+            background: radial-gradient(circle at 45deg, #e2e8f0 0%, #cbd5e0 100%);
         }
-        
+
+        .glow-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 80% 20%, rgba(0, 212, 255, 0.15), transparent 40%);
+            z-index: -1;
+        }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+
         header {
-            padding: 40px 0 20px;
-            border-bottom: 2px solid var(--border-color);
-            background: rgba(26, 31, 58, 0.6);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 50;
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        
-        .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid var(--accent-success);
-            border-radius: 20px;
-            color: var(--accent-success);
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-        
-        .status-badge::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background: var(--accent-success);
-            border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-        
-        .hero {
-            padding: 80px 0;
-            text-align: center;
-        }
-        
-        .hero h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.2;
-        }
-        
-        .hero .subtitle {
-            font-size: clamp(1.1rem, 3vw, 1.5rem);
-            color: var(--text-secondary);
-            margin-bottom: 40px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .btn {
-            padding: 14px 32px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.3);
-        }
-        
-        .btn-secondary {
-            background: transparent;
-            border: 2px solid var(--accent-primary);
-            color: var(--accent-primary);
-        }
-        
-        .btn-secondary:hover {
-            background: rgba(0, 212, 255, 0.1);
-        }
-        
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 30px;
-            padding: 60px 0;
-        }
-        
-        .stat-card {
-            background: var(--bg-card);
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
-        }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .stat-label {
-            color: var(--text-secondary);
-            margin-top: 8px;
-            font-size: 0.95rem;
-        }
-        
-        .project-showcase {
-            padding: 60px 0;
-            background: rgba(26, 31, 58, 0.4);
-        }
-        
-        .section-title {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 50px;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .project-card {
-            background: var(--bg-card);
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            margin-bottom: 40px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.3);
-        }
-        
-        .project-header {
-            padding: 30px;
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        .project-title {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .project-tagline {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-        }
-        
-        .project-body {
-            padding: 30px;
-        }
-        
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        
-        .tech-tag {
-            padding: 6px 14px;
-            background: rgba(0, 212, 255, 0.1);
-            border: 1px solid var(--accent-primary);
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: var(--accent-primary);
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
-        .feature {
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 8px;
-            border-left: 3px solid var(--accent-primary);
-        }
-        
-        .feature h4 {
-            color: var(--accent-primary);
-            margin-bottom: 8px;
-            font-size: 1rem;
-        }
-        
-        .feature p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-        
-        .skills {
-            padding: 60px 0;
-        }
-        
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-        
-        .skill-category {
-            background: var(--bg-card);
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-        }
-        
-        .skill-category h3 {
-            color: var(--accent-primary);
-            margin-bottom: 20px;
-            font-size: 1.3rem;
-        }
-        
-        .skill-list {
-            list-style: none;
-        }
-        
-        .skill-list li {
-            padding: 10px 0;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .skill-list li:last-child {
-            border-bottom: none;
-        }
-        
-        .skill-level {
-            font-size: 0.85rem;
-            color: var(--accent-success);
-        }
-        
-        .target-companies {
-            padding: 60px 0;
-            background: rgba(26, 31, 58, 0.4);
-        }
-        
-        .companies-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-        
-        .company-card {
-            background: var(--bg-card);
-            padding: 25px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-        
-        .company-card:hover {
-            border-color: var(--accent-primary);
-            transform: translateX(5px);
-        }
-        
-        .company-card h4 {
-            color: var(--accent-primary);
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-        }
-        
-        .company-card .role {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-        }
-        
-        .company-card .why {
-            color: var(--text-primary);
-            font-size: 0.95rem;
-        }
-        
-        .contact {
-            padding: 80px 0;
-            text-align: center;
-        }
-        
-        .contact h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        
-        .contact p {
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .contact-methods {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .contact-link {
-            padding: 16px 36px;
-            background: var(--bg-card);
-            border: 2px solid var(--accent-primary);
-            border-radius: 8px;
-            color: var(--accent-primary);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .contact-link:hover {
-            background: var(--accent-primary);
-            color: var(--bg-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.3);
-        }
-        
-        footer {
             padding: 40px 0;
-            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-family: 'Syncopate', sans-serif;
+        }
+
+        .logo-box { border-left: 5px solid var(--primary); padding-left: 20px; }
+
+        .hero {
+            min-height: 80vh; /* Etwas reduziert wegen des Banners */
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            align-items: center;
+            gap: 60px;
+            padding: 40px 0;
+        }
+
+        .hero-content h1 {
+            font-family: 'Syncopate', sans-serif;
+            font-size: clamp(3rem, 6vw, 6rem);
+            line-height: 0.9;
+            margin-bottom: 30px;
+            background: linear-gradient(to bottom, var(--text) 40%, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 300;
+            margin-bottom: 50px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero-image-wrap {
+            position: relative;
+            transform: perspective(1000px) rotateY(-10deg);
+            transition: 0.5s;
+        }
+        .hero-image-wrap:hover { transform: perspective(1000px) rotateY(0deg); }
+        .hero-image-wrap img {
+            width: 100%;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            box-shadow: -20px 20px 60px rgba(0, 212, 255, 0.3);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: -50px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .tech-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            padding: 30px;
             text-align: center;
-            color: var(--text-secondary);
+            border-radius: 15px;
+            transition: 0.3s;
         }
-        
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .hero {
-                padding: 40px 0;
-            }
-            
-            .stats {
-                grid-template-columns: 1fr;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
+        .tech-card:hover { transform: translateY(-10px); box-shadow: 0 0 30px var(--primary); }
+        .tech-card h3 { font-family: 'Syncopate', sans-serif; font-size: 1.5rem; color: var(--primary); margin-bottom: 10px; }
+
+        .btn-massive {
+            display: inline-block;
+            padding: 25px 60px;
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            text-decoration: none;
+            font-family: 'Syncopate', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            position: relative;
+            overflow: hidden;
+            transition: 0.4s;
         }
-        
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
+        .btn-massive:hover { background: var(--primary); color: #000; box-shadow: 0 0 50px var(--primary); }
+
+        #maxxki-engine {
+            margin-top: 150px;
+            padding: 100px 40px;
+            background: linear-gradient(rgba(5, 7, 10, 0.85), rgba(5, 7, 10, 0.85)), url('img/fusion.png') no-repeat center center;
+            background-size: cover;
+            border-radius: 40px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        footer {
+            margin-top: 150px; padding: 60px 0;
+            border-top: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: flex-end;
+        }
+
+        .mode-switch {
+            position: fixed; bottom: 30px; left: 30px; z-index: 1000;
+            padding: 15px 25px; font-family: 'Syncopate'; font-size: 0.7rem;
+            background: var(--glass); color: var(--primary); border: 1px solid var(--primary);
+            cursor: pointer; backdrop-filter: blur(10px);
         }
     </style>
 </head>
 <body>
-    <a href="#main" class="skip-link">Skip to main content</a>
+    <div class="brand-banner"></div>
+
+    <div class="poster-bg"></div>
+    <div class="glow-overlay"></div>
+    <button class="mode-switch" id="theme-btn">🌙 DARK MODE</button>
     
-    <header role="banner">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo" aria-label="MAXXKI - MI plus KI">🔥 MAXXKI</div>
-                <div class="status-badge" role="status" aria-live="polite">Available for Remote Work</div>
-            </div>
-        </div>
-    </header>
-    
-    <main id="main" role="main">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="container">
-                <h1>Java Developer + Static Analysis Expert</h1>
-                <p class="subtitle">
-                    Building intelligent code analysis systems with graph algorithms, software metrics, and AST-based refactoring.<br>
-                    Specialized in Legacy Modernization, Quality Assessment, and Safety-Critical Systems.
-                </p>
-                <div class="cta-buttons">
-                    <a href="#contact" class="btn btn-primary">Let's Talk 💬</a>
-                    <a href="#maxxki" class="btn btn-secondary">View MAXXKI Project 🚀</a>
+    <div class="container">
+        <header>
+            <div class="logo-box"><span style="font-weight: 700; font-size: 2rem;">MAXXKI</span></div>
+            <div class="status">[ Menschliche + Kuenstliche Intelligenz ]</div>
+        </header>
+        
+        <main>
+            <section class="hero">
+                <div class="hero-content">
+                    <div class="subtitle">AI Engineer | Frontend | Backend | Automation | Apps & Tools |</div>
+                    <h1>MAXIMILIAN KIEFER</h1>
+                    <p style="font-size: 1.2rem; line-height: 1.8; opacity: 0.8; margin-bottom: 40px; border-left: 2px solid var(--primary); padding-left: 20px;">
+                        <br>
+                        Ich entwickle funktionierende Loesungen mit KI, sicher und getestet. Ob personalisierte Videos, Bilder, Tools, Apps oder komplexe Business-Loesungen. Ich setze lieber auf kleine, getestete Erfolge mit sofortigem Mehrwert statt auf einen riskanten Riesenerfolg am Sankt Nimmerleinstag.
+                        <br><br>
+                        Unkompliziert beginnen, testen, sofort profitieren.
+                    </p>
+                    <a href="mailto:plantmax87@gmail.com" class="btn-massive">CONTACT</a>
                 </div>
-            </div>
-        </section>
-        
-        <!-- Stats -->
-        <section class="stats container" aria-label="Key Technical Achievements">
-            <div class="stat-card">
-                <div class="stat-number">O(V+E)</div>
-                <div class="stat-label">Tarjan's SCC Algorithm Implementation</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">SHA-256</div>
-                <div class="stat-label">Hash-Chain Forensic Protocol System</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">13</div>
-                <div class="stat-label">Robert C. Martin Metrics Implemented</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">AST</div>
-                <div class="stat-label">Spoon Framework Deep Analysis</div>
-            </div>
-        </section>
-        
-        <!-- Project Showcase -->
-        <section id="maxxki" class="project-showcase">
-            <div class="container">
-                <h2 class="section-title">🔥 Featured Project: MAXXKI</h2>
-                
-                <article class="project-card">
-                    <div class="project-header">
-                        <h3 class="project-title">
-                            <span aria-hidden="true">🎯</span>
-                            MAXXKI - Intelligent Legacy Code Modernization Engine
-                        </h3>
-                        <p class="project-tagline">
-                            Graph algorithms, software metrics, and AST analysis for safe legacy system transformation
-                        </p>
-                    </div>
-                    
-                    <div class="project-body">
-                        <div class="tech-stack" role="list" aria-label="Technologies used">
-                            <span class="tech-tag" role="listitem">Java 8+</span>
-                            <span class="tech-tag" role="listitem">Spoon Framework</span>
-                            <span class="tech-tag" role="listitem">Tarjan's Algorithm</span>
-                            <span class="tech-tag" role="listitem">Robert C. Martin Metrics</span>
-                            <span class="tech-tag" role="listitem">Graph Theory</span>
-                            <span class="tech-tag" role="listitem">SHA-256 Cryptography</span>
-                            <span class="tech-tag" role="listitem">AST Pattern Recognition</span>
-                            <span class="tech-tag" role="listitem">Mermaid Diagrams</span>
-                        </div>
-                        
-                        <div class="features-grid">
-                            <div class="feature">
-                                <h4>🔬 Tarjan's SCC Algorithm</h4>
-                                <p>Complete implementation of Tarjan's Strongly Connected Components algorithm with O(V+E) complexity for detecting ALL circular dependencies in call graphs - critical for refactoring risk assessment</p>
-                            </div>
-                            <div class="feature">
-                                <h4>📊 Robert C. Martin Metrics Suite</h4>
-                                <p>Full implementation of "Agile Software Development" metrics: Package-level (Ca, Ce, I, A, D), Class-level (CBO, DIT, NOC, RFC, WMC, LCOM), SOLID validation, Main Sequence analysis with Zone of Pain/Uselessness detection</p>
-                            </div>
-                            <div class="feature">
-                                <h4>🔐 Forensic Protocol System</h4>
-                                <p>SHA-256 hash-chaining protocol engine with ISO 8601 timestamps, sequence numbers, and JSON Lines format for audit-compliance, reproducibility, and legal documentation of all transformation steps</p>
-                            </div>
-                            <div class="feature">
-                                <h4>🎨 Mermaid Diagram Generation</h4>
-                                <p>Automatic visualization: ER-Diagrams from business classes, SCC graphs, dependency heatmaps, control/data flow diagrams, coupling metrics charts - all generated from AST analysis</p>
-                            </div>
-                            <div class="feature">
-                                <h4>🧬 AST Pattern Recognition</h4>
-                                <p>Deep pattern detection using Spoon Framework: parallel arrays → business classes, StringBuilder patterns → DTOs, legacy collection analysis, hardware/realtime code identification for safety-critical systems</p>
-                            </div>
-                            <div class="feature">
-                                <h4>⚙️ Context-Aware Refactoring Strategy</h4>
-                                <p>Multi-dimensional risk assessment combining hardware criticality, timing sensitivity, business complexity, and coupling metrics (from SCC analysis) to determine safe transformation strategies</p>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </section>
-        
-        <!-- Skills -->
-        <section class="skills container">
-            <h2 class="section-title">🛠️ Technical Expertise</h2>
+                <div class="hero-image-wrap">
+                    <img src="img/poster.png" alt="MAXXKI Fusion Image">
+                </div>
+            </section>
             
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Algorithms & Data Structures</h3>
-                    <ul class="skill-list">
-                        <li>
-                            <span>Tarjan's SCC Algorithm</span>
-                            <span class="skill-level">Production</span>
-                        </li>
-                        <li>
-                            <span>Graph Theory (DFS, Call Graphs)</span>
-                            <span class="skill-level">Advanced</span>
-                        </li>
-                        <li>
-                            <span>Hash-Chain Cryptography</span>
-                            <span class="skill-level">SHA-256</span>
-                        </li>
-                        <li>
-                            <span>AST Traversal & Analysis</span>
-                            <span class="skill-level">Expert</span>
-                        </li>
-                    </ul>
+            <section class="tech-grid">
+                <div class="tech-card"><h3>Java | React | Python | Bash |</h3></div>
+                <div class="tech-card"><h3>RapidFast Development</h3></div>
+                <div class="tech-card"><h3>Made with Ai</h3></div>
+                <div class="tech-card"><h3>74 Tests succesful</h3></div>
+            </section>
+            
+            <section id="maxxki-engine">
+                <div style="position: relative; z-index: 2;">
+                    <h2 style="font-family: 'Syncopate', sans-serif; font-size: 3.5rem; margin-bottom: 40px;">MAXXKI REFACTORING WORKSTATION</h2>
+                    <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px;">
+                        <div>
+                            <h4 style="color: var(--primary); text-transform: uppercase; margin-bottom: 20px; font-weight: 900;">Legacy Code Modernization</h4>
+                            <p style="font-size: 1.1rem; line-height: 1.7;">
+                                Automatisierte Analyse, Bewertung, Dokumentation, Transformation durch Abstract Syntax Tree (AST). Detektion zirkulärer Abhängigkeiten im Gesamtkontext zur Risikominimierung bei sicherheitskritischen Refactorings. Abgesichert durch Validierung und Dry-run-Modus.
+                            </p>
+                        </div>
+                        <div style="background: rgba(0, 212, 255, 0.05); border: 1px solid var(--border); padding: 30px; border-radius: 20px;">
+                            <ul style="list-style: none; font-size: 0.9rem; color: var(--primary); font-family: monospace;">
+                                <li style="margin-bottom: 10px;">> [MaxxkiCodeAnalyzer] Tarjan's SCC Implementation, DataFlowGraph</li>
+                                <li style="margin-bottom: 10px;">> [MaxxkiRobertMartinValidator] Robert C. Martin metrics suite</li>
+                                <li style="margin-bottom: 10px;">> [MaxxkiProtocolist] Hash-chaining forensic audit</li>
+                                <li>> [VisualReporter] Automated Business Class Extraction & Mermaid visualizations</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="skill-category">
-                    <h3>Software Metrics & Architecture</h3>
-                    <ul class="skill-list">
-                        <li>
-                            <span>Robert C. Martin Metrics</span>
-                            <span class="skill-level">Ca, Ce, I, A, D</span>
-                        </li>
-                        <li>
-                            <span>Chidamber & Kemerer Suite</span>
-                            <span class="skill-level">CBO, WMC, LCOM</span>
-                        </li>
-                        <li>
-                            <span>SOLID Principles Validation</span>
-                            <span class="skill-level">Automated</span>
-                        </li>
-                        <li>
-                            <span>Main Sequence Analysis</span>
-                            <span class="skill-level">Zone Detection</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>Static Analysis & Refactoring</h3>
-                    <ul class="skill-list">
-                        <li>
-                            <span>Spoon Framework (AST)</span>
-                            <span class="skill-level">⭐⭐⭐⭐⭐</span>
-                        </li>
-                        <li>
-                            <span>Pattern Recognition</span>
-                            <span class="skill-level">Multi-Level</span>
-                        </li>
-                        <li>
-                            <span>Data Flow Analysis</span>
-                            <span class="skill-level">Advanced</span>
-                        </li>
-                        <li>
-                            <span>Control Flow Graphs</span>
-                            <span class="skill-level">McCabe</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>System Design & Safety</h3>
-                    <ul class="skill-list">
-                        <li>
-                            <span>Risk Assessment Systems</span>
-                            <span class="skill-level">Multi-Criteria</span>
-                        </li>
-                        <li>
-                            <span>Audit-Compliant Logging</span>
-                            <span class="skill-level">ISO 8601</span>
-                        </li>
-                        <li>
-                            <span>Safety-Critical Detection</span>
-                            <span class="skill-level">Broadcast</span>
-                        </li>
-                        <li>
-                            <span>Reproducible Builds</span>
-                            <span class="skill-level">Hash-Verified</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+            </section>
+        </main>
         
-        <!-- Target Companies -->
-        <section class="target-companies">
-            <div class="container">
-                <h2 class="section-title">🎯 Target Roles & Companies</h2>
-                
-                <div class="companies-grid">
-                    <div class="company-card">
-                        <h4>JetBrains</h4>
-                        <p class="role">IntelliJ Code Inspections Team</p>
-                        <p class="why">MAXXKI demonstrates exact AST analysis, pattern detection, and metrics calculation needed for IDE code quality features</p>
-                    </div>
-                    
-                    <div class="company-card">
-                        <h4>SonarSource</h4>
-                        <p class="role">Static Analysis Engineer</p>
-                        <p class="why">Experience with Spoon Framework, complexity metrics, SOLID validation, and code quality assessment aligns perfectly with SonarQube development</p>
-                    </div>
-                    
-                    <div class="company-card">
-                        <h4>GitHub / Sourcegraph</h4>
-                        <p class="role">Code Intelligence Engineer</p>
-                        <p class="why">Graph algorithms (Tarjan SCC), dependency analysis, and call-graph traversal directly applicable to code navigation and refactoring tools</p>
-                    </div>
-                    
-                    <div class="company-card">
-                        <h4>Gradle / Maven Central</h4>
-                        <p class="role">Build Tools Developer</p>
-                        <p class="why">Understanding of dependency graphs, circular dependency detection, and Java project structure from MAXXKI's architecture analysis</p>
-                    </div>
-                    
-                    <div class="company-card">
-                        <h4>Oracle Labs / OpenJDK</h4>
-                        <p class="role">JVM Tools Developer</p>
-                        <p class="why">Deep Java knowledge, AST manipulation, bytecode understanding, and performance-critical algorithm implementation (O(V+E) complexity)</p>
-                    </div>
-                    
-                    <div class="company-card">
-                        <h4>Snyk / Checkmarx</h4>
-                        <p class="role">Security Analysis Engineer</p>
-                        <p class="why">Static analysis expertise, data flow tracking, pattern recognition, and audit-compliant logging system from forensic protocol implementation</p>
-                    </div>
-                </div>
+        <footer>
+            <div>
+                <p style="font-family: 'Syncopate', sans-serif; font-size: 1.2rem; margin-bottom: 10px;">MAXIMILIAN KIEFER</p>
+                <p style="opacity: 0.7;">Grunewaldstr. 10 // 93053 Regensburg</p>
+                <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.5;">BORN: 18.12.1987 // AKA: MAXXKI</p>
             </div>
-        </section>
-        
-        <!-- Contact -->
-        <section id="contact" class="contact">
-            <div class="container">
-                <h2>Lets start</h2>
-                <p>
-                    Looking for challenging work in static analysis, developer tools, or code quality systems.<br>
-                    Open to full-time, contract, or project-based collaboration.
-                </p>
-                
-                <div class="contact-methods">
-                    <a href="https://github.com/maxxki" class="contact-link" target="_blank" rel="noopener noreferrer">
-                        <span aria-hidden="true">📦</span> GitHub
-                    </a>
-                    <a href="https://www.linkedin.com/in/maximilian-kiefer-2b2034343?utm_source=share_via&utm_content=profile&utm_medium=member_android" class="contact-link" target="_blank" rel="noopener noreferrer">
-                        <span aria-hidden="true">💼</span> LinkedIn
-                    </a>
-                    <a href="mailto: plantmax87@gmail.com" class="contact-link">
-                        <span aria-hidden="true">✉️</span> Email
-                    </a>
-                </div>
+            <div style="text-align: right;">
+                <p style="font-size: 0.8rem; letter-spacing: 2px; color: var(--primary); font-weight: 700;">BUILD_VERSION 2026.01.28</p>
+                <p style="opacity: 0.7;">AI Engineer PORTFOLIO</p>
             </div>
-        </section>
-    </main>
-    
-    <footer role="contentinfo">
-        <div class="container">
-            <p>&copy; 2026 MAXXKI Maximilian Kiefer| MI + KI = MAXXKI</p>
-            <p style="margin-top: 10px; font-size: 0.9rem;">
-                Tarjan's Algorithm • Robert C. Martin Metrics • Forensic Protocol System
-            </p>
-        </div>
-    </footer>
+        </footer>
+    </div>
+
+    <script>
+        const btn = document.getElementById('theme-btn');
+        btn.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            btn.textContent = isLight ? '☀️ LIGHT MODE' : '🌙 DARK MODE';
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        });
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+            btn.textContent = '☀️ LIGHT MODE';
+        }
+    </script>
 </body>
 </html>
