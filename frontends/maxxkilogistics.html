@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAXXKI Logistics Control Center</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;600;800&display=swap');
+
+        :root {
+            --primary: #ff6b35;
+            --secondary: #004e89;
+            --success: #06d6a0;
+            --warning: #ffd23f;
+            --danger: #ee4266;
+            --bg-main: #f7f9fc;
+            --bg-card: #ffffff;
+            --text-primary: #1a1d29;
+            --text-secondary: #6b7280;
+            --border: #e5e7eb;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--secondary) 0%, #003566 100%);
+            color: white;
+            padding: 25px 40px;
+            box-shadow: var(--shadow-lg);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+        }
+
+        .logo-text h1 {
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-text p {
+            font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .header-stat {
+            text-align: center;
+        }
+
+        .header-stat-value {
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .header-stat-label {
+            font-size: clamp(0.7rem, 1.3vw, 0.85rem);
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        /* Quick Stats Grid */
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary);
+        }
+
+        .stat-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .icon-orange { background: rgba(255, 107, 53, 0.1); }
+        .icon-blue { background: rgba(0, 78, 137, 0.1); }
+        .icon-green { background: rgba(6, 214, 160, 0.1); }
+        .icon-yellow { background: rgba(255, 210, 63, 0.1); }
+
+        .stat-trend {
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+
+        .trend-up {
+            background: rgba(6, 214, 160, 0.15);
+            color: var(--success);
+        }
+
+        .trend-down {
+            background: rgba(238, 66, 102, 0.15);
+            color: var(--danger);
+        }
+
+        .stat-value {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 800;
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 5px;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Main Grid Layout */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        /* Section Cards */
+        .section-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .section-title {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .title-icon {
+            font-size: 1.5rem;
+        }
+
+        .section-badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            background: rgba(255, 107, 53, 0.1);
+            color: var(--primary);
+        }
+
+        /* Shipment Table */
+        .shipment-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .shipment-table thead th {
+            text-align: left;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 12px 10px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .shipment-table tbody td {
+            padding: 16px 10px;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+
+        .shipment-table tbody tr {
+            transition: background 0.2s ease;
+        }
+
+        .shipment-table tbody tr:hover {
+            background: rgba(255, 107, 53, 0.03);
+        }
+
+        .tracking-id {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.85rem;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-transit {
+            background: rgba(255, 210, 63, 0.2);
+            color: #d4a00f;
+        }
+
+        .status-delivered {
+            background: rgba(6, 214, 160, 0.2);
+            color: #05a577;
+        }
+
+        .status-pending {
+            background: rgba(0, 78, 137, 0.2);
+            color: var(--secondary);
+        }
+
+        .status-delayed {
+            background: rgba(238, 66, 102, 0.2);
+            color: var(--danger);
+        }
+
+        .priority-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        .priority-high { background: var(--danger); }
+        .priority-medium { background: var(--warning); }
+        .priority-low { background: var(--success); }
+
+        /* Fleet Status */
+        .fleet-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .fleet-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(0, 78, 137, 0.03);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .fleet-item:hover {
+            background: rgba(0, 78, 137, 0.08);
+            border-color: var(--secondary);
+            transform: translateX(5px);
+        }
+
+        .fleet-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--secondary), #003566);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .fleet-info {
+            flex: 1;
+        }
+
+        .fleet-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+        .fleet-route {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .fleet-status {
+            text-align: right;
+        }
+
+        .fleet-progress {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            width: 100px;
+            height: 8px;
+            background: var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--warning));
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        /* Warehouse Inventory */
+        .inventory-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .inventory-item {
+            padding: 15px;
+            background: rgba(6, 214, 160, 0.05);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .inventory-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .inventory-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .inventory-level {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .inventory-bar {
+            width: 100%;
+            height: 6px;
+            background: var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .inventory-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        .level-high { background: var(--success); }
+        .level-medium { background: var(--warning); }
+        .level-low { background: var(--danger); }
+
+        /* Alerts Section */
+        .alerts-section {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--warning);
+        }
+
+        .alert-item {
+            padding: 15px;
+            background: rgba(255, 210, 63, 0.1);
+            border-radius: 10px;
+            margin-bottom: 12px;
+            border-left: 3px solid var(--warning);
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .alert-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .alert-item.critical {
+            background: rgba(238, 66, 102, 0.1);
+            border-left-color: var(--danger);
+        }
+
+        .alert-icon {
+            font-size: 1.3rem;
+        }
+
+        .alert-content {
+            flex: 1;
+        }
+
+        .alert-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+        }
+
+        .alert-message {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .alert-time {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+            margin-top: 5px;
+        }
+
+        /* Action Buttons */
+        .action-bar {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), #ff8559);
+            color: white;
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--bg-main);
+            color: var(--text-primary);
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            background: rgba(255, 107, 53, 0.05);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-card);
+            padding: 25px 40px;
+            margin-top: 40px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-info {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .footer-time {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .inventory-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 20px;
+            }
+
+            .header-stats {
+                width: 100%;
+                justify-content: space-around;
+            }
+
+            .container {
+                padding: 20px 15px;
+            }
+
+            .section-card {
+                padding: 20px;
+            }
+
+            .shipment-table {
+                font-size: 0.85rem;
+            }
+
+            .shipment-table thead th,
+            .shipment-table tbody td {
+                padding: 10px 5px;
+            }
+
+            .fleet-list {
+                gap: 12px;
+            }
+
+            .action-bar {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .quick-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-card {
+                padding: 20px;
+            }
+        }
+
+        /* Loading Animation */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .loading {
+            animation: pulse 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo-icon">📦</div>
+                <div class="logo-text">
+                    <h1>MAXXKI LOGISTICS</h1>
+                    <p>Supply Chain Control Center</p>
+                </div>
+            </div>
+            <div class="header-stats">
+                <div class="header-stat">
+                    <div class="header-stat-value" id="active-shipments">247</div>
+                    <div class="header-stat-label">Active Shipments</div>
+                </div>
+                <div class="header-stat">
+                    <div class="header-stat-value" id="fleet-active">18</div>
+                    <div class="header-stat-label">Fleet Active</div>
+                </div>
+                <div class="header-stat">
+                    <div class="header-stat-value">98.7%</div>
+                    <div class="header-stat-label">On-Time Rate</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Quick Stats -->
+        <div class="quick-stats">
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-icon icon-orange">🚚</div>
+                    <div class="stat-trend trend-up">↑ 12%</div>
+                </div>
+                <div class="stat-value" id="deliveries-today">156</div>
+                <div class="stat-label">Lieferungen Heute</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-icon icon-blue">📍</div>
+                    <div class="stat-trend trend-up">↑ 8%</div>
+                </div>
+                <div class="stat-value" id="in-transit">91</div>
+                <div class="stat-label">In Transit</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-icon icon-green">✓</div>
+                    <div class="stat-trend trend-down">↓ 3%</div>
+                </div>
+                <div class="stat-value" id="warehouse-capacity">78%</div>
+                <div class="stat-label">Warehouse Kapazität</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-icon icon-yellow">⚠️</div>
+                    <div class="stat-trend trend-down">↓ 15%</div>
+                </div>
+                <div class="stat-value" id="alerts-count">4</div>
+                <div class="stat-label">Aktive Alerts</div>
+            </div>
+        </div>
+
+        <!-- Main Grid -->
+        <div class="main-grid">
+            <!-- Shipment Tracking -->
+            <div class="section-card">
+                <div class="section-header">
+                    <div class="section-title">
+                        <span class="title-icon">📋</span>
+                        Recent Shipments
+                    </div>
+                    <div class="section-badge">LIVE</div>
+                </div>
+                <table class="shipment-table">
+                    <thead>
+                        <tr>
+                            <th>Tracking ID</th>
+                            <th>Route</th>
+                            <th>Status</th>
+                            <th>ETA</th>
+                            <th>Priority</th>
+                        </tr>
+                    </thead>
+                    <tbody id="shipment-tbody">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Fleet Status -->
+            <div class="section-card">
+                <div class="section-header">
+                    <div class="section-title">
+                        <span class="title-icon">🚛</span>
+                        Fleet Status
+                    </div>
+                    <div class="section-badge">18 AKTIV</div>
+                </div>
+                <div class="fleet-list" id="fleet-list">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Grid -->
+        <div class="main-grid">
+            <!-- Warehouse Inventory -->
+            <div class="section-card">
+                <div class="section-header">
+                    <div class="section-title">
+                        <span class="title-icon">🏭</span>
+                        Warehouse Inventory
+                    </div>
+                </div>
+                <div class="inventory-grid" id="inventory-grid">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Alerts -->
+            <div class="alerts-section">
+                <div class="section-header">
+                    <div class="section-title">
+                        <span class="title-icon">⚡</span>
+                        Automated Alerts
+                    </div>
+                </div>
+                <div id="alerts-container">
+                    <!-- Populated by JS -->
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-primary" onclick="resolveAlerts()">Alle Bestätigen</button>
+                    <button class="btn btn-secondary" onclick="exportData()">Export Daten</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                © 2026 MAXXKI Logistics | Zentrale: Regensburg | Entwickelt von Maximilian Kiefer
+            </div>
+            <div class="footer-time" id="clock">00:00:00</div>
+        </div>
+    </footer>
+
+    <script>
+        // Sample Data
+        const shipments = [
+            { id: 'TRK-2401-8947', route: 'München → Berlin', status: 'transit', eta: '14:30', priority: 'high' },
+            { id: 'TRK-2401-8948', route: 'Hamburg → Frankfurt', status: 'delivered', eta: '11:15', priority: 'low' },
+            { id: 'TRK-2401-8949', route: 'Stuttgart → Köln', status: 'pending', eta: '16:45', priority: 'medium' },
+            { id: 'TRK-2401-8950', route: 'Nürnberg → Dresden', status: 'transit', eta: '15:20', priority: 'medium' },
+            { id: 'TRK-2401-8951', route: 'Leipzig → Bremen', status: 'delayed', eta: '18:30', priority: 'high' },
+            { id: 'TRK-2401-8952', route: 'Düsseldorf → Hannover', status: 'transit', eta: '13:00', priority: 'low' }
+        ];
+
+        const fleet = [
+            { name: 'Truck Alpha-01', route: 'München → Berlin', progress: 67 },
+            { name: 'Truck Beta-02', route: 'Hamburg → Frankfurt', progress: 89 },
+            { name: 'Truck Gamma-03', route: 'Stuttgart → Köln', progress: 45 },
+            { name: 'Truck Delta-04', route: 'Nürnberg → Dresden', progress: 72 },
+            { name: 'Truck Epsilon-05', route: 'Leipzig → Bremen', progress: 34 }
+        ];
+
+        const inventory = [
+            { name: 'Elektronik', current: 2400, max: 3000 },
+            { name: 'Möbel', current: 1800, max: 2500 },
+            { name: 'Lebensmittel', current: 450, max: 1500 },
+            { name: 'Textilien', current: 3200, max: 4000 },
+            { name: 'Werkzeuge', current: 890, max: 1000 },
+            { name: 'Chemikalien', current: 150, max: 500 }
+        ];
+
+        const alerts = [
+            { title: 'Verzögerung erkannt', message: 'TRK-2401-8951 hat 45min Verspätung - Stau auf A3', time: '13:24', critical: true },
+            { title: 'Niedriger Bestand', message: 'Lebensmittel-Lager unter 30% Kapazität', time: '12:15', critical: false },
+            { title: 'Wartung fällig', message: 'Truck Beta-02 benötigt Service in 500km', time: '11:45', critical: false },
+            { title: 'Route optimiert', message: 'Alternative Route für TRK-2401-8947 vorgeschlagen (-23min)', time: '10:30', critical: false }
+        ];
+
+        // Clock
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('clock').textContent = now.toLocaleTimeString('de-DE');
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Render Shipments
+        function renderShipments() {
+            const tbody = document.getElementById('shipment-tbody');
+            tbody.innerHTML = shipments.map(s => `
+                <tr>
+                    <td><span class="tracking-id">${s.id}</span></td>
+                    <td>${s.route}</td>
+                    <td><span class="status-badge status-${s.status}">${s.status}</span></td>
+                    <td>${s.eta}</td>
+                    <td>
+                        <span class="priority-indicator priority-${s.priority}"></span>
+                        ${s.priority}
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Render Fleet
+        function renderFleet() {
+            const list = document.getElementById('fleet-list');
+            list.innerHTML = fleet.map(f => `
+                <div class="fleet-item">
+                    <div class="fleet-icon">🚛</div>
+                    <div class="fleet-info">
+                        <div class="fleet-name">${f.name}</div>
+                        <div class="fleet-route">${f.route}</div>
+                    </div>
+                    <div class="fleet-status">
+                        <div class="fleet-progress">${f.progress}% Complete</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${f.progress}%"></div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render Inventory
+        function renderInventory() {
+            const grid = document.getElementById('inventory-grid');
+            grid.innerHTML = inventory.map(item => {
+                const percent = (item.current / item.max) * 100;
+                let levelClass = 'level-high';
+                if (percent < 30) levelClass = 'level-low';
+                else if (percent < 60) levelClass = 'level-medium';
+
+                return `
+                    <div class="inventory-item">
+                        <div class="inventory-header">
+                            <div class="inventory-name">${item.name}</div>
+                            <div class="inventory-level">${item.current}/${item.max}</div>
+                        </div>
+                        <div class="inventory-bar">
+                            <div class="inventory-fill ${levelClass}" style="width: ${percent}%"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Render Alerts
+        function renderAlerts() {
+            const container = document.getElementById('alerts-container');
+            container.innerHTML = alerts.map(alert => `
+                <div class="alert-item ${alert.critical ? 'critical' : ''}">
+                    <div class="alert-icon">${alert.critical ? '🔴' : '⚠️'}</div>
+                    <div class="alert-content">
+                        <div class="alert-title">${alert.title}</div>
+                        <div class="alert-message">${alert.message}</div>
+                        <div class="alert-time">${alert.time}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Actions
+        function resolveAlerts() {
+            alert('✓ Alle Alerts wurden bestätigt und archiviert!');
+            renderAlerts();
+        }
+
+        function exportData() {
+            const data = {
+                exportDate: new Date().toISOString(),
+                shipments: shipments,
+                fleet: fleet,
+                inventory: inventory,
+                alerts: alerts
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'maxxki-logistics-export.json';
+            link.click();
+            URL.revokeObjectURL(url);
+            
+            alert('📥 Export erfolgreich heruntergeladen!');
+        }
+
+        // Initialize
+        renderShipments();
+        renderFleet();
+        renderInventory();
+        renderAlerts();
+
+        // Live Updates Simulation
+        setInterval(() => {
+            fleet.forEach(f => {
+                if (f.progress < 100) {
+                    f.progress = Math.min(100, f.progress + Math.random() * 2);
+                }
+            });
+            renderFleet();
+        }, 3000);
+
+        setInterval(() => {
+            const activeCount = document.getElementById('active-shipments');
+            const currentValue = parseInt(activeCount.textContent);
+            activeCount.textContent = currentValue + Math.floor(Math.random() * 3 - 1);
+        }, 5000);
+    </script>
+</body>
+</html>
