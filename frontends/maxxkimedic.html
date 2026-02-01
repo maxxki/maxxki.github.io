@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAXXKI Medical Operations Center</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Inter:wght@400;600;700;900&display=swap');
+
+        :root {
+            --primary: #00a8e8;
+            --success: #00c853;
+            --warning: #ffa000;
+            --critical: #d32f2f;
+            --bg-dark: #0a1929;
+            --bg-panel: #132f4c;
+            --border: #1e4976;
+            --text: #e3f2fd;
+            --text-dim: #90caf9;
+            --grid-color: rgba(0, 168, 232, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            overflow-x: hidden;
+            background-image: 
+                linear-gradient(rgba(0, 168, 232, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 168, 232, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        .system-container {
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .system-header {
+            background: linear-gradient(135deg, var(--bg-panel), #1a3a52);
+            border: 2px solid var(--border);
+            border-left: 5px solid var(--primary);
+            padding: 25px 40px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 8px 32px rgba(0, 168, 232, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .system-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            animation: scanline 3s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .system-status {
+            display: flex;
+            gap: 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status-item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .status-label {
+            color: var(--text-dim);
+            margin-bottom: 5px;
+        }
+
+        .status-value {
+            font-size: 1.1rem;
+            color: var(--success);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Main Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 380px 1fr 380px;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Panel Styling */
+        .panel {
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+        }
+
+        .panel:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(0, 168, 232, 0.3);
+        }
+
+        .panel-header {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .panel-badge {
+            background: rgba(0, 168, 232, 0.2);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            border: 1px solid var(--primary);
+        }
+
+        /* Emergency Section */
+        .emergency-panel {
+            background: linear-gradient(135deg, #1a0d0d, var(--bg-panel));
+            border-color: var(--critical);
+        }
+
+        .emergency-panel::before {
+            background: linear-gradient(90deg, var(--critical), transparent);
+        }
+
+        .emergency-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .emergency-item {
+            background: rgba(211, 47, 47, 0.1);
+            border-left: 3px solid var(--critical);
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .emergency-item .time {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--critical);
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .emergency-item .location {
+            color: var(--text-dim);
+            font-size: 0.75rem;
+        }
+
+        /* Patient Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .stat-card {
+            background: rgba(0, 168, 232, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 900;
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 5px;
+        }
+
+        .stat-value.critical { color: var(--critical); }
+        .stat-value.warning { color: var(--warning); }
+        .stat-value.success { color: var(--success); }
+        .stat-value.primary { color: var(--primary); }
+
+        .stat-label {
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* OR Schedule */
+        .or-schedule {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .or-item {
+            background: rgba(0, 168, 232, 0.08);
+            border-left: 3px solid var(--primary);
+            padding: 12px;
+            border-radius: 4px;
+            display: grid;
+            grid-template-columns: 80px 1fr 60px;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .or-time {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .or-details {
+            font-size: 0.85rem;
+        }
+
+        .or-status {
+            text-align: right;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        .or-status.active {
+            color: var(--success);
+        }
+
+        .or-status.prep {
+            color: var(--warning);
+        }
+
+        /* Department Status */
+        .dept-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .dept-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .dept-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .dept-capacity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .capacity-bar {
+            width: 100px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .capacity-fill {
+            height: 100%;
+            background: var(--success);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .capacity-fill.warning { background: var(--warning); }
+        .capacity-fill.critical { background: var(--critical); }
+
+        .capacity-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            min-width: 50px;
+        }
+
+        /* Equipment Status */
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .equipment-item {
+            background: rgba(0, 168, 232, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .equipment-icon {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .equipment-name {
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            margin-bottom: 5px;
+        }
+
+        .equipment-status {
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .equipment-status.online { color: var(--success); }
+        .equipment-status.maintenance { color: var(--warning); }
+        .equipment-status.offline { color: var(--critical); }
+
+        /* Center Column - Patient Flow */
+        .patient-flow {
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 25px;
+            min-height: 600px;
+        }
+
+        .flow-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .flow-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .flow-filters {
+            display: flex;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            background: rgba(0, 168, 232, 0.1);
+            border: 1px solid var(--border);
+            color: var(--text);
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: var(--bg-dark);
+        }
+
+        .patient-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .patient-card {
+            background: rgba(0, 168, 232, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .patient-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(0, 168, 232, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .patient-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .patient-id {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .priority-badge {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        .priority-high {
+            background: rgba(211, 47, 47, 0.2);
+            color: var(--critical);
+            border: 1px solid var(--critical);
+        }
+
+        .priority-medium {
+            background: rgba(255, 160, 0, 0.2);
+            color: var(--warning);
+            border: 1px solid var(--warning);
+        }
+
+        .priority-low {
+            background: rgba(0, 200, 83, 0.2);
+            color: var(--success);
+            border: 1px solid var(--success);
+        }
+
+        .patient-info {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: var(--text-dim);
+        }
+
+        .patient-vitals {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .vital {
+            font-size: 0.75rem;
+        }
+
+        .vital-label {
+            color: var(--text-dim);
+        }
+
+        .vital-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            color: var(--success);
+        }
+
+        /* Footer */
+        .system-footer {
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-top: 2px solid var(--primary);
+            padding: 20px 30px;
+            font-family: 'JetBrains Mono', monospace;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px;
+        }
+
+        .footer-info {
+            display: flex;
+            gap: 40px;
+            font-size: 0.85rem;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .info-label {
+            color: var(--text-dim);
+            font-size: 0.7rem;
+        }
+
+        .info-value {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .time-display {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Responsive */
+        @media (max-width: 1400px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .patient-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .system-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+                font-size: 1.3rem;
+            }
+
+            .system-status {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .equipment-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .system-footer {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+
+        /* Loading Animation */
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        .loading {
+            background: linear-gradient(90deg, rgba(0,168,232,0.1) 0%, rgba(0,168,232,0.3) 50%, rgba(0,168,232,0.1) 100%);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="system-container">
+        <!-- Header -->
+        <header class="system-header">
+            <div class="header-title">
+                <div class="header-icon">🏥</div>
+                <div>MAXXKI MEDIC </div>
+            </div>
+            <div class="system-status">
+                <div class="status-item">
+                    <div class="status-label">SYSTEM STATUS</div>
+                    <div class="status-value" id="system-status">ONLINE</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-label">UPTIME</div>
+                    <div class="status-value" id="uptime">99.8%</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Grid -->
+        <div class="main-grid">
+            <!-- Left Column -->
+            <div class="column left-column">
+                <!-- Emergency Panel -->
+                <div class="panel emergency-panel">
+                    <div class="panel-header">
+                        🚨 EMERGENCY ALERTS
+                        <span class="panel-badge" id="emergency-count">2 AKTIV</span>
+                    </div>
+                    <div class="emergency-list" id="emergency-list">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Patient Stats -->
+                <div class="panel">
+                    <div class="panel-header">📊 PATIENT OVERVIEW</div>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value critical" id="critical-patients">8</div>
+                            <div class="stat-label">Kritisch</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value warning" id="stable-patients">24</div>
+                            <div class="stat-label">Stabil</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value success" id="discharge-ready">12</div>
+                            <div class="stat-label">Entlassung</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value primary" id="total-patients">44</div>
+                            <div class="stat-label">Gesamt</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Department Status -->
+                <div class="panel">
+                    <div class="panel-header">🏢 ABTEILUNGEN STATUS</div>
+                    <div class="dept-list" id="dept-list">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Center Column -->
+            <div class="column center-column">
+                <div class="patient-flow">
+                    <div class="flow-header">
+                        <div class="flow-title">PATIENT TRACKING</div>
+                        <div class="flow-filters">
+                            <button class="filter-btn active" onclick="filterPatients('all')">Alle</button>
+                            <button class="filter-btn" onclick="filterPatients('critical')">Kritisch</button>
+                            <button class="filter-btn" onclick="filterPatients('stable')">Stabil</button>
+                        </div>
+                    </div>
+                    <div class="patient-cards" id="patient-cards">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="column right-column">
+                <!-- OR Schedule -->
+                <div class="panel">
+                    <div class="panel-header">
+                        ⚕️ OP-PLAN
+                        <span class="panel-badge">5 HEUTE</span>
+                    </div>
+                    <div class="or-schedule" id="or-schedule">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Equipment Status -->
+                <div class="panel">
+                    <div class="panel-header">🔧 EQUIPMENT STATUS</div>
+                    <div class="equipment-grid" id="equipment-grid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="system-footer">
+            <div class="footer-info">
+                <div class="info-item">
+                    <div class="info-label">STANDORT</div>
+                    <div class="info-value">Klinikum Regensburg</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">STATION</div>
+                    <div class="info-value">ZENTRALES OPS CENTER</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">SCHICHT</div>
+                    <div class="info-value" id="shift-info">TAG</div>
+                </div>
+            </div>
+            <div class="time-display" id="clock">00:00:00</div>
+        </footer>
+    </div>
+
+    <script>
+        // Data
+        const emergencies = [
+            { time: '14:23:45', location: 'Station 3B - Zimmer 312', type: 'Herzstillstand', priority: 'CRITICAL' },
+            { time: '14:18:12', location: 'OP-Saal 2', type: 'Komplikation', priority: 'HIGH' }
+        ];
+
+        const patients = [
+            { id: 'P-2401-089', name: 'Meyer, Hans', age: 67, condition: 'Post-OP Überwachung', priority: 'high', hr: 78, bp: '125/80', temp: '37.2°C' },
+            { id: 'P-2401-092', name: 'Schmidt, Anna', age: 45, condition: 'Fraktur Behandlung', priority: 'medium', hr: 72, bp: '118/75', temp: '36.8°C' },
+            { id: 'P-2401-095', name: 'Weber, Klaus', age: 34, condition: 'Routine Check', priority: 'low', hr: 68, bp: '120/78', temp: '36.5°C' },
+            { id: 'P-2401-098', name: 'Fischer, Maria', age: 56, condition: 'Intensivüberwachung', priority: 'high', hr: 92, bp: '135/88', temp: '38.1°C' },
+            { id: 'P-2401-101', name: 'Becker, Thomas', age: 28, condition: 'Voruntersuchung', priority: 'low', hr: 65, bp: '115/72', temp: '36.7°C' },
+            { id: 'P-2401-103', name: 'Wagner, Lisa', age: 72, condition: 'Kardio Monitoring', priority: 'medium', hr: 88, bp: '142/90', temp: '37.4°C' }
+        ];
+
+        const departments = [
+            { name: 'Notaufnahme', current: 18, max: 25 },
+            { name: 'Intensivstation', current: 12, max: 15 },
+            { name: 'Chirurgie', current: 22, max: 30 },
+            { name: 'Kardiologie', current: 8, max: 20 },
+            { name: 'Pädiatrie', current: 15, max: 18 }
+        ];
+
+        const orSchedule = [
+            { time: '08:00', procedure: 'Herz-Bypass OP', surgeon: 'Dr. Müller', status: 'active' },
+            { time: '10:30', procedure: 'Knie-Arthroskopie', surgeon: 'Dr. Schmidt', status: 'prep' },
+            { time: '13:00', procedure: 'Gallenblasen-OP', surgeon: 'Dr. Weber', status: 'scheduled' },
+            { time: '15:30', procedure: 'Hüft-Endoprothese', surgeon: 'Dr. Fischer', status: 'scheduled' },
+            { time: '17:00', procedure: 'Notfall-OP Reserve', surgeon: 'Bereitschaft', status: 'standby' }
+        ];
+
+        const equipment = [
+            { name: 'MRT-1', icon: '🔬', status: 'online' },
+            { name: 'CT-2', icon: '💉', status: 'online' },
+            { name: 'Röntgen-3', icon: '📡', status: 'maintenance' },
+            { name: 'Ultraschall', icon: '🔊', status: 'online' },
+            { name: 'EKG-Monitor', icon: '💓', status: 'online' },
+            { name: 'Beatmung-5', icon: '🫁', status: 'online' }
+        ];
+
+        // Clock
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('clock').textContent = now.toLocaleTimeString('de-DE');
+            
+            const hour = now.getHours();
+            const shiftInfo = document.getElementById('shift-info');
+            if (hour >= 6 && hour < 14) {
+                shiftInfo.textContent = 'FRÜHSCHICHT';
+            } else if (hour >= 14 && hour < 22) {
+                shiftInfo.textContent = 'SPÄTSCHICHT';
+            } else {
+                shiftInfo.textContent = 'NACHTSCHICHT';
+            }
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Render Emergency List
+        function renderEmergencies() {
+            const list = document.getElementById('emergency-list');
+            list.innerHTML = emergencies.map(e => `
+                <div class="emergency-item">
+                    <div class="time">${e.time} - ${e.type}</div>
+                    <div class="location">${e.location}</div>
+                </div>
+            `).join('');
+        }
+
+        // Render Patients
+        let currentFilter = 'all';
+        function renderPatients() {
+            const container = document.getElementById('patient-cards');
+            let filtered = patients;
+            
+            if (currentFilter === 'critical') {
+                filtered = patients.filter(p => p.priority === 'high');
+            } else if (currentFilter === 'stable') {
+                filtered = patients.filter(p => p.priority === 'low' || p.priority === 'medium');
+            }
+
+            container.innerHTML = filtered.map(p => `
+                <div class="patient-card">
+                    <div class="patient-header">
+                        <div class="patient-id">${p.id}</div>
+                        <div class="priority-badge priority-${p.priority}">
+                            ${p.priority.toUpperCase()}
+                        </div>
+                    </div>
+                    <div class="patient-info">
+                        <strong>${p.name}</strong> (${p.age}J)<br>
+                        ${p.condition}
+                    </div>
+                    <div class="patient-vitals">
+                        <div class="vital">
+                            <span class="vital-label">HR:</span>
+                            <span class="vital-value">${p.hr}</span>
+                        </div>
+                        <div class="vital">
+                            <span class="vital-label">BP:</span>
+                            <span class="vital-value">${p.bp}</span>
+                        </div>
+                        <div class="vital">
+                            <span class="vital-label">Temp:</span>
+                            <span class="vital-value">${p.temp}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterPatients(filter) {
+            currentFilter = filter;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderPatients();
+        }
+
+        // Render Departments
+        function renderDepartments() {
+            const list = document.getElementById('dept-list');
+            list.innerHTML = departments.map(d => {
+                const percent = (d.current / d.max) * 100;
+                let fillClass = '';
+                if (percent > 80) fillClass = 'critical';
+                else if (percent > 60) fillClass = 'warning';
+                
+                return `
+                    <div class="dept-item">
+                        <div class="dept-name">${d.name}</div>
+                        <div class="dept-capacity">
+                            <div class="capacity-bar">
+                                <div class="capacity-fill ${fillClass}" style="width: ${percent}%"></div>
+                            </div>
+                            <div class="capacity-text">${d.current}/${d.max}</div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Render OR Schedule
+        function renderORSchedule() {
+            const list = document.getElementById('or-schedule');
+            list.innerHTML = orSchedule.map(or => `
+                <div class="or-item">
+                    <div class="or-time">${or.time}</div>
+                    <div class="or-details">
+                        <div>${or.procedure}</div>
+                        <div style="font-size: 0.75rem; color: var(--text-dim);">${or.surgeon}</div>
+                    </div>
+                    <div class="or-status ${or.status}">
+                        ${or.status === 'active' ? '● AKTIV' : or.status === 'prep' ? '◐ VORBEREITUNG' : '○ GEPLANT'}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render Equipment
+        function renderEquipment() {
+            const grid = document.getElementById('equipment-grid');
+            grid.innerHTML = equipment.map(e => `
+                <div class="equipment-item">
+                    <div class="equipment-icon">${e.icon}</div>
+                    <div class="equipment-name">${e.name}</div>
+                    <div class="equipment-status ${e.status}">
+                        ${e.status === 'online' ? '● ONLINE' : e.status === 'maintenance' ? '⚠ WARTUNG' : '○ OFFLINE'}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Initialize
+        renderEmergencies();
+        renderPatients();
+        renderDepartments();
+        renderORSchedule();
+        renderEquipment();
+
+        // Simulate live updates
+        setInterval(() => {
+            // Random vital signs updates
+            patients.forEach(p => {
+                p.hr = Math.floor(Math.random() * (95 - 60) + 60);
+            });
+            renderPatients();
+        }, 5000);
+    </script>
+</body>
+</html>
