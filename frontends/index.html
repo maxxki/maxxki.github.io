@@ -470,9 +470,9 @@
         /* Accessibility */
         @media (prefers-reduced-motion: reduce) {
             * {
-                animation-duration: 0.3ms !important;
+                animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
-                transition-duration: 0.3ms !important;
+                transition-duration: 0.01ms !important;
             }
         }
 
@@ -494,8 +494,8 @@
         <div class="scanline"></div>
 
         <div class="header-title">
-            <span>MAXXKI Overview</span>
-            <span class="version-badge">V.1.0.2</span>
+            <span>MAXXKI OVERVIEW</span>
+            <span class="version-badge">MI + KI</span>
         </div>
 
         <div class="subtitle">
@@ -504,11 +504,11 @@
 
         <div class="stats-bar">
             <div class="stat-item">
-                <div class="stat-value">2</div>
+                <div class="stat-value">3</div>
                 <div class="stat-label">Projects</div>
             </div>
             <div class="stat-item">
-                <div class="stat-value">1</div>
+                <div class="stat-value">3</div>
                 <div class="stat-label">Active</div>
             </div>
             <div class="stat-item">
@@ -518,9 +518,9 @@
         </div>
 
         <div class="project-grid">
-            <a href="maxxkimedic.html" class="project-card" aria-label="Medical Administration">
+            <a href="maxxkimedic.html" class="project-card" aria-label="Medical Operations Dashboard">
                 <div class="project-info">
-                    <h3>[01] Maxxki MEDIC</h3>
+                    <h3>MEDICAL CENTER</h3>
                     <p>Hospital Operations & Patient Monitoring System</p>
                     <div class="project-meta">
                         <span class="meta-tag">Healthcare</span>
@@ -533,7 +533,7 @@
 
             <a href="maxxkifinance.html" class="project-card" aria-label="Finance Tracker Pro">
                 <div class="project-info">
-                    <h3>[02] FINANCE TRACKER PRO</h3>
+                    <h3>FINANCE TRACKER PRO</h3>
                     <p>Personal Budget Management & Financial Analytics</p>
                     <div class="project-meta">
                         <span class="meta-tag">Finance</span>
@@ -544,9 +544,9 @@
                 <div class="status-badge">● ACTIVE</div>
             </a>
 
-            <div class="project-card disabled">
+            <a href="maxxkilogistics.html" class="project-card" aria-label="Logistics Control Center">
                 <div class="project-info">
-                    <h3>[03] LOGISTICS CONTROL</h3>
+                    <h3>LOGISTICS CONTROL</h3>
                     <p>Supply Chain & Warehouse Management System</p>
                     <div class="project-meta">
                         <span class="meta-tag">Logistics</span>
@@ -554,8 +554,8 @@
                         <span class="meta-tag">Tracking</span>
                     </div>
                 </div>
-                <div class="status-badge coming-soon">◐ IN PROGRESS</div>
-            </div>
+                <div class="status-badge">● ACTIVE</div>
+            </a>
 
             <div class="project-card disabled">
                 <div class="project-info">
@@ -580,15 +580,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-        // Set current date
-        const updateDate = new Date().toLocaleDateString('de-DE', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit'
-        });
-        document.getElementById('update-date').textContent = updateDate;
 
         // Keyboard Navigation
         document.addEventListener('keydown', (e) => {
