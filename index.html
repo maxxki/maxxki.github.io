@@ -43,7 +43,6 @@
         .brand-banner {
             width: 100%;
             height: 140px;
-            /* LINK 2 INTEGRIERT */
             background: var(--banner-white) url('https://github.com/user-attachments/assets/0d1cb683-6c2f-4174-a25f-63631c7b784e') no-repeat center center;
             background-size: cover;
             border-bottom: 2px solid var(--primary);
@@ -241,7 +240,8 @@
             box-shadow: 0 0 50px var(--primary); 
         }
 
-        #maxxki-engine {
+        /* Korrigiertes CSS für die Sektion */
+        #maxxki {
             margin-top: 150px;
             padding: 100px 40px;
             background: linear-gradient(rgba(5, 7, 10, 0.85), rgba(5, 7, 10, 0.85)), url('https://github.com/user-attachments/assets/0d1cb683-6c2f-4174-a25f-63631c7b784e') no-repeat center center;
@@ -252,12 +252,12 @@
             border: 1px solid var(--border);
         }
 
-        body.light-mode #maxxki-engine {
+        body.light-mode #maxxki {
             background: linear-gradient(rgba(240, 244, 248, 0.9), rgba(240, 244, 248, 0.9)), url('https://github.com/user-attachments/assets/0d1cb683-6c2f-4174-a25f-63631c7b784e') no-repeat center center;
             background-size: cover;
         }
 
-        #maxxki-engine h2 {
+        #maxxki h2 {
             font-family: 'Syncopate', sans-serif; 
             font-size: clamp(2rem, 5vw, 3.5rem); 
             margin-bottom: 40px;
@@ -345,29 +345,11 @@
             box-shadow: 0 0 20px var(--primary);
         }
 
-        /* RESPONSIVE BREAKPOINTS */
         @media (max-width: 1024px) {
-            .hero {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .hero-image-wrap {
-                transform: none;
-                order: -1;
-                max-width: 60%;
-                margin: 0 auto;
-            }
-
-            .tech-grid {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                margin-top: 40px;
-            }
-
-            .engine-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
+            .hero { grid-template-columns: 1fr; gap: 40px; }
+            .hero-image-wrap { transform: none; order: -1; max-width: 60%; margin: 0 auto; }
+            .tech-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-top: 40px; }
+            .engine-grid { grid-template-columns: 1fr; gap: 40px; }
         }
     </style>
 </head>
@@ -391,10 +373,10 @@
                     <h1>MAXIMILIAN KIEFER</h1>
                     <p>
                         <br>
-                        Ich entwickle funktionierende Loesungen mit KI.
-Lauffähig, sicher, getestet.
-Ich brenne leidenschaftlich für das Thema menschliche und künstliche Intelligenz und freue mich über neue Challenges. 
-Lassen Sie uns zusammen das Unmögliche möglich machen.
+                        Ich entwickle funktionierende Loesungen mit KI.<br>
+                        Lauffähig, sicher, getestet.<br>
+                        Ich brenne leidenschaftlich für das Thema menschliche und künstliche Intelligenz und freue mich über neue Challenges. 
+                        Lassen Sie uns zusammen das Unmögliche möglich machen.
                     </p>
 
                     <a href="./frontends/" class="showcase-link-box">
@@ -402,7 +384,7 @@ Lassen Sie uns zusammen das Unmögliche möglich machen.
                             <h2>OVERVIEW (im Aufbau)</h2>
                             <p>Klicke hier, um meine Projekte als Überblick zu sehen.</p>
                         </div>
-                        </div>
+                        <div class="arrow-icon">🚀</div>
                     </a>
 
                     <a href="mailto:plantmax87@gmail.com" class="btn-massive">CONTACT</a>
@@ -426,19 +408,16 @@ Lassen Sie uns zusammen das Unmögliche möglich machen.
                         <div>
                             <h4>Menschliche plus künstliche Intelligenz = Maxxki</h4>
                             <p>
-                                Ich nutze künstliche Intelligenz als Erweiterung meiner menschlichen Intelligenz. 
-
+                                Ich nutze künstliche Intelligenz als Erweiterung meiner menschlichen. 
                             </p>
                         </div>
                         <div class="engine-code">
                             <ul>
-                                <li>> MaxxkiRefactoring Workstation -
-Features: 
-
-Safe: Dry Run mode and Tarjan's SCC Implementation</li>
-                                <li>> MaxxkiRobertMartinValidator: Professional metrics suite</li>
-                                <li>> MaxxkiProtocolist: Hash-chaining forensic audit and documentation</li>
-                                <li>> VisualReporter: Automated Mermaid visualizations and many more...</li>
+                                <li>> MaxxkiRefactoring Workstation</li>
+                                <li>> Safe: Dry Run mode & Tarjan's SCC</li>
+                                <li>> RobertMartinValidator: Metrics suite</li>
+                                <li>> Protocolist: Forensic audit</li>
+                                <li>> VisualReporter: Mermaid visualizations</li>
                             </ul>
                         </div>
                     </div>
