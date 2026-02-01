@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAXXKI FINANCE Tracker Pro</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+        
+        :root { 
+            --main: #0a3d2e; 
+            --gold: #b8924e; 
+            --bg: #f9f9f9; 
+            --border: #ddd; 
+            --red: #dc2626;
+            --green: #16a34a;
+            --blue: #2563eb;
+            --shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Inter', sans-serif; 
+        }
+        
+        body { 
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eef5 100%); 
+            color: #1a1a1a; 
+            padding: 20px; 
+            min-height: 100vh;
+        }
+        
+        .wrapper { 
+            max-width: 1400px; 
+            margin: 0 auto; 
+            display: grid; 
+            grid-template-columns: 1fr 380px; 
+            gap: 25px; 
+        }
+        
+        /* Header */
+        header { 
+            grid-column: span 2; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 25px 35px; 
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin-bottom: 10px;
+        }
+        
+        h1 { 
+            font-weight: 900; 
+            letter-spacing: 2px; 
+            background: linear-gradient(135deg, var(--main), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+        }
+
+        #clock {
+            font-weight: 700;
+            color: var(--main);
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--main), var(--gold));
+        }
+
+        .label { 
+            font-size: 0.75rem; 
+            font-weight: 700; 
+            color: #888; 
+            text-transform: uppercase; 
+            letter-spacing: 1.2px; 
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .val-hero { 
+            font-size: clamp(2rem, 5vw, 3.5rem); 
+            font-weight: 900; 
+            color: var(--main); 
+            letter-spacing: -2px; 
+            line-height: 1;
+        }
+
+        .val-hero.positive { color: var(--green); }
+        .val-hero.negative { color: var(--red); }
+
+        .sub-val {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+        }
+
+        .sub-val span {
+            font-weight: 600;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--main), var(--gold));
+            border-radius: 10px;
+            transition: width 0.6s ease;
+            position: relative;
+        }
+
+        .progress-fill.warning {
+            background: linear-gradient(90deg, #f59e0b, #dc2626);
+        }
+
+        /* Time Navigation */
+        .time-nav { 
+            display: flex; 
+            gap: 12px; 
+            margin-bottom: 25px; 
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+        
+        .time-btn { 
+            flex: 1; 
+            padding: 14px; 
+            border: 2px solid var(--border); 
+            background: #fff; 
+            cursor: pointer; 
+            font-weight: 700; 
+            transition: all 0.3s ease; 
+            border-radius: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .time-btn:hover {
+            border-color: var(--main);
+            transform: translateY(-2px);
+        }
+
+        .time-btn.active { 
+            background: var(--main); 
+            color: #fff; 
+            border-color: var(--main); 
+            box-shadow: 0 4px 12px rgba(10, 61, 46, 0.3);
+        }
+
+        /* Tables */
+        .table-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin-bottom: 25px;
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--main);
+        }
+
+        .table-title {
+            font-weight: 900;
+            font-size: 1.3rem;
+            color: var(--main);
+        }
+
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+        }
+        
+        th { 
+            text-align: left; 
+            font-size: 0.75rem; 
+            color: #888; 
+            padding: 12px 8px; 
+            border-bottom: 2px solid #f0f0f0; 
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        td { 
+            padding: 18px 8px; 
+            border-bottom: 1px solid #f8f8f8; 
+            transition: background 0.2s ease;
+        }
+
+        tr:hover td {
+            background: #fafafa;
+        }
+
+        .item-name {
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .item-category {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: 8px;
+            text-transform: uppercase;
+        }
+
+        .cat-miete { background: #dbeafe; color: #1e40af; }
+        .cat-versicherung { background: #fce7f3; color: #9f1239; }
+        .cat-transport { background: #fef3c7; color: #92400e; }
+        .cat-freizeit { background: #d1fae5; color: #065f46; }
+        .cat-sonstiges { background: #e5e7eb; color: #374151; }
+
+        .item-amount {
+            font-weight: 700;
+            color: var(--red);
+        }
+
+        .item-percentage {
+            font-size: 0.85rem;
+            color: #888;
+            margin-left: 8px;
+        }
+        
+        .del-x { 
+            color: var(--red); 
+            cursor: pointer; 
+            font-weight: 900; 
+            border: none; 
+            background: none; 
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            font-size: 1.2rem;
+        }
+
+        .del-x:hover {
+            background: #fee2e2;
+            transform: scale(1.1);
+        }
+
+        /* Sidebar */
+        .sidebar { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 15px; 
+            box-shadow: var(--shadow);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .sidebar-section {
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .sidebar-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .sidebar-title {
+            font-weight: 700;
+            color: var(--main);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        input, select { 
+            width: 100%; 
+            padding: 14px; 
+            margin: 8px 0 12px; 
+            border: 2px solid var(--border); 
+            outline: none; 
+            border-radius: 10px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--main);
+            box-shadow: 0 0 0 3px rgba(10, 61, 46, 0.1);
+        }
+        
+        .btn-save { 
+            width: 100%; 
+            padding: 16px; 
+            background: linear-gradient(135deg, var(--main), #0d5940); 
+            color: #fff; 
+            border: none; 
+            font-weight: 700; 
+            cursor: pointer; 
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-save:hover { 
+            background: linear-gradient(135deg, var(--gold), #a07b3e);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(184, 146, 78, 0.4);
+        }
+
+        .btn-save:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: #f3f4f6;
+            color: #374151;
+            margin-top: 10px;
+        }
+
+        .btn-secondary:hover {
+            background: #e5e7eb;
+            box-shadow: none;
+        }
+
+        /* Export Section */
+        .export-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn-export {
+            padding: 12px;
+            background: white;
+            border: 2px solid var(--main);
+            color: var(--main);
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+        }
+
+        .btn-export:hover {
+            background: var(--main);
+            color: white;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #9ca3af;
+        }
+
+        .empty-state svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .wrapper { 
+                grid-template-columns: 1fr; 
+            }
+            
+            header {
+                grid-column: span 1;
+            }
+
+            .sidebar {
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            header {
+                padding: 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-card {
+                padding: 20px;
+            }
+
+            .table-card {
+                padding: 20px;
+                overflow-x: auto;
+            }
+
+            .time-nav {
+                flex-direction: column;
+            }
+
+            .export-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                padding: 20px;
+            }
+        }
+
+        /* Animations */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stat-card, .table-card, .sidebar {
+            animation: slideIn 0.5s ease-out;
+        }
+
+        /* Alert Box */
+        .alert {
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            display: none;
+        }
+
+        .alert.warning {
+            background: #fef3c7;
+            color: #92400e;
+            border-left: 4px solid #f59e0b;
+            display: block;
+        }
+
+        .alert.success {
+            background: #d1fae5;
+            color: #065f46;
+            border-left: 4px solid #16a34a;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <header>
+        <h1> MAXXKI FINANCE</h1>
+        <div id="clock">00:00:00</div>
+    </header>
+
+    <div class="main-content">
+        <div id="alert-box" class="alert"></div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="label">Verfügbares Budget</span>
+                <div class="val-hero" id="net-display">0,00 €</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="budget-progress"></div>
+                </div>
+                <div class="sub-val">
+                    <span>Monatlich</span>
+                    <span id="period-label">Aktuell</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <span class="label">Tagesbudget</span>
+                <div class="val-hero" id="day-val" style="font-size: 2.5rem;">0,00 €</div>
+                <div class="sub-val">
+                    <span>Pro Tag verfügbar</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <span class="label">Fixkosten Total</span>
+                <div class="val-hero negative" id="burn-val">0,00 €</div>
+                <div class="sub-val">
+                    <span>Ausgaben</span>
+                    <span id="expense-percentage">0%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="time-nav">
+            <button class="time-btn active" id="btn-m" onclick="changeView('m')">📅 MONATLICH</button>
+            <button class="time-btn" id="btn-y" onclick="changeView('y')">📊 JÄHRLICH</button>
+        </div>
+
+        <div class="table-card">
+            <div class="table-header">
+                <div class="table-title">Ausgaben Übersicht</div>
+                <div style="font-size: 0.9rem; color: #888;">
+                    <span id="item-count">0</span> Positionen
+                </div>
+            </div>
+            <table id="expense-table">
+                <thead>
+                    <tr>
+                        <th>POSITION</th>
+                        <th>KATEGORIE</th>
+                        <th style="text-align: right;">BETRAG</th>
+                        <th style="text-align: right;">ANTEIL</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="item-list">
+                </tbody>
+            </table>
+            <div id="empty-state" class="empty-state" style="display: none;">
+                <div style="font-size: 3rem; margin-bottom: 10px;">📋</div>
+                <div style="font-weight: 600; margin-bottom: 8px;">Keine Ausgaben vorhanden</div>
+                <div>Füge deine erste Ausgabe über die Seitenleiste hinzu</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-title">💵 Einkommen</div>
+            <span class="label">Monatliches Brutto</span>
+            <input type="number" id="in-base" placeholder="z.B. 3500" onchange="run()">
+        </div>
+
+        <div class="sidebar-section">
+            <div class="sidebar-title">➕ Neue Ausgabe</div>
+            <span class="label">Bezeichnung</span>
+            <input type="text" id="in-name" placeholder="z.B. Miete">
+            
+            <span class="label">Kategorie</span>
+            <select id="in-category">
+                <option value="miete">🏠 Miete & Wohnen</option>
+                <option value="versicherung">🛡️ Versicherung</option>
+                <option value="transport">🚗 Transport</option>
+                <option value="freizeit">🎮 Freizeit</option>
+                <option value="sonstiges">📦 Sonstiges</option>
+            </select>
+            
+            <span class="label">Betrag (€)</span>
+            <input type="number" id="in-amt" placeholder="z.B. 850">
+            
+            <button class="btn-save" onclick="add()">💾 SPEICHERN</button>
+        </div>
+
+        <div class="sidebar-section">
+            <div class="sidebar-title">📤 Export</div>
+            <div class="export-buttons">
+                <button class="btn-export" onclick="exportCSV()">📊 CSV</button>
+                <button class="btn-export" onclick="exportJSON()">📋 JSON</button>
+            </div>
+            <button class="btn-save btn-secondary" onclick="clearAll()" style="margin-top: 15px;">
+                🗑️ Alle löschen
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let state = { base: 0, items: [], view: 'm' };
+
+    // Clock
+    function clock() { 
+        document.getElementById('clock').innerText = new Date().toLocaleTimeString('de-DE'); 
+    }
+    setInterval(clock, 1000); 
+    clock();
+
+    // Load from localStorage
+    window.onload = () => {
+        const saved = localStorage.getItem('mx_finance_pro');
+        if(saved) {
+            state = JSON.parse(saved);
+            document.getElementById('in-base').value = state.base;
+        }
+        run();
+    };
+
+    // View switcher
+    function changeView(v) {
+        state.view = v;
+        document.getElementById('btn-m').classList.toggle('active', v === 'm');
+        document.getElementById('btn-y').classList.toggle('active', v === 'y');
+        document.getElementById('period-label').textContent = v === 'y' ? 'Jährlich' : 'Monatlich';
+        run();
+    }
+
+    // Add new item
+    function add() {
+        const n = document.getElementById('in-name').value.trim();
+        const a = parseFloat(document.getElementById('in-amt').value);
+        const c = document.getElementById('in-category').value;
+        
+        if(n && a && a > 0) {
+            state.items.push({name: n, amt: a, category: c});
+            document.getElementById('in-name').value = '';
+            document.getElementById('in-amt').value = '';
+            showAlert('Ausgabe erfolgreich hinzugefügt! ✓', 'success');
+            run();
+        } else {
+            showAlert('Bitte fülle alle Felder korrekt aus!', 'warning');
+        }
+    }
+
+    // Remove item
+    function rem(i) { 
+        if(confirm('Möchtest du diese Ausgabe wirklich löschen?')) {
+            state.items.splice(i, 1); 
+            showAlert('Ausgabe gelöscht!', 'success');
+            run(); 
+        }
+    }
+
+    // Main calculation
+    function run() {
+        state.base = parseFloat(document.getElementById('in-base').value) || 0;
+        const list = document.getElementById('item-list');
+        const emptyState = document.getElementById('empty-state');
+        const table = document.getElementById('expense-table');
+        
+        list.innerHTML = '';
+        
+        let totalOut = 0;
+        const multiplier = state.view === 'y' ? 12 : 1;
+
+        // Show/hide empty state
+        if(state.items.length === 0) {
+            emptyState.style.display = 'block';
+            table.style.display = 'none';
+        } else {
+            emptyState.style.display = 'none';
+            table.style.display = 'table';
+        }
+
+        // Render items
+        state.items.forEach((it, i) => {
+            totalOut += it.amt;
+            const percentage = state.base > 0 ? ((it.amt / state.base) * 100).toFixed(1) : 0;
+            const displayAmt = (it.amt * multiplier).toLocaleString('de-DE', {minimumFractionDigits: 2});
+            
+            list.innerHTML += `
+                <tr>
+                    <td>
+                        <span class="item-name">${it.name}</span>
+                    </td>
+                    <td>
+                        <span class="item-category cat-${it.category}">${getCategoryName(it.category)}</span>
+                    </td>
+                    <td style="text-align: right;">
+                        <span class="item-amount">-${displayAmt} €</span>
+                    </td>
+                    <td style="text-align: right;">
+                        <span class="item-percentage">${percentage}%</span>
+                    </td>
+                    <td style="text-align: right;">
+                        <button class="del-x" onclick="rem(${i})" title="Löschen">✕</button>
+                    </td>
+                </tr>
+            `;
+        });
+
+        // Calculate values
+        const net = (state.base - totalOut) * multiplier;
+        const daysInPeriod = state.view === 'y' ? 365 : 30;
+        const dailyBudget = net / daysInPeriod;
+        const expensePercentage = state.base > 0 ? ((totalOut / state.base) * 100).toFixed(1) : 0;
+
+        // Update displays
+        document.getElementById('net-display').innerText = net.toLocaleString('de-DE', {minimumFractionDigits: 2}) + " €";
+        document.getElementById('day-val').innerText = dailyBudget.toLocaleString('de-DE', {minimumFractionDigits: 2}) + " €";
+        document.getElementById('burn-val').innerText = (totalOut * multiplier).toLocaleString('de-DE', {minimumFractionDigits: 2}) + " €";
+        document.getElementById('expense-percentage').innerText = expensePercentage + "%";
+        document.getElementById('item-count').innerText = state.items.length;
+
+        // Update net display color
+        const netDisplay = document.getElementById('net-display');
+        netDisplay.className = 'val-hero';
+        if(net > 0) netDisplay.classList.add('positive');
+        else if(net < 0) netDisplay.classList.add('negative');
+
+        // Update progress bar
+        const progressBar = document.getElementById('budget-progress');
+        const progressPercent = Math.min((totalOut / state.base) * 100, 100);
+        progressBar.style.width = progressPercent + '%';
+        progressBar.className = 'progress-fill';
+        if(progressPercent > 80) progressBar.classList.add('warning');
+
+        // Show warning if over budget
+        if(net < 0) {
+            showAlert('⚠️ Achtung: Deine Ausgaben übersteigen dein Einkommen!', 'warning');
+        }
+
+        // Save to localStorage
+        localStorage.setItem('mx_finance_pro', JSON.stringify(state));
+    }
+
+    // Helper functions
+    function getCategoryName(cat) {
+        const names = {
+            'miete': 'Miete',
+            'versicherung': 'Versicherung',
+            'transport': 'Transport',
+            'freizeit': 'Freizeit',
+            'sonstiges': 'Sonstiges'
+        };
+        return names[cat] || cat;
+    }
+
+    function showAlert(message, type) {
+        const alert = document.getElementById('alert-box');
+        alert.textContent = message;
+        alert.className = 'alert ' + type;
+        setTimeout(() => {
+            alert.className = 'alert';
+        }, 4000);
+    }
+
+    // Export functions
+    function exportCSV() {
+        let csv = 'Position,Kategorie,Betrag,Prozent\n';
+        const total = state.items.reduce((sum, it) => sum + it.amt, 0);
+        
+        state.items.forEach(it => {
+            const percentage = state.base > 0 ? ((it.amt / state.base) * 100).toFixed(1) : 0;
+            csv += `"${it.name}","${getCategoryName(it.category)}",${it.amt},${percentage}%\n`;
+        });
+        
+        csv += `\nSumme Ausgaben,,${total}\n`;
+        csv += `Einkommen,,${state.base}\n`;
+        csv += `Verfügbar,,${state.base - total}\n`;
+        
+        downloadFile(csv, 'maxxki-finance-export.csv', 'text/csv');
+    }
+
+    function exportJSON() {
+        const data = {
+            exportDate: new Date().toISOString(),
+            income: state.base,
+            expenses: state.items,
+            summary: {
+                totalExpenses: state.items.reduce((sum, it) => sum + it.amt, 0),
+                netAmount: state.base - state.items.reduce((sum, it) => sum + it.amt, 0),
+                itemCount: state.items.length
+            }
+        };
+        
+        downloadFile(JSON.stringify(data, null, 2), 'maxxki-finance-export.json', 'application/json');
+    }
+
+    function downloadFile(content, fileName, mimeType) {
+        const blob = new Blob([content], { type: mimeType });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = fileName;
+        link.click();
+        URL.revokeObjectURL(url);
+        showAlert('Export erfolgreich heruntergeladen! 📥', 'success');
+    }
+
+    function clearAll() {
+        if(confirm('Möchtest du wirklich ALLE Daten löschen? Diese Aktion kann nicht rückgängig gemacht werden!')) {
+            state = { base: 0, items: [], view: 'm' };
+            document.getElementById('in-base').value = '';
+            localStorage.removeItem('mx_finance_pro');
+            showAlert('Alle Daten wurden gelöscht!', 'success');
+            run();
+        }
+    }
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter' && (e.target.id === 'in-name' || e.target.id === 'in-amt')) {
+            add();
+        }
+    });
+</script>
+</body>
+</html>items
+        state.items.forEach((it, i) => {
+            totalOut += it.amt;
+            const percentage = state.base > 0 ? ((it.amt / state.base) * 100).toFixed(1) : 0;
+            const displayAmt = (it.amt * multiplier).toLocaleString('de-DE', {minimumFractionDigits: 2});
+            
+            list.innerHTML += `
+                <tr>
+                    <td>
+                        <span class="item-name">${it.name}</span>
+                    </td>
+                    <td>
+                        <span class="item-category cat-${it.category}">${getCategoryName(it.category)}</span>
+                    </td>
+                    <td style="text-align: right;">
+                        <span class="item-amount">-${displayAmt} €</span>
+                    </td>
+                    <td style="text-align: right;">
+                        <span class="item-percentage">${percentage}%</span>
+                    </td>
+                    <td style="text-align: right;">
+                        <button class="del-x" onclick="rem(${i})" title="Löschen">✕</button>
+                    </td>
+                </tr>
+            `;
+        });
+
+        // Calculate values
+        const net = (state.base - totalOut) * multiplier;
+        const daysInPeriod = state.view === 'y' ? 365 : 30;
+        const dailyBudget = net / daysInPeriod;
+        const expensePercentage = state.base > 0 ? ((totalOut / state.base) * 100).toFixed(1) : 0;
+
+        // Update displays
+        document.getElementById('net-display').innerText = net.toLocaleString('de-DE', {minimumFractionDigits: 2}) + " €";
+        document.getElementById('day-val').innerText = dailyBudget.toLocaleString('de-DE', {minimumFractionDigits: 2}) + " €";
+        document.getElementById('burn-val').innerText = (totalOut * multiplier).toLocaleString('de-DE', {minimumFractionDigits: 2}) + " €";
+        document.getElementById('expense-percentage').innerText = expensePercentage + "%";
+        document.getElementById('item-count').innerText = state.items.length;
+
+        // Update net display color
+        const netDisplay = document.getElementById('net-display');
+        netDisplay.className = 'val-hero';
+        if(net > 0) netDisplay.classList.add('positive');
+        else if(net < 0) netDisplay.classList.add('negative');
+
+        // Update progress bar
+        const progressBar = document.getElementById('budget-progress');
+        const progressPercent = Math.min((totalOut / state.base) * 100, 100);
+        progressBar.style.width = progressPercent + '%';
+        progressBar.className = 'progress-fill';
+        if(progressPercent > 80) progressBar.classList.add('warning');
+
+        // Show warning if over budget
+        if(net < 0) {
+            showAlert('⚠️ Achtung: Deine Ausgaben übersteigen dein Einkommen!', 'warning');
+        }
+
+        // Save to localStorage
+        localStorage.setItem('mx_finance_pro', JSON.stringify(state));
+    }
+
+    // Helper functions
+    function getCategoryName(cat) {
+        const names = {
+            'miete': 'Miete',
+            'versicherung': 'Versicherung',
+            'transport': 'Transport',
+            'freizeit': 'Freizeit',
+            'sonstiges': 'Sonstiges'
+        };
+        return names[cat] || cat;
+    }
+
+    function showAlert(message, type) {
+        const alert = document.getElementById('alert-box');
+        alert.textContent = message;
+        alert.className = 'alert ' + type;
+        setTimeout(() => {
+            alert.className = 'alert';
+        }, 4000);
+    }
+
+    // Export functions
+    function exportCSV() {
+        let csv = 'Position,Kategorie,Betrag,Prozent\n';
+        const total = state.items.reduce((sum, it) => sum + it.amt, 0);
+        
+        state.items.forEach(it => {
+            const percentage = state.base > 0 ? ((it.amt / state.base) * 100).toFixed(1) : 0;
+            csv += `"${it.name}","${getCategoryName(it.category)}",${it.amt},${percentage}%\n`;
+        });
+        
+        csv += `\nSumme Ausgaben,,${total}\n`;
+        csv += `Einkommen,,${state.base}\n`;
+        csv += `Verfügbar,,${state.base - total}\n`;
+        
+        downloadFile(csv, 'maxxki-finance-export.csv', 'text/csv');
+    }
+
+    function exportJSON() {
+        const data = {
+            exportDate: new Date().toISOString(),
+            income: state.base,
+            expenses: state.items,
+            summary: {
+                totalExpenses: state.items.reduce((sum, it) => sum + it.amt, 0),
+                netAmount: state.base - state.items.reduce((sum, it) => sum + it.amt, 0),
+                itemCount: state.items.length
+            }
+        };
+        
+        downloadFile(JSON.stringify(data, null, 2), 'maxxki-finance-export.json', 'application/json');
+    }
+
+    function downloadFile(content, fileName, mimeType) {
+        const blob = new Blob([content], { type: mimeType });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = fileName;
+        link.click();
+        URL.revokeObjectURL(url);
+        showAlert('Export erfolgreich heruntergeladen! 📥', 'success');
+    }
+
+    function clearAll() {
+        if(confirm('Möchtest du wirklich ALLE Daten löschen? Diese Aktion kann nicht rückgängig gemacht werden!')) {
+            state = { base: 0, items: [], view: 'm' };
+            document.getElementById('in-base').value = '';
+            localStorage.removeItem('mx_finance_pro');
+            showAlert('Alle Daten wurden gelöscht!', 'success');
+            run();
+        }
+    }
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter' && (e.target.id === 'in-name' || e.target.id === 'in-amt')) {
+            add();
+        }
+    });
+</script>
+</body>
+</html>
