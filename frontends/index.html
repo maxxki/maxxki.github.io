@@ -581,6 +581,10 @@
         </div>
     </div>
 
+    <script>
+        // Set current date
+        document.getElementById('update-date').textContent = new Date().toLocaleDateString('de-DE');
+
         // Keyboard Navigation
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
