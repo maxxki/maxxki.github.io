@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAXXKI | FRONTEND_LAB</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300;400&display=swap');
+
+        :root {
+            --primary: #00d4ff;
+            --bg: #05070a;
+            --panel: rgba(255, 255, 255, 0.03);
+            --border: rgba(0, 212, 255, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            background-color: var(--bg); 
+            color: #fff; 
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .lab-container {
+            width: 100%;
+            max-width: 800px;
+            border: 1px solid var(--border);
+            background: var(--panel);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            position: relative;
+        }
+
+        .header-title {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .project-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .project-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border: 1px solid var(--border);
+            text-decoration: none;
+            color: #fff;
+            transition: 0.3s all ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: var(--primary);
+            transform: translateX(10px);
+            box-shadow: -5px 0 0 var(--primary);
+        }
+
+        .project-info h3 {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+
+        .project-info p {
+            font-size: 0.7rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .status-badge {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 0.6rem;
+            padding: 5px 10px;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            font-family: 'Syncopate', sans-serif;
+            font-size: 0.6rem;
+            color: #444;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            color: var(--primary);
+        }
+
+        /* Deko-Element */
+        .scanline {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: rgba(0, 212, 255, 0.1);
+            animation: scan 4s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="lab-container">
+        <div class="scanline"></div>
+        
+        <div class="header-title">
+            <span>Frontends</span>
+            <span style="font-size: 0.6rem; color: #444;">V.1.0</span>
+        </div>
+
+        <div class="project-grid">
+            <a href="finanzen.html" class="project-card">
+                <div class="project-info">
+                    <h3>[01] FINANCIAL_CORE</h3>
+                    <p>Budget-Monitoring & Stability Control</p>
+                </div>
+                <div class="status-badge">ACTIVE</div>
+            </a>
+
+            <a href="logistik.html" class="project-card" style="opacity: 0.3; cursor: not-allowed;">
+                <div class="project-info">
+                    <h3>[02] STORAGE_MANAGER</h3>
+                    <p>Inventory System - Coming Soon</p>
+                </div>
+                <div class="status-badge" style="border-color: #444; color: #444;">ACTIVE</div>
+            </a>
+        </div>
+
+        <a href="../index.html" class="back-link"><- RETURN_TO_BASE</a>
+    </div>
+
+</body>
+</html>
+
