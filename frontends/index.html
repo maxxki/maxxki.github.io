@@ -33,7 +33,6 @@
             overflow-x: hidden;
         }
 
-        /* Brand Banner */
         .brand-banner {
             width: 100%;
             height: 140px;
@@ -45,7 +44,6 @@
             z-index: 100;
         }
 
-        /* Background Grid */
         body::before {
             content: '';
             position: fixed;
@@ -61,7 +59,6 @@
             pointer-events: none;
         }
 
-        /* Glow Overlay */
         body::after {
             content: '';
             position: fixed;
@@ -80,7 +77,6 @@
             padding: 40px 20px 80px;
         }
 
-        /* Header Section */
         .page-header {
             text-align: center;
             padding: 60px 20px;
@@ -115,7 +111,6 @@
             opacity: 0.9;
         }
 
-        /* Info Banner */
         .info-banner {
             background: rgba(184, 146, 78, 0.1);
             border: 2px solid var(--gold);
@@ -139,7 +134,6 @@
             color: var(--text);
         }
 
-        /* Tech Stack Section */
         .tech-stack-section {
             margin-bottom: 80px;
         }
@@ -253,7 +247,6 @@
             opacity: 1;
         }
 
-        /* Example Projects Section */
         .projects-section {
             margin-bottom: 80px;
         }
@@ -360,7 +353,6 @@
             display: inline-block;
         }
 
-        /* Capabilities Highlight */
         .capabilities-box {
             background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(184, 146, 78, 0.05));
             border: 2px solid var(--border);
@@ -431,7 +423,6 @@
             color: var(--text-dim);
         }
 
-        /* Footer Navigation */
         .footer-nav {
             border-top: 2px solid var(--border);
             padding-top: 40px;
@@ -471,7 +462,7 @@
             color: var(--text-dim);
             text-align: right;
         }
-        /* Responsive */
+
         @media (max-width: 1024px) {
             .project-card {
                 grid-template-columns: 1fr;
@@ -555,7 +546,6 @@
             }
         }
 
-        /* Accessibility */
         @media (prefers-reduced-motion: reduce) {
             * {
                 animation-duration: 0.01ms !important;
@@ -570,7 +560,6 @@
             outline-offset: 5px;
         }
 
-        /* Loading Animation */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -611,7 +600,6 @@
             </p>
         </div>
 
-        <!-- Tech Stack Section -->
         <section class="tech-stack-section">
             <h2 class="section-title">TECHNOLOGIE-STACK</h2>
 
@@ -684,7 +672,6 @@
             </div>
         </section>
 
-        <!-- Capabilities Highlight -->
         <div class="capabilities-box">
             <h2>Java</h2>
             <div class="capabilities-grid">
@@ -707,7 +694,6 @@
             </div>
         </div>
 
-        <!-- Example Projects Section -->
         <section class="projects-section">
             <h2 class="section-title">PROJEKTENTWICKLUNG</h2>
 
@@ -789,7 +775,6 @@
             </div>
         </section>
 
-        <!-- Footer Navigation -->
         <nav class="footer-nav">
             <a href="../index.html" class="back-link" aria-label="Zurück zur Hauptseite">
                 ← ZURÜCK ZUR HAUPTSEITE
@@ -802,17 +787,14 @@
     </div>
 
     <script>
-        // Set current date
         document.getElementById('update-date').textContent = new Date().toLocaleDateString('de-DE');
 
-        // Keyboard Navigation
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 window.location.href = '../index.html';
             }
         });
 
-        // Smooth scroll for internal links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
