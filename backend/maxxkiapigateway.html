@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAXXKI | Microservice API-Gateway</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;600;800&display=swap');
+
+        :root {
+            --primary: #00d4ff;
+            --secondary: #0a0e27;
+            --success: #06d6a0;
+            --danger: #ee4266;
+            --warning: #ffd23f;
+            --bg-dark: #05070a;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --text-light: #f1f5f9;
+            --text-dim: #94a3b8;
+            --border: rgba(0, 212, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, #05070a 0%, #0a0e27 100%);
+            color: var(--text-light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .project-header {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(10, 14, 39, 0.9));
+            padding: 60px 40px;
+            border-bottom: 2px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .project-title h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, var(--primary), #b8924e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .project-subtitle {
+            font-size: clamp(1rem, 1.8vw, 1.2rem);
+            color: var(--text-dim);
+            line-height: 1.6;
+            max-width: 800px;
+        }
+
+        .project-meta-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(6, 214, 160, 0.15);
+            border: 1px solid var(--success);
+            border-radius: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            color: var(--success);
+        }
+
+        .metrics-display {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(20px);
+        }
+
+        .metric-item {
+            margin-bottom: 25px;
+        }
+
+        .metric-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .metric-value {
+            font-size: clamp(2.5rem, 4vw, 3rem);
+            font-weight: 800;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 8px;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* Architecture Overview */
+        .architecture-section {
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 30px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .architecture-diagram {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .diagram-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-node {
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-node:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .service-node::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+        }
+
+        .node-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .node-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), #0a0e27);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .node-title h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .node-title .tech-badge {
+            font-size: 0.75rem;
+            padding: 3px 10px;
+            background: rgba(184, 146, 78, 0.2);
+            border: 1px solid #b8924e;
+            border-radius: 12px;
+            color: #b8924e;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .node-features {
+            list-style: none;
+        }
+
+        .node-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .node-features li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        /* Security Features */
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .security-card {
+            background: rgba(238, 66, 102, 0.05);
+            border: 1px solid rgba(238, 66, 102, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .security-card:hover {
+            background: rgba(238, 66, 102, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .security-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--danger);
+        }
+
+        .security-card h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+
+        .security-card p {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+
+        /* Code Snippet */
+        .code-section {
+            background: #1a1b26;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 40px 0;
+            border: 2px solid var(--border);
+        }
+
+        .code-header {
+            background: #16161e;
+            padding: 15px 25px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .code-title {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        .code-copy {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .code-copy:hover {
+            background: var(--primary);
+            color: var(--secondary);
+        }
+
+        pre {
+            padding: 30px;
+            margin: 0;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .code-comment { color: #6c7086; }
+        .code-keyword { color: #c792ea; }
+        .code-string { color: #c3e88d; }
+        .code-function { color: #82aaff; }
+        .code-number { color: #f78c6c; }
+
+        /* Implementation Timeline */
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 60px auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            margin-bottom: 50px;
+            position: relative;
+            width: 50%;
+            padding-right: 40px;
+        }
+
+        .timeline-item:nth-child(even) {
+            margin-left: 50%;
+            padding-right: 0;
+            padding-left: 40px;
+        }
+
+        .timeline-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 25px;
+            position: relative;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            right: -10px;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            transform: rotate(45deg);
+            border-radius: 3px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            right: auto;
+            left: -10px;
+        }
+
+        .timeline-date {
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 15px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .timeline-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+
+        .timeline-content p {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+
+        /* Back Button */
+        .back-section {
+            text-align: center;
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 2px solid var(--border);
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 40px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            color: var(--primary);
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background: var(--primary);
+            color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .header-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 60px;
+                padding-right: 0;
+            }
+            
+            .timeline-item:nth-child(even) {
+                margin-left: 0;
+                padding-left: 60px;
+            }
+            
+            .timeline-content::before {
+                left: -10px;
+                right: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .project-header {
+                padding: 40px 20px;
+            }
+            
+            .diagram-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .security-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header mit Metrics -->
+    <header class="project-header">
+        <div class="header-grid">
+            <div class="project-title">
+                <h1>MICROSERVICE API-GATEWAY</h1>
+                <p class="project-subtitle">
+                    Spring Cloud Gateway-Implementierung mit JWT-Authentifizierung, Rate-Limiting und Circuit-Breaker. 
+                    Konsolidierung von 8 Legacy-REST-APIs zu einer einheitlichen Schnittstelle mit 99.9% Verfügbarkeit.
+                </p>
+                <span class="project-meta-badge">PRODUCTION • 50K REQUESTS/DAY</span>
+            </div>
+            
+            <div class="metrics-display">
+                <div class="metric-item">
+                    <div class="metric-value">99.9%</div>
+                    <div class="metric-label">API Verfügbarkeit</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value">60%</div>
+                    <div class="metric-label">Latenz-Reduktion</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value">8→1</div>
+                    <div class="metric-label">API-Endpoints konsolidiert</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Architecture Overview -->
+        <section class="architecture-section">
+            <h2 class="section-title">ARCHITEKTUR-ÜBERSICHT</h2>
+            
+            <div class="architecture-diagram">
+                <div class="diagram-grid">
+                    <!-- API Gateway -->
+                    <div class="service-node">
+                        <div class="node-header">
+                            <div class="node-icon">🚪</div>
+                            <div class="node-title">
+                                <h3>API Gateway</h3>
+                                <span class="tech-badge">Spring Cloud Gateway</span>
+                            </div>
+                        </div>
+                        <ul class="node-features">
+                            <li>JWT Token Validation</li>
+                            <li>Rate Limiting (Redis)</li>
+                            <li>Request/Response Logging</li>
+                            <li>CORS Configuration</li>
+                            <li>Load Balancing</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Auth Service -->
+                    <div class="service-node">
+                        <div class="node-header">
+                            <div class="node-icon">🔐</div>
+                            <div class="node-title">
+                                <h3>Auth Service</h3>
+                                <span class="tech-badge">Spring Security + JWT</span>
+                            </div>
+                        </div>
+                        <ul class="node-features">
+                            <li>OAuth2 / OpenID Connect</li>
+                            <li>Role-Based Access Control</li>
+                            <li>Token Refresh Mechanism</li>
+                            <li>Multi-Tenant Support</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Service Registry -->
+                    <div class="service-node">
+                        <div class="node-header">
+                            <div class="node-icon">📡</div>
+                            <div class="node-title">
+                                <h3>Service Registry</h3>
+                                <span class="tech-badge">Eureka Server</span>
+                            </div>
+                        </div>
+                        <ul class="node-features">
+                            <li>Service Discovery</li>
+                            <li>Health Checks</li>
+                            <li>Dynamic Routing</li>
+                            <li>Failover Management</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Security Features -->
+        <section class="architecture-section">
+            <h2 class="section-title">SICHERHEITSFEATURES</h2>
+            
+            <div class="security-grid">
+                <div class="security-card">
+                    <div class="security-icon">🛡️</div>
+                    <h4>JWT VALIDATION</h4>
+                    <p>Asymmetrische Signatur-Prüfung mit RS256, Token Revocation List, automatische Token-Refresh.</p>
+                </div>
+                
+                <div class="security-card">
+                    <div class="security-icon">⚡</div>
+                    <h4>RATE LIMITING</h4>
+                    <p>Token-Bucket Algorithmus mit Redis-Backend. 1000 Requests/Minute pro Client, dynamische Anpassung.</p>
+                </div>
+                
+                <div class="security-card">
+                    <div class="security-icon">🔁</div>
+                    <h4>CIRCUIT BREAKER</h4>
+                    <p>Resilience4j-Implementierung mit Fallback-Logik. Automatische Reaktivierung nach Timeout.</p>
+                </div>
+                
+                <div class="security-card">
+                    <div class="security-icon">📊</div>
+                    <h4>AUDIT LOGGING</h4>
+                    <p>Vollständige Request/Response-Logs mit GDPR-Compliance. Elasticsearch-Integration für Monitoring.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Code Snippet -->
+        <section class="architecture-section">
+            <h2 class="section-title">IMPLEMENTIERUNG</h2>
+            
+            <div class="code-section">
+                <div class="code-header">
+                    <div class="code-title">GatewaySecurityConfig.java</div>
+                    <button class="code-copy" onclick="copyCode()">Copy Code</button>
+                </div>
+                <pre><code><span class="code-comment">// Spring Cloud Gateway Security Configuration</span>
+<span class="code-keyword">@Configuration</span>
+<span class="code-keyword">@EnableWebFluxSecurity</span>
+<span class="code-keyword">public class</span> <span class="code-function">GatewaySecurityConfig</span> {
+
+    <span class="code-keyword">@Bean</span>
+    <span class="code-keyword">public</span> SecurityWebFilterChain <span class="code-function">springSecurityFilterChain</span>(
+        ServerHttpSecurity http, JwtAuthenticationManager jwtManager) {
+        
+        <span class="code-keyword">return</span> http
+            .csrf().disable()
+            .authorizeExchange()
+                .pathMatchers(<span class="code-string">"/auth/**"</span>).permitAll()
+                .pathMatchers(<span class="code-string">"/api/public/**"</span>).permitAll()
+                .pathMatchers(<span class="code-string">"/api/admin/**"</span>).hasRole(<span class="code-string">"ADMIN"</span>)
+                .anyExchange().authenticated()
+            .and()
+            .oauth2ResourceServer()
+                .jwt()
+                .authenticationManager(jwtManager)
+            .and()
+            .build();
+    }
+
+    <span class="code-keyword">@Bean</span>
+    <span class="code-keyword">public</span> RateLimiter&lt;String&gt; <span class="code-function">rateLimiter</span>(RedisTemplate&lt;String, String&gt; template) {
+        <span class="code-keyword">return</span> <span class="code-keyword">new</span> RedisRateLimiter(
+            <span class="code-number">1000</span>,  <span class="code-comment">// requests</span>
+            <span class="code-number">60</span>,     <span class="code-comment">// per minute</span>
+            template
+        );
+    }
+
+    <span class="code-keyword">@Bean</span>
+    <span class="code-keyword">public</span> CircuitBreaker <span class="code-function">circuitBreaker</span>() {
+        <span class="code-keyword">return</span> CircuitBreaker.ofDefaults(<span class="code-string">"backendService"</span>);
+    }
+}</code></pre>
+            </div>
+        </section>
+
+        <!-- Implementation Timeline -->
+        <section class="architecture-section">
+            <h2 class="section-title">IMPLEMENTIERUNGSPHASEN</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">PHASE 1 • 2 WEEKS</span>
+                        <h4>ANALYSE & ARCHITEKTUR</h4>
+                        <p>Reverse Engineering der 8 Legacy-APIs, Definition der einheitlichen Schnittstellen, 
+                           Erstellung der Microservice-Boundaries, Entscheidung für Spring Cloud Stack.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">PHASE 2 • 3 WEEKS</span>
+                        <h4>CORE IMPLEMENTATION</h4>
+                        <p>Setup von Spring Cloud Gateway, Eureka Service Registry, JWT-Authentifizierung mit Spring Security, 
+                           Docker-Containerisierung aller Services.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">PHASE 3 • 2 WEEKS</span>
+                        <h4>RESILIENZ & SICHERHEIT</h4>
+                        <p>Implementierung von Circuit Breaker (Resilience4j), Rate Limiting (Redis), 
+                           Audit-Logging, Security Headers (CSP, HSTS), Penetration Testing.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">PHASE 4 • 1 WEEK</span>
+                        <h4>DEPLOYMENT & MONITORING</h4>
+                        <p>CI/CD Pipeline mit GitHub Actions, Kubernetes Deployment, 
+                           Monitoring mit Prometheus/Grafana, Performance-Testing mit 10.000 concurrent users.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Back Button -->
+        <div class="back-section">
+            <a href="../portfolio.html" class="btn-back">
+                ← ZURÜCK ZUM PORTFOLIO
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Copy Code Function
+        function copyCode() {
+            const code = document.querySelector('pre').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                const btn = document.querySelector('.code-copy');
+                btn.textContent = '✓ Copied!';
+                setTimeout(() => btn.textContent = 'Copy Code', 2000);
+            });
+        }
+
+        // Animate Metrics
+        document.addEventListener('DOMContentLoaded', () => {
+            const metrics = document.querySelectorAll('.metric-value');
+            metrics.forEach(metric => {
+                const finalValue = metric.textContent;
+                metric.textContent = '0';
+                
+                let current = 0;
+                const target = parseFloat(finalValue);
+                const increment = target / 50;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        metric.textContent = finalValue;
+                        clearInterval(timer);
+                    } else {
+                        metric.textContent = Math.round(current) + (finalValue.includes('%') ? '%' : '');
+                    }
+                }, 30);
+            });
+        });
+    </script>
+</body>
+</html>
