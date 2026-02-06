@@ -45,18 +45,16 @@
         }
 
         /* Banner */
-.brand-banner {
-    width: 100%;
-    height: 140px;
-    /* Fix: URL korrekt geschlossen und in einer Zeile */
-    background: var(--banner-white) url('https://github.com/user-attachments/assets/0d1cb683-6c2f-4174-a25f-63631c7b784e') no-repeat center center;
-    background-size: cover;
-    border-bottom: 2px solid var(--primary);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-    position: relative;
-    z-index: 100;
-}
-
+        .brand-banner {
+            width: 100%;
+            height: 140px;
+            background: var(--banner-white) url('https://github.com/user-attachments/assets/0d1cb683-6c2f-4174-a25f-63631c7b784e') no-repeat center center;
+            background-size: cover;
+            border-bottom: 2px solid var(--primary);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            position: relative;
+            z-index: 100;
+        }
 
         /* Background */
         .poster-bg { 
@@ -190,6 +188,30 @@
             opacity: 0.8;
         }
 
+        /* CV Download Box - styled like showcase */
+        .cv-download-box {
+            margin: 15px 0 30px 0;
+            padding: 20px;
+            background: rgba(0, 212, 255, 0.08);
+            border: 2px dashed var(--primary);
+            border-radius: 15px;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.4s;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+        }
+
+        .cv-download-box:hover { 
+            border-style: solid; 
+            background: rgba(0, 212, 255, 0.15); 
+            transform: scale(1.02); 
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.2);
+        }
+
         /* Hero Image */
         .hero-image-wrap { 
             position: relative; 
@@ -261,6 +283,170 @@
             background: var(--primary); 
             color: #000; 
             transform: scale(1.05);
+        }
+
+        /* Modal/Popup Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.4);
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+            font-family: 'Syncopate';
+        }
+
+        .modal-close:hover {
+            transform: rotate(90deg);
+        }
+
+        .modal-content h2 {
+            font-family: 'Syncopate';
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .modal-content .modal-subtitle {
+            font-size: clamp(0.85rem, 1.3vw, 1rem);
+            opacity: 0.8;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-family: 'Syncopate';
+            font-size: clamp(0.75rem, 1.2vw, 0.9rem);
+            color: var(--primary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text);
+            font-size: clamp(0.9rem, 1.3vw, 1rem);
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+        }
+
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        body.light-mode .form-group input::placeholder {
+            color: rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-btn {
+            width: 100%;
+            padding: 18px;
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            font-family: 'Syncopate';
+            font-weight: 700;
+            font-size: clamp(0.9rem, 1.3vw, 1rem);
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .modal-btn:hover {
+            background: var(--primary);
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .modal-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .success-message.active {
+            display: block;
+        }
+
+        .success-message h3 {
+            font-family: 'Syncopate';
+            font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .success-message p {
+            font-size: clamp(0.9rem, 1.3vw, 1rem);
+            line-height: 1.8;
+            opacity: 0.9;
         }
 
         /* MAXXKI Section */
@@ -438,7 +624,8 @@
                 margin-bottom: 20px;
             }
 
-            .showcase-link-box {
+            .showcase-link-box,
+            .cv-download-box {
                 flex-direction: column;
                 text-align: center;
                 gap: 10px;
@@ -482,6 +669,10 @@
 
             .brand-banner {
                 height: 80px;
+            }
+
+            .modal-content {
+                padding: 30px 20px;
             }
         }
 
@@ -546,6 +737,54 @@
     <div class="glow-overlay" aria-hidden="true"></div>
     <button class="mode-switch" id="theme-btn" aria-label="Theme wechseln">🌙 DARK MODE</button>
 
+    <!-- CV Download Modal -->
+    <div class="modal-overlay" id="cvModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal" aria-label="Schließen">&times;</button>
+            
+            <div id="formSection">
+                <h2>Lebenslauf Anforderung</h2>
+                <p class="modal-subtitle">
+                    Bitte hinterlassen Sie Ihre Kontaktdaten, damit ich weiß, wer sich für meinen Lebenslauf interessiert. 
+                    Sie erhalten dann direkten Zugriff zum Download.
+                </p>
+
+                <form id="cvForm">
+                    <div class="form-group">
+                        <label for="recruiterName">Name *</label>
+                        <input type="text" id="recruiterName" required placeholder="Ihr vollständiger Name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="recruiterCompany">Firma *</label>
+                        <input type="text" id="recruiterCompany" required placeholder="Firmenname">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="recruiterEmail">E-Mail *</label>
+                        <input type="email" id="recruiterEmail" required placeholder="ihre.email@firma.de">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="recruiterPhone">Telefon *</label>
+                        <input type="tel" id="recruiterPhone" required placeholder="+49 123 456789">
+                    </div>
+
+                    <button type="submit" class="modal-btn">Lebenslauf anfordern</button>
+                </form>
+            </div>
+
+            <div id="successSection" class="success-message">
+                <h3>✓ Vielen Dank!</h3>
+                <p>
+                    Ihre Anfrage wurde registriert.<br>
+                    Der Download Ihres Lebenslaufs startet in Kürze...<br><br>
+                    Ich werde mich zeitnah bei Ihnen melden!
+                </p>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <header>
             <div class="logo-box">
@@ -573,6 +812,13 @@
                             <p>Klicke hier, um Projekte als Überblick zu sehen.</p>
                         </div>
                     </a>
+
+                    <button class="cv-download-box" id="cvDownloadBtn" aria-label="Lebenslauf für Recruiter">
+                        <div class="showcase-text">
+                            <h2>Lebenslauf für Recruiter</h2>
+                            <p>Klicke hier zum Download des Lebenslaufs</p>
+                        </div>
+                    </button>
 
                     <a href="mailto:plantmax87@gmail.com" class="btn-massive" aria-label="Kontakt per E-Mail">CONTACT</a>
                 </div>
@@ -620,27 +866,160 @@
         </footer>
     </div>
 
-    <script>
-        // Theme Toggle
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        // ========================================
+        // EMAILJS KONFIGURATION
+        // ========================================
+        // TODO: Ersetze die folgenden Werte mit deinen echten EmailJS-Credentials
+        (function() {
+            emailjs.init("DEIN_PUBLIC_KEY_HIER"); // z.B. "abc123XYZ_defg456"
+        })();
+
+        // ========================================
+        // THEME TOGGLE
+        // ========================================
         const btn = document.getElementById('theme-btn');
-        
-        // Check for saved theme preference
         const currentTheme = localStorage.getItem('theme');
         if (currentTheme === 'light') {
             document.body.classList.add('light-mode');
             btn.textContent = '☀️ LIGHT MODE';
         }
-        
+
         btn.addEventListener('click', () => {
             document.body.classList.toggle('light-mode');
             const isLight = document.body.classList.contains('light-mode');
             btn.textContent = isLight ? '☀️ LIGHT MODE' : '🌙 DARK MODE';
-            
-            // Save theme preference
             localStorage.setItem('theme', isLight ? 'light' : 'dark');
         });
 
-        // Smooth scroll for internal links
+        // ========================================
+        // CV DOWNLOAD MODAL LOGIC
+        // ========================================
+        const cvModal = document.getElementById('cvModal');
+        const cvDownloadBtn = document.getElementById('cvDownloadBtn');
+        const closeModal = document.getElementById('closeModal');
+        const cvForm = document.getElementById('cvForm');
+        const formSection = document.getElementById('formSection');
+        const successSection = document.getElementById('successSection');
+
+        // Open Modal
+        cvDownloadBtn.addEventListener('click', () => {
+            cvModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Close Modal
+        closeModal.addEventListener('click', () => {
+            cvModal.classList.remove('active');
+            document.body.style.overflow = '';
+            resetModal();
+        });
+
+        // Close on outside click
+        cvModal.addEventListener('click', (e) => {
+            if (e.target === cvModal) {
+                cvModal.classList.remove('active');
+                document.body.style.overflow = '';
+                resetModal();
+            }
+        });
+
+        // Close on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && cvModal.classList.contains('active')) {
+                cvModal.classList.remove('active');
+                document.body.style.overflow = '';
+                resetModal();
+            }
+        });
+
+        // ========================================
+        // FORM SUBMISSION MIT EMAILJS
+        // ========================================
+        cvForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const submitBtn = cvForm.querySelector('.modal-btn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sende Anfrage...';
+
+            const formData = {
+                name: document.getElementById('recruiterName').value,
+                company: document.getElementById('recruiterCompany').value,
+                email: document.getElementById('recruiterEmail').value,
+                phone: document.getElementById('recruiterPhone').value,
+                timestamp: new Date().toLocaleString('de-DE', {
+                    dateStyle: 'full',
+                    timeStyle: 'short'
+                })
+            };
+
+            // Console-Log für Debugging
+            console.log('CV Request:', formData);
+
+            try {
+                // TODO: Ersetze mit deinen echten EmailJS Service- und Template-IDs
+                await emailjs.send(
+                    'DEINE_SERVICE_ID_HIER',      // z.B. "service_abc123"
+                    'DEINE_TEMPLATE_ID_HIER',     // z.B. "template_xyz789"
+                    formData
+                );
+                
+                console.log('✅ E-Mail erfolgreich gesendet!');
+                
+                // Success-Screen zeigen
+                formSection.style.display = 'none';
+                successSection.classList.add('active');
+
+                // CV-Download nach 2 Sekunden
+                setTimeout(() => {
+                    triggerDownload();
+                }, 2000);
+
+                // Modal nach 4 Sekunden schließen
+                setTimeout(() => {
+                    cvModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                    resetModal();
+                }, 4000);
+
+            } catch (error) {
+                console.error('❌ E-Mail-Fehler:', error);
+                alert('Es gab ein Problem beim Senden der Anfrage. Bitte versuchen Sie es erneut.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Lebenslauf anfordern';
+            }
+        });
+
+        // ========================================
+        // CV DOWNLOAD TRIGGER
+        // ========================================
+        function triggerDownload() {
+            // TODO: Ersetze diesen Pfad mit dem echten Pfad zu deinem CV PDF
+            const cvPath = './assets/Maximilian_Kiefer_CV.pdf';
+            
+            const link = document.createElement('a');
+            link.href = cvPath;
+            link.download = 'Maximilian_Kiefer_Lebenslauf.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // ========================================
+        // MODAL RESET
+        // ========================================
+        function resetModal() {
+            formSection.style.display = 'block';
+            successSection.classList.remove('active');
+            cvForm.reset();
+        }
+
+        // ========================================
+        // SMOOTH SCROLL FOR INTERNAL LINKS
+        // ========================================
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
