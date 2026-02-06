@@ -18,6 +18,16 @@
             --banner-white: #fdfbf7;
         }
 
+        /* Light Mode Variables */
+        body.light-mode {
+            --bg: #f0f4f8;
+            --panel: rgba(0, 0, 0, 0.03);
+            --border: rgba(0, 212, 255, 0.4);
+            --text: #1a202c;
+            --text-dim: #4a5568;
+            --primary: #0099cc;
+        }
+
         * { 
             margin: 0; 
             padding: 0; 
@@ -25,12 +35,18 @@
         }
 
         body { 
-            background: linear-gradient(135deg, #05070a 0%, #0a0e27 100%);
+            background: linear-gradient(135deg, var(--bg) 0%, var(--bg) 100%);
             color: var(--text); 
             font-family: 'Inter', sans-serif;
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
+            transition: background 0.4s ease, color 0.4s ease;
+        }
+
+        /* Light Mode Background */
+        body.light-mode {
+            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
         }
 
         .brand-banner {
@@ -69,6 +85,10 @@
             background: radial-gradient(circle at 80% 20%, rgba(0, 212, 255, 0.15), transparent 40%);
             z-index: -1;
             pointer-events: none;
+        }
+
+        body.light-mode::after {
+            background: radial-gradient(circle at 80% 20%, rgba(0, 153, 204, 0.1), transparent 40%);
         }
 
         .container {
@@ -660,141 +680,110 @@
                 </div>
 
                 <div class="tech-category">
-                    <h3><span class="tech-icon">⚙️</span>DevOps & Tools</h3>
+                    <h3><span class="tech-icon">🛠️</span>DevOps & Tools</h3>
                     <ul class="tech-list">
                         <li class="tech-item">Git / GitHub</li>
                         <li class="tech-item">Docker</li>
-                        <li class="tech-item">Bash Scripting</li>
                         <li class="tech-item">CI/CD Pipelines</li>
-                        <li class="tech-item">Linux Administration</li>
+                        <li class="tech-item">Linux / Bash</li>
+                        <li class="tech-item">IntelliJ IDEA</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <div class="capabilities-box">
-            <h2>Java</h2>
-            <div class="capabilities-grid">
-                <div class="capability-item">
-                    <h4>CODE ANALYSIS</h4>
-                    <p>AST-basierte Analyse, Tarjan's SCC Algorithm, Dependency Graphen, Circular Dependency Detection</p>
-                </div>
-                <div class="capability-item">
-                    <h4>REFACTORING</h4>
-                    <p>JAVA Code Modernisierung, Safe Transformations, Robert Martin Metrics, Clean Architecture</p>
-                </div>
-                <div class="capability-item">
-                    <h4>AUTOMATION</h4>
-                    <p>Build Pipelines, Code Generation, File Processing, Report Generation, Protocol Systems</p>
-                </div>
-                <div class="capability-item">
-                    <h4>ARCHITECTURE</h4>
-                    <p>Microservices, Domain-Driven Design, Package Structure, Dependency Management, SOLID Principles</p>
-                </div>
-            </div>
-        </div>
-
         <section class="projects-section">
-            <h2 class="section-title">PROJEKTENTWICKLUNG</h2>
+            <h2 class="section-title">LIVE PROJEKTE</h2>
 
             <div class="project-grid">
-                <a href="maxxkimedic.html" class="project-card" aria-label="Medical Operations Dashboard">
+                <a href="./rotating-cube-space/" class="project-card">
                     <div class="project-number">01</div>
                     <div class="project-info">
-                        <h3>MEDICAL CENTER</h3>
-                        <p>Echtzeit-Dashboard für Krankenhaus-Operationen mit Patienten-Monitoring, Betten-Management und Notfall-Tracking.</p>
+                        <h3>3D Rotating Cube in Space</h3>
+                        <p>Interaktive 3D-Visualisierung mit Three.js – zeigt technisches Verständnis von WebGL und räumlicher Programmierung.</p>
                         <div class="project-meta">
-                            <span class="meta-tag">Healthcare</span>
-                            <span class="meta-tag">Real-time</span>
-                            <span class="meta-tag">Dashboard</span>
-                            <span class="meta-tag">HTML/CSS/JS</span>
+                            <span class="meta-tag">Three.js</span>
+                            <span class="meta-tag">WebGL</span>
+                            <span class="meta-tag">JavaScript</span>
                         </div>
-                        <div class="status-badge">● LIVE DEMO</div>
+                        <span class="status-badge">🟢 LIVE DEMO</span>
                     </div>
                 </a>
 
-                <a href="maxxkifinance.html" class="project-card" aria-label="Finance Tracker Pro">
+                <a href="./matrix-rain/" class="project-card">
                     <div class="project-number">02</div>
                     <div class="project-info">
-                        <h3>FINANCE TRACKER PRO</h3>
-                        <p>Persönliches Budget-Management mit Kategorisierung, Charts, Export-Funktionen und detaillierten Analysen.</p>
+                        <h3>Matrix Rain Effect</h3>
+                        <p>Klassischer Matrix-Code-Regen-Effekt als Canvas-Animation – Symbol für meine Leidenschaft für Code-Ästhetik.</p>
                         <div class="project-meta">
-                            <span class="meta-tag">Finance</span>
-                            <span class="meta-tag">Analytics</span>
-                            <span class="meta-tag">Charts</span>
-                            <span class="meta-tag">HTML/CSS/JS</span>
+                            <span class="meta-tag">Canvas API</span>
+                            <span class="meta-tag">Animation</span>
+                            <span class="meta-tag">JavaScript</span>
                         </div>
-                        <div class="status-badge">● LIVE DEMO</div>
-                    </div>
-                </a>
-
-                <a href="maxxkilogistics.html" class="project-card" aria-label="Logistics Control Center">
-                    <div class="project-number">03</div>
-                    <div class="project-info">
-                        <h3>LOGISTICS CONTROL</h3>
-                        <p>Supply Chain Management System mit Lagerbestand-Tracking, Bestellverwaltung und Lieferanten-Dashboard.</p>
-                        <div class="project-meta">
-                            <span class="meta-tag">Logistics</span>
-                            <span class="meta-tag">Inventory</span>
-                            <span class="meta-tag">Tracking</span>
-                            <span class="meta-tag">HTML/CSS/JS</span>
-                        </div>
-                        <div class="status-badge">● LIVE DEMO</div>
-                    </div>
-                </a>
-
-                <a href="maxxkichatbot.html" class="project-card" aria-label="MAXXKI AI Chatbot">
-                    <div class="project-number">04</div>
-                    <div class="project-info">
-                        <h3>MAXXKI CHATBOT</h3>
-                        <p>KI-gestützter Chatbot mit 3D-Interface, animiertem Logo und modernem Cyber-Design.</p>
-                        <div class="project-meta">
-                            <span class="meta-tag">AI Interface</span>
-                            <span class="meta-tag">3D Graphics</span>
-                            <span class="meta-tag">Three.js</span>
-                            <span class="meta-tag">HTML/CSS/JS</span>
-                        </div>
-                        <div class="status-badge">● LIVE DEMO</div>
-                    </div>
-                </a>
-
-                <a href="../backend/maxxkiapigateway.html" class="project-card" aria-label="MAXXKI API Gateway">
-                    <div class="project-number">05</div>
-                    <div class="project-info">
-                        <h3>API GATEWAY</h3>
-                        <p>Enterprise API Gateway mit Authentifizierung, Rate Limiting, Service Discovery und Monitoring für Microservices-Architekturen.</p>
-                        <div class="project-meta">
-                            <span class="meta-tag">Backend</span>
-                            <span class="meta-tag">API Gateway</span>
-                            <span class="meta-tag">Microservices</span>
-                            <span class="meta-tag">Java/Spring</span>
-                        </div>
-                        <div class="status-badge">● LIVE DEMO</div>
+                        <span class="status-badge">🟢 LIVE DEMO</span>
                     </div>
                 </a>
             </div>
         </section>
 
+        <div class="capabilities-box">
+            <h2>WAS ICH MITBRINGE</h2>
+            <div class="capabilities-grid">
+                <div class="capability-item">
+                    <h4>🎯 Problemlösung</h4>
+                    <p>Analytisches Denken + KI-Unterstützung für komplexe technische Herausforderungen</p>
+                </div>
+                <div class="capability-item">
+                    <h4>⚡ Schnelle Iteration</h4>
+                    <p>Agile Entwicklung mit direktem Feedback und kontinuierlicher Verbesserung</p>
+                </div>
+                <div class="capability-item">
+                    <h4>📚 Dokumentation</h4>
+                    <p>Saubere, verständliche Code-Dokumentation und technische Spezifikationen</p>
+                </div>
+                <div class="capability-item">
+                    <h4>🧪 Testing</h4>
+                    <p>Umfassende Test-Coverage mit JUnit, Integration Tests und E2E-Tests</p>
+                </div>
+                <div class="capability-item">
+                    <h4>🤝 Kommunikation</h4>
+                    <p>Klare technische Kommunikation mit Stakeholdern aller Ebenen</p>
+                </div>
+                <div class="capability-item">
+                    <h4>🚀 Lernbereitschaft</h4>
+                    <p>Ständige Weiterbildung und Adaptation neuer Technologien</p>
+                </div>
+            </div>
+        </div>
+
         <nav class="footer-nav">
-            <a href="../index.html" class="back-link" aria-label="Zurück zur Hauptseite">
-                ← ZURÜCK ZUR HAUPTSEITE
+            <a href="../" class="back-link">
+                <span>←</span>
+                <span>ZURÜCK ZUR HAUPTSEITE</span>
             </a>
             <div class="footer-info">
-                Last Updated: <span id="update-date"></span><br>
-                MAXXKI | MI + KI
+                MAXXKI © 2026<br>
+                Maximilian Kiefer | AI Engineer
             </div>
         </nav>
     </div>
 
     <script>
-        document.getElementById('update-date').textContent = new Date().toLocaleDateString('de-DE');
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                window.location.href = '../index.html';
+        // ========================================
+        // AUTOMATISCHES LIGHT MODE LADEN
+        // ========================================
+        // Lädt Theme-Präferenz aus localStorage ohne Button
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-mode');
+                console.log('✓ Light Mode aus Main-Page übernommen');
             }
-        });
+        })();
 
+        // ========================================
+        // SMOOTH SCROLL FÜR INTERNE LINKS
+        // ========================================
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
