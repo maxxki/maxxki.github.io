@@ -778,8 +778,8 @@
                 <h3>✓ Vielen Dank!</h3>
                 <p>
                     Ihre Anfrage wurde registriert.<br>
-                    Der Download Ihres Lebenslaufs startet in Kürze...<br><br>
-                    Ich werde mich zeitnah bei Ihnen melden!
+                    Der Download des Lebenslaufs startet in Kürze...<br><br>
+                    
                 </p>
             </div>
         </div>
@@ -998,11 +998,11 @@
         // ========================================
         function triggerDownload() {
             // TODO: Ersetze diesen Pfad mit dem echten Pfad zu deinem CV PDF
-            const cvPath = './assets/Maximilian_Kiefer_CV.pdf';
+            const cvPath = './Maximilian_Kiefer_CV.pdf';
             
             const link = document.createElement('a');
             link.href = cvPath;
-            link.download = 'Maximilian_Kiefer_Lebenslauf.pdf';
+            link.download = 'Maximilian_Kiefer_CV.pdf';
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
