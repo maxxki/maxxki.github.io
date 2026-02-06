@@ -206,431 +206,7 @@
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
             transition: left 0.5s ease;
-        }
-
-        .tech-category:hover::before {
-            left: 100%;
-        }
-
-        .tech-category:hover {
-            border-color: var(--primary);
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.3);
-        }
-
-        .tech-category h3 {
-            font-family: 'Syncopate', sans-serif;
-            font-size: clamp(1rem, 2vw, 1.2rem);
-            color: var(--gold);
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .tech-icon {
-            font-size: 1.8rem;
-            filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.5));
-        }
-
-        .tech-list {
-            list-style: none;
-        }
-
-        .tech-item {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: clamp(0.85rem, 1.5vw, 0.95rem);
-            color: var(--text);
-            padding: 8px 0;
-            padding-left: 20px;
-            border-left: 2px solid transparent;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .tech-item::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .tech-item:hover {
-            border-left-color: var(--primary);
-            padding-left: 25px;
-        }
-
-        .tech-item:hover::before {
-            opacity: 1;
-        }
-
-        .projects-section {
-            margin-bottom: 80px;
-        }
-
-        .project-grid {
-            display: grid;
-            gap: 30px;
-        }
-
-        .project-card {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 30px;
-            padding: 35px;
-            border: 2px solid var(--border);
-            text-decoration: none;
-            color: var(--text);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            background: var(--panel);
-            backdrop-filter: blur(20px);
-            border-radius: 15px;
-            align-items: center;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            left: -100%;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .project-card:hover::before {
-            left: 100%;
-        }
-
-        .project-card:hover {
-            background: rgba(0, 212, 255, 0.08);
-            border-color: var(--primary);
-            transform: translateX(10px);
-            box-shadow: -8px 0 0 var(--primary), 0 10px 30px rgba(0, 212, 255, 0.3);
-        }
-
-        .project-number {
-            font-family: 'Syncopate', sans-serif;
-            font-size: clamp(3rem, 6vw, 5rem);
-            color: var(--primary);
-            opacity: 0.3;
-            font-weight: 700;
-            line-height: 1;
-            text-align: center;
-        }
-
-        .project-info h3 {
-            font-family: 'Syncopate', sans-serif;
-            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
-            margin-bottom: 12px;
-            color: var(--primary);
-            letter-spacing: 2px;
-        }
-
-        .project-info p {
-            font-size: clamp(0.9rem, 1.6vw, 1.05rem);
-            color: var(--text-dim);
-            letter-spacing: 1px;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .project-meta {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .meta-tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: clamp(0.7rem, 1.2vw, 0.8rem);
-            padding: 6px 12px;
-            background: rgba(184, 146, 78, 0.1);
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            border-radius: 5px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .status-badge {
-            font-family: 'Syncopate', sans-serif;
-            font-size: clamp(0.7rem, 1.3vw, 0.85rem);
-            padding: 10px 18px;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            background: rgba(0, 212, 255, 0.1);
-            border-radius: 8px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-top: 10px;
-            display: inline-block;
-        }
-
-        .capabilities-box {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(184, 146, 78, 0.05));
-            border: 2px solid var(--border);
-            border-radius: 20px;
-            padding: 50px;
-            margin: 60px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .capabilities-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--primary), var(--gold), transparent);
-            animation: slideGlow 3s linear infinite;
-        }
-
-        @keyframes slideGlow {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        .capabilities-box h2 {
-            font-family: 'Syncopate', sans-serif;
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            color: var(--primary);
-            margin-bottom: 30px;
-            letter-spacing: 3px;
-            text-align: center;
-        }
-
-        .capabilities-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .capability-item {
-            background: rgba(0, 212, 255, 0.05);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 25px;
-            transition: all 0.3s ease;
-        }
-
-        .capability-item:hover {
-            border-color: var(--primary);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.2);
-        }
-
-        .capability-item h4 {
-            font-family: 'Syncopate', sans-serif;
-            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
-            color: var(--gold);
-            margin-bottom: 12px;
-            letter-spacing: 2px;
-        }
-
-        .capability-item p {
-            font-size: clamp(0.85rem, 1.4vw, 0.95rem);
-            line-height: 1.6;
-            color: var(--text-dim);
-        }
-
-        .footer-nav {
-            border-top: 2px solid var(--border);
-            padding-top: 40px;
-            margin-top: 80px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            font-family: 'Syncopate', sans-serif;
-            font-size: clamp(0.8rem, 1.5vw, 0.95rem);
-            color: var(--text-dim);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            padding: 12px 24px;
-            border: 2px solid var(--border);
-            border-radius: 8px;
-            letter-spacing: 2px;
-        }
-
-        .back-link:hover {
-            color: var(--primary);
-            border-color: var(--primary);
-            background: rgba(0, 212, 255, 0.05);
-            transform: translateX(-5px);
-        }
-
-        .footer-info {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: clamp(0.75rem, 1.3vw, 0.9rem);
-            color: var(--text-dim);
-            text-align: right;
-        }
-
-        @media (max-width: 1024px) {
-            .project-card {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .project-number {
-                text-align: left;
-            }
-
-            .capabilities-box {
-                padding: 40px 30px;
-            }
-
-            .brand-banner {
-                height: 100px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 30px 20px 60px;
-            }
-
-            .page-header {
-                padding: 40px 20px;
-                margin-bottom: 40px;
-            }
-
-            .info-banner {
-                padding: 25px 20px;
-            }
-
-            .tech-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 20px;
-            }
-
-            .project-card {
-                padding: 25px;
-            }
-
-            .project-card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 -5px 0 var(--primary), 0 10px 30px rgba(0, 212, 255, 0.3);
-            }
-
-            .capabilities-box {
-                padding: 30px 20px;
-            }
-
-            .capabilities-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-nav {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .footer-info {
-                text-align: left;
-            }
-
-            .brand-banner {
-                height: 80px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .tech-category {
-                padding: 25px 20px;
-            }
-
-            .project-meta {
-                gap: 8px;
-            }
-
-            .meta-tag {
-                padding: 5px 10px;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        .project-card:focus,
-        .back-link:focus {
-            outline: 3px solid var(--primary);
-            outline-offset: 5px;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .page-header,
-        .info-banner,
-        .tech-category,
-        .project-card,
-        .capabilities-box {
-            animation: fadeIn 0.8s ease-out;
-        }
-    </style>
-</head>
-<body>
-    <div class="brand-banner" role="banner" aria-label="MAXXKI Brand Banner"></div>
-
-    <div class="container">
-        <header class="page-header">
-            <h1>AI Engineer Portfolio</h1>
-            <div class="tagline">Full-Stack Development | AI Integration | Code Modernization</div>
-            <p class="description">
-            </p>
-        </header>
-
-        <div class="info-banner">
-            <h2>MI + KI</h2>
-            <p>
-                Menschliche Intelligenz plus künstliche Intelligenz = Maxxki.<br>
-                Ich entwickle <strong>individuell angepasste Lösungen</strong> für komplexe Anforderungen – von Enterprise-Architekturen<br>
-                bis zu KI-gestützten Tools wie die Refactoring Workstation, die im 2./3. Quartal 2026 bei github releast wird.
-            </p>
-        </div>
-
-        <section class="tech-stack-section">
-            <h2 class="section-title">TECHNOLOGIE-STACK</h2>
-
-            <div class="tech-grid">
-                <div class="tech-category">
-                    <h3><span class="tech-icon">🤖</span>AI & LLM</h3>
-                    <ul class="tech-list">
-                        <li class="tech-item">Claude API Integration</li>
-                        <li class="tech-item">GPT-4 / GPT-o1</li>
-                        <li class="tech-item">Prompt Engineering</li>
-                        <li class="tech-item">RAG Systems</li>
+< truncated lines 209-633 >
                         <li class="tech-item">AI-Powered Tools</li>
                     </ul>
                 </div>
@@ -696,29 +272,71 @@
             <h2 class="section-title">LIVE PROJEKTE</h2>
 
             <div class="project-grid">
-                <a href="./rotating-cube-space/" class="project-card">
+                <a href="./maxxkimedic.html" class="project-card">
                     <div class="project-number">01</div>
                     <div class="project-info">
-                        <h3>3D Rotating Cube in Space</h3>
-                        <p>Interaktive 3D-Visualisierung mit Three.js – zeigt technisches Verständnis von WebGL und räumlicher Programmierung.</p>
+                        <h3>MAXXKI Medic</h3>
+                        <p>Medizinische Anwendung für Patienten-Management.</p>
                         <div class="project-meta">
-                            <span class="meta-tag">Three.js</span>
-                            <span class="meta-tag">WebGL</span>
-                            <span class="meta-tag">JavaScript</span>
+                            <span class="meta-tag">AI/ML</span>
+                            <span class="meta-tag">Healthcare</span>
+                            <span class="meta-tag">React</span>
                         </div>
                         <span class="status-badge">🟢 LIVE DEMO</span>
                     </div>
                 </a>
 
-                <a href="./matrix-rain/" class="project-card">
+                <a href="./maxxkilogistics.html" class="project-card">
                     <div class="project-number">02</div>
                     <div class="project-info">
-                        <h3>Matrix Rain Effect</h3>
-                        <p>Klassischer Matrix-Code-Regen-Effekt als Canvas-Animation – Symbol für meine Leidenschaft für Code-Ästhetik.</p>
+                        <h3>MAXXKI Logistics</h3>
+                        <p>Intelligentes Logistik-Management-System</p>
                         <div class="project-meta">
-                            <span class="meta-tag">Canvas API</span>
-                            <span class="meta-tag">Animation</span>
-                            <span class="meta-tag">JavaScript</span>
+                            <span class="meta-tag">Optimization</span>
+                            <span class="meta-tag">Real-time</span>
+                            <span class="meta-tag">Java</span>
+                        </div>
+                        <span class="status-badge">🟢 LIVE DEMO</span>
+                    </div>
+                </a>
+
+                <a href="./maxxkifinance.html" class="project-card">
+                    <div class="project-number">03</div>
+                    <div class="project-info">
+                        <h3>MAXXKI Finance</h3>
+                        <p>Finanzanalyse-Tool</p>
+                        <div class="project-meta">
+                            <span class="meta-tag">FinTech</span>
+                            <span class="meta-tag">Analytics</span>
+                            <span class="meta-tag">Python</span>
+                        </div>
+                        <span class="status-badge">🟢 LIVE DEMO</span>
+                    </div>
+                </a>
+
+                <a href="./maxxkichatbot.html" class="project-card">
+                    <div class="project-number">04</div>
+                    <div class="project-info">
+                        <h3>MAXXKI Chatbot</h3>
+                        <p>Intelligenter Konversations-Bot Interface.</p>
+                        <div class="project-meta">
+                            <span class="meta-tag">NLP</span>
+                            <span class="meta-tag">Claude API</span>
+                            <span class="meta-tag">React</span>
+                        </div>
+                        <span class="status-badge">🟢 LIVE DEMO</span>
+                    </div>
+                </a>
+
+                <a href="../backends/maxxkiapigateway.html" class="project-card">
+                    <div class="project-number">05</div>
+                    <div class="project-info">
+                        <h3>MAXXKI API Gateway</h3>
+                        <p>Zentrale API-Gateway-Architektur</p>
+                        <div class="project-meta">
+                            <span class="meta-tag">Backend</span>
+                            <span class="meta-tag">Spring Boot</span>
+                            <span class="meta-tag">Microservices</span>
                         </div>
                         <span class="status-badge">🟢 LIVE DEMO</span>
                     </div>
