@@ -462,8 +462,7 @@
 
         body.light-mode #maxxki { 
             background: linear-gradient(rgba(240, 244, 248, 0.9), rgba(240, 244, 248, 0.9)), 
-                        url('https://github.com/user-attachments/assets/0d1cb683-6c2f-4174-a25f-63631c7b784e') no-repeat center center; 
-            background-size: cover; 
+                        url('https://github.com/user-attachments/assets/0d1cb683-6c2f-4174-a25f-63631c7b784e') no-repeat center center;             background-size: cover; 
         }
 
         #maxxki h2 {
@@ -561,6 +560,21 @@
             background: var(--primary);
             color: var(--bg);
             transform: scale(1.05);
+        }
+
+        /* Botpress Chat Bubble Styling */
+        #bp-web-widget-container {
+            z-index: 9998 !important;
+        }
+
+        /* Stelle sicher, dass Chat-Bubble über Theme-Button liegt */
+        #bp-web-widget-container iframe {
+            z-index: 9998 !important;
+        }
+
+        /* Optional: Passe Chat-Bubble-Farben an dein Design an */
+        body.light-mode #bp-web-widget-container {
+            filter: brightness(1.1);
         }
 
         /* Responsive Optimierungen */
@@ -674,6 +688,11 @@
             .modal-content {
                 padding: 30px 20px;
             }
+
+            /* Chat-Bubble auf Mobile besser positionieren */
+            #bp-web-widget-container {
+                bottom: 80px !important;
+            }
         }
 
         @media (max-width: 480px) {
@@ -741,7 +760,7 @@
     <div class="modal-overlay" id="cvModal">
         <div class="modal-content">
             <button class="modal-close" id="closeModal" aria-label="Schließen">&times;</button>
-            
+
             <div id="formSection">
                 <h2>Lebenslauf Anforderung</h2>
                 <p class="modal-subtitle">
@@ -779,7 +798,7 @@
                 <p>
                     Ihre Anfrage wurde registriert.<br>
                     Der Download des Lebenslaufs startet in Kürze...<br><br>
-                    
+
                 </p>
             </div>
         </div>
@@ -966,9 +985,9 @@
                     'template_c4ole4d',     // z.B. "template_xyz789"
                     formData
                 );
-                
+
                 console.log('✅ E-Mail erfolgreich gesendet!');
-                
+
                 // Success-Screen zeigen
                 formSection.style.display = 'none';
                 successSection.classList.add('active');
@@ -999,7 +1018,7 @@
         function triggerDownload() {
             // TODO: Ersetze diesen Pfad mit dem echten Pfad zu deinem CV PDF
             const cvPath = './Maximilian_Kiefer_CV.pdf';
-            
+
             const link = document.createElement('a');
             link.href = cvPath;
             link.download = './Maximilian_Kiefer_CV.pdf';
@@ -1030,5 +1049,11 @@
             });
         });
     </script>
+
+    <!-- ========================================
+         BOTPRESS CHAT INTEGRATION
+         ======================================== -->
+    <script src="https://cdn.botpress.cloud/webchat/v3.5/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2026/02/08/00/20260208001842-ISHHUM0E.js" defer></script>
 </body>
 </html>
