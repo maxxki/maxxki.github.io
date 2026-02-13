@@ -302,6 +302,24 @@
             box-shadow: -8px 0 0 var(--primary), 0 10px 30px rgba(0, 212, 255, 0.3);
         }
 
+        /* Special Styling for the Workstation Card */
+        .featured-project {
+            border: 2px solid var(--gold) !important;
+            background: linear-gradient(135deg, rgba(184, 146, 78, 0.05), rgba(0, 212, 255, 0.05)) !important;
+            box-shadow: 0 0 20px rgba(184, 146, 78, 0.15);
+        }
+
+        .featured-project:hover {
+            box-shadow: -8px 0 0 var(--gold), 0 15px 40px rgba(184, 146, 78, 0.3) !important;
+            transform: scale(1.01) translateX(10px) !important;
+            border-color: var(--gold) !important;
+        }
+
+        .featured-project .project-number {
+            color: var(--gold);
+            opacity: 0.5;
+        }
+
         .project-number {
             font-family: 'Syncopate', sans-serif;
             font-size: clamp(3rem, 6vw, 5rem);
@@ -471,6 +489,7 @@
             color: var(--text-dim);
             text-align: right;
         }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .project-card {
@@ -517,6 +536,11 @@
             .project-card:hover {
                 transform: translateY(-5px);
                 box-shadow: 0 -5px 0 var(--primary), 0 10px 30px rgba(0, 212, 255, 0.3);
+            }
+
+            .featured-project:hover {
+                transform: translateY(-5px) !important;
+                box-shadow: 0 -5px 0 var(--gold), 0 15px 40px rgba(184, 146, 78, 0.3) !important;
             }
 
             .capabilities-box {
@@ -712,6 +736,22 @@
             <h2 class="section-title">PROJEKTENTWICKLUNG</h2>
 
             <div class="project-grid">
+                <!-- Featured Project: Refactoring Workstation -->
+                <a href="https://github.com/maxxki/MAXXKI-Refactoring-Workstation" class="project-card featured-project" aria-label="MAXXKI Refactoring Workstation" target="_blank" rel="noopener noreferrer">
+                    <div class="project-number">00</div>
+                    <div class="project-info">
+                        <h3>JAVA REFACTORING WORKSTATION</h3>
+                        <p>KI-gestütztes Analyse- und Modernisierungs-Framework für Legacy-Java-Systeme. Nutzt AST-Parsing und Tarjan's SCC zur sicheren Transformation komplexer Architekturen.</p>
+                        <div class="project-meta">
+                            <span class="meta-tag">Java / Spoon</span>
+                            <span class="meta-tag">Static Analysis</span>
+                            <span class="meta-tag">Governance</span>
+                            <span class="meta-tag">AI Integration</span>
+                        </div>
+                        <div class="status-badge" style="background: rgba(184, 146, 78, 0.2); border-color: var(--gold); color: var(--gold);">● GITHUB REPOSITORY</div>
+                    </div>
+                </a>
+
                 <a href="./maxxkimedic.html" class="project-card" aria-label="Medical Operations Dashboard">
                     <div class="project-number">01</div>
                     <div class="project-info">
