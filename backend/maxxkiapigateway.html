@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAXXKI | Microservice API-Gateway</title>
+    <title>MAXXKI | Microservice API-Gateway - Produktionscode</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;600;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@300;400;600;800&display=swap');
 
         :root {
             --primary: #00d4ff;
@@ -18,6 +18,10 @@
             --text-light: #f1f5f9;
             --text-dim: #94a3b8;
             --border: rgba(0, 212, 255, 0.2);
+            --folder-blue: #3b82f6;
+            --file-cyan: #2dd4bf;
+            --yml-orange: #f59e0b;
+            --xml-purple: #a855f7;
         }
 
         * {
@@ -142,6 +146,29 @@
             border-radius: 2px;
         }
 
+        .section-title .repo-link {
+            margin-left: auto;
+            font-size: 1rem;
+            font-weight: 400;
+            background: rgba(0, 212, 255, 0.1);
+            padding: 8px 20px;
+            border-radius: 30px;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .section-title .repo-link:hover {
+            background: var(--primary);
+            color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
+        }
+
         .architecture-diagram {
             background: var(--bg-card);
             border: 2px solid var(--border);
@@ -240,6 +267,133 @@
             font-weight: bold;
         }
 
+        /* Tree View */
+        .tree-view-section {
+            background: #1a1b26;
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 40px 0;
+            border: 2px solid var(--border);
+        }
+
+        .tree-header {
+            background: #16161e;
+            padding: 15px 25px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tree-title {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--primary);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tree-title i {
+            font-size: 1.2rem;
+        }
+
+        .tree-badge {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .tree-content {
+            padding: 30px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            line-height: 2;
+            background: #1e1e2e;
+            overflow-x: auto;
+        }
+
+        /* File Tree Styles */
+        .folder {
+            color: var(--folder-blue);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-block;
+        }
+
+        .folder:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .file {
+            color: var(--file-cyan);
+            margin-left: 30px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-block;
+        }
+
+        .file.yml {
+            color: var(--yml-orange);
+        }
+
+        .file.xml {
+            color: var(--xml-purple);
+        }
+
+        .file:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .tree-line {
+            white-space: nowrap;
+            padding: 4px 0;
+            border-left: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .tree-line:hover {
+            border-left-color: var(--primary);
+            background: rgba(0, 212, 255, 0.05);
+            padding-left: 10px;
+        }
+
+        .tree-indent-1 { margin-left: 20px; }
+        .tree-indent-2 { margin-left: 40px; }
+        .tree-indent-3 { margin-left: 60px; }
+        .tree-indent-4 { margin-left: 80px; }
+
+        .tree-icon {
+            display: inline-block;
+            width: 20px;
+            text-align: center;
+            margin-right: 8px;
+        }
+
+        .click-hint {
+            background: rgba(255, 211, 63, 0.1);
+            border: 1px solid var(--warning);
+            border-radius: 12px;
+            padding: 12px 20px;
+            margin: 20px 0 0 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--warning);
+        }
+
+        .click-hint i {
+            font-size: 1.2rem;
+        }
+
         /* Security Features */
         .security-grid {
             display: grid;
@@ -279,62 +433,6 @@
             color: var(--text-dim);
             line-height: 1.6;
         }
-
-        /* Code Snippet */
-        .code-section {
-            background: #1a1b26;
-            border-radius: 15px;
-            overflow: hidden;
-            margin: 40px 0;
-            border: 2px solid var(--border);
-        }
-
-        .code-header {
-            background: #16161e;
-            padding: 15px 25px;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .code-title {
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--primary);
-            font-size: 0.9rem;
-        }
-
-        .code-copy {
-            background: rgba(0, 212, 255, 0.1);
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            padding: 5px 15px;
-            border-radius: 8px;
-            font-family: 'JetBrains Mono', monospace;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: all 0.3s ease;
-        }
-
-        .code-copy:hover {
-            background: var(--primary);
-            color: var(--secondary);
-        }
-
-        pre {
-            padding: 30px;
-            margin: 0;
-            overflow-x: auto;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-
-        .code-comment { color: #6c7086; }
-        .code-keyword { color: #c792ea; }
-        .code-string { color: #c3e88d; }
-        .code-function { color: #82aaff; }
-        .code-number { color: #f78c6c; }
 
         /* Implementation Timeline */
         .timeline {
@@ -452,22 +550,22 @@
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
-            
+
             .timeline::before {
                 left: 30px;
             }
-            
+
             .timeline-item {
                 width: 100%;
                 padding-left: 60px;
                 padding-right: 0;
             }
-            
+
             .timeline-item:nth-child(even) {
                 margin-left: 0;
                 padding-left: 60px;
             }
-            
+
             .timeline-content::before {
                 left: -10px;
                 right: auto;
@@ -478,14 +576,42 @@
             .project-header {
                 padding: 40px 20px;
             }
-            
+
             .diagram-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .security-grid {
                 grid-template-columns: 1fr;
             }
+
+            .tree-content {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Repository Button */
+        .repo-button {
+            background: linear-gradient(135deg, var(--primary), #0a0e27);
+            border: 2px solid var(--primary);
+            color: var(--text-light);
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+        }
+
+        .repo-button:hover {
+            background: var(--primary);
+            color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
         }
     </style>
 </head>
@@ -496,12 +622,12 @@
             <div class="project-title">
                 <h1>MICROSERVICE API-GATEWAY</h1>
                 <p class="project-subtitle">
-                    Spring Cloud Gateway-Implementierung mit JWT-Authentifizierung, Rate-Limiting und Circuit-Breaker. 
+                    Produktionsreife Spring Cloud Gateway-Implementierung mit JWT-Authentifizierung, Redis Rate-Limiting und Resilience4j Circuit-Breaker. 
                     Konsolidierung von 8 Legacy-REST-APIs zu einer einheitlichen Schnittstelle mit 99.9% Verfügbarkeit.
                 </p>
-                <span class="project-meta-badge">PRODUCTION • 50K REQUESTS/DAY</span>
+                <span class="project-meta-badge">PRODUCTION READY • 50K+ REQUESTS/DAY</span>
             </div>
-            
+
             <div class="metrics-display">
                 <div class="metric-item">
                     <div class="metric-value">99.9%</div>
@@ -523,8 +649,13 @@
     <div class="container">
         <!-- Architecture Overview -->
         <section class="architecture-section">
-            <h2 class="section-title">ARCHITEKTUR-ÜBERSICHT</h2>
-            
+            <h2 class="section-title">
+                ARCHITEKTUR-ÜBERSICHT
+                <a href="https://github.com/maxxki/gateway-service" target="_blank" class="repo-link">
+                    <span>📦</span> zum Repository
+                </a>
+            </h2>
+
             <div class="architecture-diagram">
                 <div class="diagram-grid">
                     <!-- API Gateway -->
@@ -544,7 +675,7 @@
                             <li>Load Balancing</li>
                         </ul>
                     </div>
-                    
+
                     <!-- Auth Service -->
                     <div class="service-node">
                         <div class="node-header">
@@ -561,7 +692,7 @@
                             <li>Multi-Tenant Support</li>
                         </ul>
                     </div>
-                    
+
                     <!-- Service Registry -->
                     <div class="service-node">
                         <div class="node-header">
@@ -582,91 +713,125 @@
             </div>
         </section>
 
+        <!-- Produktionscode Tree View -->
+        <section class="architecture-section">
+            <h2 class="section-title">PRODUKTIONSCODE STRUKTUR</h2>
+
+            <div class="tree-view-section">
+                <div class="tree-header">
+                    <div class="tree-title">
+                        <span>📁</span> gateway-service/ (Spring Cloud Gateway)
+                    </div>
+                    <div class="tree-badge">vollständig reaktiv • kein blocking code</div>
+                </div>
+                <div class="tree-content">
+                    <!-- Tree Structure -->
+                    <div class="tree-line">
+                        <span class="tree-icon">📦</span><span class="folder" onclick="window.open('https://github.com/maxxki/gateway-service/tree/main', '_blank')">gateway-service/</span>
+                    </div>
+                    
+                    <div class="tree-line">
+                        <span class="tree-icon">├──</span><span class="tree-icon">📁</span><span class="folder tree-indent-1" onclick="window.open('https://github.com/maxxki/gateway-service/tree/main/src', '_blank')">src/</span>
+                    </div>
+                    
+                    <div class="tree-line">
+                        <span class="tree-icon">│   ├──</span><span class="tree-icon">📁</span><span class="folder tree-indent-2" onclick="window.open('https://github.com/maxxki/gateway-service/tree/main/src/main', '_blank')">main/</span>
+                    </div>
+                    
+                    <div class="tree-line">
+                        <span class="tree-icon">│   │   ├──</span><span class="tree-icon">📁</span><span class="folder tree-indent-3" onclick="window.open('https://github.com/maxxki/gateway-service/tree/main/src/main/java/com/maxxki/gateway', '_blank')">java/com/maxxki/gateway/</span>
+                    </div>
+                    
+                    <div class="tree-line">
+                        <span class="tree-icon">│   │   │   ├──</span><span class="tree-icon">📁</span><span class="folder tree-indent-4" onclick="window.open('https://github.com/maxxki/gateway-service/tree/main/src/main/java/com/maxxki/gateway/config', '_blank')">config/</span>
+                    </div>
+                    
+                    <div class="tree-line">
+                        <span class="tree-icon">│   │   │   │   ├──</span><span class="tree-icon">📄</span><span class="file tree-indent-4" onclick="window.open('https://github.com/maxxki/gateway-service/blob/main/src/main/java/com/maxxki/gateway/config/GatewaySecurityConfig.java', '_blank')">GatewaySecurityConfig.java</span>
+                    </div>
+                    
+                    <div class="tree-line">
+                        <span class="tree-icon">│   │   │   │   ├──</span><span class="tree-icon">📄</span><span class="file tree-indent-4" onclick="window.open('https://github.com/maxxki/gateway-service/blob/main/src/main/java/com/maxxki/gateway/config/JwtConfig.java', '_blank')">JwtConfig.java</span>
+                    </div>
+                    
+                    <div class="tree-line">
+                        <span class="tree-icon">│   │   │   │   ├──</span><span class="tree-icon">📄</span><span class="file tree-indent-4" onclick="window.open('https://github.com/maxxki/gateway-service/blob/main/src/main/java/com/maxxki/gateway/config/GatewayRouteConfig.java', '_blank')">GatewayRouteConfig.java</span>
+                    </div>
+                    
+                    <div class="tree-line">
+                        <span class="tree-icon">│   │   │   │   ├──</span><span class="tree-icon">📄</span><span class="file tree-indent-4" onclick="window.open('https://github.com/maxxki/gateway-service/blob/main/src/main/java/com/maxxki/gateway/config/RateLimiterConfig.java', '_blank')">RateLimiterConfig.java</span>
+                    </div>
+                    
+                    <div class="tree-line">
+                        <span class="tree-icon">│   │   │   │   └──</span><span class="tree-icon">📄</span><span class="file tree-indent-4" onclick="window.open('https://github.com/maxxki/gateway-service/blob/main/src/main/java/com/maxxki/gateway/config/CorsConfig.java', '_blank')">CorsConfig.java</span>
+                    </div>
+                    
+                    <div class="tree-line">
+                        <span class="tree-icon">│   │   │   └──</span><span class="tree-icon">📁</span><span class="folder tree-indent-3" onclick="window.open('https://github.com/maxxki/gateway-service/tree/main/src/main/java/com/maxxki/gateway/controller', '_blank')">controller/</span>
+                    </div>
+                    
+                    <div class="tree-line">
+                        <span class="tree-icon">│   │   │       └──</span><span class="tree-icon">📄</span><span class="file tree-indent-4" onclick="window.open('https://github.com/maxxki/gateway-service/blob/main/src/main/java/com/maxxki/gateway/controller/FallbackController.java', '_blank')">FallbackController.java</span>
+                    </div>
+                    
+                    <div class="tree-line">
+                        <span class="tree-icon">│   │   └──</span><span class="tree-icon">📁</span><span class="folder tree-indent-3" onclick="window.open('https://github.com/maxxki/gateway-service/tree/main/src/main/resources', '_blank')">resources/</span>
+                    </div>
+                    
+                    <div class="tree-line">
+                        <span class="tree-icon">│   │       ├──</span><span class="tree-icon">📄</span><span class="file yml tree-indent-4" onclick="window.open('https://github.com/maxxki/gateway-service/blob/main/src/main/resources/application.yml', '_blank')">application.yml</span>
+                    </div>
+                    
+                    <div class="tree-line">
+                        <span class="tree-icon">│   │       └──</span><span class="tree-icon">📄</span><span class="file yml tree-indent-4" onclick="window.open('https://github.com/maxxki/gateway-service/blob/main/src/main/resources/bootstrap.yml', '_blank')">bootstrap.yml (optional)</span>
+                    </div>
+                    
+                    <div class="tree-line">
+                        <span class="tree-icon">└──</span><span class="tree-icon">📄</span><span class="file xml" onclick="window.open('https://github.com/maxxki/gateway-service/blob/main/pom.xml', '_blank')">pom.xml</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="click-hint">
+                <span>👆</span> Klick auf jede Datei/Ordner öffnet direkt das Repository mit dem vollständigen, produktionsreifen Code
+            </div>
+        </section>
+
         <!-- Security Features -->
         <section class="architecture-section">
             <h2 class="section-title">SICHERHEITSFEATURES</h2>
-            
+
             <div class="security-grid">
                 <div class="security-card">
                     <div class="security-icon">🛡️</div>
                     <h4>JWT VALIDATION</h4>
-                    <p>Asymmetrische Signatur-Prüfung mit RS256, Token Revocation List, automatische Token-Refresh.</p>
+                    <p>Asymmetrische Signatur-Prüfung mit RS256, Token Revocation List, automatische Token-Refresh. Vollständig reaktiv mit ReactiveJwtDecoder.</p>
                 </div>
-                
+
                 <div class="security-card">
                     <div class="security-icon">⚡</div>
                     <h4>RATE LIMITING</h4>
-                    <p>Token-Bucket Algorithmus mit Redis-Backend. 1000 Requests/Minute pro Client, dynamische Anpassung.</p>
+                    <p>Token-Bucket Algorithmus mit Redis-Backend. 1000 Requests/Minute pro Client, dynamische Anpassung. KeyResolver für User/IP/API-Key.</p>
                 </div>
-                
+
                 <div class="security-card">
                     <div class="security-icon">🔁</div>
                     <h4>CIRCUIT BREAKER</h4>
-                    <p>Resilience4j-Implementierung mit Fallback-Logik. Automatische Reaktivierung nach Timeout.</p>
+                    <p>Resilience4j-Implementierung mit Fallback-Logik. Automatische Reaktivierung nach Timeout. Vollständig via YAML konfiguriert.</p>
                 </div>
-                
+
                 <div class="security-card">
                     <div class="security-icon">📊</div>
                     <h4>AUDIT LOGGING</h4>
-                    <p>Vollständige Request/Response-Logs mit GDPR-Compliance. Elasticsearch-Integration für Monitoring.</p>
+                    <p>Vollständige Request/Response-Logs mit GDPR-Compliance. Prometheus/Grafana-Integration für Echtzeit-Monitoring.</p>
                 </div>
-            </div>
-        </section>
-
-        <!-- Code Snippet -->
-        <section class="architecture-section">
-            <h2 class="section-title">IMPLEMENTIERUNG</h2>
-            
-            <div class="code-section">
-                <div class="code-header">
-                    <div class="code-title">GatewaySecurityConfig.java</div>
-                    <button class="code-copy" onclick="copyCode()">Copy Code</button>
-                </div>
-                <pre><code><span class="code-comment">// Spring Cloud Gateway Security Configuration</span>
-<span class="code-keyword">@Configuration</span>
-<span class="code-keyword">@EnableWebFluxSecurity</span>
-<span class="code-keyword">public class</span> <span class="code-function">GatewaySecurityConfig</span> {
-
-    <span class="code-keyword">@Bean</span>
-    <span class="code-keyword">public</span> SecurityWebFilterChain <span class="code-function">springSecurityFilterChain</span>(
-        ServerHttpSecurity http, JwtAuthenticationManager jwtManager) {
-        
-        <span class="code-keyword">return</span> http
-            .csrf().disable()
-            .authorizeExchange()
-                .pathMatchers(<span class="code-string">"/auth/**"</span>).permitAll()
-                .pathMatchers(<span class="code-string">"/api/public/**"</span>).permitAll()
-                .pathMatchers(<span class="code-string">"/api/admin/**"</span>).hasRole(<span class="code-string">"ADMIN"</span>)
-                .anyExchange().authenticated()
-            .and()
-            .oauth2ResourceServer()
-                .jwt()
-                .authenticationManager(jwtManager)
-            .and()
-            .build();
-    }
-
-    <span class="code-keyword">@Bean</span>
-    <span class="code-keyword">public</span> RateLimiter&lt;String&gt; <span class="code-function">rateLimiter</span>(RedisTemplate&lt;String, String&gt; template) {
-        <span class="code-keyword">return</span> <span class="code-keyword">new</span> RedisRateLimiter(
-            <span class="code-number">1000</span>,  <span class="code-comment">// requests</span>
-            <span class="code-number">60</span>,     <span class="code-comment">// per minute</span>
-            template
-        );
-    }
-
-    <span class="code-keyword">@Bean</span>
-    <span class="code-keyword">public</span> CircuitBreaker <span class="code-function">circuitBreaker</span>() {
-        <span class="code-keyword">return</span> CircuitBreaker.ofDefaults(<span class="code-string">"backendService"</span>);
-    }
-}</code></pre>
             </div>
         </section>
 
         <!-- Implementation Timeline -->
         <section class="architecture-section">
             <h2 class="section-title">IMPLEMENTIERUNGSPHASEN</h2>
-            
+
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-content">
@@ -676,7 +841,7 @@
                            Erstellung der Microservice-Boundaries, Entscheidung für Spring Cloud Stack.</p>
                     </div>
                 </div>
-                
+
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <span class="timeline-date">PHASE 2 • 3 WEEKS</span>
@@ -685,7 +850,7 @@
                            Docker-Containerisierung aller Services.</p>
                     </div>
                 </div>
-                
+
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <span class="timeline-date">PHASE 3 • 2 WEEKS</span>
@@ -694,7 +859,7 @@
                            Audit-Logging, Security Headers (CSP, HSTS), Penetration Testing.</p>
                     </div>
                 </div>
-                
+
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <span class="timeline-date">PHASE 4 • 1 WEEK</span>
@@ -706,6 +871,17 @@
             </div>
         </section>
 
+        <!-- Repository CTA -->
+        <div style="text-align: center; margin: 60px 0;">
+            <a href="https://github.com/maxxki/gateway-service" target="_blank" class="repo-button">
+                <span>📂</span> VOLLSTÄNDIGEN PRODUKTIONSCODE ANSEHEN
+                <span>→</span>
+            </a>
+            <p style="color: var(--text-dim); margin-top: 20px; font-size: 0.9rem;">
+                Inklusive aller Configs, Fallback-Controller und YAML-Dateien
+            </p>
+        </div>
+
         <!-- Back Button -->
         <div class="back-section">
             <a href="../frontends/index.html" class="btn-back">
@@ -715,34 +891,37 @@
     </div>
 
     <script>
-        // Copy Code Function
-        function copyCode() {
-            const code = document.querySelector('pre').innerText;
-            navigator.clipboard.writeText(code).then(() => {
-                const btn = document.querySelector('.code-copy');
-                btn.textContent = '✓ Copied!';
-                setTimeout(() => btn.textContent = 'Copy Code', 2000);
-            });
-        }
-
         // Animate Metrics
         document.addEventListener('DOMContentLoaded', () => {
             const metrics = document.querySelectorAll('.metric-value');
             metrics.forEach(metric => {
                 const finalValue = metric.textContent;
-                metric.textContent = '0';
-                
+                if (finalValue.includes('%')) {
+                    metric.textContent = '0%';
+                } else if (finalValue.includes('→')) {
+                    // Skip for "8→1"
+                    return;
+                } else {
+                    metric.textContent = '0';
+                }
+
                 let current = 0;
                 const target = parseFloat(finalValue);
-                const increment = target / 50;
+                if (isNaN(target)) return;
                 
+                const increment = target / 50;
+
                 const timer = setInterval(() => {
                     current += increment;
                     if (current >= target) {
                         metric.textContent = finalValue;
                         clearInterval(timer);
                     } else {
-                        metric.textContent = Math.round(current) + (finalValue.includes('%') ? '%' : '');
+                        if (finalValue.includes('%')) {
+                            metric.textContent = Math.round(current) + '%';
+                        } else {
+                            metric.textContent = Math.round(current);
+                        }
                     }
                 }, 30);
             });
