@@ -3,236 +3,1107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MAXXKI - AI Engineer Maximilian Kiefer. Entwicklung von KI-Lösungen, Frontend, Backend, Automation.">
+    <title>MAXXKI | AI Engineer | Maximilian Kiefer</title>
 
-    <title>MAXXKI | AI & Java Engineer | Maximilian Kiefer – Regensburg</title>
-    <meta name="description" content="Maximilian Kiefer – AI & Java Engineer aus Regensburg. Entwicklung von KI-Lösungen, Frontend, Backend, Automation und Apps. Menschliche + Künstliche Intelligenz = MAXXKI.">
-    <meta name="keywords" content="AI Engineer, Java Engineer, KI-Lösungen, Frontend, Backend, Automation, Regensburg, MAXXKI, Maximilian Kiefer">
-    <meta name="author" content="Maximilian Kiefer">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://maxxki.github.io/">
+    <!--
+        HINWEIS: Google Fonts wurden entfernt und durch lokal gehostete Schriften ersetzt.
+        Bitte lade folgende Fonts herunter und lege sie in ./assets/fonts/ ab:
+        - Syncopate: https://fonts.google.com/specimen/Syncopate
+        - Inter: https://fonts.google.com/specimen/Inter
 
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://maxxki.github.io/">
-    <meta property="og:title" content="MAXXKI | AI & Java Engineer | Maximilian Kiefer">
-    <meta property="og:description" content="Ich entwickle funktionierende Lösungen mit KI. Lauffähig, sicher, getestet.">
-    <meta property="og:image" content="https://github.com/user-attachments/assets/4c6281f8-b430-410d-9046-753fb5a165de">
-    <meta property="og:locale" content="de_DE">
-
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Maximilian Kiefer",
-      "jobTitle": "AI & Java Engineer",
-      "url": "https://maxxki.github.io/",
-      "email": "plantmax87@gmail.com",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Regensburg",
-        "addressCountry": "DE"
-      },
-      "knowsAbout": ["Artificial Intelligence", "Java", "React", "Python", "LLM", "Automation"],
-      "sameAs": ["https://github.com/maxxki"]
-    }
-    </script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300;600;900&display=swap">
-
-    <style>
-        :root {
-            --primary: #00d4ff; --bg: #05070a; --text: #ffffff;
-            --glass: rgba(255, 255, 255, 0.03); --border: rgba(0, 212, 255, 0.3);
-            --overlay-gradient: linear-gradient(45deg, #05070a 0%, #0a0e27 100%);
-        }
-        body.light-mode {
-            --bg: #f0f4f8; --text: #1a202c; --primary: #0099cc; --border: rgba(0, 212, 255, 0.5);
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: var(--bg); color: var(--text); font-family: 'Syncopate', sans-serif; overflow-x: hidden; transition: 0.4s; }
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+        Dann ersetze die @font-face-Blöcke unten mit den korrekten Pfaden.
         
-        header { padding: 30px 0; display: flex; justify-content: space-between; align-items: center; text-transform: uppercase; }
-        .logo-box { border-left: 5px solid var(--primary); padding-left: 15px; font-weight: 700; font-size: clamp(1.5rem, 4vw, 2rem); }
-
-        .hero { min-height: 80vh; display: grid; grid-template-columns: 1fr 1.2fr; align-items: center; gap: 40px; padding: 40px 0; }
-        .hero-content h1 { font-size: clamp(2rem, 5vw, 6rem); line-height: 1.1; margin-bottom: 30px; background: linear-gradient(to bottom, var(--text) 40%, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .hero-content p { font-size: clamp(0.9rem, 1.8vw, 1.2rem); line-height: 1.8; margin-bottom: 30px; border-left: 2px solid var(--primary); padding-left: 20px; opacity: 0.9; }
-
-        .cv-download-box, .showcase-link-box {
-            display: block; width: 100%; padding: 20px; background: rgba(0, 212, 255, 0.05); border: 2px solid var(--primary); 
-            border-radius: 15px; color: inherit; text-decoration: none; cursor: pointer; transition: 0.4s; margin-bottom: 20px;
+        ACHTUNG: Das Einbinden von fonts.googleapis.com ist nach dem Urteil des
+        LG München (Az. 3 O 17493/20) in Deutschland datenschutzrechtlich problematisch,
+        da dabei IP-Adressen an Google-Server in den USA übertragen werden.
+        Solange die Fonts nicht lokal gehostet sind, bitte diesen Kommentar beachten.
+    -->
+    <style>
+        /* ========================================
+           LOKALE FONTS (Self-Hosted)
+           Bitte Fonts herunterladen und in ./assets/fonts/ ablegen.
+           Bis dahin: System-Fallback-Fonts werden genutzt.
+           ======================================== */
+        @font-face {
+            font-family: 'Syncopate';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url('./assets/fonts/syncopate-regular.woff2') format('woff2'),
+                 url('./assets/fonts/syncopate-regular.woff') format('woff');
         }
-        .cv-download-box:hover, .showcase-link-box:hover { background: rgba(0, 212, 255, 0.1); transform: scale(1.02); box-shadow: 0 5px 20px rgba(0, 212, 255, 0.2); }
+        @font-face {
+            font-family: 'Syncopate';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: url('./assets/fonts/syncopate-bold.woff2') format('woff2'),
+                 url('./assets/fonts/syncopate-bold.woff') format('woff');
+        }
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 300;
+            font-display: swap;
+            src: url('./assets/fonts/inter-light.woff2') format('woff2'),
+                 url('./assets/fonts/inter-light.woff') format('woff');
+        }
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 600;
+            font-display: swap;
+            src: url('./assets/fonts/inter-semibold.woff2') format('woff2'),
+                 url('./assets/fonts/inter-semibold.woff') format('woff');
+        }
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 900;
+            font-display: swap;
+            src: url('./assets/fonts/inter-black.woff2') format('woff2'),
+                 url('./assets/fonts/inter-black.woff') format('woff');
+        }
 
-        .hero-image-wrap { transform: perspective(1000px) rotateY(-10deg); transition: 0.5s; }
-        .hero-image-wrap:hover { transform: perspective(1000px) rotateY(0deg); }
-        .hero-image-wrap img { width: 100%; border-radius: 20px; border: 1px solid var(--border); box-shadow: -20px 20px 60px rgba(0, 212, 255, 0.3); }
+        :root {
+            --primary: #00d4ff;
+            --bg: #05070a;
+            --text: #ffffff;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(0, 212, 255, 0.3);
+            --banner-white: #fdfbf7;
+            --overlay-gradient: linear-gradient(45deg, #05070a 0%, #0a0e27 100%);
+            --glow-overlay: radial-gradient(circle at 80% 20%, rgba(0, 212, 255, 0.15), transparent 40%);
+        }
 
-        .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 40px 0; }
-        .tech-card { background: var(--glass); border: 1px solid var(--border); padding: 25px; text-align: center; border-radius: 15px; transition: 0.3s; }
-        .tech-card:hover { transform: translateY(-5px); color: var(--primary); }
+        body.light-mode {
+            --bg: #f0f4f8;
+            --text: #1a202c;
+            --glass: rgba(0, 0, 0, 0.05);
+            --border: rgba(0, 212, 255, 0.5);
+            --primary: #0099cc;
+            --overlay-gradient: radial-gradient(circle at 45deg, #e2e8f0 0%, #cbd5e0 100%);
+            --glow-overlay: radial-gradient(circle at 80% 20%, rgba(0, 153, 204, 0.1), transparent 40%);
+        }
 
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+
+        body { 
+            background-color: var(--bg); 
+            color: var(--text); 
+            font-family: 'Syncopate', 'Trebuchet MS', sans-serif;
+            overflow-x: hidden;
+            transition: background-color 0.4s, color 0.4s;
+            cursor: default;
+        }
+
+        /* Banner */
+        .brand-banner {
+            width: 100%;
+            height: 140px;
+            background: var(--banner-white) url('https://github.com/user-attachments/assets/0d1cb683-6c2f-4174-a25f-63631c7b784e') no-repeat center center;
+            background-size: cover;
+            border-bottom: 2px solid var(--primary);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            position: relative;
+            z-index: 100;
+        }
+
+        /* Background */
+        .poster-bg { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: var(--overlay-gradient); 
+            z-index: -2; 
+        }
+
+        .glow-overlay { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: var(--glow-overlay); 
+            z-index: -1; 
+        }
+
+        /* Container */
+        .container { 
+            max-width: 1400px; 
+            margin: 0 auto; 
+            padding: 0 20px; 
+        }
+
+        /* Header */
+        header {
+            padding: 30px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-family: 'Syncopate', 'Trebuchet MS', sans-serif;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo-box { 
+            border-left: 5px solid var(--primary); 
+            padding-left: 15px; 
+        }
+
+        .logo-box span { 
+            font-weight: 700; 
+            font-size: clamp(1.5rem, 4vw, 2rem); 
+        }
+
+        .status { 
+            font-size: clamp(0.65rem, 1.5vw, 0.9rem); 
+            text-align: right;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 80vh;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            align-items: center;
+            gap: 40px;
+            padding: 40px 0;
+        }
+
+        .hero-content h1 {
+            font-family: 'Syncopate', 'Trebuchet MS', sans-serif;
+            font-size: clamp(2rem, 5vw, 6rem);
+            line-height: 1.1;
+            margin-bottom: 30px;
+            background: linear-gradient(to bottom, var(--text) 40%, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            word-wrap: break-word;
+        }
+
+        .hero-content .subtitle { 
+            font-size: clamp(0.75rem, 2vw, 1.5rem); 
+            color: var(--primary); 
+            font-weight: 300; 
+            margin-bottom: 30px; 
+            letter-spacing: 2px; 
+            text-transform: uppercase;
+            line-height: 1.4;
+        }
+
+        .hero-content p { 
+            font-size: clamp(0.9rem, 1.8vw, 1.2rem); 
+            line-height: 1.8; 
+            opacity: 0.9; 
+            margin-bottom: 30px; 
+            border-left: 2px solid var(--primary); 
+            padding-left: 20px; 
+        }
+
+        /* Showcase Link Box */
+        .showcase-link-box {
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(0, 212, 255, 0.05);
+            border: 2px dashed var(--border);
+            border-radius: 15px;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.4s;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+        }
+
+        .showcase-link-box:hover { 
+            border-style: solid; 
+            background: rgba(0, 212, 255, 0.1); 
+            transform: scale(1.02); 
+        }
+
+        .showcase-text h2 { 
+            font-family: 'Syncopate', 'Trebuchet MS', sans-serif; 
+            font-size: clamp(1rem, 2vw, 1.2rem); 
+            color: var(--primary); 
+            margin-bottom: 5px; 
+        }
+
+        .showcase-text p {
+            font-size: clamp(0.85rem, 1.5vw, 1rem);
+            opacity: 0.8;
+        }
+
+        /* CV Download Box */
+        .cv-download-box {
+            margin: 15px 0 30px 0;
+            padding: 20px;
+            background: rgba(0, 212, 255, 0.08);
+            border: 2px dashed var(--primary);
+            border-radius: 15px;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.4s;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+        }
+
+        .cv-download-box:hover { 
+            border-style: solid; 
+            background: rgba(0, 212, 255, 0.15); 
+            transform: scale(1.02); 
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.2);
+        }
+
+        /* Hero Image */
+        .hero-image-wrap { 
+            position: relative; 
+            transform: perspective(1000px) rotateY(-10deg); 
+            transition: transform 0.5s ease;
+            width: 100%;
+        }
+
+        .hero-image-wrap:hover { 
+            transform: perspective(1000px) rotateY(0deg); 
+        }
+
+        .hero-image-wrap img { 
+            width: 100%; 
+            height: auto;
+            border-radius: 20px; 
+            border: 1px solid var(--border); 
+            box-shadow: -20px 20px 60px rgba(0, 212, 255, 0.3); 
+            display: block;
+        }
+
+        /* Tech Grid */
+        .tech-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 20px; 
+            margin-top: -30px; 
+            position: relative; 
+            z-index: 10; 
+        }
+
+        .tech-card { 
+            background: var(--glass); 
+            backdrop-filter: blur(20px); 
+            border: 1px solid var(--border); 
+            padding: 25px 20px; 
+            text-align: center; 
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .tech-card h3 { 
+            font-family: 'Syncopate', 'Trebuchet MS', sans-serif; 
+            font-size: clamp(1rem, 1.5vw, 1.2rem); 
+            color: var(--primary); 
+        }
+
+        /* Button */
+        .btn-massive { 
+            display: inline-block; 
+            padding: 20px 40px; 
+            border: 2px solid var(--primary); 
+            color: var(--primary); 
+            text-decoration: none; 
+            font-family: 'Syncopate', 'Trebuchet MS', sans-serif; 
+            font-weight: 700; 
+            transition: all 0.4s;
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-massive:hover { 
+            background: var(--primary); 
+            color: #000; 
+            transform: scale(1.05);
+        }
+
+        /* Modal/Popup Styles */
         .modal-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9); z-index: 10000; justify-content: center; align-items: center; backdrop-filter: blur(10px);
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
         }
-        .modal-overlay.active { display: flex; }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
         .modal-content {
-            background: var(--bg); border: 2px solid var(--primary); padding: 40px;
-            width: 90%; max-width: 600px; border-radius: 20px; position: relative; max-height: 90vh; overflow-y: auto;
+            background: var(--bg);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.4);
+            animation: slideUp 0.4s ease;
         }
-        .modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; color: var(--primary); font-size: 2rem; cursor: pointer; line-height: 1; }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+            font-family: 'Syncopate', 'Trebuchet MS', sans-serif;
+        }
+
+        .modal-close:hover { transform: rotate(90deg); }
+
+        .modal-content h2 {
+            font-family: 'Syncopate', 'Trebuchet MS', sans-serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .modal-content .modal-subtitle {
+            font-size: clamp(0.85rem, 1.3vw, 1rem);
+            opacity: 0.8;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
 
         .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; font-size: 0.8rem; margin-bottom: 8px; color: var(--primary); text-transform: uppercase; }
-        .form-group input { width: 100%; padding: 15px; background: var(--glass); border: 1px solid var(--border); color: #fff; border-radius: 10px; font-family: 'Inter', sans-serif; }
-        
-        .modal-btn { width: 100%; padding: 18px; background: var(--primary); border: none; color: #000; font-weight: 700; cursor: pointer; border-radius: 10px; font-family: 'Syncopate', sans-serif; transition: 0.3s; }
 
-        footer { margin-top: 100px; padding: 40px 0; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; }
-        .footer-links button { background: none; border: none; color: var(--primary); cursor: pointer; text-decoration: underline; margin-right: 20px; font-family: 'Syncopate', sans-serif; font-size: 0.8rem; }
+        .form-group label {
+            display: block;
+            font-family: 'Syncopate', 'Trebuchet MS', sans-serif;
+            font-size: clamp(0.75rem, 1.2vw, 0.9rem);
+            color: var(--primary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text);
+            font-size: clamp(0.9rem, 1.3vw, 1rem);
+            font-family: 'Inter', Arial, sans-serif;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+        }
+
+        .form-group input::placeholder { color: rgba(255, 255, 255, 0.3); }
+        body.light-mode .form-group input::placeholder { color: rgba(0, 0, 0, 0.3); }
+
+        .modal-btn {
+            width: 100%;
+            padding: 18px;
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            font-family: 'Syncopate', 'Trebuchet MS', sans-serif;
+            font-weight: 700;
+            font-size: clamp(0.9rem, 1.3vw, 1rem);
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .modal-btn:hover {
+            background: var(--primary);
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .modal-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .success-message { display: none; text-align: center; padding: 40px 20px; }
+        .success-message.active { display: block; }
+
+        .success-message h3 {
+            font-family: 'Syncopate', 'Trebuchet MS', sans-serif;
+            font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .success-message p {
+            font-size: clamp(0.9rem, 1.3vw, 1rem);
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        /* MAXXKI Section */
+        #maxxki {
+            margin-top: 100px;
+            padding: 60px 30px;
+            background: linear-gradient(rgba(5, 7, 10, 0.85), rgba(5, 7, 10, 0.85)), 
+                        url('https://github.com/user-attachments/assets/0d1cb683-6c2f-4174-a25f-63631c7b784e') no-repeat center center;
+            background-size: cover;
+            border-radius: 30px;
+            border: 1px solid var(--border);
+        }
+
+        body.light-mode #maxxki { 
+            background: linear-gradient(rgba(240, 244, 248, 0.9), rgba(240, 244, 248, 0.9)), 
+                        url('https://github.com/user-attachments/assets/0d1cb683-6c2f-4174-a25f-63631c7b784e') no-repeat center center; 
+            background-size: cover; 
+        }
+
+        #maxxki h2 {
+            font-family: 'Syncopate', 'Trebuchet MS', sans-serif; 
+            margin-bottom: 40px;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+        }
+
+        .engine-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1.2fr; 
+            gap: 40px; 
+        }
+
+        .engine-grid h4 {
+            color: var(--primary); 
+            text-transform: uppercase; 
+            margin-bottom: 20px;
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+        }
+
+        .engine-grid p {
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            line-height: 1.6;
+        }
+
+        .engine-code { 
+            background: rgba(0, 212, 255, 0.05); 
+            border: 1px solid var(--border); 
+            padding: 25px; 
+            border-radius: 20px; 
+        }
+
+        .engine-code ul { 
+            list-style: none; 
+            color: var(--primary); 
+            font-family: 'Syncopate', 'Trebuchet MS', sans-serif;
+        }
+
+        .engine-code li { 
+            margin-bottom: 10px;
+            font-size: clamp(0.75rem, 1.3vw, 0.95rem);
+            word-break: break-word;
+        }
+
+        /* ========================================
+           IMPRESSUM & DATENSCHUTZ
+           Reines HTML/CSS — funktioniert OHNE JavaScript.
+           ======================================== */
+        #impressum,
+        #datenschutz {
+            margin-top: 80px;
+            padding: 50px 30px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        #impressum h2,
+        #datenschutz h2 {
+            font-family: 'Syncopate', 'Trebuchet MS', sans-serif;
+            font-size: clamp(1.3rem, 2.5vw, 2rem);
+            color: var(--primary);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
+        }
+
+        #impressum h3,
+        #datenschutz h3 {
+            font-family: 'Syncopate', 'Trebuchet MS', sans-serif;
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            color: var(--primary);
+            margin-top: 25px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        #impressum p,
+        #datenschutz p {
+            font-size: clamp(0.85rem, 1.3vw, 1rem);
+            line-height: 1.8;
+            opacity: 0.9;
+            margin-bottom: 10px;
+            font-family: 'Inter', Arial, sans-serif;
+        }
+
+        #impressum a,
+        #datenschutz a {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        #impressum a:hover,
+        #datenschutz a:hover { opacity: 0.8; }
+
+        /* Footer */
+        footer { 
+            margin-top: 100px; 
+            padding: 40px 0; 
+            border-top: 1px solid var(--border); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        footer p { font-size: clamp(0.85rem, 1.3vw, 1rem); }
+
+        footer .footer-left p:first-child {
+            font-family: 'Syncopate', 'Trebuchet MS', sans-serif;
+            margin-bottom: 5px;
+        }
+
+        footer .footer-right { text-align: right; }
+        footer .footer-right p:first-child { color: var(--primary); font-weight: 700; }
+
+        footer .footer-links {
+            margin-top: 10px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        footer .footer-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        footer .footer-links a:hover { opacity: 1; text-decoration: underline; }
+
+        /* Theme Switch */
+        .mode-switch { 
+            position: fixed; 
+            bottom: 20px; 
+            left: 20px; 
+            z-index: 1000; 
+            padding: 12px 20px; 
+            font-family: 'Syncopate', 'Trebuchet MS', sans-serif; 
+            font-size: clamp(0.8rem, 1.5vw, 1rem); 
+            background: var(--glass); 
+            color: var(--primary); 
+            border: 2px solid var(--primary); 
+            cursor: pointer; 
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .mode-switch:hover { background: var(--primary); color: var(--bg); transform: scale(1.05); }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .container { padding: 0 30px; }
+            .hero { grid-template-columns: 1fr; gap: 40px; }
+            .hero-image-wrap { order: -1; max-width: 100%; margin: 0 auto; transform: perspective(1000px) rotateY(0deg); }
+            .engine-grid { grid-template-columns: 1fr; gap: 30px; }
+            .tech-grid { margin-top: 40px; }
+            .brand-banner { height: 100px; }
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 20px; }
+            header { padding: 20px 0; letter-spacing: 2px; }
+            .status { width: 100%; text-align: left; order: 3; }
+            .hero { min-height: auto; padding: 20px 0; }
+            .hero-content h1 { margin-bottom: 20px; }
+            .hero-content .subtitle { margin-bottom: 20px; }
+            .showcase-link-box, .cv-download-box { flex-direction: column; text-align: center; gap: 10px; }
+            .btn-massive { width: 100%; padding: 18px 30px; }
+            .tech-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            #maxxki { margin-top: 60px; padding: 40px 20px; }
+            .engine-code { padding: 20px; }
+            footer { margin-top: 60px; flex-direction: column; align-items: flex-start; gap: 30px; }
+            footer .footer-right { text-align: left; }
+            .mode-switch { bottom: 15px; left: 15px; padding: 10px 16px; }
+            .brand-banner { height: 80px; }
+            .modal-content { padding: 30px 20px; }
+            #impressum, #datenschutz { padding: 30px 20px; margin-top: 50px; }
+        }
+
+        @media (max-width: 480px) {
+            .logo-box { padding-left: 10px; }
+            .hero-content p { padding-left: 15px; }
+            .tech-grid { grid-template-columns: 1fr; }
+            .tech-card { padding: 20px 15px; }
+            #maxxki { border-radius: 20px; }
+        }
+
+        a:focus, button:focus { outline: 2px solid var(--primary); outline-offset: 4px; }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-content, .hero-image-wrap { animation: fadeIn 0.8s ease-out; }
     </style>
 </head>
 <body>
+    <div class="brand-banner" role="banner" aria-label="MAXXKI Brand Banner"></div>
+    <div class="poster-bg" aria-hidden="true"></div>
+    <div class="glow-overlay" aria-hidden="true"></div>
+    <button class="mode-switch" id="theme-btn" aria-label="Theme wechseln">🌙 DARK MODE</button>
+
+    <!-- CV Download Modal -->
+    <div class="modal-overlay" id="cvModal" role="dialog" aria-modal="true" aria-labelledby="cvModalTitle">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal" aria-label="Schließen">&times;</button>
+            
+            <div id="formSection">
+                <h2 id="cvModalTitle">Lebenslauf Anforderung</h2>
+                <p class="modal-subtitle">
+                    Bitte hinterlassen Sie Ihre Kontaktdaten, damit ich weiß, wer sich für meinen Lebenslauf interessiert. 
+                    Sie erhalten dann direkten Zugriff zum Download.
+                </p>
+
+                <form id="cvForm" novalidate>
+                    <div class="form-group">
+                        <label for="recruiterName">Name *</label>
+                        <input type="text" id="recruiterName" required placeholder="Ihr vollständiger Name" autocomplete="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="recruiterCompany">Firma *</label>
+                        <input type="text" id="recruiterCompany" required placeholder="Firmenname" autocomplete="organization">
+                    </div>
+                    <div class="form-group">
+                        <label for="recruiterEmail">E-Mail *</label>
+                        <input type="email" id="recruiterEmail" required placeholder="ihre.email@firma.de" autocomplete="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="recruiterPhone">Telefon *</label>
+                        <input type="tel" id="recruiterPhone" required placeholder="+49 123 456789" autocomplete="tel">
+                    </div>
+                    <button type="submit" class="modal-btn">Lebenslauf anfordern</button>
+                </form>
+            </div>
+
+            <div id="successSection" class="success-message">
+                <h3>✓ Vielen Dank!</h3>
+                <p>
+                    Ihre Anfrage wurde registriert.<br>
+                    Der Download Ihres Lebenslaufs startet in Kürze...<br><br>
+                    Ich werde mich zeitnah bei Ihnen melden!
+                </p>
+            </div>
+        </div>
+    </div>
 
     <div class="container">
         <header>
-            <div class="logo-box">MAXXKI</div>
-            <div style="font-size: 0.8rem;">[ Menschliche + KI ]</div>
+            <div class="logo-box">
+                <span>MAXXKI</span>
+            </div>
+            <div class="status">[ Menschliche + Kuenstliche Intelligenz ]</div>
         </header>
 
         <main>
             <section class="hero">
                 <div class="hero-content">
+                    <div class="subtitle">AI Engineer | Frontend | Backend | Automation | Apps & Tools |</div>
                     <h1>MAXIMILIAN KIEFER</h1>
-                    <p>AI Engineer | Frontend | Backend | Automation | Apps & Tools. Ich entwickle funktionierende Lösungen mit KI – lauffähig, sicher, getestet.</p>
-                    
-                    <a href="./frontends/" class="showcase-link-box">
-                        <h2>ZUR ÜBERSICHT</h2>
-                        <p>Klicke hier, um Projekte als Überblick zu sehen.</p>
+                    <p>
+                        <br>
+                        Ich entwickle funktionierende Loesungen mit KI.<br>
+                        Lauffähig, sicher, getestet.<br>
+                        Ich brenne leidenschaftlich für das Thema menschliche und künstliche Intelligenz und freue mich über neue Challenges. 
+                        Lassen Sie uns zusammen das Unmögliche möglich machen.
+                    </p>
+
+                    <a href="./frontends/" class="showcase-link-box" aria-label="Zur Projekt-Übersicht">
+                        <div class="showcase-text">
+                            <h2>Zur Übersicht</h2>
+                            <p>Klicke hier, um Projekte als Überblick zu sehen.</p>
+                        </div>
                     </a>
 
-                    <button class="cv-download-box" id="cvDownloadBtn">
-                        <h2>LEBENSLAUF ANFORDERN</h2>
-                        <p>Klicke hier zum Download des Lebenslaufs</p>
+                    <button class="cv-download-box" id="cvDownloadBtn" aria-label="Lebenslauf für Recruiter">
+                        <div class="showcase-text">
+                            <h2>Lebenslauf für Recruiter</h2>
+                            <p>Klicke hier zum Download des Lebenslaufs</p>
+                        </div>
                     </button>
 
-                    <a href="mailto:plantmax87@gmail.com" class="modal-btn" style="display:block; text-align:center; text-decoration:none;">CONTACT</a>
+                    <a href="mailto:plantmax87@gmail.com" class="btn-massive" aria-label="Kontakt per E-Mail">CONTACT</a>
                 </div>
                 <div class="hero-image-wrap">
-                    <img src="https://github.com/user-attachments/assets/4c6281f8-b430-410d-9046-753fb5a165de" alt="MAXXKI AI Visualization">
+                    <img src="https://github.com/user-attachments/assets/4c6281f8-b430-410d-9046-753fb5a165de" alt="MAXXKI - AI Engineering Visualisierung">
                 </div>
             </section>
 
-            <section class="tech-grid">
+            <section class="tech-grid" aria-label="Technologie-Stack">
                 <div class="tech-card"><h3>AI & LLM</h3></div>
-                <div class="tech-card"><h3>JAVA</h3></div>
-                <div class="tech-card"><h3>REACT</h3></div>
-                <div class="tech-card"><h3>PYTHON</h3></div>
+                <div class="tech-card"><h3>Java</h3></div>
+                <div class="tech-card"><h3>React</h3></div>
+                <div class="tech-card"><h3>Python</h3></div>
+            </section>
+
+            <section id="maxxki">
+                <h2>MI + KI = MAXXKI</h2>
+                <div class="engine-grid">
+                    <div>
+                        <h4>Menschliche plus künstliche Intelligenz = Maxxki</h4>
+                        <p>Ich nutze KI als Erweiterung meiner menschlichen Intelligenz.</p>
+                    </div>
+                    <div class="engine-code">
+                        <ul>
+                            <li>> MaxxkiRefactoring Workstation</li>
+                            <li>> Safe: Dry Run mode & Tarjan's SCC</li>
+                            <li>> RobertMartinValidator: Metrics suite</li>
+                            <li>> Protocolist: Forensic audit</li>
+                            <li>> VisualReporter: Mermaid visualizations</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================
+                 IMPRESSUM — § 5 DDG (Digitale-Dienste-Gesetz)
+                 Funktioniert vollständig OHNE JavaScript.
+                 ======================================== -->
+            <section id="impressum" aria-label="Impressum">
+                <h2>Impressum</h2>
+
+                <h3>Angaben gemäß § 5 DDG</h3>
+                <p>
+                    Maximilian Kiefer<br>
+                    Grunewaldstr. 10<br>
+                    93053 Regensburg<br>
+                    Deutschland
+                </p>
+
+                <h3>Kontakt</h3>
+                <p>
+                    E-Mail: <a href="mailto:plantmax87@gmail.com">plantmax87@gmail.com</a>
+                </p>
+
+                <h3>Hinweis</h3>
+                <p>
+                    Diese Website wird als privates Portfolio betrieben.
+                    Eine gewerbliche Tätigkeit wird über dieses Portfolio nicht ausgeübt.
+                </p>
+            </section>
+
+            <!-- ========================================
+                 DATENSCHUTZERKLÄRUNG — Art. 13 DSGVO
+                 Nennt alle eingebundenen Drittdienste.
+                 Funktioniert vollständig OHNE JavaScript.
+                 ======================================== -->
+            <section id="datenschutz" aria-label="Datenschutzerklärung">
+                <h2>Datenschutzerklärung</h2>
+
+                <h3>1. Verantwortlicher</h3>
+                <p>
+                    Maximilian Kiefer<br>
+                    Grunewaldstr. 10<br>
+                    9305 Regensburg<br>
+                    E-Mail: <a href="mailto:plantmax87@gmail.com">plantmax87@gmail.com</a>
+                </p>
+
+                <h3>2. Allgemeines zur Datenverarbeitung</h3>
+                <p>
+                    Diese Website verarbeitet personenbezogene Daten nur, soweit dies zur Bereitstellung 
+                    einer funktionierenden Website sowie der angebotenen Inhalte erforderlich ist.
+                    Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse).
+                </p>
+
+                <h3>3. Hosting &amp; Server-Logfiles</h3>
+                <p>
+                    Beim Aufruf dieser Website werden durch den Hosting-Anbieter automatisch Informationen 
+                    in sogenannten Server-Log-Dateien gespeichert (IP-Adresse, Browsertyp, Datum/Uhrzeit). 
+                    Diese Daten sind nicht bestimmten Personen zuordenbar und werden nicht mit anderen 
+                    Datenquellen zusammengeführt. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.
+                </p>
+
+                <h3>4. Schriftarten (Fonts)</h3>
+                <p>
+                    Diese Website verwendet die Schriftarten „Syncopate" und „Inter", die lokal auf dem 
+                    Server gespeichert und von dort ausgeliefert werden. Es werden keine Verbindungen zu 
+                    externen Font-Servern (z. B. Google Fonts) hergestellt. Es findet daher keine 
+                    Übermittlung von Nutzerdaten an Dritte im Zusammenhang mit Schriftarten statt.
+                </p>
+
+                <h3>5. EmailJS (Kontaktformular / CV-Anfrage)</h3>
+                <p>
+                    Für das Formular zur Anforderung des Lebenslaufs wird der Dienst 
+                    <strong>EmailJS</strong> der EmailJS Ltd., 483 Green Lanes, London N13 4BS, 
+                    Vereinigtes Königreich, genutzt. Beim Absenden des Formulars werden die eingegebenen 
+                    Daten (Name, Firma, E-Mail-Adresse, Telefonnummer) an Server von EmailJS übertragen 
+                    und von dort als E-Mail weitergeleitet.
+                </p>
+                <p>
+                    Datenschutzerklärung von EmailJS:
+                    <a href="https://www.emailjs.com/legal/privacy-policy/" target="_blank" rel="noopener noreferrer">
+                        www.emailjs.com/legal/privacy-policy
+                    </a>
+                </p>
+                <p>
+                    Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO (Einwilligung durch aktives Absenden) 
+                    sowie Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung). Die Daten werden ausschließlich 
+                    zur Bearbeitung der Anfrage verwendet.
+                </p>
+
+                <h3>6. GitHub (eingebundene Bilder)</h3>
+                <p>
+                    Diese Website lädt Bilder von Servern des Dienstes <strong>GitHub</strong> 
+                    (GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA). 
+                    Beim Laden dieser Inhalte wird Ihre IP-Adresse an GitHub übertragen. 
+                    Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO. 
+                    Datenschutzerklärung von GitHub:
+                    <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" 
+                       target="_blank" rel="noopener noreferrer">GitHub Privacy Statement</a>
+                </p>
+
+                <h3>7. Ihre Rechte</h3>
+                <p>
+                    Sie haben gemäß DSGVO das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), 
+                    Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit 
+                    (Art. 20) sowie Widerspruch (Art. 21). Anfragen richten Sie bitte an: 
+                    <a href="mailto:plantmax87@gmail.com">plantmax87@gmail.com</a>
+                </p>
+                <p>
+                    Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren. 
+                    Zuständig für Bayern ist der Bayerische Landesbeauftragte für den Datenschutz (BayLfD): 
+                    <a href="https://www.datenschutz-bayern.de" target="_blank" rel="noopener noreferrer">
+                        www.datenschutz-bayern.de
+                    </a>
+                </p>
             </section>
         </main>
 
         <footer>
-            <div>
+            <div class="footer-left">
                 <p>MAXIMILIAN KIEFER</p>
-                <div class="footer-links">
-                    <button onclick="openM('impressumModal')">Impressum</button>
-                    <button onclick="openM('datenschutzModal')">Datenschutz</button>
-                </div>
+                <p style="opacity: 0.7;">Regensburg | plantmax87@gmail.com</p>
+                <nav class="footer-links" aria-label="Rechtliche Links">
+                    <a href="#impressum">Impressum</a>
+                    <a href="#datenschutz">Datenschutz</a>
+                </nav>
             </div>
-            <div style="text-align: right;">
-                <p>2026.01.31</p>
-                <p style="opacity: 0.6;">AI ENGINEER PORTFOLIO</p>
+            <div class="footer-right">
+                <p>31.01.2026</p>
+                <p style="opacity: 0.7;">AI Engineer PORTFOLIO</p>
             </div>
         </footer>
     </div>
 
-    <div class="modal-overlay" id="cvModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeM('cvModal')">&times;</button>
-            <div id="formSection">
-                <h2>CV DOWNLOAD</h2>
-                <form id="cvForm">
-                    <div class="form-group"><label>Name *</label><input type="text" id="rName" required></div>
-                    <div class="form-group"><label>Firma *</label><input type="text" id="rCompany" required></div>
-                    <div class="form-group"><label>E-Mail *</label><input type="email" id="rEmail" required></div>
-                    <div class="form-group"><label>Telefon *</label><input type="tel" id="rPhone" required></div>
-                    <p style="font-size: 0.7rem; margin-bottom: 15px; font-family: 'Inter';">
-                        <input type="checkbox" required> Ich akzeptiere die <button type="button" onclick="openM('datenschutzModal')" style="color:var(--primary); background:none; border:none; text-decoration:underline;">Datenschutzerklärung</button>.
-                    </p>
-                    <button type="submit" class="modal-btn" id="sBtn">ANFRAGE SENDEN</button>
-                </form>
-            </div>
-            <div id="successSection" style="display:none; text-align:center;">
-                <h3 style="color:var(--primary); margin-bottom:15px;">✓ ERFOLGREICH</h3>
-                <p>Der Download startet automatisch...</p>
-            </div>
-        </div>
-    </div>
+    <!-- EmailJS SDK — wird nur bei aktivem JavaScript geladen -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        // ========================================
+        // EMAILJS KONFIGURATION
+        // ========================================
+        (function() {
+            emailjs.init("xoVRr2sUa27rtNgXs");
+        })();
 
-    <div class="modal-overlay" id="impressumModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeM('impressumModal')">&times;</button>
-            <h2>Impressum</h2>
-            <div style="font-family:'Inter'; margin-top:20px; line-height:1.6;">
-                <p><strong>Angaben gemäß § 5 TMG:</strong><br>Maximilian Kiefer<br>Regensburg, Deutschland</p>
-                <p><strong>Kontakt:</strong><br>E-Mail: plantmax87@gmail.com</p>
-            </div>
-        </div>
-    </div>
+        // ========================================
+        // THEME TOGGLE
+        // ========================================
+        const btn = document.getElementById('theme-btn');
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'light') {
+            document.body.classList.add('light-mode');
+            btn.textContent = '☀️ LIGHT MODE';
+        }
 
-    <div class="modal-overlay" id="datenschutzModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeM('datenschutzModal')">&times;</button>
-            <h2>Datenschutz</h2>
-            <div style="font-family:'Inter'; margin-top:20px; font-size:0.9rem; line-height:1.6;">
-                <p>Die erhobenen Daten (Name, E-Mail, etc.) werden ausschließlich zum Versand des Lebenslaufs via EmailJS verarbeitet. Hosting erfolgt über GitHub Pages.</p>
-            </div>
-        </div>
-    </div>
+        btn.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            btn.textContent = isLight ? '☀️ LIGHT MODE' : '🌙 DARK MODE';
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        });
 
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script>
-        (function(){ emailjs.init("xoVRr2sUa27rtNgXs"); })();
+        // ========================================
+        // CV DOWNLOAD MODAL LOGIC
+        // ========================================
+        const cvModal = document.getElementById('cvModal');
+        const cvDownloadBtn = document.getElementById('cvDownloadBtn');
+        const closeModal = document.getElementById('closeModal');
+        const cvForm = document.getElementById('cvForm');
+        const formSection = document.getElementById('formSection');
+        const successSection = document.getElementById('successSection');
 
-        function openM(id){ document.getElementById(id).classList.add('active'); document.body.style.overflow='hidden'; }
-        function closeM(id){ document.getElementById(id).classList.remove('active'); document.body.style.overflow=''; }
+        cvDownloadBtn.addEventListener('click', () => {
+            cvModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
 
-        document.getElementById('cvDownloadBtn').onclick = () => openM('cvModal');
+        closeModal.addEventListener('click', () => {
+            cvModal.classList.remove('active');
+            document.body.style.overflow = '';
+            resetModal();
+        });
 
-        document.getElementById('cvForm').onsubmit = async (e) => {
+        cvModal.addEventListener('click', (e) => {
+            if (e.target === cvModal) {
+                cvModal.classList.remove('active');
+                document.body.style.overflow = '';
+                resetModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && cvModal.classList.contains('active')) {
+                cvModal.classList.remove('active');
+                document.body.style.overflow = '';
+                resetModal();
+            }
+        });
+
+        // ========================================
+        // FORM SUBMISSION MIT EMAILJS
+        // ========================================
+        cvForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const b = document.getElementById('sBtn');
-            b.disabled = true; b.textContent = "SENDET...";
+
+            const submitBtn = cvForm.querySelector('.modal-btn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sende Anfrage...';
+
+            const formData = {
+                name: document.getElementById('recruiterName').value,
+                company: document.getElementById('recruiterCompany').value,
+                email: document.getElementById('recruiterEmail').value,
+                phone: document.getElementById('recruiterPhone').value,
+                timestamp: new Date().toLocaleString('de-DE', {
+                    dateStyle: 'full',
+                    timeStyle: 'short'
+                })
+            };
+
+            console.log('CV Request:', formData);
 
             try {
-                await emailjs.send('service_3g7z1vg', 'template_30rw4ys', {
-                    name: document.getElementById('rName').value,
-                    company: document.getElementById('rCompany').value,
-                    email: document.getElementById('rEmail').value,
-                    phone: document.getElementById('rPhone').value
-                });
+                await emailjs.send(
+                    'service_3g7z1vg',
+                    'template_30rw4ys',
+                    formData
+                );
+                
+                console.log('✅ E-Mail erfolgreich gesendet!');
+                
+                formSection.style.display = 'none';
+                successSection.classList.add('active');
 
-                document.getElementById('formSection').style.display = 'none';
-                document.getElementById('successSection').style.display = 'block';
+                setTimeout(() => { triggerDownload(); }, 1000);
+                setTimeout(() => {
+                    cvModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                    resetModal();
+                }, 4000);
 
-                const a = document.createElement('a');
-                a.href = './assets/Maximilian_Kiefer_CV.pdf';
-                a.download = 'Maximilian_Kiefer_CV.pdf';
-                document.body.appendChild(a); a.click(); document.body.removeChild(a);
-
-                setTimeout(() => { closeM('cvModal'); location.reload(); }, 4000);
-            } catch (err) {
-                alert("Fehler beim Senden. Bitte versuchen Sie es erneut.");
-                b.disabled = false; b.textContent = "ANFRAGE SENDEN";
+            } catch (error) {
+                console.error('❌ E-Mail-Fehler:', error);
+                alert('Es gab ein Problem beim Senden der Anfrage. Bitte versuchen Sie es erneut.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Lebenslauf anfordern';
             }
-        };
+        });
+
+        // ========================================
+        // CV DOWNLOAD TRIGGER
+        // ========================================
+        function triggerDownload() {
+            const cvPath = './assets/Maximilian_Kiefer_CV.pdf';
+            const link = document.createElement('a');
+            link.href = cvPath;
+            link.download = 'Maximilian_Kiefer_Lebenslauf.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // ========================================
+        // MODAL RESET
+        // ========================================
+        function resetModal() {
+            formSection.style.display = 'block';
+            successSection.classList.remove('active');
+            cvForm.reset();
+        }
+
+        // ========================================
+        // SMOOTH SCROLL FOR INTERNAL LINKS
+        // ========================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
     </script>
 </body>
 </html>
