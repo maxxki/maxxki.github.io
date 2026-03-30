@@ -4,97 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- ═══════════════════════════════════════════
-         SEO META TAGS
-    ═══════════════════════════════════════════ -->
+    <!-- ══════════════════════════════════════════
+         SEO
+    ══════════════════════════════════════════ -->
     <title>MAXXKI | AI & Java Engineer | Maximilian Kiefer – Regensburg</title>
-    <meta name="description" content="Maximilian Kiefer – AI & Java Engineer aus Regensburg. Entwicklung von KI-Lösungen, Frontend (React), Backend (Java), Automation und intelligenten Apps.">
-    <meta name="keywords" content="AI Engineer, Java Engineer, KI Entwicklung, React, Python, Automation, Maximilian Kiefer, MAXXKI, Regensburg, Freelancer">
+    <meta name="description" content="Maximilian Kiefer – AI & Java Engineer aus Regensburg. Entwicklung von KI-Lösungen, Frontend, Backend, Automation und Apps. Menschliche + Künstliche Intelligenz = MAXXKI.">
+    <meta name="keywords" content="AI Engineer, Java Engineer, KI-Lösungen, Frontend, Backend, Automation, Regensburg, MAXXKI, Maximilian Kiefer">
     <meta name="author" content="Maximilian Kiefer">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://maxxki.github.io/">
 
-    <!-- Open Graph / Social Media -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://maxxki.github.io/">
     <meta property="og:title" content="MAXXKI | AI & Java Engineer | Maximilian Kiefer">
-    <meta property="og:description" content="Ich entwickle funktionierende Lösungen mit KI. Lauffähig, sicher, getestet. AI Engineer aus Regensburg.">
-    <meta property="og:image" content="https://github.com/user-attachments/assets/0d1cb683-6c2f-4174-a25f-63631c7b784e">
+    <meta property="og:description" content="Ich entwickle funktionierende Lösungen mit KI. Lauffähig, sicher, getestet.">
+    <meta property="og:image" content="https://github.com/user-attachments/assets/4c6281f8-b430-410d-9046-753fb5a165de">
     <meta property="og:locale" content="de_DE">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="MAXXKI | AI & Java Engineer | Maximilian Kiefer">
-    <meta name="twitter:description" content="Ich entwickle funktionierende Lösungen mit KI. AI Engineer aus Regensburg.">
-    <meta name="twitter:image" content="https://github.com/user-attachments/assets/0d1cb683-6c2f-4174-a25f-63631c7b784e">
+    <meta name="twitter:description" content="Ich entwickle funktionierende Lösungen mit KI. Lauffähig, sicher, getestet.">
+    <meta name="twitter:image" content="https://github.com/user-attachments/assets/4c6281f8-b430-410d-9046-753fb5a165de">
 
-    <!-- ═══════════════════════════════════════════
-         SECURITY HEADERS (via <meta> wo möglich)
-         Hinweis: X-Frame-Options, HSTS etc. müssen
-         im Server/GitHub Pages _headers gesetzt werden.
-         Hier: was per HTML möglich ist.
-    ═══════════════════════════════════════════ -->
+    <!-- ══════════════════════════════════════════
+         SECURITY HEADERS (via meta – ergänze diese
+         auch serverseitig / via _headers-Datei!)
+    ══════════════════════════════════════════ -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
-    <!-- CSP: EmailJS + Google Fonts + GitHub CDN erlaubt -->
-    <meta http-equiv="Content-Security-Policy"
-          content="default-src 'self';
-                   script-src 'self' 'nonce-MAXXKI2026' https://cdn.jsdelivr.net;
-                   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-                   font-src 'self' https://fonts.gstatic.com;
-                   img-src 'self' https://github.com https://user-images.githubusercontent.com data:;
-                   connect-src 'self' https://api.emailjs.com;
-                   frame-ancestors 'none';
-                   base-uri 'self';
-                   form-action 'self';">
+    <!--
+        Content-Security-Policy muss über GitHub Pages _headers-Datei gesetzt werden.
+        Empfehlung für _headers:
+        /*
+          Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://cdn.botpress.cloud https://mediafiles.botpress.cloud; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://github.com data:; connect-src 'self' https://api.emailjs.com; frame-ancestors 'none';
+          X-Frame-Options: DENY
+          X-Content-Type-Options: nosniff
+          Referrer-Policy: strict-origin-when-cross-origin
+          Permissions-Policy: camera=(), microphone=(), geolocation=()
+    -->
 
-    <!-- ═══════════════════════════════════════════
-         PERFORMANCE: Google Fonts optimiert
-         – preconnect zuerst, dann display=swap
-    ═══════════════════════════════════════════ -->
+    <!-- ══════════════════════════════════════════
+         PERFORMANCE – Font-Preconnect & Preload
+    ══════════════════════════════════════════ -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload"
-          href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300;600;900&display=swap"
-          as="style"
-          onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet"
-              href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300;600;900&display=swap">
-    </noscript>
+    <!-- Nur benötigte Weights laden, display=swap verhindert FOIT -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300;600;900&display=swap">
 
-    <!-- ═══════════════════════════════════════════
-         PERFORMANCE: Hero-Image vorausladen
-    ═══════════════════════════════════════════ -->
-    <link rel="preload"
-          href="https://github.com/user-attachments/assets/4c6281f8-b430-410d-9046-753fb5a165de"
-          as="image">
+    <!-- Preload kritischer Bilder -->
+    <link rel="preload" as="image" href="https://github.com/user-attachments/assets/4c6281f8-b430-410d-9046-753fb5a165de" fetchpriority="high">
 
-    <!-- ═══════════════════════════════════════════
-         STRUCTURED DATA (JSON-LD für SEO)
-    ═══════════════════════════════════════════ -->
-    <script type="application/ld+json" nonce="MAXXKI2026">
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Maximilian Kiefer",
       "jobTitle": "AI & Java Engineer",
       "url": "https://maxxki.github.io/",
-      "email": "mailto:plantmax87@gmail.com",
+      "email": "plantmax87@gmail.com",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Regensburg",
         "addressCountry": "DE"
       },
-      "sameAs": [],
-      "knowsAbout": ["Artificial Intelligence", "Java", "React", "Python", "Automation", "LLM"]
+      "knowsAbout": ["Artificial Intelligence", "Java", "React", "Python", "LLM", "Automation"],
+      "sameAs": ["https://github.com/maxxki"]
     }
     </script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300;600;900&display=swap');
-
         :root {
             --primary: #00d4ff;
             --bg: #05070a;
@@ -116,22 +98,22 @@
             --glow-overlay: radial-gradient(circle at 80% 20%, rgba(0, 153, 204, 0.1), transparent 40%);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
         }
 
-        body {
-            background-color: var(--bg);
-            color: var(--text);
+        body { 
+            background-color: var(--bg); 
+            color: var(--text); 
             font-family: 'Syncopate', sans-serif;
             overflow-x: hidden;
             transition: background-color 0.4s, color 0.4s;
             cursor: default;
         }
 
-        /* ── Banner ─────────────────────────── */
+        /* ── Banner ───────────────────────────── */
         .brand-banner {
             width: 100%;
             height: 140px;
@@ -143,31 +125,20 @@
             z-index: 100;
         }
 
-        /* ── Background ──────────────────────── */
-        .poster-bg {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: var(--overlay-gradient);
-            z-index: -2;
+        /* ── Background ───────────────────────── */
+        .poster-bg { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: var(--overlay-gradient); z-index: -2; 
+        }
+        .glow-overlay { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: var(--glow-overlay); z-index: -1; 
         }
 
-        .glow-overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: var(--glow-overlay);
-            z-index: -1;
-        }
+        /* ── Container ────────────────────────── */
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
 
-        /* ── Container ───────────────────────── */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* ── Header ──────────────────────────── */
+        /* ── Header ───────────────────────────── */
         header {
             padding: 30px 0;
             display: flex;
@@ -179,23 +150,11 @@
             flex-wrap: wrap;
             gap: 20px;
         }
+        .logo-box { border-left: 5px solid var(--primary); padding-left: 15px; }
+        .logo-box span { font-weight: 700; font-size: clamp(1.5rem, 4vw, 2rem); }
+        .status { font-size: clamp(0.65rem, 1.5vw, 0.9rem); text-align: right; }
 
-        .logo-box {
-            border-left: 5px solid var(--primary);
-            padding-left: 15px;
-        }
-
-        .logo-box span {
-            font-weight: 700;
-            font-size: clamp(1.5rem, 4vw, 2rem);
-        }
-
-        .status {
-            font-size: clamp(0.65rem, 1.5vw, 0.9rem);
-            text-align: right;
-        }
-
-        /* ── Hero ────────────────────────────── */
+        /* ── Hero ─────────────────────────────── */
         .hero {
             min-height: 80vh;
             display: grid;
@@ -204,7 +163,6 @@
             gap: 40px;
             padding: 40px 0;
         }
-
         .hero-content h1 {
             font-family: 'Syncopate', sans-serif;
             font-size: clamp(2rem, 5vw, 6rem);
@@ -216,28 +174,19 @@
             background-clip: text;
             word-wrap: break-word;
         }
-
-        .hero-content .subtitle {
-            font-size: clamp(0.75rem, 2vw, 1.5rem);
-            color: var(--primary);
-            font-weight: 300;
-            margin-bottom: 30px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            line-height: 1.4;
+        .hero-content .subtitle { 
+            font-size: clamp(0.75rem, 2vw, 1.5rem); 
+            color: var(--primary); font-weight: 300; margin-bottom: 30px; 
+            letter-spacing: 2px; text-transform: uppercase; line-height: 1.4; 
+        }
+        .hero-content p { 
+            font-size: clamp(0.9rem, 1.8vw, 1.2rem); line-height: 1.8; opacity: 0.9; 
+            margin-bottom: 30px; border-left: 2px solid var(--primary); padding-left: 20px; 
         }
 
-        .hero-content p {
-            font-size: clamp(0.9rem, 1.8vw, 1.2rem);
-            line-height: 1.8;
-            opacity: 0.9;
-            margin-bottom: 30px;
-            border-left: 2px solid var(--primary);
-            padding-left: 20px;
-        }
-
-        /* ── Showcase Link Box ───────────────── */
-        .showcase-link-box {
+        /* ── Showcase / CV Box ────────────────── */
+        .showcase-link-box,
+        .cv-download-box {
             margin: 30px 0;
             padding: 20px;
             background: rgba(0, 212, 255, 0.05);
@@ -252,675 +201,243 @@
             backdrop-filter: blur(10px);
             cursor: pointer;
         }
-
-        .showcase-link-box:hover {
-            background: rgba(0, 212, 255, 0.1);
-            transform: scale(1.02);
-        }
-
-        .showcase-text h2 {
-            font-family: 'Syncopate', sans-serif;
-            font-size: clamp(1rem, 2vw, 1.2rem);
-            color: var(--primary);
-            margin-bottom: 5px;
-        }
-
-        .showcase-text p {
-            font-size: clamp(0.85rem, 1.5vw, 1rem);
-            opacity: 0.8;
-        }
-
-        /* ── CV Download Box ─────────────────── */
         .cv-download-box {
             margin: 15px 0 30px 0;
-            padding: 20px;
             background: rgba(0, 212, 255, 0.08);
-            border: 2px solid var(--primary);
-            border-radius: 15px;
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: all 0.4s;
-            backdrop-filter: blur(10px);
-            cursor: pointer;
-            width: 100%;
-            text-align: left;
-            font-family: 'Syncopate', sans-serif;
         }
-
-        .cv-download-box:hover {
-            background: rgba(0, 212, 255, 0.15);
-            transform: scale(1.02);
+        .showcase-link-box:hover,
+        .cv-download-box:hover { 
+            background: rgba(0, 212, 255, 0.1); 
+            transform: scale(1.02); 
             box-shadow: 0 5px 20px rgba(0, 212, 255, 0.2);
         }
+        .showcase-text h2 { 
+            font-family: 'Syncopate', sans-serif; 
+            font-size: clamp(1rem, 2vw, 1.2rem); 
+            color: var(--primary); margin-bottom: 5px; 
+        }
+        .showcase-text p { font-size: clamp(0.85rem, 1.5vw, 1rem); opacity: 0.8; }
 
-        /* ── Hero Image ──────────────────────── */
-        .hero-image-wrap {
-            position: relative;
-            transform: perspective(1000px) rotateY(-10deg);
+        /* ── Hero Image ───────────────────────── */
+        .hero-image-wrap { 
+            position: relative; 
+            transform: perspective(1000px) rotateY(-10deg); 
             transition: transform 0.5s ease;
             width: 100%;
         }
-
-        .hero-image-wrap:hover {
-            transform: perspective(1000px) rotateY(0deg);
-        }
-
-        .hero-image-wrap img {
-            width: 100%;
-            height: auto;
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            box-shadow: -20px 20px 60px rgba(0, 212, 255, 0.3);
+        .hero-image-wrap:hover { transform: perspective(1000px) rotateY(0deg); }
+        .hero-image-wrap img { 
+            width: 100%; height: auto;
+            border-radius: 20px; border: 1px solid var(--border); 
+            box-shadow: -20px 20px 60px rgba(0, 212, 255, 0.3); 
             display: block;
-            /* PERFORMANCE: content-visibility für LCP */
-            content-visibility: auto;
         }
 
-        /* ── Tech Grid ───────────────────────── */
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: -30px;
-            position: relative;
-            z-index: 10;
+        /* ── Tech Grid ────────────────────────── */
+        .tech-grid { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 20px; margin-top: -30px; position: relative; z-index: 10; 
         }
-
-        .tech-card {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border);
-            padding: 25px 20px;
-            text-align: center;
-            border-radius: 15px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .tech-card { 
+            background: var(--glass); backdrop-filter: blur(20px); 
+            border: 1px solid var(--border); padding: 25px 20px; text-align: center; 
+            border-radius: 15px; transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+        .tech-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2); }
+        .tech-card h3 { font-family: 'Syncopate', sans-serif; font-size: clamp(1rem, 1.5vw, 1.2rem); color: var(--primary); }
 
-        .tech-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        /* ── Button ───────────────────────────── */
+        .btn-massive { 
+            display: inline-block; padding: 20px 40px; border: 2px solid var(--primary); 
+            color: var(--primary); text-decoration: none; font-family: 'Syncopate', sans-serif; 
+            font-weight: 700; transition: all 0.4s; font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            cursor: pointer; text-align: center; background: transparent;
         }
+        .btn-massive:hover { background: var(--primary); color: #000; transform: scale(1.05); }
 
-        .tech-card h3 {
-            font-family: 'Syncopate', sans-serif;
-            font-size: clamp(1rem, 1.5vw, 1.2rem);
-            color: var(--primary);
-        }
-
-        /* ── Button ──────────────────────────── */
-        .btn-massive {
-            display: inline-block;
-            padding: 20px 40px;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            text-decoration: none;
-            font-family: 'Syncopate', sans-serif;
-            font-weight: 700;
-            transition: all 0.4s;
-            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
-            cursor: pointer;
-            text-align: center;
-        }
-
-        .btn-massive:hover {
-            background: var(--primary);
-            color: #000;
-            transform: scale(1.05);
-        }
-
-        /* ── Modal ───────────────────────────── */
+        /* ── Modal ────────────────────────────── */
         .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(10px);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px);
+            z-index: 9999; justify-content: center; align-items: center;
             animation: fadeIn 0.3s ease;
         }
-
-        .modal-overlay.active {
-            display: flex;
-        }
-
+        .modal-overlay.active { display: flex; }
         .modal-content {
-            background: var(--bg);
-            border: 2px solid var(--primary);
-            border-radius: 20px;
-            padding: 40px;
-            max-width: 600px;
-            width: 90%;
-            position: relative;
-            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.4);
-            animation: slideUp 0.4s ease;
+            background: var(--bg); border: 2px solid var(--primary); border-radius: 20px;
+            padding: 40px; max-width: 600px; width: 90%; position: relative;
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.4); animation: slideUp 0.4s ease;
+            max-height: 90vh; overflow-y: auto;
         }
-
         @keyframes slideUp {
             from { opacity: 0; transform: translateY(50px); }
             to   { opacity: 1; transform: translateY(0); }
         }
-
         .modal-close {
-            position: absolute;
-            top: 20px; right: 20px;
-            background: none;
-            border: none;
-            color: var(--primary);
-            font-size: 2rem;
-            cursor: pointer;
-            transition: transform 0.3s;
-            font-family: 'Syncopate', sans-serif;
-            line-height: 1;
+            position: absolute; top: 20px; right: 20px; background: none; border: none;
+            color: var(--primary); font-size: 2rem; cursor: pointer; transition: transform 0.3s;
+            font-family: 'Syncopate', sans-serif; line-height: 1;
         }
-
         .modal-close:hover { transform: rotate(90deg); }
-
-        .modal-content h2 {
-            font-family: 'Syncopate', sans-serif;
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        .modal-content .modal-subtitle {
-            font-size: clamp(0.85rem, 1.3vw, 1rem);
-            opacity: 0.8;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        /* DATENSCHUTZ-Hinweis im Modal */
-        .modal-privacy-note {
-            font-size: clamp(0.7rem, 1.1vw, 0.8rem);
-            opacity: 0.6;
-            margin-bottom: 25px;
-            line-height: 1.5;
-            border-left: 2px solid var(--border);
-            padding-left: 12px;
-        }
-
-        .modal-privacy-note a {
-            color: var(--primary);
-            text-decoration: underline;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            font-family: 'Syncopate', sans-serif;
-            font-size: clamp(0.75rem, 1.2vw, 0.9rem);
-            color: var(--primary);
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
+        .modal-content h2 { font-family: 'Syncopate', sans-serif; font-size: clamp(1.5rem, 3vw, 2rem); color: var(--primary); margin-bottom: 10px; }
+        .modal-content .modal-subtitle { font-size: clamp(0.85rem, 1.3vw, 1rem); opacity: 0.8; margin-bottom: 30px; line-height: 1.6; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-family: 'Syncopate', sans-serif; font-size: clamp(0.75rem, 1.2vw, 0.9rem); color: var(--primary); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
         .form-group input {
-            width: 100%;
-            padding: 15px;
-            background: var(--glass);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            color: var(--text);
-            font-size: clamp(0.9rem, 1.3vw, 1rem);
-            font-family: 'Inter', sans-serif;
-            transition: all 0.3s;
-            /* Autocomplete-Unterstützung verbessert Barrierefreiheit */
+            width: 100%; padding: 15px; background: var(--glass); border: 1px solid var(--border);
+            border-radius: 10px; color: var(--text); font-size: clamp(0.9rem, 1.3vw, 1rem);
+            font-family: 'Inter', sans-serif; transition: all 0.3s;
         }
+        .form-group input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 20px rgba(0, 212, 255, 0.2); }
+        .form-group input::placeholder { color: rgba(255, 255, 255, 0.3); }
+        body.light-mode .form-group input::placeholder { color: rgba(0, 0, 0, 0.3); }
 
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+        /* Datenschutz-Checkbox im Modal */
+        .privacy-check { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 20px; }
+        .privacy-check input[type="checkbox"] { 
+            margin-top: 3px; accent-color: var(--primary); 
+            width: 18px; height: 18px; flex-shrink: 0; cursor: pointer;
         }
-
-        .form-group input::placeholder {
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        body.light-mode .form-group input::placeholder {
-            color: rgba(0, 0, 0, 0.3);
-        }
-
-        /* Consent-Checkbox */
-        .form-consent {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .form-consent input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            flex-shrink: 0;
-            accent-color: var(--primary);
-            margin-top: 2px;
-            cursor: pointer;
-        }
-
-        .form-consent label {
-            font-size: clamp(0.7rem, 1.1vw, 0.8rem);
-            opacity: 0.8;
-            line-height: 1.5;
-            cursor: pointer;
-        }
-
-        .form-consent a {
-            color: var(--primary);
-            text-decoration: underline;
-        }
+        .privacy-check label { font-family: 'Inter', sans-serif; font-size: clamp(0.8rem, 1.2vw, 0.9rem); line-height: 1.5; cursor: pointer; }
+        .privacy-check a { color: var(--primary); text-decoration: underline; }
 
         .modal-btn {
-            width: 100%;
-            padding: 18px;
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            font-family: 'Syncopate', sans-serif;
-            font-weight: 700;
-            font-size: clamp(0.9rem, 1.3vw, 1rem);
-            cursor: pointer;
-            border-radius: 10px;
-            transition: all 0.3s;
-            margin-top: 10px;
+            width: 100%; padding: 18px; background: transparent; border: 2px solid var(--primary);
+            color: var(--primary); font-family: 'Syncopate', sans-serif; font-weight: 700;
+            font-size: clamp(0.9rem, 1.3vw, 1rem); cursor: pointer; border-radius: 10px;
+            transition: all 0.3s; margin-top: 10px;
         }
-
-        .modal-btn:hover {
-            background: var(--primary);
-            color: #000;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
-        }
-
-        .modal-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .success-message {
-            display: none;
-            text-align: center;
-            padding: 40px 20px;
-        }
-
+        .modal-btn:hover { background: var(--primary); color: #000; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3); }
+        .modal-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .success-message { display: none; text-align: center; padding: 40px 20px; }
         .success-message.active { display: block; }
+        .success-message h3 { font-family: 'Syncopate', sans-serif; font-size: clamp(1.3rem, 2.5vw, 1.8rem); color: var(--primary); margin-bottom: 20px; }
+        .success-message p { font-size: clamp(0.9rem, 1.3vw, 1rem); line-height: 1.8; opacity: 0.9; }
 
-        .success-message h3 {
-            font-family: 'Syncopate', sans-serif;
-            font-size: clamp(1.3rem, 2.5vw, 1.8rem);
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-
-        .success-message p {
-            font-size: clamp(0.9rem, 1.3vw, 1rem);
-            line-height: 1.8;
-            opacity: 0.9;
-        }
-
-        /* ── MAXXKI Section ──────────────────── */
+        /* ── MAXXKI Section ───────────────────── */
         #maxxki {
-            margin-top: 100px;
-            padding: 60px 30px;
-            background: linear-gradient(rgba(5, 7, 10, 0.85), rgba(5, 7, 10, 0.85)),
+            margin-top: 100px; padding: 60px 30px;
+            background: linear-gradient(rgba(5, 7, 10, 0.85), rgba(5, 7, 10, 0.85)), 
                         url('https://github.com/user-attachments/assets/0d1cb683-6c2f-4174-a25f-63631c7b784e') no-repeat center center;
-            background-size: cover;
-            border-radius: 30px;
-            border: 1px solid var(--border);
+            background-size: cover; border-radius: 30px; border: 1px solid var(--border);
         }
-
-        body.light-mode #maxxki {
-            background: linear-gradient(rgba(240, 244, 248, 0.9), rgba(240, 244, 248, 0.9)),
+        body.light-mode #maxxki { 
+            background: linear-gradient(rgba(240, 244, 248, 0.9), rgba(240, 244, 248, 0.9)), 
                         url('https://github.com/user-attachments/assets/0d1cb683-6c2f-4174-a25f-63631c7b784e') no-repeat center center;
-            background-size: cover;
+            background-size: cover; 
         }
+        #maxxki h2 { font-family: 'Syncopate', sans-serif; margin-bottom: 40px; font-size: clamp(1.5rem, 3vw, 2.5rem); }
+        .engine-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; }
+        .engine-grid h4 { color: var(--primary); text-transform: uppercase; margin-bottom: 20px; font-size: clamp(0.9rem, 1.5vw, 1.1rem); }
+        .engine-grid p { font-size: clamp(0.9rem, 1.5vw, 1.1rem); line-height: 1.6; }
+        .engine-code { background: rgba(0, 212, 255, 0.05); border: 1px solid var(--border); padding: 25px; border-radius: 20px; }
+        .engine-code ul { list-style: none; color: var(--primary); font-family: 'Syncopate', sans-serif; }
+        .engine-code li { margin-bottom: 10px; font-size: clamp(0.75rem, 1.3vw, 0.95rem); word-break: break-word; }
 
-        #maxxki h2 {
-            font-family: 'Syncopate', sans-serif;
-            margin-bottom: 40px;
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
+        /* ── Impressum Modal ──────────────────── */
+        #impressumModal .modal-content { max-width: 700px; }
+        #impressumModal h2 { margin-bottom: 20px; }
+        #impressumModal h3 { color: var(--primary); font-family: 'Syncopate', sans-serif; font-size: 1rem; margin: 20px 0 8px; text-transform: uppercase; letter-spacing: 1px; }
+        #impressumModal p, #impressumModal address { font-family: 'Inter', sans-serif; font-size: 0.95rem; line-height: 1.8; opacity: 0.85; font-style: normal; }
+        #impressumModal a { color: var(--primary); }
+
+        /* ── Datenschutz Modal ────────────────── */
+        #datenschutzModal .modal-content { max-width: 700px; }
+        #datenschutzModal h2 { margin-bottom: 20px; }
+        #datenschutzModal h3 { color: var(--primary); font-family: 'Syncopate', sans-serif; font-size: 1rem; margin: 20px 0 8px; text-transform: uppercase; letter-spacing: 1px; }
+        #datenschutzModal p { font-family: 'Inter', sans-serif; font-size: 0.9rem; line-height: 1.8; opacity: 0.85; }
+        #datenschutzModal ul { font-family: 'Inter', sans-serif; font-size: 0.9rem; line-height: 2; opacity: 0.85; padding-left: 20px; }
+        #datenschutzModal a { color: var(--primary); }
+
+        /* ── Footer ───────────────────────────── */
+        footer { 
+            margin-top: 100px; padding: 40px 0; border-top: 1px solid var(--border); 
+            display: flex; justify-content: space-between; align-items: flex-end;
+            flex-wrap: wrap; gap: 20px;
         }
-
-        .engine-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 40px;
-        }
-
-        .engine-grid h4 {
-            color: var(--primary);
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
-        }
-
-        .engine-grid p {
-            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
-            line-height: 1.6;
-        }
-
-        .engine-code {
-            background: rgba(0, 212, 255, 0.05);
-            border: 1px solid var(--border);
-            padding: 25px;
-            border-radius: 20px;
-        }
-
-        .engine-code ul {
-            list-style: none;
-            color: var(--primary);
-            font-family: 'Syncopate', sans-serif;
-        }
-
-        .engine-code li {
-            margin-bottom: 10px;
-            font-size: clamp(0.75rem, 1.3vw, 0.95rem);
-            word-break: break-word;
-        }
-
-        /* ── Impressum / Datenschutz Modal ────── */
-        .legal-modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(10px);
-            z-index: 10000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .legal-modal-overlay.active { display: flex; }
-
-        .legal-modal-content {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 40px;
-            max-width: 700px;
-            width: 100%;
-            max-height: 85vh;
-            overflow-y: auto;
-            position: relative;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-        }
-
-        .legal-modal-content h2 {
-            font-family: 'Syncopate', sans-serif;
-            color: var(--primary);
-            font-size: clamp(1.3rem, 2.5vw, 1.8rem);
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .legal-modal-content h3 {
-            font-family: 'Syncopate', sans-serif;
-            color: var(--primary);
-            font-size: clamp(0.9rem, 1.5vw, 1rem);
-            margin: 25px 0 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .legal-modal-content p,
-        .legal-modal-content address {
-            font-family: 'Inter', sans-serif;
-            font-size: clamp(0.85rem, 1.3vw, 0.95rem);
-            line-height: 1.8;
-            opacity: 0.85;
-            font-style: normal;
-            margin-bottom: 10px;
-        }
-
-        .legal-modal-content a {
-            color: var(--primary);
-        }
-
-        .legal-close {
-            position: absolute;
-            top: 20px; right: 20px;
-            background: none;
-            border: 1px solid var(--border);
-            color: var(--primary);
-            font-size: 1.5rem;
-            cursor: pointer;
-            border-radius: 8px;
-            padding: 4px 12px;
-            transition: all 0.3s;
-            font-family: 'Syncopate', sans-serif;
-        }
-
-        .legal-close:hover {
-            background: var(--primary);
-            color: #000;
-        }
-
-        /* ── Footer ──────────────────────────── */
-        footer {
-            margin-top: 100px;
-            padding: 40px 0;
-            border-top: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        footer p {
-            font-size: clamp(0.85rem, 1.3vw, 1rem);
-        }
-
-        footer .footer-left p:first-child {
-            font-family: 'Syncopate', sans-serif;
-            margin-bottom: 5px;
-        }
-
-        footer .footer-right {
-            text-align: right;
-        }
-
-        footer .footer-right p:first-child {
-            color: var(--primary);
-            font-weight: 700;
-        }
-
-        /* Legal Links im Footer */
-        .footer-legal {
-            width: 100%;
-            display: flex;
-            gap: 20px;
-            padding-top: 15px;
-            border-top: 1px solid var(--border);
-            flex-wrap: wrap;
-        }
-
-        .footer-legal button {
-            background: none;
-            border: none;
-            color: var(--primary);
-            font-family: 'Syncopate', sans-serif;
-            font-size: clamp(0.7rem, 1.1vw, 0.8rem);
-            cursor: pointer;
-            text-decoration: underline;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 0;
+        footer p { font-size: clamp(0.85rem, 1.3vw, 1rem); }
+        footer .footer-left p:first-child { font-family: 'Syncopate', sans-serif; margin-bottom: 5px; }
+        footer .footer-right { text-align: right; }
+        footer .footer-right p:first-child { color: var(--primary); font-weight: 700; }
+        .footer-links { display: flex; gap: 20px; margin-top: 10px; flex-wrap: wrap; }
+        .footer-links button { 
+            background: none; border: none; color: var(--primary); cursor: pointer; 
+            font-family: 'Syncopate', sans-serif; font-size: clamp(0.75rem, 1.2vw, 0.85rem);
+            text-decoration: underline; padding: 0; text-transform: uppercase; letter-spacing: 1px;
             transition: opacity 0.2s;
         }
+        .footer-links button:hover { opacity: 0.7; }
 
-        .footer-legal button:hover { opacity: 0.7; }
-
-        /* ── Theme Switch ────────────────────── */
-        .mode-switch {
-            position: fixed;
-            bottom: 20px; left: 20px;
-            z-index: 1000;
-            padding: 12px 20px;
-            font-family: 'Syncopate', sans-serif;
-            font-size: clamp(0.8rem, 1.5vw, 1rem);
-            background: var(--glass);
-            color: var(--primary);
-            border: 2px solid var(--primary);
-            cursor: pointer;
-            border-radius: 8px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+        /* ── Theme Switch ─────────────────────── */
+        .mode-switch { 
+            position: fixed; bottom: 20px; left: 20px; z-index: 1000; 
+            padding: 12px 20px; font-family: 'Syncopate', sans-serif; 
+            font-size: clamp(0.8rem, 1.5vw, 1rem); background: var(--glass); 
+            color: var(--primary); border: 2px solid var(--primary); cursor: pointer; 
+            border-radius: 8px; backdrop-filter: blur(10px); transition: all 0.3s ease;
         }
+        .mode-switch:hover { background: var(--primary); color: var(--bg); transform: scale(1.05); }
 
-        .mode-switch:hover {
-            background: var(--primary);
-            color: var(--bg);
-            transform: scale(1.05);
-        }
+        /* ── Botpress ─────────────────────────── */
+        #bp-web-widget-container { z-index: 9998 !important; }
+        #bp-web-widget-container iframe { z-index: 9998 !important; }
+        body.light-mode #bp-web-widget-container { filter: brightness(1.1); }
 
-        /* ── Skip-Link (Barrierefreiheit) ─────── */
+        /* ── Accessibility ────────────────────── */
+        a:focus-visible,
+        button:focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; }
+
+        /* Skip-Link */
         .skip-link {
-            position: absolute;
-            top: -100px;
-            left: 0;
-            background: var(--primary);
-            color: #000;
-            padding: 12px 20px;
-            font-family: 'Syncopate', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 700;
-            text-decoration: none;
-            z-index: 99999;
-            border-radius: 0 0 8px 0;
-            transition: top 0.2s;
+            position: absolute; top: -100px; left: 10px; z-index: 10000;
+            background: var(--primary); color: #000; padding: 10px 20px;
+            font-family: 'Syncopate', sans-serif; font-size: 0.9rem; border-radius: 4px;
+            text-decoration: none; transition: top 0.2s;
+        }
+        .skip-link:focus { top: 10px; }
+
+        /* ── Reduced Motion ───────────────────── */
+        @media (prefers-reduced-motion: reduce) {
+            * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
         }
 
-        .skip-link:focus { top: 0; }
-
-        /* ── Accessibility ───────────────────── */
-        a:focus,
-        button:focus {
-            outline: 2px solid var(--primary);
-            outline-offset: 4px;
-        }
-
-        /* Fehlermarkierung für Formular */
-        .form-group input:invalid:not(:placeholder-shown) {
-            border-color: #ff4d4d;
-        }
-
-        /* ── Animations ──────────────────────── */
+        /* ── Animations ───────────────────────── */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to   { opacity: 1; transform: translateY(0); }
         }
+        .hero-content, .hero-image-wrap { animation: fadeIn 0.8s ease-out; }
 
-        .hero-content,
-        .hero-image-wrap {
-            animation: fadeIn 0.8s ease-out;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        /* ── Responsive ──────────────────────── */
+        /* ══════════════════════════════════════════
+           RESPONSIVE
+        ══════════════════════════════════════════ */
         @media (max-width: 1024px) {
             .container { padding: 0 30px; }
-
-            .hero {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .hero-image-wrap {
-                order: -1;
-                max-width: 100%;
-                margin: 0 auto;
-                transform: perspective(1000px) rotateY(0deg);
-            }
-
-            .engine-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
+            .hero { grid-template-columns: 1fr; gap: 40px; }
+            .hero-image-wrap { order: -1; max-width: 100%; margin: 0 auto; transform: perspective(1000px) rotateY(0deg); }
+            .engine-grid { grid-template-columns: 1fr; gap: 30px; }
             .tech-grid { margin-top: 40px; }
             .brand-banner { height: 100px; }
         }
-
         @media (max-width: 768px) {
             .container { padding: 0 20px; }
-
-            header {
-                padding: 20px 0;
-                letter-spacing: 2px;
-            }
-
-            .status {
-                width: 100%;
-                text-align: left;
-                order: 3;
-            }
-
-            .hero {
-                min-height: auto;
-                padding: 20px 0;
-            }
-
-            .showcase-link-box,
-            .cv-download-box {
-                flex-direction: column;
-                text-align: center;
-                gap: 10px;
-            }
-
-            .btn-massive {
-                width: 100%;
-                padding: 18px 30px;
-            }
-
+            header { padding: 20px 0; letter-spacing: 2px; }
+            .status { width: 100%; text-align: left; order: 3; }
+            .hero { min-height: auto; padding: 20px 0; }
+            .hero-content h1 { margin-bottom: 20px; }
+            .hero-content .subtitle { margin-bottom: 20px; }
+            .showcase-link-box, .cv-download-box { flex-direction: column; text-align: center; gap: 10px; }
+            .btn-massive { width: 100%; padding: 18px 30px; }
             .tech-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
-
-            #maxxki {
-                margin-top: 60px;
-                padding: 40px 20px;
-            }
-
-            footer {
-                margin-top: 60px;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 30px;
-            }
-
+            #maxxki { margin-top: 60px; padding: 40px 20px; }
+            .engine-code { padding: 20px; }
+            footer { margin-top: 60px; flex-direction: column; align-items: flex-start; gap: 30px; }
             footer .footer-right { text-align: left; }
-
-            .mode-switch {
-                bottom: 15px; left: 15px;
-                padding: 10px 16px;
-            }
-
+            .mode-switch { bottom: 15px; left: 15px; padding: 10px 16px; }
             .brand-banner { height: 80px; }
-
             .modal-content { padding: 30px 20px; }
-
-            .legal-modal-content { padding: 30px 20px; }
+            #bp-web-widget-container { bottom: 80px !important; }
         }
-
         @media (max-width: 480px) {
             .logo-box { padding-left: 10px; }
             .hero-content p { padding-left: 15px; }
@@ -931,115 +448,52 @@
     </style>
 </head>
 <body>
+    <!-- Skip Navigation für Screenreader / Tastaturnutzer -->
+    <a class="skip-link" href="#main-content">Zum Hauptinhalt springen</a>
 
-    <!-- BARRIEREFREIHEIT: Skip-Navigation -->
-    <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
-
-    <!-- PERFORMANCE: Banner mit lazy loading des Backgrounds via CSS -->
-    <div class="brand-banner"
-         role="img"
-         aria-label="MAXXKI Brand Banner – Logo von Maximilian Kiefer"></div>
-
+    <div class="brand-banner" role="img" aria-label="MAXXKI Brand Banner"></div>
     <div class="poster-bg" aria-hidden="true"></div>
     <div class="glow-overlay" aria-hidden="true"></div>
 
-    <button class="mode-switch"
-            id="theme-btn"
-            aria-label="Zwischen Dark Mode und Light Mode wechseln"
-            aria-pressed="false">🌙 DARK MODE</button>
+    <button class="mode-switch" id="theme-btn" aria-label="Zwischen Hell- und Dunkel-Modus wechseln">🌙 DARK MODE</button>
 
     <!-- ══════════════════════════════════════════
          CV DOWNLOAD MODAL
-         DATENSCHUTZ: Einwilligungs-Checkbox
     ══════════════════════════════════════════ -->
-    <div class="modal-overlay"
-         id="cvModal"
-         role="dialog"
-         aria-modal="true"
-         aria-labelledby="cvModalTitle"
-         aria-describedby="cvModalDesc">
+    <div class="modal-overlay" id="cvModal" role="dialog" aria-modal="true" aria-labelledby="cvModalTitle">
         <div class="modal-content">
-            <button class="modal-close"
-                    id="closeModal"
-                    aria-label="Lebenslauf-Anfrage schließen">×</button>
-
+            <button class="modal-close" id="closeModal" aria-label="Modal schließen">&times;</button>
+            
             <div id="formSection">
                 <h2 id="cvModalTitle">Lebenslauf Anforderung</h2>
-                <p class="modal-subtitle" id="cvModalDesc">
-                    Bitte hinterlassen Sie Ihre Kontaktdaten, damit ich weiß, wer sich für
-                    meinen Lebenslauf interessiert. Sie erhalten dann direkten Zugriff zum Download.
+                <p class="modal-subtitle">
+                    Bitte hinterlassen Sie Ihre Kontaktdaten, damit ich weiß, wer sich für meinen Lebenslauf interessiert. 
+                    Sie erhalten dann direkten Zugriff zum Download.
                 </p>
-
-                <!-- DATENSCHUTZ: Hinweis vor dem Formular -->
-                <p class="modal-privacy-note">
-                    🔒 Ihre Daten werden ausschließlich zur Bearbeitung Ihrer Anfrage verwendet
-                    und nicht an Dritte weitergegeben.
-                    Details unter <button type="button"
-                        onclick="openLegal('datenschutz')"
-                        style="background:none;border:none;color:var(--primary);cursor:pointer;text-decoration:underline;font-family:inherit;font-size:inherit;padding:0;">Datenschutzerklärung</button>.
-                </p>
-
                 <form id="cvForm" novalidate>
                     <div class="form-group">
                         <label for="recruiterName">Name *</label>
-                        <input type="text"
-                               id="recruiterName"
-                               name="name"
-                               required
-                               autocomplete="name"
-                               placeholder="Ihr vollständiger Name"
-                               aria-required="true"
-                               aria-describedby="nameHint">
-                        <span id="nameHint" style="display:none;font-size:0.75rem;color:#ff4d4d">Bitte Namen eingeben.</span>
+                        <input type="text" id="recruiterName" name="recruiterName" required autocomplete="name" placeholder="Ihr vollständiger Name">
                     </div>
-
                     <div class="form-group">
                         <label for="recruiterCompany">Firma *</label>
-                        <input type="text"
-                               id="recruiterCompany"
-                               name="company"
-                               required
-                               autocomplete="organization"
-                               placeholder="Firmenname"
-                               aria-required="true">
+                        <input type="text" id="recruiterCompany" name="recruiterCompany" required autocomplete="organization" placeholder="Firmenname">
                     </div>
-
                     <div class="form-group">
                         <label for="recruiterEmail">E-Mail *</label>
-                        <input type="email"
-                               id="recruiterEmail"
-                               name="email"
-                               required
-                               autocomplete="email"
-                               placeholder="ihre.email@firma.de"
-                               aria-required="true">
+                        <input type="email" id="recruiterEmail" name="recruiterEmail" required autocomplete="email" placeholder="ihre.email@firma.de">
                     </div>
-
                     <div class="form-group">
-                        <label for="recruiterPhone">Telefon</label>
-                        <input type="tel"
-                               id="recruiterPhone"
-                               name="phone"
-                               autocomplete="tel"
-                               placeholder="+49 123 456789">
+                        <label for="recruiterPhone">Telefon *</label>
+                        <input type="tel" id="recruiterPhone" name="recruiterPhone" required autocomplete="tel" placeholder="+49 123 456789">
                     </div>
-
-                    <!-- DATENSCHUTZ: Einwilligung -->
-                    <div class="form-consent">
-                        <input type="checkbox"
-                               id="consentCheck"
-                               name="consent"
-                               required
-                               aria-required="true">
-                        <label for="consentCheck">
-                            Ich stimme zu, dass meine Angaben zur Bearbeitung meiner Anfrage
-                            verarbeitet werden. Weitere Informationen finden Sie in der
-                            <button type="button"
-                                    onclick="openLegal('datenschutz')"
-                                    style="background:none;border:none;color:var(--primary);cursor:pointer;text-decoration:underline;font-family:inherit;font-size:inherit;padding:0;">Datenschutzerklärung</button>. *
+                    <!-- DSGVO-Pflicht: Einwilligung -->
+                    <div class="privacy-check">
+                        <input type="checkbox" id="privacyConsent" name="privacyConsent" required>
+                        <label for="privacyConsent">
+                            Ich habe die <button type="button" class="footer-links" onclick="openModal('datenschutzModal')" style="display:inline;border:none;background:none;color:var(--primary);cursor:pointer;font-family:inherit;font-size:inherit;text-decoration:underline;padding:0;">Datenschutzerklärung</button> gelesen und stimme der Verarbeitung meiner Daten zum Zweck der Lebenslauf-Anforderung zu. *
                         </label>
                     </div>
-
                     <button type="submit" class="modal-btn">Lebenslauf anfordern</button>
                 </form>
             </div>
@@ -1048,7 +502,8 @@
                 <h3>✓ Vielen Dank!</h3>
                 <p>
                     Ihre Anfrage wurde registriert.<br>
-                    Der Download des Lebenslaufs startet in Kürze...
+                    Der Download Ihres Lebenslaufs startet in Kürze...<br><br>
+                    Ich werde mich zeitnah bei Ihnen melden!
                 </p>
             </div>
         </div>
@@ -1057,140 +512,68 @@
     <!-- ══════════════════════════════════════════
          IMPRESSUM MODAL
     ══════════════════════════════════════════ -->
-    <div class="legal-modal-overlay"
-         id="impressumModal"
-         role="dialog"
-         aria-modal="true"
-         aria-labelledby="impressumTitle">
-        <div class="legal-modal-content">
-            <button class="legal-close"
-                    onclick="closeLegal('impressumModal')"
-                    aria-label="Impressum schließen">✕</button>
+    <div class="modal-overlay" id="impressumModal" role="dialog" aria-modal="true" aria-labelledby="impressumTitle">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModalById('impressumModal')" aria-label="Impressum schließen">&times;</button>
             <h2 id="impressumTitle">Impressum</h2>
 
             <h3>Angaben gemäß § 5 TMG</h3>
             <address>
                 Maximilian Kiefer<br>
-                AI &amp; Java Engineer<br>
                 Regensburg, Deutschland<br>
                 E-Mail: <a href="mailto:plantmax87@gmail.com">plantmax87@gmail.com</a>
             </address>
 
-            <h3>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h3>
-            <p>Maximilian Kiefer, Anschrift wie oben.</p>
+            <h3>Verantwortlich für den Inhalt (§ 18 Abs. 2 MStV)</h3>
+            <p>Maximilian Kiefer, Regensburg</p>
 
             <h3>Haftungsausschluss</h3>
-            <p>
-                Die Inhalte dieser Website wurden mit größtmöglicher Sorgfalt erstellt.
-                Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte kann jedoch
-                keine Gewähr übernommen werden. Als Diensteanbieter bin ich gemäß § 7 Abs. 1
-                TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen
-                verantwortlich.
-            </p>
-
-            <h3>Externe Links</h3>
-            <p>
-                Diese Website enthält Links zu externen Webseiten Dritter, auf deren Inhalte
-                ich keinen Einfluss habe. Für die Inhalte der verlinkten Seiten ist stets der
-                jeweilige Anbieter oder Betreiber verantwortlich.
-            </p>
+            <p>Die Inhalte dieser Website wurden mit größtmöglicher Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte übernehme ich keine Gewähr. Als Diensteanbieter bin ich gemäß § 7 Abs. 1 TMG für eigene Inhalte verantwortlich. Für fremde Inhalte (verlinkte externe Seiten) übernehme ich keine Haftung, da ich diese nicht überprüfen kann.</p>
 
             <h3>Urheberrecht</h3>
-            <p>
-                Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten
-                unterliegen dem deutschen Urheberrecht. Vervielfältigung, Bearbeitung,
-                Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes
-                bedürfen der schriftlichen Zustimmung des Autors.
-            </p>
+            <p>Die auf dieser Website veröffentlichten Inhalte unterliegen dem deutschen Urheberrecht. Vervielfältigung, Bearbeitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung des Autors.</p>
 
-            <h3>Hosting</h3>
-            <p>
-                Diese Website wird über <strong>GitHub Pages</strong> (GitHub, Inc., 88 Colin P
-                Kelly Jr St, San Francisco, CA 94107, USA) bereitgestellt. Informationen zur
-                Datenverarbeitung durch GitHub finden Sie unter:
-                <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
-                   target="_blank"
-                   rel="noopener noreferrer">GitHub Privacy Statement</a>.
-            </p>
+            <h3>Streitschlichtung</h3>
+            <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr/</a>. Ich bin nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
         </div>
     </div>
 
     <!-- ══════════════════════════════════════════
          DATENSCHUTZ MODAL
     ══════════════════════════════════════════ -->
-    <div class="legal-modal-overlay"
-         id="datenschutzModal"
-         role="dialog"
-         aria-modal="true"
-         aria-labelledby="datenschutzTitle">
-        <div class="legal-modal-content">
-            <button class="legal-close"
-                    onclick="closeLegal('datenschutzModal')"
-                    aria-label="Datenschutzerklärung schließen">✕</button>
+    <div class="modal-overlay" id="datenschutzModal" role="dialog" aria-modal="true" aria-labelledby="datenschutzTitle">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModalById('datenschutzModal')" aria-label="Datenschutzerklärung schließen">&times;</button>
             <h2 id="datenschutzTitle">Datenschutzerklärung</h2>
 
             <h3>1. Verantwortlicher</h3>
-            <address>
-                Maximilian Kiefer<br>
-                Regensburg, Deutschland<br>
-                E-Mail: <a href="mailto:plantmax87@gmail.com">plantmax87@gmail.com</a>
-            </address>
+            <p>Maximilian Kiefer, Regensburg<br>E-Mail: <a href="mailto:plantmax87@gmail.com">plantmax87@gmail.com</a></p>
 
-            <h3>2. Erhobene Daten & Zweck</h3>
-            <p>
-                Diese Website erhebt keine Daten durch Tracking, Cookies oder Analysetools.
-                Beim Ausfüllen des Lebenslauf-Anfrageformulars werden folgende Daten
-                verarbeitet: Name, Firmenname, E-Mail-Adresse, Telefonnummer (optional).
-                Diese Daten werden ausschließlich zur Bearbeitung Ihrer Anfrage und zur
-                Kontaktaufnahme verwendet.
-            </p>
+            <h3>2. Hosting</h3>
+            <p>Diese Website wird auf GitHub Pages (GitHub, Inc., 88 Colin P. Kelly Jr. St., San Francisco, CA 94107, USA) gehostet. GitHub kann beim Aufruf dieser Seite Server-Logdaten erfassen. Weitere Informationen: <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener noreferrer">GitHub Privacy Statement</a>.</p>
 
-            <h3>3. Rechtsgrundlage</h3>
-            <p>
-                Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO
-                (Einwilligung) sowie Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung).
-            </p>
+            <h3>3. Erhobene Daten bei Lebenslauf-Anforderung</h3>
+            <p>Wenn Sie den Lebenslauf anfordern, werden folgende Daten erhoben und via EmailJS an meine E-Mail-Adresse übermittelt:</p>
+            <ul>
+                <li>Name</li>
+                <li>Firmenname</li>
+                <li>E-Mail-Adresse</li>
+                <li>Telefonnummer</li>
+                <li>Zeitstempel der Anfrage</li>
+            </ul>
+            <p>Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO (Einwilligung). Die Daten werden ausschließlich zur Bearbeitung Ihrer Anfrage verwendet und nicht an Dritte weitergegeben. EmailJS (emailjs.com) verarbeitet die Daten als Auftragsverarbeiter.</p>
 
-            <h3>4. Drittanbieter: EmailJS</h3>
-            <p>
-                Für den E-Mail-Versand wird <strong>EmailJS</strong> (EmailJS Inc.) eingesetzt.
-                Die Formulardaten werden an die Server von EmailJS übertragen. Weitere
-                Informationen: <a href="https://www.emailjs.com/legal/privacy-policy/"
-                                  target="_blank" rel="noopener noreferrer">EmailJS Privacy Policy</a>.
-            </p>
+            <h3>4. Google Fonts</h3>
+            <p>Diese Seite nutzt Google Fonts (Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043). Dabei wird beim Laden der Seite eine Verbindung zu Google-Servern aufgebaut, bei der Ihre IP-Adresse übertragen werden kann. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.</p>
 
-            <h3>5. Hosting: GitHub Pages</h3>
-            <p>
-                Beim Besuch dieser Website werden durch GitHub Pages automatisch Server-Log-Dateien
-                gespeichert (IP-Adresse, Browsertyp, Betriebssystem, Datum/Uhrzeit). Die Verarbeitung
-                erfolgt durch GitHub. Weitere Informationen:
-                <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
-                   target="_blank" rel="noopener noreferrer">GitHub Privacy Statement</a>.
-            </p>
+            <h3>5. Chatbot (Botpress)</h3>
+            <p>Diese Seite bindet einen KI-gestützten Chat über Botpress (botpress.com) ein. Bei Nutzung des Chats können Gesprächsdaten an Botpress-Server übermittelt werden. Weitere Informationen: <a href="https://botpress.com/privacy" target="_blank" rel="noopener noreferrer">Botpress Privacy Policy</a>.</p>
 
-            <h3>6. Externe Ressourcen</h3>
-            <p>
-                Diese Seite lädt Schriftarten von <strong>Google Fonts</strong>
-                (Google LLC, USA). Beim Laden können Daten an Google übertragen werden.
-                Weitere Informationen:
-                <a href="https://policies.google.com/privacy"
-                   target="_blank" rel="noopener noreferrer">Google Datenschutzerklärung</a>.
-            </p>
+            <h3>6. Ihre Rechte</h3>
+            <p>Sie haben das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung (Art. 18) und Datenübertragbarkeit (Art. 20 DSGVO). Wenden Sie sich dazu an: <a href="mailto:plantmax87@gmail.com">plantmax87@gmail.com</a>. Beschwerderecht bei der zuständigen Aufsichtsbehörde (Bayerisches Landesamt für Datenschutzaufsicht).</p>
 
-            <h3>7. Ihre Rechte (DSGVO)</h3>
-            <p>
-                Sie haben das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16),
-                Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18),
-                Datenübertragbarkeit (Art. 20) und Widerspruch (Art. 21).
-                Anfragen richten Sie bitte an:
-                <a href="mailto:plantmax87@gmail.com">plantmax87@gmail.com</a>
-            </p>
-
-            <h3>8. Beschwerderecht</h3>
-            <p>
-                Sie haben das Recht, sich bei der zuständigen Aufsichtsbehörde zu beschweren.
-                Zuständig ist der Bayerische Landesbeauftragte für den Datenschutz (BayLfD).
-            </p>
+            <h3>7. Cookies &amp; LocalStorage</h3>
+            <p>Diese Website setzt keinen Tracking-Cookie. Im LocalStorage des Browsers wird ausschließlich Ihre Theme-Präferenz (Hell/Dunkel) gespeichert. Diese Information verlässt Ihr Gerät nicht.</p>
         </div>
     </div>
 
@@ -1198,86 +581,71 @@
          HAUPTINHALT
     ══════════════════════════════════════════ -->
     <div class="container">
-        <header role="banner">
+        <header>
             <div class="logo-box">
-                <span aria-label="MAXXKI – Menschliche und Künstliche Intelligenz">MAXXKI</span>
+                <span>MAXXKI</span>
             </div>
-            <p class="status" aria-label="Slogan">[ Menschliche + Kuenstliche Intelligenz ]</p>
+            <div class="status" aria-label="Tagline">[ Menschliche + Kuenstliche Intelligenz ]</div>
         </header>
 
         <main id="main-content">
-            <section class="hero" aria-label="Vorstellung">
+            <section class="hero" aria-labelledby="hero-heading">
                 <div class="hero-content">
-                    <p class="subtitle">AI Engineer | Frontend | Backend | Automation | Apps &amp; Tools</p>
-                    <h1>MAXIMILIAN<br>KIEFER</h1>
+                    <p class="subtitle">AI Engineer | Frontend | Backend | Automation | Apps &amp; Tools |</p>
+                    <h1 id="hero-heading">MAXIMILIAN KIEFER</h1>
                     <p>
-                        Ich entwickle funktionierende Lösungen mit KI.<br>
+                        <br>
+                        Ich entwickle funktionierende Loesungen mit KI.<br>
                         Lauffähig, sicher, getestet.<br>
-                        Ich brenne leidenschaftlich für das Thema menschliche und künstliche
-                        Intelligenz und freue mich über neue Challenges.
+                        Ich brenne leidenschaftlich für das Thema menschliche und künstliche Intelligenz und freue mich über neue Challenges. 
                         Lassen Sie uns zusammen das Unmögliche möglich machen.
                     </p>
 
-                    <a href="./frontends/"
-                       class="showcase-link-box"
-                       aria-label="Zur Projektübersicht von Maximilian Kiefer">
+                    <a href="./frontends/" class="showcase-link-box" aria-label="Zur Projektübersicht navigieren">
                         <div class="showcase-text">
                             <h2>Zur Übersicht</h2>
                             <p>Klicke hier, um Projekte als Überblick zu sehen.</p>
                         </div>
-                        <span aria-hidden="true">→</span>
                     </a>
 
-                    <button class="cv-download-box"
-                            id="cvDownloadBtn"
-                            type="button"
-                            aria-label="Lebenslauf von Maximilian Kiefer herunterladen – für Recruiter">
+                    <button class="cv-download-box" id="cvDownloadBtn" aria-label="Lebenslauf anfordern – Formular öffnen" aria-haspopup="dialog">
                         <div class="showcase-text">
                             <h2>Lebenslauf für Recruiter</h2>
                             <p>Klicke hier zum Download des Lebenslaufs</p>
                         </div>
-                        <span aria-hidden="true">↓</span>
                     </button>
 
-                    <a href="mailto:plantmax87@gmail.com"
-                       class="btn-massive"
-                       aria-label="Maximilian Kiefer per E-Mail kontaktieren">CONTACT</a>
+                    <a href="mailto:plantmax87@gmail.com" class="btn-massive" aria-label="Kontakt per E-Mail aufnehmen">CONTACT</a>
                 </div>
 
-                <div class="hero-image-wrap" aria-hidden="true">
-                    <img src="https://github.com/user-attachments/assets/4c6281f8-b430-410d-9046-753fb5a165de"
-                         alt="Visualisierung von AI Engineering – abstrakte Darstellung vernetzter Systeme"
-                         width="800"
-                         height="600"
-                         loading="eager"
-                         decoding="async">
+                <div class="hero-image-wrap">
+                    <img 
+                        src="https://github.com/user-attachments/assets/4c6281f8-b430-410d-9046-753fb5a165de" 
+                        alt="MAXXKI – KI-Engineering Visualisierung von Maximilian Kiefer"
+                        width="800"
+                        height="600"
+                        loading="eager"
+                        decoding="async"
+                    >
                 </div>
             </section>
 
-            <section class="tech-grid" aria-label="Technologie-Stack von Maximilian Kiefer">
-                <article class="tech-card">
-                    <h3>AI &amp; LLM</h3>
-                </article>
-                <article class="tech-card">
-                    <h3>Java</h3>
-                </article>
-                <article class="tech-card">
-                    <h3>React</h3>
-                </article>
-                <article class="tech-card">
-                    <h3>Python</h3>
-                </article>
+            <section class="tech-grid" aria-label="Technologie-Stack von MAXXKI">
+                <div class="tech-card"><h3>AI &amp; LLM</h3></div>
+                <div class="tech-card"><h3>Java</h3></div>
+                <div class="tech-card"><h3>React</h3></div>
+                <div class="tech-card"><h3>Python</h3></div>
             </section>
 
-            <section id="maxxki" aria-labelledby="maxxkiHeading">
-                <h2 id="maxxkiHeading">MI + KI = MAXXKI</h2>
+            <section id="maxxki" aria-labelledby="maxxki-heading">
+                <h2 id="maxxki-heading">MI + KI = MAXXKI</h2>
                 <div class="engine-grid">
                     <div>
                         <h4>Menschliche plus künstliche Intelligenz = Maxxki</h4>
                         <p>Ich nutze KI als Erweiterung meiner menschlichen Intelligenz.</p>
                     </div>
                     <div class="engine-code">
-                        <ul aria-label="MAXXKI Toolset">
+                        <ul aria-label="MAXXKI Tools">
                             <li>&gt; MaxxkiRefactoring Workstation</li>
                             <li>&gt; Safe: Dry Run mode &amp; Tarjan's SCC</li>
                             <li>&gt; RobertMartinValidator: Metrics suite</li>
@@ -1289,221 +657,187 @@
             </section>
         </main>
 
-        <footer role="contentinfo">
+        <footer>
             <div class="footer-left">
                 <p>MAXIMILIAN KIEFER</p>
-                <p style="opacity:0.7">Regensburg |
-                    <a href="mailto:plantmax87@gmail.com"
-                       style="color:inherit;text-decoration:none;">plantmax87@gmail.com</a>
-                </p>
+                <p style="opacity: 0.7;">Regensburg | <a href="mailto:plantmax87@gmail.com" style="color:inherit;">plantmax87@gmail.com</a></p>
+                <nav class="footer-links" aria-label="Rechtliche Informationen">
+                    <button onclick="openModal('impressumModal')" aria-haspopup="dialog">Impressum</button>
+                    <button onclick="openModal('datenschutzModal')" aria-haspopup="dialog">Datenschutz</button>
+                </nav>
             </div>
             <div class="footer-right">
                 <p>2026.01.31</p>
-                <p style="opacity:0.7">AI Engineer PORTFOLIO</p>
+                <p style="opacity: 0.7;">AI Engineer PORTFOLIO</p>
             </div>
-
-            <!-- IMPRESSUM & DATENSCHUTZ – rechtlich erforderlich -->
-            <nav class="footer-legal" aria-label="Rechtliche Informationen">
-                <button type="button"
-                        onclick="openLegal('impressum')"
-                        aria-label="Impressum öffnen">Impressum</button>
-                <button type="button"
-                        onclick="openLegal('datenschutz')"
-                        aria-label="Datenschutzerklärung öffnen">Datenschutz</button>
-            </nav>
         </footer>
     </div>
 
     <!-- ══════════════════════════════════════════
-         EMAILJS SDK – defer für Performance
+         SCRIPTS – defer für Performance
     ══════════════════════════════════════════ -->
-    <script defer
-            src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
-            integrity="sha384-oqG14PZxSDzTpWZoKkHHGbSwlLq4UEPANiR+jRzVRklcuivfNnQUG5I5eqB95wV"
-            crossorigin="anonymous"></script>
 
-    <script nonce="MAXXKI2026">
-    // ══════════════════════════════════════════
-    // EmailJS Init (nach defer)
-    // ══════════════════════════════════════════
-    window.addEventListener('load', function() {
-        if (typeof emailjs !== 'undefined') {
-            emailjs.init("xoVRr2sUa27rtNgXs");
+    <!-- EmailJS – nur laden wenn nötig (lazy) -->
+    <script>
+        // EmailJS lazy-load: wird erst geladen wenn Modal geöffnet wird
+        let emailjsLoaded = false;
+        function loadEmailJS(callback) {
+            if (emailjsLoaded) { callback(); return; }
+            const s = document.createElement('script');
+            s.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+            s.onload = () => {
+                emailjs.init("DEIN_PUBLIC_KEY_HIER"); // ← dein echter Key
+                emailjsLoaded = true;
+                callback();
+            };
+            document.head.appendChild(s);
         }
-    });
-
-    // ══════════════════════════════════════════
-    // THEME TOGGLE
-    // ══════════════════════════════════════════
-    const themeBtn = document.getElementById('theme-btn');
-    const savedTheme = localStorage.getItem('theme');
-
-    if (savedTheme === 'light') {
-        document.body.classList.add('light-mode');
-        themeBtn.textContent = '☀️ LIGHT MODE';
-        themeBtn.setAttribute('aria-pressed', 'true');
-    }
-
-    themeBtn.addEventListener('click', () => {
-        const isLight = document.body.classList.toggle('light-mode');
-        themeBtn.textContent = isLight ? '☀️ LIGHT MODE' : '🌙 DARK MODE';
-        themeBtn.setAttribute('aria-pressed', isLight ? 'true' : 'false');
-        localStorage.setItem('theme', isLight ? 'light' : 'dark');
-    });
-
-    // ══════════════════════════════════════════
-    // CV MODAL LOGIC
-    // ══════════════════════════════════════════
-    const cvModal       = document.getElementById('cvModal');
-    const cvDownloadBtn = document.getElementById('cvDownloadBtn');
-    const closeModal    = document.getElementById('closeModal');
-    const cvForm        = document.getElementById('cvForm');
-    const formSection   = document.getElementById('formSection');
-    const successSection = document.getElementById('successSection');
-
-    function openCvModal() {
-        cvModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        closeModal.focus();
-    }
-
-    function closeCvModal() {
-        cvModal.classList.remove('active');
-        document.body.style.overflow = '';
-        resetModal();
-        cvDownloadBtn.focus();
-    }
-
-    cvDownloadBtn.addEventListener('click', openCvModal);
-    closeModal.addEventListener('click', closeCvModal);
-
-    cvModal.addEventListener('click', (e) => {
-        if (e.target === cvModal) closeCvModal();
-    });
-
-    // ══════════════════════════════════════════
-    // LEGAL MODALS
-    // ══════════════════════════════════════════
-    function openLegal(type) {
-        const id = type === 'impressum' ? 'impressumModal' : 'datenschutzModal';
-        document.getElementById(id).classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeLegal(id) {
-        document.getElementById(id).classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-    // ESC closes all modals
-    document.addEventListener('keydown', (e) => {
-        if (e.key !== 'Escape') return;
-
-        if (cvModal.classList.contains('active')) {
-            closeCvModal();
-        }
-        ['impressumModal', 'datenschutzModal'].forEach(id => {
-            const el = document.getElementById(id);
-            if (el && el.classList.contains('active')) {
-                closeLegal(id);
-            }
-        });
-    });
-
-    // Click outside to close legal modals
-    ['impressumModal', 'datenschutzModal'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-            el.addEventListener('click', (e) => {
-                if (e.target === el) closeLegal(id);
-            });
-        }
-    });
-
-    // ══════════════════════════════════════════
-    // FORM SUBMISSION
-    // ══════════════════════════════════════════
-    cvForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        const consent = document.getElementById('consentCheck');
-        if (!consent.checked) {
-            consent.focus();
-            return;
-        }
-
-        const submitBtn = cvForm.querySelector('.modal-btn');
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Sende Anfrage...';
-
-        const formData = {
-            name:      document.getElementById('recruiterName').value,
-            company:   document.getElementById('recruiterCompany').value,
-            email:     document.getElementById('recruiterEmail').value,
-            phone:     document.getElementById('recruiterPhone').value,
-            timestamp: new Date().toLocaleString('de-DE', {
-                dateStyle: 'full',
-                timeStyle: 'short'
-            })
-        };
-
-        try {
-            if (typeof emailjs !== 'undefined') {
-                await emailjs.send('service_3g7z1vg', 'template_c4ole4d', formData);
-            }
-
-            formSection.style.display = 'none';
-            successSection.classList.add('active');
-
-            setTimeout(triggerDownload, 2000);
-            setTimeout(closeCvModal, 4000);
-
-        } catch (error) {
-            console.error('E-Mail-Fehler:', error);
-            alert('Es gab ein Problem beim Senden. Bitte versuchen Sie es erneut oder kontaktieren Sie mich direkt per E-Mail.');
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Lebenslauf anfordern';
-        }
-    });
-
-    // ══════════════════════════════════════════
-    // CV DOWNLOAD
-    // ══════════════════════════════════════════
-    function triggerDownload() {
-        const link = document.createElement('a');
-        link.href     = './Maximilian_Kiefer_CV.pdf';
-        link.download = 'Maximilian_Kiefer_CV.pdf';
-        link.rel      = 'noopener noreferrer';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    }
-
-    function resetModal() {
-        formSection.style.display = 'block';
-        successSection.classList.remove('active');
-        cvForm.reset();
-        const submitBtn = cvForm.querySelector('.modal-btn');
-        if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Lebenslauf anfordern';
-        }
-    }
-
-    // ══════════════════════════════════════════
-    // SMOOTH SCROLL
-    // ══════════════════════════════════════════
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
-                target.focus({ preventScroll: true });
-            }
-        });
-    });
     </script>
 
+    <script>
+        // ══════════════════════════════════════════
+        // THEME TOGGLE
+        // ══════════════════════════════════════════
+        const themeBtn = document.getElementById('theme-btn');
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+            themeBtn.textContent = '☀️ LIGHT MODE';
+        }
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            themeBtn.textContent = isLight ? '☀️ LIGHT MODE' : '🌙 DARK MODE';
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        });
+
+        // ══════════════════════════════════════════
+        // MODAL HELPERS (allgemein)
+        // ══════════════════════════════════════════
+        function openModal(id) {
+            const m = document.getElementById(id);
+            if (!m) return;
+            m.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            // Fokus auf ersten fokussierbaren Element setzen
+            const focusable = m.querySelector('button, [href], input, [tabindex]:not([tabindex="-1"])');
+            if (focusable) focusable.focus();
+        }
+        function closeModalById(id) {
+            const m = document.getElementById(id);
+            if (!m) return;
+            m.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // ESC schließt alle Modals
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay.active').forEach(m => {
+                    m.classList.remove('active');
+                    document.body.style.overflow = '';
+                    if (m.id === 'cvModal') resetModal();
+                });
+            }
+        });
+        // Klick außerhalb schließt
+        document.querySelectorAll('.modal-overlay').forEach(m => {
+            m.addEventListener('click', (e) => {
+                if (e.target === m) {
+                    m.classList.remove('active');
+                    document.body.style.overflow = '';
+                    if (m.id === 'cvModal') resetModal();
+                }
+            });
+        });
+
+        // ══════════════════════════════════════════
+        // CV MODAL
+        // ══════════════════════════════════════════
+        document.getElementById('cvDownloadBtn').addEventListener('click', () => {
+            loadEmailJS(() => {}); // EmailJS vorausladen
+            openModal('cvModal');
+        });
+        document.getElementById('closeModal').addEventListener('click', () => {
+            closeModalById('cvModal');
+            resetModal();
+        });
+
+        // ══════════════════════════════════════════
+        // FORM SUBMISSION
+        // ══════════════════════════════════════════
+        document.getElementById('cvForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const consent = document.getElementById('privacyConsent');
+            if (!consent.checked) {
+                alert('Bitte bestätigen Sie die Datenschutzerklärung.');
+                consent.focus();
+                return;
+            }
+
+            const submitBtn = e.target.querySelector('.modal-btn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sende Anfrage...';
+
+            const formData = {
+                name:      document.getElementById('recruiterName').value,
+                company:   document.getElementById('recruiterCompany').value,
+                email:     document.getElementById('recruiterEmail').value,
+                phone:     document.getElementById('recruiterPhone').value,
+                timestamp: new Date().toLocaleString('de-DE', { dateStyle: 'full', timeStyle: 'short' })
+            };
+
+            try {
+                await emailjs.send(
+                    'DEINE_SERVICE_ID_HIER',    // ← deine Service-ID
+                    'DEINE_TEMPLATE_ID_HIER',   // ← deine Template-ID
+                    formData
+                );
+                document.getElementById('formSection').style.display = 'none';
+                document.getElementById('successSection').classList.add('active');
+                setTimeout(triggerDownload, 2000);
+                setTimeout(() => { closeModalById('cvModal'); resetModal(); }, 4000);
+            } catch (err) {
+                console.error('EmailJS error:', err);
+                alert('Es gab ein Problem beim Senden. Bitte versuchen Sie es erneut.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Lebenslauf anfordern';
+            }
+        });
+
+        function triggerDownload() {
+            const link = document.createElement('a');
+            link.href = './assets/Maximilian_Kiefer_CV.pdf';
+            link.download = 'Maximilian_Kiefer_Lebenslauf.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function resetModal() {
+            document.getElementById('formSection').style.display = 'block';
+            document.getElementById('successSection').classList.remove('active');
+            document.getElementById('cvForm').reset();
+        }
+
+        // ══════════════════════════════════════════
+        // SMOOTH SCROLL
+        // ══════════════════════════════════════════
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+
+    <!-- Botpress Chatbot – async/defer für Performance -->
+    <!-- HINWEIS: Ersetze die Script-URLs mit deinen echten Botpress-URLs -->
+    <!--
+    <script src="https://cdn.botpress.cloud/webchat/v2/inject.js" async></script>
+    <script src="https://mediafiles.botpress.cloud/DEINE_BOT_ID/webchat/v2/config.js" async></script>
+    -->
 </body>
 </html>
