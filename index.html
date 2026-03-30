@@ -686,7 +686,7 @@
             const s = document.createElement('script');
             s.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
             s.onload = () => {
-                emailjs.init("DEIN_PUBLIC_KEY_HIER"); // ← dein echter Key
+                emailjs.init("xoVRr2sUa27rtNgXs"); // ← dein echter Key
                 emailjsLoaded = true;
                 callback();
             };
@@ -790,8 +790,8 @@
 
             try {
                 await emailjs.send(
-                    'DEINE_SERVICE_ID_HIER',    // ← deine Service-ID
-                    'DEINE_TEMPLATE_ID_HIER',   // ← deine Template-ID
+                    'service_3g7z1vg',    // ← deine Service-ID
+                    'template_30rw4ys',   // ← deine Template-ID
                     formData
                 );
                 document.getElementById('formSection').style.display = 'none';
