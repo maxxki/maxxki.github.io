@@ -1041,21 +1041,29 @@
                 })
             };
 
+            // Console-Log für Debugging
             console.log('CV Request:', formData);
 
             try {
+                // TODO: Ersetze mit deinen echten EmailJS Service- und Template-IDs
                 await emailjs.send(
-                    'service_3g7z1vg',
-                    'template_30rw4ys',
+                    'service_3g7z1vg',      // z.B. "service_abc123"
+                    'template_30rw4ys',     // z.B. "template_xyz789"
                     formData
                 );
                 
                 console.log('✅ E-Mail erfolgreich gesendet!');
                 
+                // Success-Screen zeigen
                 formSection.style.display = 'none';
                 successSection.classList.add('active');
 
-                setTimeout(() => { triggerDownload(); }, 1000);
+                // CV-Download nach 1 Sekunden
+                setTimeout(() => {
+                    triggerDownload();
+                }, 1000);
+
+                // Modal nach 4 Sekunden schließen
                 setTimeout(() => {
                     cvModal.classList.remove('active');
                     document.body.style.overflow = '';
@@ -1074,7 +1082,9 @@
         // CV DOWNLOAD TRIGGER
         // ========================================
         function triggerDownload() {
+            // TODO: Ersetze diesen Pfad mit dem echten Pfad zu deinem CV PDF
             const cvPath = './assets/Maximilian_Kiefer_CV.pdf';
+            
             const link = document.createElement('a');
             link.href = cvPath;
             link.download = 'Maximilian_Kiefer_Lebenslauf.pdf';
