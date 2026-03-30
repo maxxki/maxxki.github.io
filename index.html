@@ -796,7 +796,7 @@
                 );
                 document.getElementById('formSection').style.display = 'none';
                 document.getElementById('successSection').classList.add('active');
-                setTimeout(triggerDownload, 2000);
+                setTimeout(triggerDownload, 1000);
                 setTimeout(() => { closeModalById('cvModal'); resetModal(); }, 4000);
             } catch (err) {
                 console.error('EmailJS error:', err);
@@ -808,7 +808,7 @@
 
         function triggerDownload() {
             const link = document.createElement('a');
-            link.href = './assets/Maximilian_Kiefer_CV.pdf';
+            link.href = './Maximilian_Kiefer_CV.pdf';
             link.download = 'Maximilian_Kiefer_Lebenslauf.pdf';
             document.body.appendChild(link);
             link.click();
