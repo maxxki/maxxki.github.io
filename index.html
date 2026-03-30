@@ -956,14 +956,15 @@
         </footer>
     </div>
 
-    <!-- EmailJS SDK — wird nur bei aktivem JavaScript geladen -->
+        <!-- EmailJS SDK -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">
         // ========================================
         // EMAILJS KONFIGURATION
         // ========================================
+        // TODO: Ersetze die folgenden Werte mit deinen echten EmailJS-Credentials
         (function() {
-            emailjs.init("xoVRr2sUa27rtNgXs");
+            emailjs.init("xoVRr2sUa27rtNgXs"); // z.B. "abc123XYZ_defg456"
         })();
 
         // ========================================
@@ -993,17 +994,20 @@
         const formSection = document.getElementById('formSection');
         const successSection = document.getElementById('successSection');
 
+        // Open Modal
         cvDownloadBtn.addEventListener('click', () => {
             cvModal.classList.add('active');
             document.body.style.overflow = 'hidden';
         });
 
+        // Close Modal
         closeModal.addEventListener('click', () => {
             cvModal.classList.remove('active');
             document.body.style.overflow = '';
             resetModal();
         });
 
+        // Close on outside click
         cvModal.addEventListener('click', (e) => {
             if (e.target === cvModal) {
                 cvModal.classList.remove('active');
@@ -1012,6 +1016,7 @@
             }
         });
 
+        // Close on ESC key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && cvModal.classList.contains('active')) {
                 cvModal.classList.remove('active');
